@@ -1,0 +1,12 @@
+{
+    "name": "nemundo/content",
+    "description": "Content",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nemundo",
+            "email": "urs.lang@gmail.com"
+        }
+    ],
+    "require": {}
+}
