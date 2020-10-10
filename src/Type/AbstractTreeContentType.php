@@ -5,13 +5,13 @@ namespace Nemundo\Content\Type;
 
 
 use Nemundo\Process\Search\Type\SearchIndexTrait;
-use Nemundo\Process\Tree\Type\TreeTypeTrait;
+use Nemundo\Content\Type\TreeTypeTrait;
 
 
 abstract class AbstractTreeContentType extends AbstractContentType
 {
 
-    //use TreeTypeTrait;
+    use TreeTypeTrait;
     //use SearchIndexTrait;
 
     public function saveType()
