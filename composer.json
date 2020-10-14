@@ -1,12 +1,17 @@
 {
-    "name": "nemundo/content",
-    "description": "Content",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "nemundo",
-            "email": "urs.lang@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "nemundo/content",
+  "description": "Content",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "nemundo",
+      "email": "urs.lang@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Nemundo\\Content\\": "src/"
+    }
+  }
 }
