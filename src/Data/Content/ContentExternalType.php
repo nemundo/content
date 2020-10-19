@@ -44,7 +44,7 @@ public $contentType;
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = ContentModel::class;
-$this->externalTableName = "process_content";
+$this->externalTableName = "content_content";
 $this->aliasTableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->id = new \Nemundo\Model\Type\Id\IdType();
 $this->id->fieldName = "id";

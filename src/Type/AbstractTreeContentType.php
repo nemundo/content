@@ -4,7 +4,7 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Process\Search\Type\SearchIndexTrait;
+use Nemundo\Search\Type\SearchIndexTrait;
 use Nemundo\Content\Type\TreeTypeTrait;
 
 

@@ -21,7 +21,7 @@ use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-use Nemundo\Process\Config\ProcessConfig;
+
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentModel;
@@ -132,7 +132,6 @@ class ContentSite extends AbstractSite
 
             $filter->andEqual($model->contentTypeId, $contentTypeParameter->getValue());
 
-
             $contentType = $contentTypeParameter->getContentType();
 
             $table = new AdminLabelValueTable($page);
@@ -162,21 +161,17 @@ class ContentSite extends AbstractSite
             $filter->andEqual($model->subject, $subject->getValue());
         }
 
-
         $count = new ContentCount();
         $count->model->loadContentType();
         $count->filter = $filter;
         $contentCount = $count->getCount();
 
-
         $p = new Paragraph($page);
         $p->content = (new Number($contentCount))->formatNumber() . ' Content found';
 
-
-
         $contentReader->filter = $filter;
         $contentReader->addOrder($contentReader->model->id, SortOrder::DESCENDING);
-        //$contentReader->paginationLimit = ProcessConfig::PAGINATION_LIMIT;
+        $contentReader->paginationLimit =50;  // ProcessConfig::PAGINATION_LIMIT;
 
         $table = new AdminClickableTable($page);
 
@@ -192,8 +187,7 @@ class ContentSite extends AbstractSite
         $header->addText('Date/Time');
         $header->addText('User');
         $header->addEmpty();
-
-
+        
         foreach ($contentReader->getData() as $contentRow) {
 
             $contentType = $contentRow->getContentType();

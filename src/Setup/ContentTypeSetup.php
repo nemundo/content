@@ -7,19 +7,16 @@ namespace Nemundo\Content\Setup;
 use Nemundo\Content\Collection\AbstractContentTypeCollection;
 use Nemundo\Content\Data\ContentType\ContentTypeDelete;
 use Nemundo\Content\Data\ContentType\ContentTypeUpdate;
-use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
 
 class ContentTypeSetup extends AbstractContentTypeSetup
 {
-
 
     public function addContentType(AbstractType $contentType)
     {
         parent::addContentType($contentType);
         return $this;
     }
-
 
 
     public function addContentTypeCollection(AbstractContentTypeCollection $collection)

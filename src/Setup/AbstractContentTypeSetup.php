@@ -5,8 +5,6 @@ namespace Nemundo\Content\Setup;
 
 
 use Nemundo\App\Application\Setup\AbstractSetup;
-use Nemundo\Core\Base\AbstractBase;
-use Nemundo\Core\Language\Translation;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentReader;
@@ -14,9 +12,9 @@ use Nemundo\Content\Data\ContentType\ContentType;
 use Nemundo\Content\Data\ContentType\ContentTypeDelete;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
-use Nemundo\Process\Search\Data\WordContentType\WordContentTypeDelete;
+use Nemundo\Core\Language\Translation;
 
-abstract class AbstractContentTypeSetup extends AbstractSetup  // AbstractBase
+abstract class AbstractContentTypeSetup extends AbstractSetup
 {
 
     protected function addContentType(AbstractType $contentType)
@@ -32,11 +30,9 @@ abstract class AbstractContentTypeSetup extends AbstractSetup  // AbstractBase
         $data->id = $contentType->typeId;
         $data->contentType = $contentLabel;
         $data->phpClass = $contentType->getClassName();
-
-        if ($this->application!==null) {
-        $data->applicationId=$this->application->applicationId;
+        if ($this->application !== null) {
+            $data->applicationId = $this->application->applicationId;
         }
-
         $data->setupStatus = true;
         $data->save();
 

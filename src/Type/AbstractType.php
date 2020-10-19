@@ -4,21 +4,22 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Core\Base\AbstractBaseClass;
-use Nemundo\Core\Log\LogMessage;
-use Nemundo\Html\Container\AbstractContainer;
-use Nemundo\Html\Container\AbstractHtmlContainer;
-use Nemundo\Html\Paragraph\Paragraph;
-use Nemundo\Model\Row\AbstractModelDataRow;
 use Nemundo\Content\Event\AbstractContentEvent;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\View\AbstractContentView;
+use Nemundo\Core\Base\AbstractBaseClass;
+use Nemundo\Core\Log\LogMessage;
+use Nemundo\Html\Container\AbstractContainer;
+use Nemundo\Html\Paragraph\Paragraph;
+use Nemundo\Model\Row\AbstractModelDataRow;
 use Nemundo\Web\Parameter\AbstractUrlParameter;
 use Nemundo\Web\Site\AbstractSite;
 
 // AbstractContentType
 abstract class AbstractType extends AbstractBaseClass
 {
+
+    use EventTrait;
 
     /**
      * @var string
@@ -54,7 +55,7 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var AbstractContentEvent[]
      */
-    protected $eventList=[];
+//    protected $eventList = [];
 
 
     abstract protected function loadContentType();
@@ -174,8 +175,7 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-    //public function getForm(AbstractHtmlContainer $parent)
-   public function getForm(AbstractContainer $parent)
+    public function getForm(AbstractContainer $parent)
     {
 
         if ($this->formClass == null) {
@@ -214,7 +214,6 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-    //public function getView(AbstractHtmlContainer $parent = null)
     public function getView(AbstractContainer $parent = null)
     {
 
@@ -281,8 +280,8 @@ abstract class AbstractType extends AbstractBaseClass
         if ($this->viewSite !== null) {
             $site = clone($this->viewSite);
 
-            if ($this->parameterClass !==null) {
-            $site->addParameter($this->getParameter());
+            if ($this->parameterClass !== null) {
+                $site->addParameter($this->getParameter());
             }
         }
 
@@ -327,13 +326,14 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    /*
+    public function addEvent(AbstractContentEvent $contentEvent)
+    {
 
-    public function addEvent(AbstractContentEvent $contentEvent) {
-
-        $this->eventList[]=$contentEvent;
+        $this->eventList[] = $contentEvent;
         return $this;
 
-    }
+    }*/
 
 
 }
