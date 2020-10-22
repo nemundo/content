@@ -1,0 +1,56 @@
+{
+    "app": "Geo",
+    "name": "geo",
+    "namespace": "Nemundo\\Content\\Index\\Geo",
+    "is_deleted": false,
+    "model": [
+        {
+            "template": "default",
+            "model_id": "5d630988-afd0-4cca-a477-9dc0ffa5fd3a",
+            "label": "Geo Index",
+            "class_name": "GeoIndex",
+            "table_name": "content_geo_index",
+            "namespace": "Nemundo\\Content\\Index\\Geo\\Data\\GeoIndex",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "geo_coordinate",
+                    "label": "Coordinate",
+                    "field_name": "coordinate",
+                    "variable_name": "coordinate",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "text",
+                    "label": "Place",
+                    "field_name": "place",
+                    "variable_name": "place",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                },
+                {
+                    "type": "external",
+                    "label": "Content",
+                    "field_name": "content",
+                    "variable_name": "content",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
+                }
+            ],
+            "index": [
+                {
+                    "index_name": "content",
+                    "index_type": "unique_index",
+                    "field_name": [
+                        "content"
+                    ]
+                }
+            ]
+        }
+    ]
+}
