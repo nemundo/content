@@ -12,6 +12,9 @@ use Nemundo\Admin\Com\Table\AdminLabelValueTable;
 use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
+use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
+use Nemundo\Content\Index\Group\Site\GroupSite;
+use Nemundo\Content\Index\Tree\Site\TreeSite;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Order\SortOrder;
@@ -47,7 +50,13 @@ class ContentSite extends AbstractSite
         ContentSite::$site = $this;
 
         new ContentTypeSite($this);
+
+
+        new GroupSite($this);
+        new GeoIndexSite($this);
         new TreeSite($this);
+
+        //new TreeSite($this);
 
 
         new ContentCheckSite($this);

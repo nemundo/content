@@ -25,8 +25,20 @@ abstract class AbstractContentTypeCollection extends AbstractBase
 
     protected function addContentType(AbstractContentType $contentType)
     {
+
+        // unique object
+
         $this->contentTypeList[] = $contentType;
         return $this;
+    }
+
+
+    protected function addContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection) {
+
+        foreach ($contentTypeCollection->getContentTypeList() as $contentType) {
+            $this->addContentType($contentType);
+        }
+
     }
 
 
@@ -34,4 +46,5 @@ abstract class AbstractContentTypeCollection extends AbstractBase
     {
         return $this->contentTypeList;
     }
+
 }

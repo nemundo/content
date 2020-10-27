@@ -318,6 +318,7 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    // existsItem
     public function existItem()
     {
 

@@ -6,6 +6,7 @@ namespace Nemundo\Content\Install;
 
 use Nemundo\App\Script\Setup\ScriptSetup;
 use Nemundo\Content\Index\Geo\Install\GeoIndexInstall;
+use Nemundo\Content\Index\Group\Install\GroupInstall;
 use Nemundo\Model\Setup\ModelCollectionSetup;
 use Nemundo\Content\Data\ContentCollection;
 use Nemundo\Content\Script\ContentCheckScript;
@@ -28,6 +29,7 @@ class ContentInstall extends AbstractInstall
         //(new ContentTestInstall())->install();
 
         (new GeoIndexInstall())->install();
+        (new GroupInstall())->install();
 
 
     }

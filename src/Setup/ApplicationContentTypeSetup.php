@@ -15,7 +15,6 @@ use Nemundo\Core\Debug\Debug;
 class ApplicationContentTypeSetup extends AbstractContentTypeSetup
 {
 
-
     public function __construct(AbstractApplication $application)
     {
         parent::__construct($application);
@@ -26,9 +25,6 @@ class ApplicationContentTypeSetup extends AbstractContentTypeSetup
     {
 
         parent::addContentType($contentType);
-
-        //(new Debug())->write($this->application);
-        //(new Debug())->write($contentType->typeId);
 
         $data = new ApplicationContentType();
         $data->ignoreIfExists = true;
@@ -62,27 +58,17 @@ class ApplicationContentTypeSetup extends AbstractContentTypeSetup
         $update->setupStatus = false;
         $update->update();
 
-
-        /*
-        $update = new ContentTypeUpdate();
-        $update->setupStatus = false;
-        $update->update();*/
-
     }
 
 
+    // removeUnused
     public function deleteUnusedSetupStatus()
     {
 
-        /*$delete = new ContentTypeDelete();
-        $delete->filter->andEqual($delete->model->setupStatus, false);
-        $delete->delete();*/
-
         $delete = new ApplicationContentTypeDelete();
         $delete->filter->andEqual($delete->model->applicationId, $this->application->applicationId);
-        $delete->filter->andEqual($delete->model->setupStatus, false);
+        $delete->filter->andEqual($delete->model->setupStatus,false);  //0);  // false);
         $delete->delete();
-
 
     }
 
