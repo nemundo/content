@@ -1,91 +1,45 @@
 <?php
 
 
-namespace Nemundo\Content\Site;
+namespace Nemundo\Content\Admin\Page;
 
 
 use Nemundo\Admin\Com\Button\AdminSearchButton;
 use Nemundo\Admin\Com\Button\AdminSiteButton;
-use Nemundo\Admin\Com\Navigation\AdminNavigation;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\AdminLabelValueTable;
 use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
-use Nemundo\Content\Admin\Page\ContentPage;
-use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
-use Nemundo\Content\Index\Group\Site\GroupSite;
-use Nemundo\Content\Index\Tree\Site\TreeSite;
-use Nemundo\Core\Type\Number\Number;
-use Nemundo\Db\Filter\Filter;
-use Nemundo\Db\Sql\Order\SortOrder;
-use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
-use Nemundo\Html\Paragraph\Paragraph;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
-use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
-use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
-use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-
+use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentModel;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Content\Site\ContentDeleteSite;
+use Nemundo\Content\Site\ContentIndexSite;
+use Nemundo\Content\Site\ContentItemSite;
+use Nemundo\Content\Site\ContentNewSite;
+use Nemundo\Content\Site\RemoveContentSite;
+use Nemundo\Core\Type\Number\Number;
+use Nemundo\Db\Filter\Filter;
+use Nemundo\Db\Sql\Order\SortOrder;
+use Nemundo\Html\Paragraph\Paragraph;
+use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
+use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
+use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\User\Com\ListBox\UserListBox;
-use Nemundo\Web\Site\AbstractSite;
 
-class ContentSite extends AbstractSite
+class ContentPage extends ContentTemplate
 {
 
-    /**
-     * @var ContentSite
-     */
-    public static $site;
-
-    protected function loadSite()
-    {
-        $this->title = 'Content';
-        $this->url = 'content';
-
-        ContentSite::$site = $this;
-
-        new ContentTypeSite($this);
-
-
-        new GroupSite($this);
-        new GeoIndexSite($this);
-        new TreeSite($this);
-
-        //new TreeSite($this);
-
-
-        new ContentCheckSite($this);
-
-        new ContentItemSite($this);
-        new ContentNewSite($this);
-        new ContentDeleteSite($this);
-        new RemoveContentSite($this);
-        new ContentIndexSite($this);
-
-    }
-
-    public function loadContent()
+    public function getContent()
     {
 
-
-        (new ContentPage())->render();
-
-
-        /*
-        $page = (new DefaultTemplateFactory())->getDefaultTemplate();
-
-
-        $nav = new AdminNavigation($page);
-        $nav->site = ContentSite::$site;
-
-
-        $form = new SearchForm($page);
+        $form = new SearchForm($this);
 
         $formRow = new BootstrapFormRow($form);
 
@@ -123,9 +77,8 @@ class ContentSite extends AbstractSite
             $listbox->addItem($contentTypeRow->id, $contentTypeRow->phpClass);
         }*/
 
-        /*
 
-        $btn = new AdminSiteButton($page);
+        $btn = new AdminSiteButton($this);
         $btn->site = ContentNewSite::$site;
 
 
@@ -150,12 +103,12 @@ class ContentSite extends AbstractSite
 
             $contentType = $contentTypeParameter->getContentType();
 
-            $table = new AdminLabelValueTable($page);
+            $table = new AdminLabelValueTable($this);
             $table->addLabelValue('Class', $contentType->getClassName());
             $table->addLabelValue('Type Label', $contentType->typeLabel);
             $table->addLabelValue('Type Id', $contentType->typeId);
 
-            $btn = new AdminSiteButton($page);
+            $btn = new AdminSiteButton($this);
             $btn->site = clone(RemoveContentSite::$site);
             $btn->site->addParameter($contentTypeParameter);
 
@@ -182,14 +135,14 @@ class ContentSite extends AbstractSite
         $count->filter = $filter;
         $contentCount = $count->getCount();
 
-        $p = new Paragraph($page);
+        $p = new Paragraph($this);
         $p->content = (new Number($contentCount))->formatNumber() . ' Content found';
 
         $contentReader->filter = $filter;
         $contentReader->addOrder($contentReader->model->id, SortOrder::DESCENDING);
         $contentReader->paginationLimit =50;  // ProcessConfig::PAGINATION_LIMIT;
 
-        $table = new AdminClickableTable($page);
+        $table = new AdminClickableTable($this);
 
         $header = new TableHeader($table);
         $header->addText($contentReader->model->contentType->application->label);
@@ -203,7 +156,7 @@ class ContentSite extends AbstractSite
         $header->addText('Date/Time');
         $header->addText('User');
         $header->addEmpty();
-        
+
         foreach ($contentReader->getData() as $contentRow) {
 
             $contentType = $contentRow->getContentType();
@@ -221,9 +174,9 @@ class ContentSite extends AbstractSite
             $row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
             $row->addText($contentRow->user->login);
 
-            $site = clone(ContentIndexSite::$site);
+            /*$site = clone(ContentIndexSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
-            $row->addSite($site);
+            $row->addSite($site);*/
 
 
             $site = clone(ContentDeleteSite::$site);
@@ -237,14 +190,11 @@ class ContentSite extends AbstractSite
         }
 
 
-        $pagination = new BootstrapPagination($page);
+        $pagination = new BootstrapPagination($this);
         $pagination->paginationReader = $contentReader;
 
 
-        $page->render();*/
-
-
+        return parent::getContent(); // TODO: Change the autogenerated stub
     }
-
 
 }
