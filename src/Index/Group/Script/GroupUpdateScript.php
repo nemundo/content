@@ -5,7 +5,7 @@ namespace Nemundo\Content\Index\Group\Script;
 
 
 use Nemundo\App\Script\Type\AbstractConsoleScript;
-use Nemundo\Content\Index\Group\User\UserGroupType;
+use Nemundo\Content\Index\Group\User\UserContentType;
 use Nemundo\User\Data\User\UserReader;
 
 class GroupUpdateScript extends AbstractConsoleScript
@@ -24,7 +24,7 @@ class GroupUpdateScript extends AbstractConsoleScript
         foreach ($reader->getData() as $userRow) {
 
 
-            $type=new UserGroupType($userRow->id);
+            $type=new UserContentType($userRow->id);
             $type->saveType();
 
             $type->addUser($userRow->id);

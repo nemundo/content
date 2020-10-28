@@ -7,7 +7,7 @@ namespace Nemundo\Content\Index\Group\User;
 use Nemundo\Content\Index\Group\Type\AbstractGroupContentType;
 use Nemundo\User\Data\User\UserReader;
 
-class UserGroupType extends AbstractGroupContentType
+class UserContentType extends AbstractGroupContentType
 {
 
     public $groupId;
