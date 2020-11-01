@@ -1,38 +1,16 @@
 <?php
 
 
-namespace Nemundo\Content\Site;
+namespace Nemundo\Content\Admin\Site;
 
 
-use Nemundo\Admin\Com\Button\AdminSearchButton;
-use Nemundo\Admin\Com\Button\AdminSiteButton;
-use Nemundo\Admin\Com\Navigation\AdminNavigation;
-use Nemundo\Admin\Com\Table\AdminClickableTable;
-use Nemundo\Admin\Com\Table\AdminLabelValueTable;
-use Nemundo\App\Application\Com\ApplicationListBox;
-use Nemundo\Com\FormBuilder\SearchForm;
-use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Page\ContentPage;
+use Nemundo\Content\Admin\Site\ContentNewSite;
 use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
 use Nemundo\Content\Index\Group\Site\GroupSite;
+use Nemundo\Content\Index\Search\Site\SearchSite;
+use Nemundo\Content\Index\Search\Site\SearchWordSite;
 use Nemundo\Content\Index\Tree\Site\TreeSite;
-use Nemundo\Core\Type\Number\Number;
-use Nemundo\Db\Filter\Filter;
-use Nemundo\Db\Sql\Order\SortOrder;
-use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
-use Nemundo\Html\Paragraph\Paragraph;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
-use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
-use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
-use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-
-use Nemundo\Content\Com\ListBox\ContentTypeListBox;
-use Nemundo\Content\Data\Content\ContentCount;
-use Nemundo\Content\Data\Content\ContentModel;
-use Nemundo\Content\Data\Content\ContentPaginationReader;
-use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\User\Com\ListBox\UserListBox;
 use Nemundo\Web\Site\AbstractSite;
 
 class ContentSite extends AbstractSite
@@ -50,23 +28,28 @@ class ContentSite extends AbstractSite
 
         ContentSite::$site = $this;
 
+        new ContentNewSite($this);
         new ContentTypeSite($this);
 
+
+        new SearchSite($this);
+        new SearchWordSite($this);
 
         new GroupSite($this);
         new GeoIndexSite($this);
         new TreeSite($this);
 
         //new TreeSite($this);
-
-
-        new ContentCheckSite($this);
+        //new ContentCheckSite($this);
 
         new ContentItemSite($this);
-        new ContentNewSite($this);
         new ContentDeleteSite($this);
+
+
+        //new ContentNewSite($this);
+        /*new ContentDeleteSite($this);
         new RemoveContentSite($this);
-        new ContentIndexSite($this);
+        new ContentIndexSite($this);*/
 
     }
 

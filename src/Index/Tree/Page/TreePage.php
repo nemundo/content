@@ -18,7 +18,6 @@ class TreePage extends ContentTemplate
     public function getContent()
     {
 
-
         $table = new AdminClickableTable($this);
 
         $header = new TableHeader($table);

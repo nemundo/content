@@ -1,72 +1,42 @@
 <?php
 
 
-namespace Nemundo\Content\Index\Search\Site;
+namespace Nemundo\Content\Index\Search\Page;
 
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
-use Nemundo\Content\Index\Search\Page\SearchPage;
+use Nemundo\Content\Admin\Template\ContentTemplate;
+use Nemundo\Content\Index\Search\Com\ContentSearchForm;
+use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
+use Nemundo\Content\Index\Search\Reader\SearchItemReader;
+use Nemundo\Content\Index\Search\Site\SearchSite;
+use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Core\Language\Translation;
-use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Html\Table\Th;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Listing\BootstrapHyperlinkList;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-use Nemundo\Content\Index\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Index\Search\Com\ContentSearchForm;
-use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
-use Nemundo\Content\Index\Search\Reader\SearchItemReader;
-use Nemundo\Content\Index\Search\Site\Json\SearchContentTypeJsonSite;
-use Nemundo\Content\Index\Search\Site\Json\SearchJsonSite;
-use Nemundo\Web\Site\AbstractSite;
 use Nemundo\Web\Site\Site;
 
-
-class SearchSite extends AbstractSite
+class SearchPage extends ContentTemplate
 {
 
-    /**
-     * @var SearchSite
-     */
-    public static $site;
-
-    protected function loadSite()
-    {
-        $this->title[LanguageCode::EN] = 'Search';
-        $this->title[LanguageCode::DE] = 'Suche';
-        $this->url = 'search';
-        SearchSite::$site = $this;
-
-        new SearchItemSite($this);
-        new SearchJsonSite($this);
-        new SearchContentTypeJsonSite($this);
-
-    }
-
-
-    public function loadContent()
+    public function getContent()
     {
 
-        (new SearchPage())->render();
+        new ContentSearchForm($this);
 
-
-        // auslagern project repo
-
-       /* $page = (new DefaultTemplateFactory())->getDefaultTemplate();
-
-        //new ContentSearchForm($page);
-
-        $queryParameter = (new SearchQueryParameter());
-
+        $queryParameter = new SearchQueryParameter();
         if ($queryParameter->hasValue()) {
 
             $searchReader = new SearchItemReader();
             $searchReader->query = $queryParameter->getValue();
             $searchReader->paginationLimit= 30;
+
 
             $contentTypeParameter = new ContentTypeParameter();
             $contentTypeParameter->contentTypeCheck=false;
@@ -81,10 +51,10 @@ class SearchSite extends AbstractSite
 
             $searchCount = $searchReader->getTotalCount();
 
-            $p = new Paragraph($page);
+            $p = new Paragraph($this);
             $p->content = $searchCount . ' ' . (new Translation())->getText($resultText);
 
-            $layout = new BootstrapTwoColumnLayout($page);
+            $layout = new BootstrapTwoColumnLayout($this);
             $layout->col1->columnWidth = 10;
             $layout->col2->columnWidth = 2;
 
@@ -151,7 +121,7 @@ class SearchSite extends AbstractSite
 
         }
 
-        $page->render();*/
+        return parent::getContent();
 
     }
 

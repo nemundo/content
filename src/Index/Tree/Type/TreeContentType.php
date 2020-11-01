@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nemundo\Content\Type;
+namespace Nemundo\Content\Index\Tree\Type;
 
 
 class TreeContentType extends AbstractTreeContentType

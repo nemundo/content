@@ -23,4 +23,6 @@ class SearchItem extends AbstractBase
 
     public $dataId;
 
+    public $contentId;
+
 }

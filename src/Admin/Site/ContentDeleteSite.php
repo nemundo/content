@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nemundo\Content\Site;
+namespace Nemundo\Content\Admin\Site;
 
 
 use Nemundo\Package\FontAwesome\Site\AbstractDeleteIconSite;

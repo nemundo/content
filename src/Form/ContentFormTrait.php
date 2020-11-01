@@ -5,7 +5,7 @@ namespace Nemundo\Content\Form;
 
 
 use Nemundo\Core\Debug\Debug;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
 trait ContentFormTrait
 {

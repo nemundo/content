@@ -12,7 +12,7 @@ use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Content\Com\Table\ContentLogTable;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Parameter\DataIdParameter;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Web\Action\AbstractActionPanel;
 use Nemundo\Web\Action\ActionSite;
 use Nemundo\Web\Action\Site\ActiveActionSite;

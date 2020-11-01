@@ -34,7 +34,6 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var string
      */
-    //private $dataId;
     protected $dataId;
 
     /**
@@ -53,13 +52,11 @@ abstract class AbstractType extends AbstractBaseClass
     protected $viewClass;
 
     /**
-     * @var AbstractContentEvent[]
+     * @var AbstractModelDataRow
      */
-//    protected $eventList = [];
-
+    protected $dataRow;
 
     abstract protected function loadContentType();
-
 
     public function __construct($dataId = null)
     {
@@ -91,10 +88,6 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-    /**
-     * @var AbstractModelDataRow
-     */
-    protected $dataRow;
 
 
     public function fromDataRow(AbstractModelDataRow $dataRow)
@@ -199,6 +192,14 @@ abstract class AbstractType extends AbstractBaseClass
         }
         return $value;
     }
+
+
+    public function isEditable() {
+
+        return $this->hasForm();
+
+    }
+
 
 
     public function hasView()

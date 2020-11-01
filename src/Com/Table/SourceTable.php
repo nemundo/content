@@ -10,7 +10,7 @@ use Nemundo\Core\Debug\Debug;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Content\Com\Container\AbstractParentContainer;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
 
 

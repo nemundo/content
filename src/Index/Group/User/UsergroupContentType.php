@@ -32,5 +32,10 @@ class UsergroupContentType extends AbstractGroupContentType
     }
 
 
+    public function getSubject()
+    {
+        return $this->getGroupLabel();
+    }
+
 
 }

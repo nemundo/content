@@ -12,7 +12,7 @@ public $id;
 public $contentId;
 
 /**
-* @var \Nemundo\Content\Index\Content\Data\Content\ContentExternalType
+* @var \Nemundo\Content\Data\Content\ContentExternalType
 */
 public $content;
 
@@ -32,14 +32,14 @@ public $word;
 public $contentTypeId;
 
 /**
-* @var \Nemundo\Content\Index\Content\Data\ContentType\ContentTypeExternalType
+* @var \Nemundo\Content\Data\ContentType\ContentTypeExternalType
 */
 public $contentType;
 
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = SearchIndexModel::class;
-$this->externalTableName = "process_search_index";
+$this->externalTableName = "content_search_index";
 $this->aliasTableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->id = new \Nemundo\Model\Type\Id\IdType();
 $this->id->fieldName = "id";
@@ -72,7 +72,7 @@ $this->addType($this->contentTypeId);
 }
 public function loadContent() {
 if ($this->content == null) {
-$this->content = new \Nemundo\Content\Index\Content\Data\Content\ContentExternalType(null, $this->parentFieldName . "_content");
+$this->content = new \Nemundo\Content\Data\Content\ContentExternalType(null, $this->parentFieldName . "_content");
 $this->content->fieldName = "content";
 $this->content->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->content->aliasFieldName = $this->content->tableName ."_".$this->content->fieldName;
@@ -94,7 +94,7 @@ return $this;
 }
 public function loadContentType() {
 if ($this->contentType == null) {
-$this->contentType = new \Nemundo\Content\Index\Content\Data\ContentType\ContentTypeExternalType(null, $this->parentFieldName . "_content_type");
+$this->contentType = new \Nemundo\Content\Data\ContentType\ContentTypeExternalType(null, $this->parentFieldName . "_content_type");
 $this->contentType->fieldName = "content_type";
 $this->contentType->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->contentType->aliasFieldName = $this->contentType->tableName ."_".$this->contentType->fieldName;

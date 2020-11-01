@@ -4,6 +4,8 @@
 namespace Nemundo\Content\Index\Search\Reader;
 
 
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\DataSource\AbstractDataSource;
 use Nemundo\Core\Base\DataSource\PaginationTrait;
 use Nemundo\Core\Text\SnippetText;
@@ -11,17 +13,13 @@ use Nemundo\Core\Text\TextBold;
 use Nemundo\Core\Text\WordList;
 use Nemundo\Db\Reader\SqlReader;
 use Nemundo\Db\Sql\Parameter\SqlStatement;
-use Nemundo\Content\Index\Content\Type\AbstractContentType;
-use Nemundo\Content\Index\Content\Type\AbstractTreeContentType;
 
 class SearchItemReader extends AbstractDataSource
 {
 
     use PaginationTrait;
 
-
     public $query;
-
 
     /**
      * @var bool
@@ -83,15 +81,11 @@ class SearchItemReader extends AbstractDataSource
             if ($this->hasValue() || $this->returnEmptyResult) {
 
                 $sql = 'SELECT COUNT(1) total_count FROM (SELECT COUNT(1) count_field 
-FROM process_search_index';
-
-//WHERE ';
+FROM content_search_index';
 
                 $reader = new SqlReader();
                 $reader->sqlStatement->sql = $sql;
                 $reader->sqlStatement = $this->getWhere($reader->sqlStatement);
-
-                //(new Debug())->write($reader->sqlStatement->sql);
 
                 $this->totalCount = $reader->getRow()->getValue('total_count');
 
@@ -111,10 +105,10 @@ FROM process_search_index';
 
             $reader = new SqlReader();
 
-            $sql = 'SELECT * FROM (SELECT COUNT(1) count_field, content, subject, process_search_index.content_type, process_content_type.content_type content_type_label, php_class, data_id 
-FROM process_search_index 
-LEFT JOIN process_content_type ON process_search_index.content_type=process_content_type.id
-LEFT JOIN process_content ON process_search_index.content=process_content.id ';
+            $sql = 'SELECT * FROM (SELECT COUNT(1) count_field, content, subject, content_search_index.content_type, content_content_type.content_type content_type_label, php_class, data_id 
+FROM content_search_index 
+LEFT JOIN content_content_type ON content_search_index.content_type=content_content_type.id
+LEFT JOIN content_content ON content_search_index.content=content_content.id ';
 
             $reader->sqlStatement->sql = $sql;
             $reader->sqlStatement = $this->getWhere($reader->sqlStatement);
@@ -147,6 +141,7 @@ LEFT JOIN process_content ON process_search_index.content=process_content.id ';
                 $searchItem->site = $contentType->getViewSite();
                 $searchItem->typeLabel = $sqlRow->getValue('content_type_label');
                 $searchItem->dataId = $dataId;
+                $searchItem->contentId = $sqlRow->getValue('content');
 
                 $this->addItem($searchItem);
 
@@ -222,7 +217,7 @@ LEFT JOIN process_content ON process_search_index.content=process_content.id ';
                 foreach ($this->filterContentTypeList as $contentType) {
 
                     $parameterName = 'content_type_' . $n;
-                    $sql .= 'process_search_index.content_type = :' . $parameterName;
+                    $sql .= 'content_search_index.content_type = :' . $parameterName;
                     $sqlStatement->addParameter($parameterName, $contentType->typeId, 'content_type');
                     $n++;
 
@@ -236,7 +231,7 @@ LEFT JOIN process_content ON process_search_index.content=process_content.id ';
 
             }*/
 
-            $sqlStatement->sql .= ' GROUP BY process_search_index.content) data WHERE count_field=:count_field';
+            $sqlStatement->sql .= ' GROUP BY content_search_index.content) data WHERE count_field=:count_field';
             $sqlStatement->addParameter('count_field', $keywordList->getWordCount(), 'count_field');
             //  $sqlStatement->sql .= $sqlStatement->sql;
 
@@ -245,7 +240,7 @@ LEFT JOIN process_content ON process_search_index.content=process_content.id ';
             $sqlStatement->sql .= ' WHERE ';
 
             $this->getContentTypeWhere($sqlStatement, false);
-            $sqlStatement->sql .= ' GROUP BY process_search_index.content) data';
+            $sqlStatement->sql .= ' GROUP BY content_search_index.content) data';
         }
 
         return $sqlStatement;
@@ -271,7 +266,7 @@ LEFT JOIN process_content ON process_search_index.content=process_content.id ';
             foreach ($this->filterContentTypeList as $contentType) {
 
                 $parameterName = 'content_type_' . $n;
-                $sql .= 'process_search_index.content_type = :' . $parameterName;
+                $sql .= 'content_search_index.content_type = :' . $parameterName;
                 $sqlStatement->addParameter($parameterName, $contentType->typeId, 'content_type');
                 $n++;
 
@@ -303,9 +298,9 @@ LEFT JOIN process_content ON process_search_index.content=process_content.id ';
 
             $reader = new SqlReader();
 
-            $sql = 'SELECT COUNT(1) content_type_count, data.* FROM (SELECT COUNT(1) count_field, content, process_search_index.content_type, process_content_type.content_type content_type_label 
-FROM process_search_index 
-LEFT JOIN process_content_type ON process_search_index.content_type=process_content_type.id';
+            $sql = 'SELECT COUNT(1) content_type_count, data.* FROM (SELECT COUNT(1) count_field, content, content_search_index.content_type, content_content_type.content_type content_type_label 
+FROM content_search_index 
+LEFT JOIN content_content_type ON content_search_index.content_type=content_content_type.id';
 
 //WHERE ';
 
@@ -330,6 +325,5 @@ LEFT JOIN process_content_type ON process_search_index.content_type=process_cont
         return $resultList;
 
     }
-
 
 }

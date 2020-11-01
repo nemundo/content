@@ -30,11 +30,11 @@ class SearchIndexInstall extends AbstractInstall
         $setup = new ModelCollectionSetup();
         $setup->addCollection(new SearchCollection());
 
-        $setup=new ContentTypeSetup();
-        $setup->addContentType(new SearchLogContentType());
+        /*$setup=new ContentTypeSetup();
+        $setup->addContentType(new SearchLogContentType());*/
 
         $setup=new ScriptSetup();
-        $setup->addScript(new SearchIndexReindexingScript());
+        //$setup->addScript(new SearchIndexReindexingScript());
         $setup->addScript(new SearchCleanScript());
 
         (new ScriptSetup(new SearchApplication()))

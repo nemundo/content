@@ -4,7 +4,7 @@
 namespace Nemundo\Content\Index\Group\Type;
 
 
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
 
 // braucht es das???

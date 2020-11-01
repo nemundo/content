@@ -11,7 +11,7 @@ use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Content\Collection\AbstractContentTypeCollection;
 use Nemundo\Content\Data\Tree\TreeReader;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
 
 // ChildTable

@@ -3,9 +3,7 @@
 namespace Nemundo\Content\Index\Search\Index;
 
 
-use Nemundo\App\Search\Model\DocumentModel;
-use Nemundo\App\Search\Model\IndexModel;
-use Nemundo\App\Search\Model\WordModel;
+
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Core\Text\KeywordList;
@@ -14,7 +12,7 @@ use Nemundo\Model\Count\ModelDataCount;
 use Nemundo\Model\Delete\ModelDelete;
 use Nemundo\Model\Id\ModelId;
 use Nemundo\Model\Reader\ModelDataReader;
-use Nemundo\Content\Index\Content\Type\AbstractContentType;
+
 
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexBulk;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexCount;

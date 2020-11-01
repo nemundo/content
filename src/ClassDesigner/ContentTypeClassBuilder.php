@@ -27,7 +27,7 @@ class ContentTypeClassBuilder extends AbstractClassBuilder
         $phpClass->className = $typeClassName;
         $phpClass->extendsFromClass = 'AbstractTreeContentType';
         $phpClass->namespace = $namespace;
-        $phpClass->addUseClass('Nemundo\Content\Type\AbstractTreeContentType');
+        $phpClass->addUseClass('Nemundo\Content\Index\Tree\Type\AbstractTreeContentType');
 
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;

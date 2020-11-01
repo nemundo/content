@@ -12,7 +12,7 @@ public $id;
 public $contentTypeId;
 
 /**
-* @var \Nemundo\Content\Index\Content\Data\ContentType\ContentTypeExternalType
+* @var \Nemundo\Content\Data\ContentType\ContentTypeExternalType
 */
 public $contentType;
 
@@ -24,7 +24,7 @@ public $word;
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = WordContentTypeModel::class;
-$this->externalTableName = "process_search_word_content_type";
+$this->externalTableName = "content_search_word_content_type";
 $this->aliasTableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->id = new \Nemundo\Model\Type\Id\IdType();
 $this->id->fieldName = "id";
@@ -50,7 +50,7 @@ $this->addType($this->word);
 }
 public function loadContentType() {
 if ($this->contentType == null) {
-$this->contentType = new \Nemundo\Content\Index\Content\Data\ContentType\ContentTypeExternalType(null, $this->parentFieldName . "_content_type");
+$this->contentType = new \Nemundo\Content\Data\ContentType\ContentTypeExternalType(null, $this->parentFieldName . "_content_type");
 $this->contentType->fieldName = "content_type";
 $this->contentType->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->contentType->aliasFieldName = $this->contentType->tableName ."_".$this->contentType->fieldName;

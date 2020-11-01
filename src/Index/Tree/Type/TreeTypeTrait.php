@@ -1,25 +1,17 @@
 <?php
 
 
-namespace Nemundo\Process\Tree\Type;
+namespace Nemundo\Content\Index\Tree\Type;
 
 
+use Nemundo\Content\Data\Content\ContentReader;
+use Nemundo\Content\Data\Tree\TreeCount;
+use Nemundo\Content\Data\Tree\TreeDelete;
+use Nemundo\Content\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Writer\TreeWriter;
+use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Db\Sql\Order\SortOrder;
-use Nemundo\Process\App\Notification\Type\NotificationTrait;
-use Nemundo\Process\Content\Data\Content\ContentReader;
-use Nemundo\Process\Content\Data\Tree\Tree;
-use Nemundo\Process\Content\Data\Tree\TreeCount;
-use Nemundo\Process\Content\Data\Tree\TreeDelete;
-use Nemundo\Process\Content\Data\Tree\TreeReader;
-use Nemundo\Process\Content\Data\Tree\TreeValue;
-use Nemundo\Process\Content\Row\ContentCustomRow;
-use Nemundo\Process\Content\Type\AbstractTreeContentType;
-use Nemundo\Process\Content\Writer\TreeWriter;
-
-
-// childtrait
-// parenttrait
 
 
 trait TreeTypeTrait
@@ -86,11 +78,10 @@ trait TreeTypeTrait
 
         $writer = new TreeWriter();
         $writer->parentId = $this->getContentId();
-        $writer->childId=$childId;
+        $writer->childId = $childId;
         $writer->write();
 
         $this->saveIndex();
-
 
 
         /*
@@ -129,13 +120,14 @@ trait TreeTypeTrait
     }
 
 
-    public function getChildContentTypeList() {
+    public function getChildContentTypeList()
+    {
 
         /** @var AbstractTreeContentType[]|NotificationTrait[] $list */
         $list = [];
 
         foreach ($this->getChild() as $contentCustomRow) {
-          $list[] = $contentCustomRow->getContentType();
+            $list[] = $contentCustomRow->getContentType();
         }
 
         return $list;

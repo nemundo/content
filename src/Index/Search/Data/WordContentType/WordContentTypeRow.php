@@ -22,7 +22,7 @@ public $id;
 public $contentTypeId;
 
 /**
-* @var \Nemundo\Content\Index\Content\Row\ContentTypeCustomRow
+* @var \Nemundo\Content\Row\ContentTypeCustomRow
 */
 public $contentType;
 
@@ -37,11 +37,11 @@ $this->row = $row;
 $this->id = $this->getModelValue($model->id);
 $this->contentTypeId = $this->getModelValue($model->contentTypeId);
 if ($model->contentType !== null) {
-$this->loadNemundoProcessContentDataContentTypeContentTypecontentTypeRow($model->contentType);
+$this->loadNemundoContentDataContentTypeContentTypecontentTypeRow($model->contentType);
 }
 $this->word = $this->getModelValue($model->word);
 }
-private function loadNemundoProcessContentDataContentTypeContentTypecontentTypeRow($model) {
-$this->contentType = new \Nemundo\Content\Index\Content\Row\ContentTypeCustomRow($this->row, $model);
+private function loadNemundoContentDataContentTypeContentTypecontentTypeRow($model) {
+$this->contentType = new \Nemundo\Content\Row\ContentTypeCustomRow($this->row, $model);
 }
 }

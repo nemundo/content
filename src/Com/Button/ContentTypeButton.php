@@ -6,7 +6,7 @@ namespace Nemundo\Content\Com\Button;
 
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Web\Site\Site;
 
 class ContentTypeButton extends AdminSiteButton

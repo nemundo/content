@@ -22,7 +22,7 @@ public $id;
 public $contentId;
 
 /**
-* @var \Nemundo\Content\Index\Content\Row\ContentCustomRow
+* @var \Nemundo\Content\Row\ContentCustomRow
 */
 public $content;
 
@@ -42,7 +42,7 @@ public $word;
 public $contentTypeId;
 
 /**
-* @var \Nemundo\Content\Index\Content\Row\ContentTypeCustomRow
+* @var \Nemundo\Content\Row\ContentTypeCustomRow
 */
 public $contentType;
 
@@ -52,24 +52,24 @@ $this->row = $row;
 $this->id = $this->getModelValue($model->id);
 $this->contentId = intval($this->getModelValue($model->contentId));
 if ($model->content !== null) {
-$this->loadNemundoProcessContentDataContentContentcontentRow($model->content);
+$this->loadNemundoContentDataContentContentcontentRow($model->content);
 }
 $this->wordId = $this->getModelValue($model->wordId);
 if ($model->word !== null) {
-$this->loadNemundoProcessSearchDataWordWordwordRow($model->word);
+$this->loadNemundoContentIndexSearchDataWordWordwordRow($model->word);
 }
 $this->contentTypeId = $this->getModelValue($model->contentTypeId);
 if ($model->contentType !== null) {
-$this->loadNemundoProcessContentDataContentTypeContentTypecontentTypeRow($model->contentType);
+$this->loadNemundoContentDataContentTypeContentTypecontentTypeRow($model->contentType);
 }
 }
-private function loadNemundoProcessContentDataContentContentcontentRow($model) {
-$this->content = new \Nemundo\Content\Index\Content\Row\ContentCustomRow($this->row, $model);
+private function loadNemundoContentDataContentContentcontentRow($model) {
+$this->content = new \Nemundo\Content\Row\ContentCustomRow($this->row, $model);
 }
-private function loadNemundoProcessSearchDataWordWordwordRow($model) {
+private function loadNemundoContentIndexSearchDataWordWordwordRow($model) {
 $this->word = new \Nemundo\Content\Index\Search\Data\Word\WordRow($this->row, $model);
 }
-private function loadNemundoProcessContentDataContentTypeContentTypecontentTypeRow($model) {
-$this->contentType = new \Nemundo\Content\Index\Content\Row\ContentTypeCustomRow($this->row, $model);
+private function loadNemundoContentDataContentTypeContentTypecontentTypeRow($model) {
+$this->contentType = new \Nemundo\Content\Row\ContentTypeCustomRow($this->row, $model);
 }
 }

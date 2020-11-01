@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nemundo\Content\Writer;
+namespace Nemundo\Content\Index\Tree\Writer;
 
 
 use Nemundo\Core\Base\AbstractBase;

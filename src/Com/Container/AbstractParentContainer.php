@@ -5,7 +5,7 @@ namespace Nemundo\Content\Com\Container;
 
 
 use Nemundo\Html\Container\AbstractHtmlContainer;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
 class AbstractParentContainer extends AbstractHtmlContainer
 {

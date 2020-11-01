@@ -6,7 +6,7 @@ namespace Nemundo\Content\Com\Container;
 
 use Nemundo\Html\Block\Div;
 use Nemundo\Html\Container\AbstractHtmlContainer;
-use Nemundo\Content\Type\AbstractTreeContentType;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Process\Workflow\Content\Status\AbstractProcessStatus;
 
 // ContentChildContainer

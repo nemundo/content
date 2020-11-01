@@ -1,11 +1,10 @@
 <?php
 
 
-namespace Nemundo\Content\Site;
+namespace Nemundo\Content\Admin\Page;
 
 
 use Nemundo\Admin\Com\Button\AdminIconSiteButton;
-use Nemundo\Admin\Com\Navigation\AdminNavigation;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\AdminLabelValueTable;
 use Nemundo\Admin\Com\Table\AdminTable;
@@ -13,43 +12,27 @@ use Nemundo\Admin\Com\Title\AdminSubtitle;
 use Nemundo\Admin\Com\Title\AdminTitle;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Com\TableBuilder\TableRow;
-use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
-use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
+use Nemundo\Content\Admin\Site\ContentDeleteSite;
+use Nemundo\Content\Admin\Site\ContentEditSite;
+use Nemundo\Content\Admin\Site\ContentItemSite;
+use Nemundo\Content\Admin\Site\ContentNewSite;
+use Nemundo\Content\Admin\Site\ContentSite;
+use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Data\Content\ContentReader;
+use Nemundo\Content\Data\ContentType\ContentTypeReader;
+use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
+use Nemundo\Content\Index\Search\Type\SearchIndexTrait;
+use Nemundo\Content\Index\Tree\Type\TreeTypeTrait;
 use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Process\Search\Data\SearchIndex\SearchIndexReader;
-use Nemundo\Process\Search\Type\SearchIndexTrait;
-use Nemundo\Process\Tree\Type\TreeTypeTrait;
-use Nemundo\Web\Site\AbstractSite;
+use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
+use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
-class ContentItemSite extends AbstractSite
+class ContentItemPage extends ContentTemplate
 {
 
-    /**
-     * @var ContentItemSite
-     */
-    public static $site;
-
-    protected function loadSite()
+    public function getContent()
     {
-
-        $this->url = 'content-item';
-        $this->menuActive = false;
-        ContentItemSite::$site = $this;
-
-        new ContentEditSite($this);
-
-    }
-
-    public function loadContent()
-    {
-
-        $page = (new DefaultTemplateFactory())->getDefaultTemplate();
-
-        $nav = new AdminNavigation($page);
-        $nav->site = ContentSite::$site;
-
-        ContentSite::$site->showMenuAsActive = true;
 
 
         $contentType = (new ContentParameter())->getContentType(false);
@@ -58,7 +41,7 @@ class ContentItemSite extends AbstractSite
         $contentReader->model->loadUser();
         $contentRow = $contentReader->getRowById($contentType->getContentId());
 
-        $title = new AdminTitle($page);
+        $title = new AdminTitle($this);
         $title->content = $contentType->getSubject();
 
         /*if ($contentType->hasView()) {
@@ -68,7 +51,8 @@ class ContentItemSite extends AbstractSite
             $p->content = '[No View]';
         }*/
 
-        $table1 = new AdminLabelValueTable($page);
+
+        $table1 = new AdminLabelValueTable($this);
         $table1->addLabelValue('Subject', $contentType->getSubject());
 
         if ($contentType->isObjectOfTrait(TreeTypeTrait::class)) {
@@ -108,10 +92,10 @@ class ContentItemSite extends AbstractSite
 
         if ($contentType->isObjectOfTrait(TreeTypeTrait::class)) {
 
-            $subtitle = new AdminSubtitle($page);
+            $subtitle = new AdminSubtitle($this);
             $subtitle->content = 'Child';
 
-            $table = new AdminClickableTable($page);
+            $table = new AdminClickableTable($this);
 
             $header = new TableHeader($table);
             $header->addText('Content Type');
@@ -148,10 +132,10 @@ class ContentItemSite extends AbstractSite
 
             if ($contentType->hasParent()) {
 
-                $subtitle = new AdminSubtitle($page);
+                $subtitle = new AdminSubtitle($this);
                 $subtitle->content = 'Parent Type';
 
-                $table = new AdminClickableTable($page);
+                $table = new AdminClickableTable($this);
 
                 $header->addText('Content Type');
                 $header->addText('Subject');
@@ -175,11 +159,11 @@ class ContentItemSite extends AbstractSite
 
         }
 
-        $btn = new AdminIconSiteButton($page);
+        $btn = new AdminIconSiteButton($this);
         $btn->site = ContentEditSite::$site;
         $btn->site->addParameter(new ContentParameter());
 
-        $btn = new AdminIconSiteButton($page);
+        $btn = new AdminIconSiteButton($this);
         $btn->site = ContentDeleteSite::$site;
         $btn->site->addParameter(new ContentParameter());
 
@@ -206,7 +190,7 @@ class ContentItemSite extends AbstractSite
 
             $table1->addLabelValue('Search', 'yes');
 
-            $table = new AdminTable($page);
+            $table = new AdminTable($this);
 
             $header = new TableHeader($table);
             $header->addText('Search Word');
@@ -220,7 +204,6 @@ class ContentItemSite extends AbstractSite
                 $row->addText($searchIndexRow->word->word);
 
             }
-
 
         } else {
 
@@ -288,10 +271,10 @@ class ContentItemSite extends AbstractSite
 
         }*/
 
-        $page->render();
 
+
+        return parent::getContent();
 
     }
-
 
 }
