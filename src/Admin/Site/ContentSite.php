@@ -11,6 +11,7 @@ use Nemundo\Content\Index\Group\Site\GroupSite;
 use Nemundo\Content\Index\Search\Site\SearchSite;
 use Nemundo\Content\Index\Search\Site\SearchWordSite;
 use Nemundo\Content\Index\Tree\Site\TreeSite;
+
 use Nemundo\Web\Site\AbstractSite;
 
 class ContentSite extends AbstractSite
@@ -29,7 +30,9 @@ class ContentSite extends AbstractSite
         ContentSite::$site = $this;
 
         new ContentNewSite($this);
+        new ContentRemoveSite($this);
         new ContentTypeSite($this);
+
 
 
         new SearchSite($this);
