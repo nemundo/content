@@ -74,9 +74,14 @@ trait SearchIndexTrait
             $count = new SearchIndexCount();
             $count->filter->andEqual($count->model->wordId, $searchIndexRow->wordId);
             $count->filter->andNotEqual($searchIndexReader->model->contentId, $this->getContentId());
-            if ($count->getCount() === 0) {
+            if ($count->getCount() === 1) {
                 (new WordDelete())->deleteById($searchIndexRow->wordId);
             }
+
+
+            // delete word content type
+
+
 
         }
 

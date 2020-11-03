@@ -3,12 +3,12 @@
 
 namespace Nemundo\Content\Row;
 
+use Nemundo\Content\Index\Tree\Type\TreeContentType;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Content\Data\Content\ContentRow;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
-use Nemundo\Content\Type\MenuTrait;
-use Nemundo\Content\Type\TreeContentType;
+
 
 class ContentCustomRow extends ContentRow
 {

@@ -57,7 +57,8 @@ abstract class AbstractTreeContentType extends AbstractContentType
     {
 
         parent::deleteType();
-        //$this->deleteTree();
+        $this->deleteTree();
+        $this->deleteSearchIndex();
 
     }
 
