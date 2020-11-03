@@ -3,14 +3,13 @@
 
 namespace Nemundo\Content\Type;
 
+use Nemundo\Content\Index\Tree\Type\AbstractContentList;
+use Nemundo\Content\View\AbstractContentAdmin;
 use Nemundo\Core\Language\Translation;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Html\Container\AbstractContainer;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Html\Paragraph\Paragraph;
-use Nemundo\Content\Form\ContentForm;
-use Nemundo\Content\View\AbstractContentAdmin;
-use Nemundo\Content\View\AbstractContentList;
 
 
 abstract class AbstractContentType extends AbstractType
@@ -79,7 +78,7 @@ abstract class AbstractContentType extends AbstractType
 
     }
 
-    public function getList(AbstractHtmlContainer $parent)
+    public function getList(AbstractContainer $parent)
     {
 
         $list = null;
@@ -94,6 +93,7 @@ abstract class AbstractContentType extends AbstractType
 
             /** @var AbstractContentList $list */
             $list = new $this->listClass($parent);
+            //$list->parentId=
 
         }
 

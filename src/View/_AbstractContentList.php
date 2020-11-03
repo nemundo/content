@@ -10,7 +10,7 @@ use Nemundo\Web\Parameter\AbstractUrlParameter;
 use Nemundo\Web\Site\AbstractSite;
 use Nemundo\Web\Site\Site;
 
-class AbstractContentList extends AbstractHtmlContainer
+class _old_AbstractContentList extends AbstractHtmlContainer
 {
 
     public $showSearchForm = false;
