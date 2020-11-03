@@ -34,9 +34,9 @@ abstract class AbstractContentType extends AbstractType
 
         parent::__construct($dataId);
 
-        if ($this->formClass == null) {
+        /*if ($this->formClass == null) {
             $this->formClass = ContentForm::class;
-        }
+        }*/
 
         $this->loadUserDateTime();
 

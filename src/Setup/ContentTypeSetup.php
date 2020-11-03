@@ -41,7 +41,7 @@ class ContentTypeSetup extends AbstractContentTypeSetup
     }
 
 
-    public function deleteUnusedSetupStatus()
+    public function removeUnusedSetupStatus()
     {
 
         $delete = new ContentTypeDelete();
