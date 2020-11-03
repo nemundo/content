@@ -90,9 +90,9 @@ trait ContentIndexTrait
     {
 
         // wann braucht's das??? bei status ohne daten z.B. auftragliste
-        if ($this->getDataId() == null) {
+        /*if ($this->getDataId() == null) {
             $this->dataId = (new UniqueId())->getUniqueId();
-        }
+        }*/
 
         $data = new Content();
         $data->ignoreIfExists = true;
