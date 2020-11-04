@@ -4,12 +4,15 @@
 namespace Nemundo\Content\Index\Tree\Type;
 
 
+use Nemundo\Content\Collection\AbstractContentTypeCollection;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\Tree\TreeCount;
 use Nemundo\Content\Data\Tree\TreeDelete;
 use Nemundo\Content\Data\Tree\TreeReader;
 use Nemundo\Content\Index\Tree\Writer\TreeWriter;
 use Nemundo\Content\Row\ContentCustomRow;
+use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Core\Debug\Debug;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Db\Sql\Order\SortOrder;
 
@@ -22,11 +25,74 @@ trait TreeTypeTrait
      */
     public $parentId;
 
+    /**
+     * @var bool
+     */
+    public $restrictedChild=false;
+
+
+    /**
+     * @var AbstractContentType[]
+     */
+    private $restrictedChildList=[];
+
+
+
+    public function addRestrictedContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection) {
+
+
+       // $this->restrictedChildList[]=$contentType;
+
+        return $this;
+
+    }
+
+
+    public function addRestrictedContentType(AbstractContentType $contentType) {
+
+        $this->restrictedChildList[]=$contentType;
+        return $this;
+
+    }
+
+
+    public function getRestrictedContentType() {
+        return $this->restrictedChildList;
+    }
+
+
+
 
     protected function saveTree()
     {
 
         if ($this->parentId !== null) {
+
+
+            $allowed=false;
+
+            if ($this->getParentContentType()->restrictedChild) {
+
+                foreach ($this->getParentContentType()->getRestrictedContentType() as $child) {
+
+                    if ($child->typeId == $this->typeId) {
+                        $allowed=true;
+                    }
+
+                }
+
+                if (!$allowed) {
+
+                    (new Debug())->write('Not allowed to attach');
+                    exit;
+
+                }
+
+            }
+
+
+
+
             $writer = new TreeWriter();
             $writer->parentId = $this->parentId;
             $writer->childId = $this->getContentId();
