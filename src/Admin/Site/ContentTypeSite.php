@@ -9,6 +9,7 @@ use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\AdminTable;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Com\TableBuilder\TableRow;
+use Nemundo\Content\Admin\Page\ContentTypePage;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
@@ -20,16 +21,27 @@ use Nemundo\Web\Site\AbstractSite;
 class ContentTypeSite extends AbstractSite
 {
 
+    /**
+     * @var ContentTypeSite
+     */
+    public static $site;
+
     protected function loadSite()
     {
         $this->title = 'Content Type';
         $this->url = 'content-type';
+        ContentTypeSite::$site=$this;
 
     }
 
     public function loadContent()
     {
 
+
+        (new ContentTypePage())->render();
+
+
+        /*
 
         $page = (new DefaultTemplateFactory())->getDefaultTemplate();
 
@@ -99,7 +111,7 @@ class ContentTypeSite extends AbstractSite
 
         }*/
 
-        $page->render();
+        //$page->render();
 
 
     }
