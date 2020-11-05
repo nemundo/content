@@ -4,7 +4,9 @@
 namespace Nemundo\Content\Install;
 
 
+use Nemundo\App\Application\Setup\ApplicationSetup;
 use Nemundo\App\Script\Setup\ScriptSetup;
+use Nemundo\Content\Application\ContentApplication;
 use Nemundo\Content\Data\ContentCollection;
 use Nemundo\Content\Index\Geo\Install\GeoIndexInstall;
 use Nemundo\Content\Index\Group\Install\GroupInstall;
@@ -21,10 +23,13 @@ class ContentInstall extends AbstractInstall
     public function install()
     {
 
-        $setup = new ModelCollectionSetup();
-        $setup->addCollection(new ContentCollection());
+        (new ApplicationSetup())
+            ->addApplication(new ContentApplication());
 
-        (new ScriptSetup())
+        (new ModelCollectionSetup())
+            ->addCollection(new ContentCollection());
+
+        (new ScriptSetup(new ContentApplication()))
             ->addScript(new ReIndexScript())
             ->addScript(new ContentUpdateScript())
             ->addScript(new ContentCheckScript());
