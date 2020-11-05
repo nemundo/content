@@ -3,6 +3,7 @@
 namespace Nemundo\Content\Index\Tree\Com\Form;
 
 use Nemundo\Admin\Com\Title\AdminSubtitle;
+use Nemundo\Com\Container\LibraryTrait;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Tree\Writer\TreeWriter;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
@@ -11,6 +12,8 @@ use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Package\NemundoJs\NemundoJsPackage;
+use Nemundo\Web\WebConfig;
 
 
 // Two Way possible
@@ -19,6 +22,8 @@ use Nemundo\Content\Type\AbstractContentType;
 
 class ContentTreeAttachmentForm extends BootstrapForm
 {
+
+    use LibraryTrait;
 
     /**
      * @var AbstractContentType
@@ -35,6 +40,9 @@ class ContentTreeAttachmentForm extends BootstrapForm
 
         // search box
 
+        $this->addPackage(new NemundoJsPackage());
+        $this->addJsUrl(WebConfig::$webUrl.'js/content.js');
+
 
         $subtitle=new AdminSubtitle($this);
         $subtitle->content='Attach to ...';
@@ -42,10 +50,12 @@ class ContentTreeAttachmentForm extends BootstrapForm
 
         $row=new BootstrapFormRow($this);
 
-        new ContentTypeListBox($row);
+        $contentTypeListBox = new ContentTypeListBox($row);
+        $contentTypeListBox->name='content-type-attachment';
 
 
         $this->content= new BootstrapListBox($row);
+        $this->content->name = 'content-attachment';
         $this->content->label = 'Content';
         $this->content->validation=true;
 

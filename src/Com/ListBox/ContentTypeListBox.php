@@ -11,12 +11,13 @@ use Nemundo\Content\Parameter\ContentTypeParameter;
 class ContentTypeListBox extends BootstrapListBox
 {
 
-
     protected function loadContainer()
     {
 
         $this->label = 'Content Type';
         $this->name = (new ContentTypeParameter())->parameterName;
+
+       // $this->select->id = 'content_type_select';
 
         $reader = new ContentTypeReader();
         $reader->addOrder($reader->model->contentType);
