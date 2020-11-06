@@ -29,7 +29,12 @@ class ContentCleanScript extends AbstractConsoleScript
         foreach ($reader->getData() as $contentRow) {
 
             $contentType = $contentRow->getContentType();
-            $contentType->deleteType();
+
+            if ($contentType->existItem()) {
+
+            }
+
+            //$contentType->deleteType();
 
         }
 
