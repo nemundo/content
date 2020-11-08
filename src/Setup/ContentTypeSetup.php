@@ -31,6 +31,21 @@ class ContentTypeSetup extends AbstractContentTypeSetup
     }
 
 
+    public function removeContentTypeCollection(AbstractContentTypeCollection $collection)
+    {
+
+        foreach ($collection->getContentTypeList() as $contentType) {
+            $this->removeContentType($contentType);
+        }
+
+        return $this;
+
+    }
+
+
+
+
+
     public function resetSetupStatus()
     {
 

@@ -86,9 +86,10 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
         } while ($contentCount > 0);
 
 
+        /*
         $delete = new WordContentTypeDelete();
         $delete->filter->andEqual($delete->model->contentTypeId, $contentType->typeId);
-        $delete->delete();
+        $delete->delete();*/
 
 
         return $this;
