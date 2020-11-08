@@ -13,6 +13,7 @@ use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Site\ContentDeleteSite;
 use Nemundo\Content\Admin\Site\ContentItemSite;
+use Nemundo\Content\Admin\Site\ContentTypeRemoveSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Data\Content\ContentCount;
@@ -21,7 +22,7 @@ use Nemundo\Content\Data\Content\ContentPaginationReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 
-use Nemundo\Content\Site\ContentRemoveSite;
+
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Order\SortOrder;
@@ -97,6 +98,13 @@ class ContentPage extends ContentTemplate
         $contentTypeParameter = new ContentTypeParameter();
         $contentTypeParameter->contentTypeCheck = false;
         if ($contentTypeParameter->hasValue()) {
+
+
+            $btn=new AdminSiteButton($this);
+            $btn->site=clone(ContentTypeRemoveSite::$site);
+            $btn->site->addParameter($contentTypeParameter);
+
+
 
             $filter->andEqual($model->contentTypeId, $contentTypeParameter->getValue());
 

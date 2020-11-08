@@ -4,13 +4,12 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Core\Random\UniqueId;
-use Nemundo\Core\Type\DateTime\DateTime;
 use Nemundo\Content\Data\Content\Content;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentId;
 use Nemundo\Content\Data\Content\ContentUpdate;
+use Nemundo\Core\Type\DateTime\DateTime;
 use Nemundo\User\Type\UserSessionType;
 
 trait ContentIndexTrait
@@ -52,8 +51,6 @@ trait ContentIndexTrait
 
         if ($this->contentId == null) {
 
-//            $this->saveContent();
-
             if ($this->existContent()) {
 
                 $id = new ContentId();
@@ -89,11 +86,6 @@ trait ContentIndexTrait
     protected function saveContent()
     {
 
-        // wann braucht's das??? bei status ohne daten z.B. auftragliste
-        /*if ($this->getDataId() == null) {
-            $this->dataId = (new UniqueId())->getUniqueId();
-        }*/
-
         $data = new Content();
         $data->ignoreIfExists = true;
         $data->contentTypeId = $this->typeId;
@@ -105,12 +97,11 @@ trait ContentIndexTrait
     }
 
 
-
     protected function updateContent()
     {
 
         $data = new Content();
-        $data->updateOnDuplicate=true;
+        $data->updateOnDuplicate = true;
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
         $data->dateTime = $this->dateTime;
@@ -120,53 +111,6 @@ trait ContentIndexTrait
     }
 
 
-
-
-    /*
-    protected function saveContent()
-    {
-
-        if ($this->createMode) {
-
-            $this->saveContentBefore();
-            $this->onCreate();
-
-            if ($this->dataId == null) {
-                $this->dataId = (new UniqueId())->getUniqueId();
-            }
-
-            $update = new ContentUpdate();
-            $update->dataId = $this->dataId;
-            $update->subject = $this->getSubject();
-            $update->updateById($this->contentId);
-
-        } else {
-
-            $this->onUpdate();
-
-            $update = new ContentUpdate();
-            $update->subject = $this->getSubject();
-            $update->updateById($this->getContentId());
-
-        }
-
-    }
-
-
-    protected function saveContentBefore()
-    {
-
-        $data = new Content();
-        $data->contentTypeId = $this->typeId;
-        $data->dateTime = $this->dateTime;
-        $data->userId = $this->userId;
-        $this->contentId = $data->save();
-
-    }*/
-
-
-
-    // updateContentIndex
     protected function saveContentIndex()
     {
 

@@ -32,4 +32,5 @@ class UserContentType extends AbstractGroupContentType
 
 
 
+
 }

@@ -6,6 +6,8 @@ namespace Nemundo\Content\Index\Geo\Type;
 
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
 
+
+// GeoIndexTrait
 trait GeoContentTypeTrait
 {
 
