@@ -27,6 +27,11 @@ class ContentTypePage extends ContentTemplate
         $layout=new BootstrapTwoColumnLayout($this);
 
 
+        $reader = new ContentTypeReader();
+        $reader->model->loadApplication();
+        $reader->addOrder($reader->model->contentType);
+
+
         $table = new AdminClickableTable($layout->col1);
 
         $header = new TableHeader($table);
@@ -34,11 +39,10 @@ class ContentTypePage extends ContentTemplate
         $header->addText('Class');
         $header->addText('Type Id');
 
+$header->addText($reader->model->application->label);
         $header->addText('Item Count');
 
 
-        $reader = new ContentTypeReader();
-        $reader->addOrder($reader->model->contentType);
         foreach ($reader->getData() as $contentTypeRow) {
 
             $row = new BootstrapClickableTableRow($table);
@@ -46,6 +50,7 @@ class ContentTypePage extends ContentTemplate
             $row->addText($contentTypeRow->contentType);
             $row->addText($contentTypeRow->phpClass);
             $row->addText($contentTypeRow->id);
+            $row->addText($contentTypeRow->application->application);
 
             $count = new ContentCount();
             $count->filter->andEqual($count->model->contentTypeId,$contentTypeRow->id);
