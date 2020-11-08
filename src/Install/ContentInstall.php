@@ -7,7 +7,7 @@ namespace Nemundo\Content\Install;
 use Nemundo\App\Application\Setup\ApplicationSetup;
 use Nemundo\App\Script\Setup\ScriptSetup;
 use Nemundo\Content\Application\ContentApplication;
-use Nemundo\Content\Data\ContentCollection;
+use Nemundo\Content\Data\ContentModelCollection;
 use Nemundo\Content\Index\Geo\Install\GeoIndexInstall;
 use Nemundo\Content\Index\Group\Install\GroupInstall;
 use Nemundo\Content\Index\Search\Install\SearchIndexInstall;
@@ -27,7 +27,7 @@ class ContentInstall extends AbstractInstall
             ->addApplication(new ContentApplication());
 
         (new ModelCollectionSetup())
-            ->addCollection(new ContentCollection());
+            ->addCollection(new ContentModelCollection());
 
         (new ScriptSetup(new ContentApplication()))
             ->addScript(new ReIndexScript())
