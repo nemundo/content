@@ -14,6 +14,7 @@ use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Site\ContentDeleteSite;
 use Nemundo\Content\Admin\Site\ContentItemSite;
 use Nemundo\Content\Admin\Site\ContentTypeRemoveSite;
+use Nemundo\Content\Admin\Site\Json\ContentJsonSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Data\Content\ContentCount;
@@ -94,7 +95,6 @@ class ContentPage extends ContentTemplate
             $filter->andEqual($contentReader->model->contentType->applicationId, $application->getValue());
         }
 
-
         $contentTypeParameter = new ContentTypeParameter();
         $contentTypeParameter->contentTypeCheck = false;
         if ($contentTypeParameter->hasValue()) {
@@ -103,8 +103,6 @@ class ContentPage extends ContentTemplate
             $btn=new AdminSiteButton($this);
             $btn->site=clone(ContentTypeRemoveSite::$site);
             $btn->site->addParameter($contentTypeParameter);
-
-
 
             $filter->andEqual($model->contentTypeId, $contentTypeParameter->getValue());
 
@@ -147,7 +145,7 @@ class ContentPage extends ContentTemplate
 
         $contentReader->filter = $filter;
         $contentReader->addOrder($contentReader->model->id, SortOrder::DESCENDING);
-        $contentReader->paginationLimit =50;  // ProcessConfig::PAGINATION_LIMIT;
+        $contentReader->paginationLimit =50;
 
         $table = new AdminClickableTable($this);
 
@@ -162,6 +160,7 @@ class ContentPage extends ContentTemplate
         $header->addText('Subject (Type)');
         $header->addText('Date/Time');
         $header->addText('User');
+        $header->addEmpty();
         $header->addEmpty();
 
         foreach ($contentReader->getData() as $contentRow) {
@@ -184,6 +183,10 @@ class ContentPage extends ContentTemplate
             /*$site = clone(ContentIndexSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
             $row->addSite($site);*/
+
+            $site = clone(ContentJsonSite::$site);
+          $site->addParameter(new ContentParameter($contentRow->id));
+          $row->addSite($site);
 
             $site = clone(ContentDeleteSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));

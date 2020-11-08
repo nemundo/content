@@ -19,9 +19,10 @@ class ContentContainerSite extends AbstractSite
     protected function loadSite()
     {
 
-        $this->title='Content Container';
-        $this->url='content-container';
-        ContentContainerSite::$site=$this;
+        $this->title = 'Content Container';
+        $this->url = 'content-container';
+        $this->menuActive = false;
+        ContentContainerSite::$site = $this;
 
     }
 
@@ -30,15 +31,12 @@ class ContentContainerSite extends AbstractSite
     {
 
         $contentType = (new ContentParameter())->getContentType(false);
-        $view=$contentType->getView();
+        $view = $contentType->getView();
 
         $response = new HttpResponse();
-        $response->content=$view->getContent();
+        $response->content = $view->getContent();
         $response->sendResponse();
 
-
-
-        // TODO: Implement loadContent() method.
     }
 
 }

@@ -1,22 +1,28 @@
 <?php
 
 
-namespace Nemundo\Content\Json;
+namespace Nemundo\Content\Type;
 
 
-trait JsonExportTrait
+trait JsonTrait
 {
 
 
-    // JsonExportTrait
-    public function exportJson()
+
+    protected function loadJson() {
+
+
+
+    }
+
+
+    public function getJson()
     {
 
         $data['id'] = $this->dataId;
         $data['subject'] = $this->getSubject();
 
         return $data;
-
 
     }
 

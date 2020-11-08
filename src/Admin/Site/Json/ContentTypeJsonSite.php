@@ -11,20 +11,19 @@ use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Core\Json\Document\JsonResponse;
 use Nemundo\Web\Site\AbstractJsonSite;
 
-class ContentJsonSite extends AbstractJsonSite
+class ContentTypeJsonSite extends AbstractJsonSite
 {
 
     /**
-     * @var ContentJsonSite
+     * @var ContentTypeJsonSite
      */
     public static $site;
 
     protected function loadSite()
     {
 
-        $this->url='content-json';
-
-        ContentJsonSite::$site=$this;
+        $this->url='content-type-json';
+        ContentTypeJsonSite::$site=$this;
 
     }
 
@@ -32,8 +31,37 @@ class ContentJsonSite extends AbstractJsonSite
     protected function loadJson()
     {
 
-        $contentType=(new ContentParameter())->getContentType(false);
+        $contentType=(new ContentTypeParameter())->getContentType(false);
 
+
+        $json=[];
+        $json['content_type']=$contentType->typeLabel;
+        $json['content_type_id']=$contentType->typeId;
+
+
+        $data=[];
+
+        $reader=new ContentReader();
+        $reader->model->loadContentType();
+        $reader->filter->andEqual($reader->model->contentTypeId, $contentType->typeId);
+        foreach ($reader->getData() as $contentRow) {
+
+            $content = $contentRow->getContentType();
+            $data[]= $content->getJson();
+
+        }
+
+        $json['data']=$data;
+
+
+        $response=new JsonResponse();
+        $response->addData($json);
+        $response->render();
+
+
+
+
+        /*
         $json=$contentType->getJson();
 
 
