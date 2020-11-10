@@ -26,7 +26,7 @@ trait ContentIndexTrait
     /**
      * @var string
      */
-    public $userId;
+    public $toId;
 
 
     protected $contentId;
@@ -38,9 +38,9 @@ trait ContentIndexTrait
         $this->dateTime = (new DateTime())->setNow();
 
         if ((new UserSessionType())->isUserLogged()) {
-            $this->userId = (new UserSessionType())->userId;
+            $this->toId = (new UserSessionType())->userId;
         } else {
-            $this->userId = '';
+            $this->toId = '';
         }
 
     }
@@ -91,7 +91,7 @@ trait ContentIndexTrait
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
         $data->dateTime = $this->dateTime;
-        $data->userId = $this->userId;
+        $data->userId = $this->toId;
         $data->save();
 
     }
@@ -105,7 +105,7 @@ trait ContentIndexTrait
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
         $data->dateTime = $this->dateTime;
-        $data->userId = $this->userId;
+        $data->userId = $this->toId;
         $data->save();
 
     }
