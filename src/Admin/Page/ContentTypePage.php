@@ -4,18 +4,25 @@
 namespace Nemundo\Content\Admin\Page;
 
 
+use Nemundo\Admin\Com\Button\AdminSearchButton;
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
+use Nemundo\App\Application\Com\ApplicationListBox;
+use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Site\ContentTypeSite;
 use Nemundo\Content\Admin\Site\Json\ContentTypeJsonSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
+use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Core\Type\Number\Number;
+use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
+use Nemundo\User\Com\ListBox\UserListBox;
 
 class ContentTypePage extends ContentTemplate
 {
@@ -27,9 +34,26 @@ class ContentTypePage extends ContentTemplate
         $layout->col1->columnWidth = 4;
         $layout->col2->columnWidth = 8;
 
-        $reader = new ContentTypeReader();
-        $reader->model->loadApplication();
-        $reader->addOrder($reader->model->contentType);
+
+        $form = new SearchForm($layout->col1);
+
+        $formRow = new BootstrapFormRow($form);
+
+        $application=new ApplicationListBox($formRow);
+        $application->submitOnChange = true;
+        $application->searchMode = true;
+
+        new AdminSearchButton($formRow);
+
+
+        $contentTypeReader = new ContentTypeReader();
+        $contentTypeReader->model->loadApplication();
+
+        if ($application->hasValue()) {
+            $contentTypeReader->filter->andEqual($contentTypeReader->model->applicationId,$application->getValue());
+        }
+
+        $contentTypeReader->addOrder($contentTypeReader->model->contentType);
 
         $table = new AdminClickableTable($layout->col1);
 
@@ -38,11 +62,11 @@ class ContentTypePage extends ContentTemplate
         $header->addText('Class');
         $header->addText('Type Id');
 
-        $header->addText($reader->model->application->label);
+        $header->addText($contentTypeReader->model->application->label);
         $header->addText('Item Count');
 
 
-        foreach ($reader->getData() as $contentTypeRow) {
+        foreach ($contentTypeReader->getData() as $contentTypeRow) {
 
             $row = new BootstrapClickableTableRow($table);
 

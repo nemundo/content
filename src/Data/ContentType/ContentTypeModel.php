@@ -79,6 +79,10 @@ $this->applicationId->aliasFieldName = "content_content_type_application";
 $this->applicationId->label = "Application";
 $this->applicationId->allowNullValue = true;
 
+$index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
+$index->indexName = "application";
+$index->addType($this->applicationId);
+
 }
 public function loadApplication() {
 if ($this->application == null) {

@@ -21,10 +21,11 @@ class ContentTypeParameter extends AbstractUrlParameter
 
 
     // wann braucht es da dataId???
-    public function getContentType($dataId = null)
+    public function getContentType()   //$dataId = null)
     {
 
-        $contentType = (new ContentTypeReader())->getRowById($this->getValue())->getContentType($dataId);
+        //$contentType = (new ContentTypeReader())->getRowById($this->getValue())->getContentType($dataId);
+        $contentType = (new ContentTypeReader())->getRowById($this->getValue())->getContentType();
         //$this->checkContentType($contentType);
 
         return $contentType;

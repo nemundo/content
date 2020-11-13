@@ -17,6 +17,7 @@ use Nemundo\Core\Log\LogMessage;
 use Nemundo\Db\Sql\Order\SortOrder;
 
 
+// TreeIndexTrait
 trait TreeTypeTrait
 {
 
@@ -90,13 +91,11 @@ trait TreeTypeTrait
 
             }
 
-
-
-
             $writer = new TreeWriter();
             $writer->parentId = $this->parentId;
             $writer->childId = $this->getContentId();
             $writer->write();
+
         }
 
     }
