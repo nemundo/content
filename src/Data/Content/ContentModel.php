@@ -22,7 +22,7 @@ public $subject;
 public $dateTime;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\ExternalIdType
 */
 public $userId;
 
@@ -82,7 +82,7 @@ $this->dateTime->aliasFieldName = "content_content_date_time";
 $this->dateTime->label = "Date Time";
 $this->dateTime->allowNullValue = false;
 
-$this->userId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->userId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
 $this->userId->tableName = "content_content";
 $this->userId->fieldName = "user";
 $this->userId->aliasFieldName = "content_content_user";

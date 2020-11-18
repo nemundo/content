@@ -64,15 +64,20 @@ trait GroupIndexTrait
     public function getGroupId()
     {
 
-        if ($this->groupIdTmp == null) {
+        //if ($this->groupIdTmp == null) {
 
             $id = new GroupId();
             $id->filter->andEqual($id->model->contentId, $this->getContentId());
-            $this->groupIdTmp = $id->getId();
+            //$id->filter->andEqual($id->model->contentId, $this->getDataId());
+        $id = $id->getId();
 
-        }
+           // $this->groupIdTmp = $id->getId();
 
-        return $this->groupIdTmp;
+        //}
+
+        //return $this->groupIdTmp;
+
+        return $id;
 
     }
 

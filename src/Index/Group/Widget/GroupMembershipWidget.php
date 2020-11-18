@@ -9,7 +9,6 @@ use Nemundo\Admin\Com\Widget\AbstractAdminWidget;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Com\TableBuilder\TableRow;
 use Nemundo\Content\Index\Group\User\GroupMembership;
-use Nemundo\Process\Template\Content\User\UserContentType;
 use Nemundo\User\Type\UserSessionType;
 
 class GroupMembershipWidget extends AbstractAdminWidget

@@ -4,15 +4,15 @@
 namespace Nemundo\Content\Index\Group\Install;
 
 
+use Nemundo\App\Application\Setup\ApplicationSetup;
 use Nemundo\App\Script\Setup\ScriptSetup;
+use Nemundo\Content\Index\Group\Application\GroupApplication;
+use Nemundo\Content\Index\Group\Data\GroupCollection;
 use Nemundo\Content\Index\Group\Script\GroupUpdateScript;
+use Nemundo\Content\Index\Group\Setup\GroupSetup;
 use Nemundo\Content\Index\Group\User\UserContentType;
 use Nemundo\Content\Index\Group\User\UsergroupContentType;
 use Nemundo\Model\Setup\ModelCollectionSetup;
-use Nemundo\Content\Index\Group\Data\GroupCollection;
-use Nemundo\Content\Index\Group\Setup\GroupSetup;
-use Nemundo\Content\Index\Group\Type\GroupContentType;
-
 use Nemundo\Project\Install\AbstractInstall;
 
 
@@ -22,13 +22,16 @@ class GroupInstall extends AbstractInstall
     public function install()
     {
 
+        (new ApplicationSetup())
+            ->addApplication(new GroupApplication());
+
         (new ModelCollectionSetup())
             ->addCollection(new GroupCollection());
 
 
         (new GroupSetup())
             ->addGroupType(new UserContentType())
-        ->addGroupType(new UsergroupContentType());
+            ->addGroupType(new UsergroupContentType());
 
         (new ScriptSetup())
             ->addScript(new GroupUpdateScript());
