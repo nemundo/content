@@ -8,8 +8,10 @@ use Nemundo\Admin\Com\Button\AdminSearchButton;
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\App\Application\Com\ApplicationListBox;
+use Nemundo\App\Application\Parameter\ApplicationParameter;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
+use Nemundo\Content\Admin\Site\ContentTypeRemoveSite;
 use Nemundo\Content\Admin\Site\ContentTypeSite;
 use Nemundo\Content\Admin\Site\Json\ContentTypeJsonSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
@@ -80,6 +82,7 @@ class ContentTypePage extends ContentTemplate
             $row->addText((new Number($count->getCount()))->formatNumber());
 
             $site = clone(ContentTypeSite::$site);
+            $site->addParameter(new ApplicationParameter());
             $site->addParameter(new ContentTypeParameter($contentTypeRow->id));
             $row->addClickableSite($site);
 
@@ -93,6 +96,12 @@ class ContentTypePage extends ContentTemplate
             $btn=new AdminSiteButton($layout->col2);
             $btn->site=clone(ContentTypeJsonSite::$site);
             $btn->site->addParameter($parameter);
+
+            $btn=new AdminSiteButton($layout->col2);
+            $btn->site=clone(ContentTypeRemoveSite::$site);
+            $btn->site->addParameter($parameter);
+
+
 
             if ($contentType->hasAdmin()) {
                 $contentType->getAdmin($layout->col2);

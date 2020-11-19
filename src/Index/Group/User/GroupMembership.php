@@ -10,6 +10,8 @@ use Nemundo\Content\Index\Group\Data\GroupUser\GroupUserReader;
 use Nemundo\Content\Index\Group\Type\GroupIndexTrait;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\AbstractBase;
+use Nemundo\Db\Filter\Filter;
+use Nemundo\Db\Sql\Field\AbstractField;
 use Nemundo\User\Type\UserSessionType;
 
 class GroupMembership extends AbstractBase
@@ -89,6 +91,21 @@ class GroupMembership extends AbstractBase
 
     }
 
+
+
+    public function getGroupFilter(AbstractField $groupField) {
+
+
+        $filter = new Filter();
+
+        foreach ((new GroupMembership())->getGroupIdList() as $groupId) {
+            $filter->orEqual($groupField,$groupId);
+        }
+        $filter->orIsNull($groupField);
+
+        return $filter;
+
+    }
 
 
 }

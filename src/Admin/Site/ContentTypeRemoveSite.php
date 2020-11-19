@@ -49,9 +49,6 @@ class ContentTypeRemoveSite extends AbstractDeleteIconSite
         $delete->filter->andEqual($reader->model->contentTypeId, $contentType->typeId);
         $delete->delete();
 
-
-
-
         (new UrlReferer())->redirect();
 
     }

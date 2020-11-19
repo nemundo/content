@@ -57,6 +57,16 @@ abstract class AbstractType extends AbstractBaseClass
      */
     protected $dataRow;
 
+    /**
+     * @var AbstractSite
+     */
+    protected $viewSite;
+
+    /**
+     * @var string
+     */
+    protected $parameterClass;
+
     abstract protected function loadContentType();
 
     public function __construct($dataId = null)
@@ -87,8 +97,6 @@ abstract class AbstractType extends AbstractBaseClass
         return $this->dataId;
 
     }
-
-
 
 
     public function fromDataRow(AbstractModelDataRow $dataRow)
@@ -202,7 +210,6 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
     public function hasView()
     {
 
@@ -239,15 +246,7 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-    /**
-     * @var AbstractSite
-     */
-    protected $viewSite;
 
-    /**
-     * @var string
-     */
-    protected $parameterClass;
 
 
     public function hasViewSite()

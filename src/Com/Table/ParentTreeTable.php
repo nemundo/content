@@ -6,17 +6,17 @@ namespace Nemundo\Content\Com\Table;
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
+use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Content\Com\Container\AbstractParentContainer;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
-
-
+use Nemundo\Web\Site\AbstractSite;
 
 
 // ParentSourceTable
-class SourceTable extends AbstractHtmlContainer
+class ParentTreeTable extends AbstractHtmlContainer
 {
 
     /**
@@ -24,10 +24,15 @@ class SourceTable extends AbstractHtmlContainer
      */
     public $contentType;
 
+    /**
+     * @var AbstractSite
+     */
+    public $redirectSite;
+
     public function getContent()
     {
 
-        if ($this->contentType->getParentCount() > 0) {
+        if ($this->contentType->hasParent()) {
 
             $table = new AdminClickableTable($this);
 
@@ -39,14 +44,18 @@ class SourceTable extends AbstractHtmlContainer
 
                 $row = new BootstrapClickableTableRow($table);
                 $contentType = $contentRow->getContentType();
-                if ($contentType->hasViewSite()) {
-                $row->addSite($contentType->getSubjectViewSite());
-                }
-                //$row->addText($contentType->getSubject());
 
+                /*if ($contentType->hasViewSite()) {
+                $row->addSite($contentType->getSubjectViewSite());
+                }*/
+                $row->addText($contentType->getSubject());
                 $row->addText($contentRow->contentType->contentType);
 
-                $row->addClickableSite($contentType->getViewSite());
+                $site = clone($this->redirectSite);
+                $site->addParameter(new ContentParameter($contentRow->id));
+                $row->addClickableSite($site);
+
+                //$row->addClickableSite($contentType->getViewSite());
 
             }
 

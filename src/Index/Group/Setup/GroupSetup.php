@@ -11,6 +11,7 @@ use Nemundo\Content\Index\Group\Data\GroupType\GroupType;
 use Nemundo\Content\Index\Group\Type\AbstractGroupContentType;
 
 
+// GroupTypeSetup
 class GroupSetup extends AbstractContentTypeSetup
 {
 

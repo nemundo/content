@@ -18,7 +18,12 @@ trait GroupIndexTrait
 
     protected $groupIdTmp;
 
-    abstract protected function getGroupLabel();
+    //abstract protected function getGroupLabel();
+
+
+    protected function getGroupLabel() {
+        return $this->getSubject();
+    }
 
 
     protected function saveGroupIndex()
