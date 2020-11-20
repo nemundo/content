@@ -16,21 +16,6 @@ trait ContentFormTrait
     public $contentType;
 
     /**
-     * @var string
-     */
- //   public $dataId;
-
-    /**
-     * @var string
-     */
- //   public $parentId;
-
-    /**
-     * @var bool
-     */
-    //public $createMode = true;
-
-    /**
      * @var bool
      */
     public $appendParameter = false;

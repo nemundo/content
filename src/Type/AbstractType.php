@@ -6,6 +6,7 @@ namespace Nemundo\Content\Type;
 
 use Nemundo\Content\Event\AbstractContentEvent;
 use Nemundo\Content\Form\AbstractContentForm;
+use Nemundo\Content\Form\AbstractContentSearchForm;
 use Nemundo\Content\View\AbstractContentView;
 use Nemundo\Core\Base\AbstractBaseClass;
 use Nemundo\Core\Log\LogMessage;
@@ -46,6 +47,11 @@ abstract class AbstractType extends AbstractBaseClass
      * @var string
      */
     protected $formClass;
+
+    /**
+     * @var string
+     */
+    protected $searchFormClass;
 
     /**
      * @var string
@@ -177,12 +183,23 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+
+    public function hasForm()
+    {
+        $value = false;
+        if ($this->formClass !== null) {
+            $value = true;
+        }
+        return $value;
+    }
+
+
     public function getForm(AbstractContainer $parent)
     {
 
-        if ($this->formClass == null) {
+        /*if ($this->formClass == null) {
             (new LogMessage())->writeError('No Form' . $this->getClassName());
-        }
+        }*/
 
         /** @var AbstractContentForm $form */
         $form = new $this->formClass($parent);
@@ -193,14 +210,37 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-    public function hasForm()
+
+
+
+
+
+    public function getSearchForm(AbstractContainer $parent)
+    {
+
+       /* if ($this->formClass == null) {
+            (new LogMessage())->writeError('No Form' . $this->getClassName());
+        }*/
+
+        /** @var AbstractContentSearchForm $form */
+        $form = new $this->searchFormClass($parent);
+        $form->contentType = $this;
+
+        return $form;
+
+    }
+
+
+    public function hasSearchForm()
     {
         $value = false;
-        if ($this->formClass !== null) {
+        if ($this->searchFormClass !== null) {
             $value = true;
         }
         return $value;
     }
+
+
 
 
     public function isEditable() {

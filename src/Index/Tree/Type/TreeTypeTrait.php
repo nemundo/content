@@ -57,7 +57,7 @@ trait TreeTypeTrait
     }
 
 
-    public function getRestrictedContentType() {
+    public function getRestrictedChildContentType() {
         return $this->restrictedChildList;
     }
 
@@ -74,7 +74,7 @@ trait TreeTypeTrait
 
             if ($this->getParentContentType()->restrictedChild) {
 
-                foreach ($this->getParentContentType()->getRestrictedContentType() as $child) {
+                foreach ($this->getParentContentType()->getRestrictedChildContentType() as $child) {
 
                     if ($child->typeId == $this->typeId) {
                         $allowed=true;
