@@ -22,4 +22,20 @@ abstract class AbstractContentForm extends AbstractAdminForm
 
     }
 
+
+    protected function checkRedirect()
+    {
+
+
+
+        if ($this->appendParameter) {
+            $this->redirectSite->addParameter($this->contentType->getParameter());
+        }
+
+        parent::checkRedirect();
+
+
+    }
+
+
 }
