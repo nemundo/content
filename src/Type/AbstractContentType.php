@@ -83,7 +83,7 @@ abstract class AbstractContentType extends AbstractType
     public function getList(AbstractContainer $parent)
     {
 
-        $list = null;
+        /*$list = null;
 
         if ($this->listClass == null) {
 
@@ -91,13 +91,14 @@ abstract class AbstractContentType extends AbstractType
             $list->content = '[No List Object]';
 
 
-        } else {
+        } else {*/
 
             /** @var AbstractContentList $list */
             $list = new $this->listClass($parent);
+            $list->contentType=$this;
             //$list->parentId=
 
-        }
+        //}
 
         return $list;
 
