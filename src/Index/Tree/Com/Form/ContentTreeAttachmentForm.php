@@ -42,8 +42,8 @@ class ContentTreeAttachmentForm extends BootstrapForm
         // search box
 
         $this->addPackage(new NemundoJsPackage());
-        //$this->addPackage(new ContentJsPackage());
-        $this->addJsUrl(WebConfig::$webUrl.'js/content.js');
+        $this->addPackage(new ContentJsPackage());
+        //$this->addJsUrl(WebConfig::$webUrl.'js/content.js');
 
 
         $subtitle=new AdminSubtitle($this);

@@ -11,7 +11,7 @@ use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
 trait GeoContentTypeTrait
 {
 
-    abstract public function getPlace();
+    //abstract public function getPlace();
 
     abstract public function getCoordinate();
 
@@ -26,6 +26,11 @@ trait GeoContentTypeTrait
         $data->contentId=$this->getContentId();
         $data->save();
 
+    }
+
+
+    public function getPlace() {
+        return $this->getSubject();
     }
 
 }

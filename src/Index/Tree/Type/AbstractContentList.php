@@ -8,7 +8,7 @@ use Nemundo\Content\View\AbstractContentAdmin;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 
 
-class _AbstractContentList extends AbstractHtmlContainer
+class AbstractContentList extends AbstractHtmlContainer
 {
 
     /**

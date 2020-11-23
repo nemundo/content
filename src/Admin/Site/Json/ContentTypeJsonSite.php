@@ -31,32 +31,50 @@ class ContentTypeJsonSite extends AbstractJsonSite
     protected function loadJson()
     {
 
-        $contentType=(new ContentTypeParameter())->getContentType(false);
+        //$contentType=(new ContentTypeParameter())->getContentType();  //getContentType(false);
 
 
-        $json=[];
+        /*$json=[];
         $json['content_type']=$contentType->typeLabel;
-        $json['content_type_id']=$contentType->typeId;
+        $json['content_type_id']=$contentType->typeId;*/
 
 
-        $data=[];
+        //$dataList=[];
 
         $reader=new ContentReader();
         $reader->model->loadContentType();
-        $reader->filter->andEqual($reader->model->contentTypeId, $contentType->typeId);
+        $reader->filter->andEqual($reader->model->contentTypeId,(new ContentTypeParameter())->getValue());  // $contentType->typeId);
+        $reader->addOrder($reader->model->subject);
         foreach ($reader->getData() as $contentRow) {
 
-            $content = $contentRow->getContentType();
-            $data[]= $content->getJson();
+            /*$content = $contentRow->getContentType();
+            $data[]= $content->getJson();*/
+
+            //$data=['item'];
+            $data=[];
+            $data['content_id']=$contentRow->id;
+            $data['subject']=$contentRow->subject;
+
+
+
+            //$dataList[]=$data;
+
+            $this->addJsonRow($data);
 
         }
 
-        $json['data']=$data;
+
+        /*$item=[];
+        $item['item']=$dataList;
+
+        //$this->addJsonRow($item);
+
+        //$json['data']=$data;
 
 
-        $response=new JsonResponse();
+        /*$response=new JsonResponse();
         $response->addData($json);
-        $response->render();
+        $response->render();*/
 
 
 
