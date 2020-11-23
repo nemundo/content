@@ -4,6 +4,7 @@
 namespace Nemundo\Content\Com\Container;
 
 
+use Nemundo\Admin\Com\Title\AdminSubtitle;
 use Nemundo\App\Application\Type\AbstractApplication;
 use Nemundo\Content\Com\Dropdown\ContentTypeSubmenuDropdown;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
@@ -74,6 +75,9 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
                 $contentType->addEvent($event);
             }
 
+
+            $subtitle=new AdminSubtitle($this);
+            $subtitle->content=$contentType->typeLabel;
 
             $tab = new BootstrapTabsPanel($this);
 
