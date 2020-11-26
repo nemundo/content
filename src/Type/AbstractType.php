@@ -73,6 +73,13 @@ abstract class AbstractType extends AbstractBaseClass
      */
     protected $parameterClass;
 
+    /**
+     * @var bool
+     */
+    protected $restricted=false;
+
+
+
     abstract protected function loadContentType();
 
     public function __construct($dataId = null)

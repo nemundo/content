@@ -24,7 +24,7 @@ use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Content\Index\Config\ProcessConfig;
 use Nemundo\Content\Index\Content\Parameter\ContentParameter;
 use Nemundo\Content\Index\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Index\Search\Com\ContentSearchForm;
+use Nemundo\Content\Index\Search\Com\QueryContentSearchForm;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexCount;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexPaginationReader;
 use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
@@ -60,7 +60,7 @@ class SearchOldSite extends AbstractSite
 
         $page = (new DefaultTemplateFactory())->getDefaultTemplate();
 
-        new ContentSearchForm($page);
+        new QueryContentSearchForm($page);
 
         $queryParameter = (new SearchQueryParameter());
 

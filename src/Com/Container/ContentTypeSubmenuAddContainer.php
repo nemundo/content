@@ -76,6 +76,8 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
             }
 
 
+
+            /*
             $subtitle=new AdminSubtitle($this);
             $subtitle->content=$contentType->typeLabel;
 
@@ -105,7 +107,7 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
                 $form = $contentType->getSearchForm($panel);
                 $form->redirectSite = $this->redirectSite;
 
-            }
+            }*/
 
         }
 

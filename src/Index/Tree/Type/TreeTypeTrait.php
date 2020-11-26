@@ -38,6 +38,13 @@ trait TreeTypeTrait
     private $restrictedChildList=[];
 
 
+    /**
+     * @var string
+     */
+    protected $parentListClass;
+
+
+
 
     public function addRestrictedContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection) {
 
@@ -148,25 +155,6 @@ trait TreeTypeTrait
 
         $this->saveIndex();
 
-
-        /*
-        $value = new TreeValue();
-        $value->field = $value->model->itemOrder;
-        $value->filter->andEqual($value->model->parentId, $this->getContentId());
-        $itemOrder = $value->getMaxValue();
-
-        if ($itemOrder == '') {
-            $itemOrder = -1;
-        }
-        $itemOrder++;
-
-        $data = new Tree();
-        $data->parentId = $this->getContentId();
-        $data->childId = $childId;
-        $data->itemOrder = $itemOrder;
-        $data->save();*/
-
-
     }
 
 
@@ -177,6 +165,8 @@ trait TreeTypeTrait
     }
 
 
+
+    // getChildContentRowList
     public function getChild()
     {
 
@@ -188,7 +178,7 @@ trait TreeTypeTrait
     public function getChildContentTypeList()
     {
 
-        /** @var AbstractTreeContentType[]|NotificationTrait[] $list */
+        /** @var AbstractTreeContentType[] $list */
         $list = [];
 
         foreach ($this->getChild() as $contentCustomRow) {
@@ -390,9 +380,9 @@ trait TreeTypeTrait
             }
 
 
-            if ($parentCount > 1) {
+            /*if ($parentCount > 1) {
                 (new LogMessage())->writeError('getParentId. More than one parent. Content Id: ' . $this->getContentId());
-            }
+            }*/
 
         }
 
@@ -439,6 +429,31 @@ trait TreeTypeTrait
         return $parentContentType;
 
     }
+
+
+
+    public function getParentParentContentTypeList($list=null) {
+
+
+        /** @var AbstractContentType[] $list */
+        if ($list ==null) {
+        $list=[];
+        }
+
+        if ($this->hasParent()) {
+
+            $parent = $this->getParentContentType();
+            $list=$parent->getParentParentContentTypeList($list);
+            $list[]=$parent;
+
+        }
+
+        return $list;
+
+
+    }
+
+
 
 
     public function getParentDataId()

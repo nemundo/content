@@ -3,7 +3,7 @@
 
 namespace Nemundo\Content\Type;
 
-use Nemundo\Content\Index\Tree\Type\AbstractContentList;
+use Nemundo\Content\Index\Tree\Type\AbstractParentContentList;
 use Nemundo\Content\View\AbstractContentAdmin;
 use Nemundo\Core\Language\Translation;
 use Nemundo\Core\Log\LogMessage;
@@ -93,7 +93,7 @@ abstract class AbstractContentType extends AbstractType
 
         } else {*/
 
-            /** @var AbstractContentList $list */
+            /** @var AbstractParentContentList $list */
             $list = new $this->listClass($parent);
             $list->contentType=$this;
             //$list->parentId=

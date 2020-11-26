@@ -21,17 +21,17 @@ class ContentChildContainer extends AbstractHtmlContainer
     public function getContent()
     {
 
-        foreach ($this->contentType->getChild() as $logRow) {
+        foreach ($this->contentType->getChild() as $contentRow) {
 
-            /** @var AbstractProcessStatus $status */
-            $status = $logRow->getContentType();
 
-            if ($status->hasView()) {
+            $contentType = $contentRow->getContentType();
+
+            if ($contentType->hasView()) {
 
                 $div = new Div($this);
-                if ($status->hasView()) {
-                    $view = $status->getView($div);
-                    $view->dataId = $logRow->dataId;
+                if ($contentType->hasView()) {
+                    $view = $contentType->getView($div);
+                    //$view->dataId = $contentRow->dataId;
                 }
 
             }

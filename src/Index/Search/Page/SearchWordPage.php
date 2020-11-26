@@ -11,7 +11,7 @@ use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Com\TableBuilder\TableRow;
 use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
-use Nemundo\Content\Index\Search\Com\ContentSearchForm;
+use Nemundo\Content\Index\Search\Com\QueryContentSearchForm;
 use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypePaginationReader;
 use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
 use Nemundo\Content\Index\Search\Reader\SearchItemReader;

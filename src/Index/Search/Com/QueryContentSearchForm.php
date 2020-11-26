@@ -15,7 +15,7 @@ use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
 use Nemundo\Content\Index\Search\Site\Json\SearchJsonSite;
 
 
-class ContentSearchForm extends SearchForm
+class QueryContentSearchForm extends SearchForm
 {
 
     /**

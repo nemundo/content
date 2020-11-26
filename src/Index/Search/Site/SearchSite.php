@@ -17,7 +17,7 @@ use Nemundo\Package\Bootstrap\Listing\BootstrapHyperlinkList;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Content\Index\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Index\Search\Com\ContentSearchForm;
+use Nemundo\Content\Index\Search\Com\QueryContentSearchForm;
 use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
 use Nemundo\Content\Index\Search\Reader\SearchItemReader;
 use Nemundo\Content\Index\Search\Site\Json\SearchContentTypeJsonSite;
