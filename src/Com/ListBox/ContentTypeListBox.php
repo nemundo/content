@@ -4,9 +4,9 @@
 namespace Nemundo\Content\Com\ListBox;
 
 
-use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 
 class ContentTypeListBox extends BootstrapListBox
 {
@@ -16,8 +16,6 @@ class ContentTypeListBox extends BootstrapListBox
 
         $this->label = 'Content Type';
         $this->name = (new ContentTypeParameter())->parameterName;
-
-       // $this->select->id = 'content_type_select';
 
         $reader = new ContentTypeReader();
         $reader->addOrder($reader->model->contentType);
