@@ -343,6 +343,25 @@ trait TreeTypeTrait
     }
 
 
+
+    public function getChildTreeReader() {
+
+        $reader = new TreeReader();
+        $reader->model->loadChild();
+        $reader->model->child->loadContentType();
+        $reader->model->child->loadUser();
+        $reader->filter->andEqual($reader->model->parentId, $this->getContentId());
+
+        return $reader;
+
+        //$reader->addOrder($reader->model->itemOrder, $sortOrder);
+
+
+    }
+
+
+
+
     public function removeFromParent()
     {
 

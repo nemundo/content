@@ -4,12 +4,11 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Content\Event\AbstractContentEvent;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Form\AbstractContentSearchForm;
+use Nemundo\Content\View\AbstractContentList;
 use Nemundo\Content\View\AbstractContentView;
 use Nemundo\Core\Base\AbstractBaseClass;
-use Nemundo\Core\Log\LogMessage;
 use Nemundo\Html\Container\AbstractContainer;
 use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Model\Row\AbstractModelDataRow;
@@ -58,6 +57,12 @@ abstract class AbstractType extends AbstractBaseClass
      */
     protected $viewClass;
 
+
+    protected $viewClassList = [];
+
+    protected $formClassList = [];
+
+
     /**
      * @var AbstractModelDataRow
      */
@@ -76,8 +81,7 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var bool
      */
-    protected $restricted=false;
-
+    protected $restricted = false;
 
 
     abstract protected function loadContentType();
@@ -190,7 +194,6 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
     public function hasForm()
     {
         $value = false;
@@ -217,17 +220,12 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
-
-
-
-
     public function getSearchForm(AbstractContainer $parent)
     {
 
-       /* if ($this->formClass == null) {
-            (new LogMessage())->writeError('No Form' . $this->getClassName());
-        }*/
+        /* if ($this->formClass == null) {
+             (new LogMessage())->writeError('No Form' . $this->getClassName());
+         }*/
 
         /** @var AbstractContentSearchForm $form */
         $form = new $this->searchFormClass($parent);
@@ -248,15 +246,15 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
-
-    public function isEditable() {
+    public function isEditable()
+    {
 
         return $this->hasForm();
 
     }
 
 
+    // hasDefaultView
     public function hasView()
     {
 
@@ -270,6 +268,7 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    // getDefaultView
     public function getView(AbstractContainer $parent = null)
     {
 
@@ -293,7 +292,25 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    public function getViewList()
+    {
 
+        /** @var AbstractContentView[] $list */
+        $list = [];
+
+        foreach ($this->viewClassList as $viewClass) {
+
+            /** @var AbstractContentView $view */
+            $view = new $viewClass();
+            $view->contentType = $this;
+
+            $list[] = $view;
+
+        }
+
+        return $list;
+
+    }
 
 
     public function hasViewSite()

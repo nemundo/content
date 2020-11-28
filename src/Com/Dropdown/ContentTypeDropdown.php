@@ -4,9 +4,9 @@
 namespace Nemundo\Content\Com\Dropdown;
 
 
-use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 use Nemundo\Web\Site\AbstractSite;
 use Nemundo\Web\Site\Site;
 
@@ -30,9 +30,7 @@ class ContentTypeDropdown extends BootstrapSiteDropdown
         $this->contentTypeList[] = $contentType;
         return $this;
 
-
     }
-
 
 
     public function getContent()

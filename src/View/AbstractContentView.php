@@ -16,4 +16,8 @@ abstract class AbstractContentView extends AbstractHtmlContainer
      */
     public $contentType;
 
+
+    public $viewName='default';
+
+
 }
