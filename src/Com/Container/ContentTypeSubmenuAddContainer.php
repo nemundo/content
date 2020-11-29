@@ -65,11 +65,13 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
         $dropdown = new ContentTypeSubmenuDropdown($this);
         $dropdown->redirectSite = $this->redirectSite;
 
+        /*
         $parameter = new ContentTypeParameter();
         if ($parameter->hasValue()) {
 
+            /*
             $contentType = $parameter->getContentType();
-            $contentType->parentId = $this->parentId;
+            //$contentType->parentId = $this->parentId;
 
             foreach ($this->eventList as $event) {
                 $contentType->addEvent($event);
@@ -109,7 +111,7 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
 
             }*/
 
-        }
+        //}
 
         return parent::getContent();
 

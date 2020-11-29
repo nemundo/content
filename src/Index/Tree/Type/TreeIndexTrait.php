@@ -13,12 +13,10 @@ use Nemundo\Content\Index\Tree\Writer\TreeWriter;
 use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Debug\Debug;
-use Nemundo\Core\Log\LogMessage;
 use Nemundo\Db\Sql\Order\SortOrder;
 
 
-// TreeIndexTrait
-trait TreeTypeTrait
+trait TreeIndexTrait
 {
 
     /**
@@ -29,13 +27,13 @@ trait TreeTypeTrait
     /**
      * @var bool
      */
-    public $restrictedChild=false;
+    public $restrictedChild = false;
 
 
     /**
      * @var AbstractContentType[]
      */
-    private $restrictedChildList=[];
+    private $restrictedChildList = [];
 
 
     /**
@@ -44,31 +42,30 @@ trait TreeTypeTrait
     protected $parentListClass;
 
 
+    public function addRestrictedContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection)
+    {
 
 
-    public function addRestrictedContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection) {
-
-
-       // $this->restrictedChildList[]=$contentType;
+        // $this->restrictedChildList[]=$contentType;
 
         return $this;
 
     }
 
 
-    public function addRestrictedContentType(AbstractContentType $contentType) {
+    public function addRestrictedContentType(AbstractContentType $contentType)
+    {
 
-        $this->restrictedChildList[]=$contentType;
+        $this->restrictedChildList[] = $contentType;
         return $this;
 
     }
 
 
-    public function getRestrictedChildContentType() {
+    public function getRestrictedChildContentType()
+    {
         return $this->restrictedChildList;
     }
-
-
 
 
     protected function saveTree()
@@ -77,14 +74,14 @@ trait TreeTypeTrait
         if ($this->parentId !== null) {
 
 
-            $allowed=false;
+            $allowed = false;
 
             if ($this->getParentContentType()->restrictedChild) {
 
                 foreach ($this->getParentContentType()->getRestrictedChildContentType() as $child) {
 
                     if ($child->typeId == $this->typeId) {
-                        $allowed=true;
+                        $allowed = true;
                     }
 
                 }
@@ -163,7 +160,6 @@ trait TreeTypeTrait
 
         return $this->getChildContent(SortOrder::DESCENDING);
     }
-
 
 
     // getChildContentRowList
@@ -343,8 +339,8 @@ trait TreeTypeTrait
     }
 
 
-
-    public function getChildTreeReader() {
+    public function getChildTreeReader()
+    {
 
         $reader = new TreeReader();
         $reader->model->loadChild();
@@ -358,8 +354,6 @@ trait TreeTypeTrait
 
 
     }
-
-
 
 
     public function removeFromParent()
@@ -450,20 +444,20 @@ trait TreeTypeTrait
     }
 
 
-
-    public function getParentParentContentTypeList($list=null) {
+    public function getParentParentContentTypeList($list = null)
+    {
 
 
         /** @var AbstractContentType[] $list */
-        if ($list ==null) {
-        $list=[];
+        if ($list == null) {
+            $list = [];
         }
 
         if ($this->hasParent()) {
 
             $parent = $this->getParentContentType();
-            $list=$parent->getParentParentContentTypeList($list);
-            $list[]=$parent;
+            $list = $parent->getParentParentContentTypeList($list);
+            $list[] = $parent;
 
         }
 
@@ -471,8 +465,6 @@ trait TreeTypeTrait
 
 
     }
-
-
 
 
     public function getParentDataId()

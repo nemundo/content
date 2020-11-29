@@ -3,7 +3,7 @@
 
 namespace Nemundo\Content\Row;
 
-use Nemundo\Content\Index\Tree\Type\TreeTypeTrait;
+use Nemundo\Content\Index\Tree\Type\TreeIndexTrait;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Content\Data\ContentType\ContentTypeRow;
 use Nemundo\Content\Type\AbstractContentType;
@@ -22,7 +22,7 @@ class ContentTypeCustomRow extends ContentTypeRow
         $contentType = null;
         if (class_exists($className)) {
 
-            /** @var AbstractContentType|TreeTypeTrait $contentType */
+            /** @var AbstractContentType|TreeIndexTrait $contentType */
             $contentType = new $className($dataId);
 
         } else {

@@ -22,7 +22,7 @@ use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
 use Nemundo\Content\Index\Search\Type\SearchIndexTrait;
-use Nemundo\Content\Index\Tree\Type\TreeTypeTrait;
+use Nemundo\Content\Index\Tree\Type\TreeIndexTrait;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
@@ -55,7 +55,7 @@ class ContentItemPage extends ContentTemplate
         $table1 = new AdminLabelValueTable($this);
         $table1->addLabelValue('Subject', $contentType->getSubject());
 
-        if ($contentType->isObjectOfTrait(TreeTypeTrait::class)) {
+        if ($contentType->isObjectOfTrait(TreeIndexTrait::class)) {
             $table1->addLabelYesNoValue('Has Parent', $contentType->hasParent());
             $table1->addLabelValue('Child Count', $contentType->getChildCount());
             $table1->addLabelValue('Parent Count', $contentType->getParentCount());
@@ -90,7 +90,7 @@ class ContentItemPage extends ContentTemplate
         }
 
 
-        if ($contentType->isObjectOfTrait(TreeTypeTrait::class)) {
+        if ($contentType->isObjectOfTrait(TreeIndexTrait::class)) {
 
             $subtitle = new AdminSubtitle($this);
             $subtitle->content = 'Child';

@@ -11,7 +11,7 @@ use Nemundo\Content\Type\AbstractContentType;
 abstract class AbstractTreeContentType extends AbstractContentType
 {
 
-    use TreeTypeTrait;
+    use TreeIndexTrait;
     use SearchIndexTrait;
 
     public function saveType()
