@@ -40,7 +40,7 @@ class SortableContentContainer extends AbstractHtmlContainer
             $itemDiv->id = 'item_' . $treeRow->id;
 
             $div = new Div($itemDiv);
-            $treeRow->getContentType()->getView($div);
+            $treeRow->getContentType()->getDefaultView($div);
 
             $div = new Div($itemDiv);
 

@@ -34,8 +34,8 @@ class ContentTypeClassBuilder extends AbstractClassBuilder
         $function->functionName = 'loadContentType()';
         $function->add('$this->typeLabel = \'' . $this->className . '\';');
         $function->add('$this->typeId = \'' . (new UniqueId())->getUniqueId() . '\';');
-        $function->add('$this->formClass = ' . $this->className . 'ContentForm::class;');
-        $function->add('$this->viewClass = ' . $this->className . 'ContentView::class;');
+        $function->add('$this->formClassList[] = ' . $this->className . 'ContentForm::class;');
+        $function->add('$this->viewClassList[] = ' . $this->className . 'ContentView::class;');
 
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;
@@ -44,6 +44,10 @@ class ContentTypeClassBuilder extends AbstractClassBuilder
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;
         $function->functionName = 'onUpdate()';
+
+        $function = new PhpFunction($phpClass);
+        $function->visibility = PhpVisibility::ProtectedVariable;
+        $function->functionName = 'onIndex()';
 
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;

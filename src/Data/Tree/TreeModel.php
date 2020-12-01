@@ -31,6 +31,16 @@ public $parent;
 */
 public $itemOrder;
 
+/**
+* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+*/
+public $viewId;
+
+/**
+* @var \Nemundo\Content\Data\ContentView\ContentViewExternalType
+*/
+public $view;
+
 protected function loadModel() {
 $this->tableName = "content_tree";
 $this->aliasTableName = "content_tree";
@@ -70,6 +80,13 @@ $this->itemOrder->aliasFieldName = "content_tree_item_order";
 $this->itemOrder->label = "Item Order";
 $this->itemOrder->allowNullValue = false;
 
+$this->viewId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->viewId->tableName = "content_tree";
+$this->viewId->fieldName = "view";
+$this->viewId->aliasFieldName = "content_tree_view";
+$this->viewId->label = "View";
+$this->viewId->allowNullValue = true;
+
 $index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
 $index->indexName = "parent";
 $index->addType($this->parentId);
@@ -101,6 +118,16 @@ $this->parent->tableName = "content_tree";
 $this->parent->fieldName = "parent";
 $this->parent->aliasFieldName = "content_tree_parent";
 $this->parent->label = "Parent";
+}
+return $this;
+}
+public function loadView() {
+if ($this->view == null) {
+$this->view = new \Nemundo\Content\Data\ContentView\ContentViewExternalType($this, "content_tree_view");
+$this->view->tableName = "content_tree";
+$this->view->fieldName = "view";
+$this->view->aliasFieldName = "content_tree_view";
+$this->view->label = "View";
 }
 return $this;
 }

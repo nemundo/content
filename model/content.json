@@ -417,6 +417,55 @@
         },
         {
             "template": "default",
+            "model_id": "bd4c2dc1-bf0d-4fa9-a4bc-7201666364fd",
+            "label": "Content View",
+            "class_name": "ContentView",
+            "table_name": "content_view",
+            "namespace": "Nemundo\\Content\\Data\\ContentView",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "external",
+                    "label": "Content Type",
+                    "field_name": "content_type",
+                    "variable_name": "contentType",
+                    "allow_null": true,
+                    "is_deleted": false,
+                    "external_model_id": "69c1a9f4-3412-4446-92a4-2e81a75bed3f"
+                },
+                {
+                    "type": "text",
+                    "label": "View Name",
+                    "field_name": "view_name",
+                    "variable_name": "viewName",
+                    "allow_null": true,
+                    "is_deleted": false,
+                    "length": "255"
+                },
+                {
+                    "type": "text",
+                    "label": "View Class",
+                    "field_name": "view_class",
+                    "variable_name": "viewClass",
+                    "allow_null": true,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": [
+                {
+                    "index_name": "view_class",
+                    "index_type": "unique_index",
+                    "field_name": [
+                        "view_class"
+                    ]
+                }
+            ]
+        },
+        {
+            "template": "default",
             "model_id": "54567a95-6c69-414b-9147-849af9e23eb0",
             "label": "Tree",
             "class_name": "Tree",
@@ -451,6 +500,15 @@
                     "variable_name": "itemOrder",
                     "allow_null": false,
                     "is_deleted": false
+                },
+                {
+                    "type": "external",
+                    "label": "View",
+                    "field_name": "view",
+                    "variable_name": "view",
+                    "allow_null": true,
+                    "is_deleted": false,
+                    "external_model_id": "bd4c2dc1-bf0d-4fa9-a4bc-7201666364fd"
                 }
             ],
             "index": [

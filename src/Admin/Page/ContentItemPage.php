@@ -74,7 +74,7 @@ class ContentItemPage extends ContentTemplate
 
 
         if ($contentType->hasView()) {
-            $view = $contentType->getView();
+            $view = $contentType->getDefaultView();
             $table1->addLabelValue('View Class', $view->getClassName());
             $table1->addLabelCom('View', $view);
         } else {

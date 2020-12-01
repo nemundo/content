@@ -41,7 +41,7 @@ class GroupContentViewSite extends AbstractSite
 
         $groupType = new GroupContentType($groupId);
 
-        $groupType->getView($page);
+        $groupType->getDefaultView($page);
 
         $title=new AdminTitle($page);
         $title->content=$groupType->getSubject();

@@ -41,6 +41,16 @@ public $parent;
 */
 public $itemOrder;
 
+/**
+* @var int
+*/
+public $viewId;
+
+/**
+* @var \Nemundo\Content\Data\ContentView\ContentViewRow
+*/
+public $view;
+
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
 $this->row = $row;
@@ -54,11 +64,18 @@ if ($model->parent !== null) {
 $this->loadNemundoContentDataContentContentparentRow($model->parent);
 }
 $this->itemOrder = intval($this->getModelValue($model->itemOrder));
+$this->viewId = intval($this->getModelValue($model->viewId));
+if ($model->view !== null) {
+$this->loadNemundoContentDataContentViewContentViewviewRow($model->view);
+}
 }
 private function loadNemundoContentDataContentContentchildRow($model) {
 $this->child = new \Nemundo\Content\Row\ContentCustomRow($this->row, $model);
 }
 private function loadNemundoContentDataContentContentparentRow($model) {
 $this->parent = new \Nemundo\Content\Row\ContentCustomRow($this->row, $model);
+}
+private function loadNemundoContentDataContentViewContentViewviewRow($model) {
+$this->view = new \Nemundo\Content\Data\ContentView\ContentViewRow($this->row, $model);
 }
 }

@@ -28,6 +28,7 @@ class TreePage extends ContentTemplate
         $header->addText('Child Subject');
         $header->addText('Child Id');
         $header->addText('Item Order');
+        $header->addText('View Id');
 
         $treeReader = new TreePaginationReader();
         $treeReader->model->loadParent();
@@ -55,6 +56,7 @@ class TreePage extends ContentTemplate
             $row->addText($contentType->getSubject());
             $row->addText($treeRow->childId);
             $row->addText($treeRow->itemOrder);
+            $row->addText($treeRow->viewId);
 
         }
 

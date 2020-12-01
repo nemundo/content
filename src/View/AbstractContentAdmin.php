@@ -178,13 +178,18 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
     protected function loadIndex()
     {
 
+        if ($this->contentType->hasList()) {
+        $list = $this->contentType->getViewList();
+        //$form->redirectSite = $this->index;
+        }
+
     }
 
 
     protected function loadNew()
     {
 
-        $form = $this->contentType->getForm($this);
+        $form = $this->contentType->getDefaultForm($this);
         $form->redirectSite = $this->index;
 
     }
@@ -195,7 +200,7 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
 
         $contentType = clone($this->contentType);
         $contentType->fromDataId($dataId);
-        $form = $contentType->getForm($this);
+        $form = $contentType->getDefaultForm($this);
         $form->redirectSite = $this->index;
 
 
@@ -209,7 +214,7 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
         $contentType->fromDataId($dataId);
 
         if ($contentType->hasView()) {
-            $contentType->getView($this);
+            $contentType->getDefaultView($this);
         }
 
         $p = new Paragraph($this);

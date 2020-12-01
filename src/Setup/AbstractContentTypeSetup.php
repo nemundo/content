@@ -10,6 +10,9 @@ use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\ContentType\ContentType;
 use Nemundo\Content\Data\ContentType\ContentTypeDelete;
+use Nemundo\Content\Data\ContentType\ContentTypeId;
+use Nemundo\Content\Data\ContentView\ContentView;
+use Nemundo\Content\Data\View\View;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
 use Nemundo\Core\Language\Translation;
@@ -35,6 +38,26 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
         }
         $data->setupStatus = true;
         $data->save();
+
+
+        //$id=new ContentTypeId();
+        //$id->filter->andEqual($id->model->i)
+
+        foreach ($contentType->getViewList() as $view) {
+
+            $data=new ContentView();
+            $data->updateOnDuplicate=true;
+            $data->contentTypeId=$contentType->typeId;
+            $data->viewName=$view->viewName;
+            $data->viewClass=$view->getClassName();
+            $data->save();
+
+        }
+
+
+
+
+
 
         return $this;
     }

@@ -97,7 +97,7 @@ class ContentLogTable extends AbstractHtmlContainer
 
             if ($this->showView) {
                 if ($contentType->hasView()) {
-                    $contentType->getView($row);
+                    $contentType->getDefaultView($row);
                 } else {
                     $row->addEmpty();
                 }

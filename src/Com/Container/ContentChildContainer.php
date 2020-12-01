@@ -30,7 +30,7 @@ class ContentChildContainer extends AbstractHtmlContainer
 
                 $div = new Div($this);
                 if ($contentType->hasView()) {
-                    $view = $contentType->getView($div);
+                    $view = $contentType->getDefaultView($div);
                     //$view->dataId = $contentRow->dataId;
                 }
 

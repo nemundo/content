@@ -13,9 +13,9 @@ use Nemundo\Core\Debug\Debug;
 trait SearchIndexTrait
 {
 
-    abstract public function getText();
+    //abstract public function getText();
 
-    abstract protected function isActive();
+    //abstract protected function isActive();
 
     /**
      * @var SearchIndexBuilder

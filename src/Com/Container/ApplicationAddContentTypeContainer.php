@@ -39,7 +39,7 @@ class ApplicationAddContentTypeContainer extends AbstractHtmlContainer
             }
             //$contentType->addEvent(new StreamEvent());
 
-            $form = $contentType->getForm($this);
+            $form = $contentType->getDefaultForm($this);
             $form->redirectSite = new Site();  // StreamSite::$site;
 
         }

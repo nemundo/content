@@ -13,4 +13,6 @@ abstract class AbstractContentContainer extends AbstractHtmlContainer
     use ContentFormTrait;
     use RedirectTrait;
 
+    public $formName;
+
 }

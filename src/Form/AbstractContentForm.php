@@ -11,6 +11,8 @@ abstract class AbstractContentForm extends AbstractAdminForm
 
     use ContentFormTrait;
 
+    public $formName = 'New (default)';
+
     public function getContent()
     {
 
@@ -26,14 +28,11 @@ abstract class AbstractContentForm extends AbstractAdminForm
     protected function checkRedirect()
     {
 
-
-
         if ($this->appendParameter) {
             $this->redirectSite->addParameter($this->contentType->getParameter());
         }
 
         parent::checkRedirect();
-
 
     }
 

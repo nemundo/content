@@ -47,7 +47,7 @@ class ContentTreeAddSite extends AbstractSite
         $type->addEvent($event);
         //$type->parentId = $wikiType->getContentId();
 
-        $form = $type->getForm($page);
+        $form = $type->getDefaultForm($page);
         //$form->appendParameter = true;
         $form->redirectSite = clone(WikiSite::$site);
         $form->redirectSite->addParameter($wikiParameter);

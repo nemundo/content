@@ -40,7 +40,7 @@ class ContentEditSite extends AbstractEditIconSite
         $contentParameter->contentTypeCheck=false;
         $contentType = $contentParameter->getContentType();
 
-        $form = $contentType->getForm($page);
+        $form = $contentType->getDefaultForm($page);
         $form->redirectSite = ContentItemSite::$site;
         $form->redirectSite->addParameter(new ContentParameter());
 

@@ -39,7 +39,7 @@ class ContentNewPage extends ContentTemplate
 
             $contentType = (new ContentTypeReader())->getRowById($contentTypeParameter->getValue())->getContentType();
 
-            $form = $contentType->getForm($this);
+            $form = $contentType->getDefaultForm($this);
             $form->redirectSite= ContentSite::$site; /* ContentNewSite::$site;
             $form->redirectSite->addParameter(new ContentTypeParameter());*/
 

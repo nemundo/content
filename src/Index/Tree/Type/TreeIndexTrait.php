@@ -14,6 +14,7 @@ use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Db\Sql\Order\SortOrder;
+use Nemundo\Html\Container\AbstractContainer;
 
 
 trait TreeIndexTrait
@@ -477,5 +478,50 @@ trait TreeIndexTrait
         return $dataId;
 
     }
+
+
+
+    public function getDefaultViewId() {
+
+        $defaultViewId =null;
+
+        $reader=new TreeReader();
+        $reader->model->loadView();
+        $reader->filter->andEqual($reader->model->childId,$this->getContentId());
+        foreach ($reader->getData() as $treeRow) {
+            $defaultViewId = $treeRow->viewId;
+        }
+
+        return $defaultViewId;
+
+    }
+
+
+    public function getDefaultView2(AbstractContainer $parent = null) {
+
+        $view=null;
+
+        $reader=new TreeReader();
+        $reader->model->loadView();
+        $reader->filter->andEqual($reader->model->childId,$this->getContentId());
+        foreach ($reader->getData() as $treeRow) {
+
+            $viewClass = $treeRow->view->viewClass;
+
+            if (class_exists($viewClass)) {
+            $view = new $viewClass($parent);
+                $view->contentType = $this;
+            }
+
+        }
+
+        if ($view==null) {
+            $view=$this->getDefaultView($parent);
+        }
+
+        return $view;
+
+    }
+
 
 }

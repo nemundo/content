@@ -31,6 +31,16 @@ public $parent;
 */
 public $itemOrder;
 
+/**
+* @var \Nemundo\Model\Type\Id\IdType
+*/
+public $viewId;
+
+/**
+* @var \Nemundo\Content\Data\ContentView\ContentViewExternalType
+*/
+public $view;
+
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = TreeModel::class;
@@ -64,6 +74,13 @@ $this->itemOrder->aliasFieldName = $this->itemOrder->tableName . "_" . $this->it
 $this->itemOrder->label = "Item Order";
 $this->addType($this->itemOrder);
 
+$this->viewId = new \Nemundo\Model\Type\Id\IdType();
+$this->viewId->fieldName = "view";
+$this->viewId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->viewId->aliasFieldName = $this->viewId->tableName ."_".$this->viewId->fieldName;
+$this->viewId->label = "View";
+$this->addType($this->viewId);
+
 }
 public function loadChild() {
 if ($this->child == null) {
@@ -84,6 +101,17 @@ $this->parent->tableName = $this->parentFieldName . "_" . $this->externalTableNa
 $this->parent->aliasFieldName = $this->parent->tableName ."_".$this->parent->fieldName;
 $this->parent->label = "Parent";
 $this->addType($this->parent);
+}
+return $this;
+}
+public function loadView() {
+if ($this->view == null) {
+$this->view = new \Nemundo\Content\Data\ContentView\ContentViewExternalType(null, $this->parentFieldName . "_view");
+$this->view->fieldName = "view";
+$this->view->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->view->aliasFieldName = $this->view->tableName ."_".$this->view->fieldName;
+$this->view->label = "View";
+$this->addType($this->view);
 }
 return $this;
 }

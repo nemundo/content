@@ -49,7 +49,11 @@ abstract class AbstractContentType extends AbstractType
 
         $this->saveData();
         $this->saveContent();
+        $this->saveContentIndex();
+
         $this->saveIndex();
+
+
 
     }
 
