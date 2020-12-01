@@ -200,6 +200,11 @@ abstract class AbstractType extends AbstractBaseClass
         if ($this->formClass !== null) {
             $value = true;
         }
+
+        if (isset($this->formClassList[0])) {
+            $value = true;
+        }
+
         return $value;
     }
 
