@@ -4,11 +4,11 @@
 namespace Nemundo\Content\Type;
 
 
-// JsonContentTrait
+
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Core\Json\JsonText;
 
-trait JsonTrait
+trait JsonContentTrait
 {
 
 

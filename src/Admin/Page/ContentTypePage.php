@@ -11,21 +11,17 @@ use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\App\Application\Parameter\ApplicationParameter;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
-use Nemundo\Content\Admin\Site\ContentTypeRemoveSite;
-use Nemundo\Content\Admin\Site\ContentTypeSite;
 use Nemundo\Content\Admin\Site\Json\ApplicationJsonSite;
 use Nemundo\Content\Admin\Site\Json\ContentTypeJsonSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
-use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
-use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-use Nemundo\User\Com\ListBox\UserListBox;
 
 class ContentTypePage extends ContentTemplate
 {
@@ -42,7 +38,7 @@ class ContentTypePage extends ContentTemplate
 
         $formRow = new BootstrapFormRow($form);
 
-        $application=new ApplicationListBox($formRow);
+        $application = new ApplicationListBox($formRow);
         $application->submitOnChange = true;
         $application->searchMode = true;
 
@@ -53,11 +49,11 @@ class ContentTypePage extends ContentTemplate
         $contentTypeReader->model->loadApplication();
 
         if ($application->hasValue()) {
-            $contentTypeReader->filter->andEqual($contentTypeReader->model->applicationId,$application->getValue());
+            $contentTypeReader->filter->andEqual($contentTypeReader->model->applicationId, $application->getValue());
 
 
-            $btn=new AdminSiteButton($layout->col1);
-            $btn->site=clone(ApplicationJsonSite::$site);
+            $btn = new AdminSiteButton($layout->col1);
+            $btn->site = clone(ApplicationJsonSite::$site);
             $btn->site->addParameter(new ApplicationParameter());
 
 
@@ -78,6 +74,8 @@ class ContentTypePage extends ContentTemplate
 
         foreach ($contentTypeReader->getData() as $contentTypeRow) {
 
+            $contentType = $contentTypeRow->getContentType();
+
             $row = new BootstrapClickableTableRow($table);
 
             $row->addText($contentTypeRow->contentType);
@@ -89,12 +87,14 @@ class ContentTypePage extends ContentTemplate
             $count->filter->andEqual($count->model->contentTypeId, $contentTypeRow->id);
             $row->addText((new Number($count->getCount()))->formatNumber());
 
+            if ($contentType->isObjectOfTrait(JsonContentTrait::class)) {
+                $site = clone(ContentTypeJsonSite::$site);
+                $site->addParameter(new ContentTypeParameter($contentTypeRow->id));
+                $row->addSite($site);
+            }
 
-            $site =clone(ContentTypeJsonSite::$site);
-            $site->addParameter(new ContentTypeParameter($contentTypeRow->id));
-            $row->addClickableSite($site);
 
-            $row->addSite($site);
+//            $row->addClickableSite($site);
 
 
             /*
@@ -104,9 +104,6 @@ class ContentTypePage extends ContentTemplate
             $row->addClickableSite($site);*/
 
         }
-
-
-
 
 
         /*
@@ -130,9 +127,6 @@ class ContentTypePage extends ContentTemplate
             }
 
         }*/
-
-
-
 
 
         return parent::getContent();

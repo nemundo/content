@@ -6,11 +6,15 @@ namespace Nemundo\Content\Json;
 
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Core\Base\AbstractBase;
 
 class ContentTypeJson extends AbstractBase
 {
 
+    /**
+     * @param AbstractContentType|JsonContentTrait $contentType
+     */
     public function getJsonData(AbstractContentType $contentType)
     {
 
@@ -19,7 +23,7 @@ class ContentTypeJson extends AbstractBase
         $reader->filter->andEqual($reader->model->contentTypeId, $contentType->typeId);
         $reader->addOrder($reader->model->subject);
 
-        $json = $contentType->getJsonHeader();
+        $json = $contentType->getJsonHeader();  //J getJsgetgetJsonHeader();
 
         $dataList = [];
         foreach ($reader->getData() as $contentRow) {
