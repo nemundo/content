@@ -4,6 +4,7 @@
 namespace Nemundo\Content\Parameter;
 
 
+use Nemundo\Content\Builder\ContentTypeBuilder;
 use Nemundo\Content\Check\ContentTypeCheckTrait;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Web\Parameter\AbstractUrlParameter;
@@ -23,7 +24,9 @@ class ContentTypeParameter extends AbstractUrlParameter
     public function getContentType()
     {
 
-        $contentType = (new ContentTypeReader())->getRowById($this->getValue())->getContentType();
+
+        $contentType = (new ContentTypeBuilder())->getContentType($this->getValue());
+        //$contentType = (new ContentTypeReader())->getRowById($this->getValue())->getContentType();
         //$this->checkContentType($contentType);
 
         return $contentType;

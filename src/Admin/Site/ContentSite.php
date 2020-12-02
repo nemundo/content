@@ -7,6 +7,7 @@ namespace Nemundo\Content\Admin\Site;
 use Nemundo\Content\Admin\Page\ContentPage;
 use Nemundo\Content\Admin\Site\Container\ContentContainerSite;
 use Nemundo\Content\Admin\Site\ContentNewSite;
+use Nemundo\Content\Admin\Site\Json\ApplicationJsonSite;
 use Nemundo\Content\Admin\Site\Json\ContentJsonSite;
 use Nemundo\Content\Admin\Site\Json\ContentTypeJsonSite;
 use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
@@ -38,6 +39,7 @@ class ContentSite extends AbstractSite
 
         new ContentJsonSite($this);
         new ContentTypeJsonSite($this);
+        new ApplicationJsonSite($this);
 
 
         new SearchSite($this);
@@ -46,6 +48,7 @@ class ContentSite extends AbstractSite
         new GroupSite($this);
         new GeoIndexSite($this);
         new TreeSite($this);
+        new ImportSite($this);
 
         new ContentItemSite($this);
         new ContentDeleteSite($this);

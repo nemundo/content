@@ -3,11 +3,10 @@
 
 namespace Nemundo\Content\Row;
 
-use Nemundo\Content\Index\Tree\Type\TreeIndexTrait;
-use Nemundo\Core\Log\LogMessage;
 use Nemundo\Content\Data\ContentType\ContentTypeRow;
+use Nemundo\Content\Index\Tree\Type\TreeIndexTrait;
 use Nemundo\Content\Type\AbstractContentType;
-use Nemundo\Content\Type\MenuTrait;
+use Nemundo\Core\Log\LogMessage;
 
 
 class ContentTypeCustomRow extends ContentTypeRow
@@ -17,7 +16,6 @@ class ContentTypeCustomRow extends ContentTypeRow
     {
 
         $className = $this->phpClass;
-
 
         $contentType = null;
         if (class_exists($className)) {

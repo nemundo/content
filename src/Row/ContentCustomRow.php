@@ -6,6 +6,7 @@ namespace Nemundo\Content\Row;
 use Nemundo\Content\Index\Geo\Type\GeoContentTypeTrait;
 use Nemundo\Content\Index\Group\Type\GroupIndexTrait;
 use Nemundo\Content\Index\Tree\Type\TreeContentType;
+use Nemundo\Content\Type\JsonTrait;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Content\Data\Content\ContentRow;
 use Nemundo\Content\Type\AbstractContentType;
@@ -25,7 +26,7 @@ class ContentCustomRow extends ContentRow
         $contentType = null;
         if (class_exists($className)) {
 
-            /** @var AbstractContentType|AbstractTreeContentType|GroupIndexTrait|GeoContentTypeTrait $contentType */
+            /** @var AbstractContentType|AbstractTreeContentType|GroupIndexTrait|GeoContentTypeTrait|JsonTrait $contentType */
             $contentType = new $className($this->dataId);
 
         } else {

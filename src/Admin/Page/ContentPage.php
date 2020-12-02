@@ -22,8 +22,6 @@ use Nemundo\Content\Data\Content\ContentModel;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-
-
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Order\SortOrder;
@@ -33,6 +31,7 @@ use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\User\Com\ListBox\UserListBox;
+
 
 class ContentPage extends ContentTemplate
 {
@@ -44,7 +43,7 @@ class ContentPage extends ContentTemplate
 
         $formRow = new BootstrapFormRow($form);
 
-        $application=new ApplicationListBox($formRow);
+        $application = new ApplicationListBox($formRow);
         $application->submitOnChange = true;
         $application->searchMode = true;
 
@@ -100,8 +99,8 @@ class ContentPage extends ContentTemplate
         if ($contentTypeParameter->hasValue()) {
 
 
-            $btn=new AdminSiteButton($this);
-            $btn->site=clone(ContentTypeRemoveSite::$site);
+            $btn = new AdminSiteButton($this);
+            $btn->site = clone(ContentTypeRemoveSite::$site);
             $btn->site->addParameter($contentTypeParameter);
 
             $filter->andEqual($model->contentTypeId, $contentTypeParameter->getValue());
@@ -145,17 +144,18 @@ class ContentPage extends ContentTemplate
 
         $contentReader->filter = $filter;
         $contentReader->addOrder($contentReader->model->id, SortOrder::DESCENDING);
-        $contentReader->paginationLimit =50;
+        $contentReader->paginationLimit = 50;
 
         $table = new AdminClickableTable($this);
 
         $header = new TableHeader($table);
         $header->addText($contentReader->model->contentType->application->label);
-        $header->addText('Content Id');
+        $header->addText($contentReader->model->id->label);  // 'Content Id');
+        $header->addText($contentReader->model->dataId->label);
         $header->addText('Type');
         $header->addText('Type Id');
         $header->addText('Class');
-        $header->addText('Data Id');
+
         $header->addText('Subject (Data)');
         $header->addText('Subject (Type)');
         $header->addText('Date/Time');
@@ -171,22 +171,25 @@ class ContentPage extends ContentTemplate
             $row->addText($contentRow->contentType->application->application);
 
             $row->addText($contentRow->id);
+            $row->addText($contentRow->dataId);
             $row->addText($contentRow->contentType->contentType);
             $row->addText($contentRow->contentTypeId);
+
             $row->addText($contentType->getClassName());
-            $row->addText($contentRow->dataId);
+
             $row->addText($contentRow->subject);
             $row->addText($contentType->getSubject());
             $row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
             $row->addText($contentRow->user->login);
 
-            /*$site = clone(ContentIndexSite::$site);
+            $site = clone(ContentJsonSite::$site);  // ContentIndexSite::$site);
+            $site->addParameter(new ContentParameter($contentRow->id));
+            $row->addSite($site);
+
+            /*
+            $site = clone(ContentJsonSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
             $row->addSite($site);*/
-
-            $site = clone(ContentJsonSite::$site);
-          $site->addParameter(new ContentParameter($contentRow->id));
-          $row->addSite($site);
 
             $site = clone(ContentDeleteSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));

@@ -13,6 +13,7 @@ use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Site\ContentTypeRemoveSite;
 use Nemundo\Content\Admin\Site\ContentTypeSite;
+use Nemundo\Content\Admin\Site\Json\ApplicationJsonSite;
 use Nemundo\Content\Admin\Site\Json\ContentTypeJsonSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
@@ -33,8 +34,8 @@ class ContentTypePage extends ContentTemplate
     {
 
         $layout = new BootstrapTwoColumnLayout($this);
-        $layout->col1->columnWidth = 4;
-        $layout->col2->columnWidth = 8;
+        $layout->col1->columnWidth = 12;
+        $layout->col2->columnWidth = 0;
 
 
         $form = new SearchForm($layout->col1);
@@ -53,6 +54,13 @@ class ContentTypePage extends ContentTemplate
 
         if ($application->hasValue()) {
             $contentTypeReader->filter->andEqual($contentTypeReader->model->applicationId,$application->getValue());
+
+
+            $btn=new AdminSiteButton($layout->col1);
+            $btn->site=clone(ApplicationJsonSite::$site);
+            $btn->site->addParameter(new ApplicationParameter());
+
+
         }
 
         $contentTypeReader->addOrder($contentTypeReader->model->contentType);
@@ -63,9 +71,9 @@ class ContentTypePage extends ContentTemplate
         $header->addText('Type');
         $header->addText('Class');
         $header->addText('Type Id');
-
         $header->addText($contentTypeReader->model->application->label);
         $header->addText('Item Count');
+        $header->addEmpty();
 
 
         foreach ($contentTypeReader->getData() as $contentTypeRow) {
@@ -81,13 +89,27 @@ class ContentTypePage extends ContentTemplate
             $count->filter->andEqual($count->model->contentTypeId, $contentTypeRow->id);
             $row->addText((new Number($count->getCount()))->formatNumber());
 
-            $site = clone(ContentTypeSite::$site);
-            $site->addParameter(new ApplicationParameter());
+
+            $site =clone(ContentTypeJsonSite::$site);
             $site->addParameter(new ContentTypeParameter($contentTypeRow->id));
             $row->addClickableSite($site);
 
+            $row->addSite($site);
+
+
+            /*
+            $site = clone(ContentTypeSite::$site);
+            $site->addParameter(new ApplicationParameter());
+            $site->addParameter(new ContentTypeParameter($contentTypeRow->id));
+            $row->addClickableSite($site);*/
+
         }
 
+
+
+
+
+        /*
         $parameter = new ContentTypeParameter();
         if ($parameter->hasValue()) {
 
@@ -107,7 +129,7 @@ class ContentTypePage extends ContentTemplate
                 $contentType->getAdmin($layout->col2);
             }
 
-        }
+        }*/
 
 
 
