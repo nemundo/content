@@ -16,8 +16,6 @@ abstract class AbstractContentType extends AbstractType
 {
 
     use ContentIndexTrait;
-    use JsonTrait;
-
 
     /**
      * @var string
