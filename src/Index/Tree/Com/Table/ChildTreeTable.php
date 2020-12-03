@@ -1,11 +1,12 @@
 <?php
 
 
-namespace Nemundo\Content\Com\Table;
+namespace Nemundo\Content\Index\Tree\Com\Table;
 
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
+use Nemundo\Content\Com\Container\AbstractContentTypeContainer;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Html\Container\AbstractHtmlContainer;
@@ -15,32 +16,21 @@ use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Web\Site\AbstractSite;
 
 
-// ParentSourceTable
-class ParentTreeTable extends AbstractHtmlContainer
+class ChildTreeTable extends AbstractContentTypeContainer
 {
-
-    /**
-     * @var AbstractTreeContentType
-     */
-    public $contentType;
-
-    /**
-     * @var AbstractSite
-     */
-    public $redirectSite;
 
     public function getContent()
     {
 
-        if ($this->contentType->hasParent()) {
+        //if ($this->contentType->hashasChParent()) {
 
             $table = new AdminClickableTable($this);
 
             $header = new TableHeader($table);
-            $header->addText('Quelle');
+            $header->addText('Child');
             $header->addText('Typ');
 
-            foreach ($this->contentType->getParentContent() as $contentRow) {
+            foreach ($this->contentType->getChild() as $contentRow) {
 
                 $row = new BootstrapClickableTableRow($table);
                 $contentType = $contentRow->getContentType();
@@ -59,7 +49,7 @@ class ParentTreeTable extends AbstractHtmlContainer
 
             }
 
-        }
+        //}
 
         return parent::getContent();
 

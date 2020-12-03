@@ -18,14 +18,20 @@ use Nemundo\Content\Admin\Site\ContentItemSite;
 use Nemundo\Content\Admin\Site\ContentNewSite;
 use Nemundo\Content\Admin\Site\ContentSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
+use Nemundo\Content\App\Explorer\Site\ItemSite;
+use Nemundo\Content\App\Log\Com\Container\LogContainer;
+use Nemundo\Content\Com\Container\JsonContentContainer;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
+use Nemundo\Content\Index\Geo\Com\Container\GeoIndexContainer;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
 use Nemundo\Content\Index\Search\Type\SearchIndexTrait;
+use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
 use Nemundo\Content\Index\Tree\Type\TreeIndexTrait;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
+use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
 class ContentItemPage extends ContentTemplate
@@ -52,7 +58,10 @@ class ContentItemPage extends ContentTemplate
         }*/
 
 
-        $table1 = new AdminLabelValueTable($this);
+        $layout=new BootstrapTwoColumnLayout($this);
+
+
+        $table1 = new AdminLabelValueTable($layout->col1);
         $table1->addLabelValue('Subject', $contentType->getSubject());
 
         if ($contentType->isObjectOfTrait(TreeIndexTrait::class)) {
@@ -92,7 +101,7 @@ class ContentItemPage extends ContentTemplate
 
         if ($contentType->isObjectOfTrait(TreeIndexTrait::class)) {
 
-            $subtitle = new AdminSubtitle($this);
+            $subtitle = new AdminSubtitle($layout->col2);
             $subtitle->content = 'Child';
 
             $table = new AdminClickableTable($this);
@@ -132,10 +141,10 @@ class ContentItemPage extends ContentTemplate
 
             if ($contentType->hasParent()) {
 
-                $subtitle = new AdminSubtitle($this);
+                $subtitle = new AdminSubtitle($layout->col1);
                 $subtitle->content = 'Parent Type';
 
-                $table = new AdminClickableTable($this);
+                $table = new AdminClickableTable($layout->col1);
 
                 $header->addText('Content Type');
                 $header->addText('Subject');
@@ -159,11 +168,11 @@ class ContentItemPage extends ContentTemplate
 
         }
 
-        $btn = new AdminIconSiteButton($this);
+        $btn = new AdminIconSiteButton($layout->col1);
         $btn->site = ContentEditSite::$site;
         $btn->site->addParameter(new ContentParameter());
 
-        $btn = new AdminIconSiteButton($this);
+        $btn = new AdminIconSiteButton($layout->col1);
         $btn->site = ContentDeleteSite::$site;
         $btn->site->addParameter(new ContentParameter());
 
@@ -190,7 +199,7 @@ class ContentItemPage extends ContentTemplate
 
             $table1->addLabelValue('Search', 'yes');
 
-            $table = new AdminTable($this);
+            $table = new AdminTable($layout->col2);
 
             $header = new TableHeader($table);
             $header->addText('Search Word');
@@ -210,6 +219,25 @@ class ContentItemPage extends ContentTemplate
             $table1->addLabelValue('Search', 'no');
 
         }
+
+
+
+        $container=new GeoIndexContainer($layout->col2);
+        $container->contentType=$contentType;
+        $container->redirectSite=ItemSite::$site;
+
+        $container=new JsonContentContainer($layout->col2);
+        $container->contentType = $contentType;
+
+        $container=new TreeIndexContainer($layout->col2);
+        $container->contentType = $contentType;
+        $container->redirectSite=ContentItemSite::$site;
+
+
+        /*
+        $container=new LogContainer($layout->col2);
+        $container->contentType = $contentType;
+
 
 
         /*

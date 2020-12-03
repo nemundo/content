@@ -33,6 +33,7 @@ class ContentJsonSite extends AbstractJsonSite
         $this->jsonFilename = 'content_' . $contentType->getContentId() . '.json';
         $this->addJsonRow($contentType->getJsonData());
 
+
     }
 
 }

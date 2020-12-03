@@ -22,6 +22,7 @@ use Nemundo\Content\Data\Content\ContentModel;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Order\SortOrder;
@@ -182,9 +183,15 @@ class ContentPage extends ContentTemplate
             $row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
             $row->addText($contentRow->user->login);
 
+
+            if ($contentType->isObjectOfTrait(JsonContentTrait::class)) {
+
             $site = clone(ContentJsonSite::$site);  // ContentIndexSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
             $row->addSite($site);
+            } else {
+                $row->addEmpty();
+            }
 
             /*
             $site = clone(ContentJsonSite::$site);

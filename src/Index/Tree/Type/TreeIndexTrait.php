@@ -164,6 +164,7 @@ trait TreeIndexTrait
 
 
     // getChildContentRowList
+    // getChildContent
     public function getChild()
     {
 
