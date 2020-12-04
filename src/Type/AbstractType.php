@@ -226,9 +226,14 @@ abstract class AbstractType extends AbstractBaseClass
                 (new LogMessage())->writeError('No Form' . $this->getClassName());
             }*/
 
+            if ($this->hasForm()) {
+
         /** @var AbstractContentForm $form */
         $form = new $this->formClass($parent);
         $form->contentType = $this;
+
+            }
+
         }
 
         return $form;
