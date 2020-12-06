@@ -8,7 +8,9 @@
       "email": "urs.lang@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "nemundo/framework": "*"
+  },
   "autoload": {
     "psr-4": {
       "Nemundo\\Content\\": "src/"

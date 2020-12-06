@@ -6,6 +6,7 @@ namespace Nemundo\Content\Index\Tree\Type;
 
 use Nemundo\Content\Index\Search\Type\SearchIndexTrait;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Content\Type\JsonContentTrait;
 
 
 abstract class AbstractTreeContentType extends AbstractContentType
@@ -13,6 +14,7 @@ abstract class AbstractTreeContentType extends AbstractContentType
 
     use TreeIndexTrait;
     use SearchIndexTrait;
+    use JsonContentTrait;
 
     public function saveType()
     {

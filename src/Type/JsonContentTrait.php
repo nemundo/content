@@ -12,14 +12,6 @@ trait JsonContentTrait
 {
 
 
-
-    /*
-    protected function loadJson() {
-
-    }*/
-
-
-
     public function getData()
     {
 

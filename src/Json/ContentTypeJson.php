@@ -23,7 +23,7 @@ class ContentTypeJson extends AbstractBase
         $reader->filter->andEqual($reader->model->contentTypeId, $contentType->typeId);
         $reader->addOrder($reader->model->subject);
 
-        $json = $contentType->getJsonHeader();  //J getJsgetgetJsonHeader();
+        $json = $contentType->getJsonHeader();
 
         $dataList = [];
         foreach ($reader->getData() as $contentRow) {

@@ -30,6 +30,13 @@ trait TreeIndexTrait
      */
     public $restrictedChild = false;
 
+    /**
+     * @var bool
+     */
+    public $allowChild = true;
+
+
+
 
     /**
      * @var AbstractContentType[]
@@ -193,6 +200,18 @@ trait TreeIndexTrait
     //getLastOf
     // getFirstOf
     // getChildOf
+
+
+    public function hasChild()
+    {
+
+        $value = false;
+        if ($this->getChildCount() > 0) {
+            $value = true;
+        }
+        return $value;
+
+    }
 
 
     public function getChildCount()
@@ -498,7 +517,9 @@ trait TreeIndexTrait
     }
 
 
-    public function getDefaultView2(AbstractContainer $parent = null) {
+
+    // getChildView (auslagern)
+    public function getDefaultTreeView(AbstractContainer $parent = null) {
 
         $view=null;
 

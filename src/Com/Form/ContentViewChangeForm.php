@@ -9,6 +9,7 @@ use Nemundo\Content\Data\Tree\TreeReader;
 use Nemundo\Content\Data\Tree\TreeUpdate;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
+use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
 
 class ContentViewChangeForm extends BootstrapForm
 {
@@ -29,7 +30,9 @@ class ContentViewChangeForm extends BootstrapForm
         //new ContentHiddenInput($this);
         //(new Debug())->write($this->contentType);
 
-        $this->view = new ContentViewListBox($this);
+        $formRow=new BootstrapFormRow($this);
+
+        $this->view = new ContentViewListBox($formRow);
         $this->view->contentType = $this->contentType;
         $this->view->value = $this->contentType->getDefaultViewId();
         $this->view->submitOnChange = true;
@@ -40,6 +43,9 @@ class ContentViewChangeForm extends BootstrapForm
         foreach ($reader->getData() as $treeRow) {
             $this->view->value = $treeRow->viewId;
         }
+
+        $this->submitButton->visible=false;
+
 
         return parent::getContent();
 
