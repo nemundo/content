@@ -5,7 +5,7 @@ namespace Nemundo\Content\Com\Container;
 
 
 use Nemundo\Admin\Com\Button\AdminSiteButton;
-use Nemundo\Content\App\Explorer\Site\Json\ContentJsonSite;
+use Nemundo\Content\App\Explorer\Site\Json\JsonExportSite;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapLargeTextBox;
@@ -23,7 +23,7 @@ class JsonContentContainer extends AbstractContentTypeContainer
             $text->value = $this->contentType->getJson();
 
             $btn = new AdminSiteButton($this);
-            $btn->site= clone(ContentJsonSite::$site);
+            $btn->site= clone(JsonExportSite::$site);
             $btn->site->addParameter(new ContentParameter($this->contentType->getContentId()));
 
 
