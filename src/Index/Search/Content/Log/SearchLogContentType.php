@@ -4,14 +4,14 @@
 namespace Nemundo\Content\Index\Search\Content\Log;
 
 
-use Nemundo\Content\Index\Content\Type\AbstractContentType;
-use Nemundo\Content\Index\Content\Type\AbstractTreeContentType;
+
 use Nemundo\Content\Index\Search\Data\SearchLog\SearchLog;
 use Nemundo\Content\Index\Search\Data\SearchLog\SearchLogReader;
 use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
 use Nemundo\Content\Index\Search\Site\SearchSite;
+use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
-class SearchLogContentType extends AbstractTreeContentType  // AbstractContentType  // AbstractType
+class SearchLogContentType extends AbstractTreeContentType
 {
 
     public $searchQuery;

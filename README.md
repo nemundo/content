@@ -8,6 +8,10 @@ composer require nemundo/content
 ```
 
 
+### Class Designer
+```
+\Nemundo\App\ClassDesigner\ClassDesignerConfig::$classBuilderFormList[] = new \Nemundo\Content\ClassDesigner\ContentTypeClassBuilderForm();
+```
 
 
 ### Content Check

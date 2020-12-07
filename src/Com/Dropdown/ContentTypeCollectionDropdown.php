@@ -15,7 +15,7 @@ use Nemundo\Web\Site\Site;
 class ContentTypeCollectionDropdown extends BootstrapSiteDropdown
 {
 
-    use GroupRestrictedTrait;
+    //use GroupRestrictedTrait;
 
     /**
      * @var AbstractSite
