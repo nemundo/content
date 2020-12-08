@@ -74,9 +74,6 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
     protected $showTitle = true;
 
 
-    //abstract protected function loadAdmin();
-
-
     protected function loadActionSite()
     {
 

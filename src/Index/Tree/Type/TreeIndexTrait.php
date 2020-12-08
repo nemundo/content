@@ -35,14 +35,15 @@ trait TreeIndexTrait
      */
     public $allowChild = true;
 
-
-
-
     /**
      * @var AbstractContentType[]
      */
     private $restrictedChildList = [];
 
+    /**
+     * @var AbstractContentTypeCollection[]
+     */
+    private $restrictedContentTypeCollectionList = [];
 
     /**
      * @var string
@@ -53,7 +54,7 @@ trait TreeIndexTrait
     public function addRestrictedContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection)
     {
 
-
+        $this->restrictedContentTypeCollectionList[]=$contentTypeCollection;
         // $this->restrictedChildList[]=$contentType;
 
         return $this;
@@ -72,8 +73,24 @@ trait TreeIndexTrait
 
     public function getRestrictedChildContentType()
     {
-        return $this->restrictedChildList;
+
+        $list = $this->restrictedChildList;
+        foreach ($this->getRestrictedContentTypeCollectionList() as $collection) {
+            foreach ($collection->getContentTypeList() as $contentType) {
+                $list[]=$contentType;
+            }
+        }
+
+        return $list;
+
     }
+
+
+    public function getRestrictedContentTypeCollectionList()
+    {
+        return $this->restrictedContentTypeCollectionList;
+    }
+
 
 
     protected function saveTree()

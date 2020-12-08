@@ -37,6 +37,11 @@ trait ContentTypeDropdownTrait
     {
 
         $this->contentTypeCollectionList[] = $contentTypeCollection;
+
+        foreach ($contentTypeCollection->getContentTypeList() as $contentType) {
+            $this->addContentType($contentType);
+        }
+
         return $this;
 
     }

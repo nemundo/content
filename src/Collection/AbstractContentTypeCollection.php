@@ -4,11 +4,14 @@
 namespace Nemundo\Content\Collection;
 
 
-use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Core\Base\AbstractBase;
 
 abstract class AbstractContentTypeCollection extends AbstractBase
 {
+
+    public $label;
+
 
     abstract protected function loadCollection();
 
@@ -33,7 +36,8 @@ abstract class AbstractContentTypeCollection extends AbstractBase
     }
 
 
-    protected function addContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection) {
+    protected function addContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection)
+    {
 
         foreach ($contentTypeCollection->getContentTypeList() as $contentType) {
             $this->addContentType($contentType);
