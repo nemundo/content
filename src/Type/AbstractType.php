@@ -81,7 +81,7 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var bool
      */
-    protected $restricted = false;
+    protected $restrictedGroup = false;
 
 
     abstract protected function loadContentType();

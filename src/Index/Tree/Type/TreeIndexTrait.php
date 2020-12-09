@@ -518,7 +518,7 @@ trait TreeIndexTrait
 
 
 
-    public function getDefaultViewId() {
+    public function getDefaultTreeViewId() {
 
         $defaultViewId =null;
 

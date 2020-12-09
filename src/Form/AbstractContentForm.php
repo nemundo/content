@@ -11,7 +11,7 @@ abstract class AbstractContentForm extends AbstractAdminForm
 
     use ContentFormTrait;
 
-    public $formName = 'New (default)';
+    public $formName = 'New';
 
     public function getContent()
     {

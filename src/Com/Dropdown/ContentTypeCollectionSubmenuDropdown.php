@@ -5,9 +5,11 @@ namespace Nemundo\Content\Com\Dropdown;
 
 
 use Nemundo\App\Application\Data\Application\ApplicationReader;
+use Nemundo\Content\Collection\AbstractContentTypeCollection;
 use Nemundo\Content\Data\ContentType\ContentTypeCount;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Package\BootstrapDropdown\BootstrapSubmenuDropdown;
 use Nemundo\Package\BootstrapDropdown\Submenu;
 use Nemundo\Web\Site\AbstractSite;
@@ -23,10 +25,55 @@ class ContentTypeCollectionSubmenuDropdown extends BootstrapSubmenuDropdown
      */
     public $redirectSite;
 
+
+    public function addContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection)
+    {
+
+        foreach ($contentTypeCollection->getContentTypeList() as $contentType) {
+
+            /*$site = clone($this->redirectSite);
+            $site->addParameter(new ContentTypeParameter($contentType->typeId));
+            $site->title = $contentType->typeLabel;
+            $this->addSite($site);*/
+
+            $this->addSite($this->getMenuSite($contentType));
+
+        }
+
+
+    }
+
+
+    public function addContentTypeCollectionAsSubmenu(AbstractContentTypeCollection $contentTypeCollection)
+    {
+
+        //foreach ($this->contentType->getRestrictedContentTypeCollectionList() as $child) {
+
+            $submenu=new Submenu($this);
+            $submenu->label =$contentTypeCollection->label;
+            foreach ($contentTypeCollection->getContentTypeList() as $contentType2) {
+
+                /*
+                $site =  clone($this->redirectSite);
+                $site->addParameter(new ContentTypeParameter($contentType2->typeId));
+                $site->title = $contentType2->typeLabel;
+                $submenu->addSite($site);*/
+
+                $submenu->addSite($this->getMenuSite($contentType2));
+
+            }
+
+        //}
+
+
+    }
+
+
     public function getContent()
     {
 
 
+        /*
         if ($this->redirectSite == null) {
             $this->redirectSite = new Site();
         }
@@ -72,5 +119,19 @@ class ContentTypeCollectionSubmenuDropdown extends BootstrapSubmenuDropdown
         return parent::getContent();
 
     }
+
+
+
+    private function getMenuSite(AbstractContentType $contentType) {
+
+        $site = clone($this->redirectSite);
+        $site->addParameter(new ContentTypeParameter($contentType->typeId));
+        $site->title = $contentType->typeLabel;
+
+        return $site;
+
+    }
+
+
 
 }

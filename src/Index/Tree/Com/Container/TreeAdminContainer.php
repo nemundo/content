@@ -6,7 +6,7 @@ namespace Nemundo\Content\Index\Tree\Com\Container;
 
 use Nemundo\Blog\Site\Admin\BlogContentSite;
 use Nemundo\Content\Admin\Site\ContentNewSite;
-use Nemundo\Content\App\Explorer\Site\ItemNewSite;
+use Nemundo\Content\App\Explorer\Site\NewSite;
 use Nemundo\Content\Com\Base\ContentTypeRedirectTrait;
 use Nemundo\Content\Com\Container\ContentTypeSubmenuAddContainer;
 use Nemundo\Content\Com\Dropdown\ContentTypeCollectionSubmenuDropdown;
@@ -47,7 +47,7 @@ class TreeAdminContainer extends AbstractContentAdmin  //Container
 
                     $container = new ContentTypeSubmenuAddContainer($this);
                     $container->parentId = $this->contentType->getContentId();
-                    $container->redirectSite = clone(ItemNewSite::$site);
+                    $container->redirectSite = clone(NewSite::$site);
                     $container->redirectSite->addParameter(new ContentParameter());
 
                 }

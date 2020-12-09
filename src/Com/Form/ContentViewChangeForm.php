@@ -34,7 +34,7 @@ class ContentViewChangeForm extends BootstrapForm
 
         $this->view = new ContentViewListBox($formRow);
         $this->view->contentType = $this->contentType;
-        $this->view->value = $this->contentType->getDefaultViewId();
+        $this->view->value = $this->contentType->getDefaultTreeViewId();
         $this->view->submitOnChange = true;
 
         $reader = new TreeReader();

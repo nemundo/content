@@ -9,11 +9,13 @@ use Nemundo\Content\App\Explorer\Site\ContentEditSite;
 use Nemundo\Content\App\Explorer\Site\ContentRemoveSite;
 use Nemundo\Content\App\Explorer\Site\ContentSortableSite;
 use Nemundo\Content\App\Explorer\Site\ItemSite;
+use Nemundo\Content\Com\Form\ContentViewChangeForm;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ParentParameter;
 use Nemundo\Html\Block\Div;
 use Nemundo\Html\Container\AbstractHtmlContainer;
+use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Package\Bootstrap\Jumbotron\BootstrapJumbotron;
 use Nemundo\Package\JqueryUi\Sortable\JquerySortable;
 use Nemundo\Web\Site\AbstractSite;
@@ -63,8 +65,14 @@ class SortableContentContainer extends AbstractHtmlContainer
             $itemDiv = new BootstrapJumbotron($sortableDiv);
             $itemDiv->id = 'item_' . $treeRow->id;
 
+            $childContentType = $treeRow->getContentType();
+
+            /*$p=new Paragraph($itemDiv);
+            $p->content=$childContentType->getDefaultTreeViewId();*/
+
             $div = new Div($itemDiv);
-            $treeRow->getContentType()->getDefaultView($div);
+
+            $childContentType->getDefaultTreeView($div);
 
             $div = new Div($itemDiv);
 
@@ -86,6 +94,9 @@ class SortableContentContainer extends AbstractHtmlContainer
                 $btn->site = clone(ItemSite::$site);
                 $btn->site->addParameter(new ContentParameter($treeRow->id));
             }
+
+            $form = new ContentViewChangeForm($div);
+            $form->contentType=$childContentType;
 
         }
 
