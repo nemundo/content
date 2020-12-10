@@ -36,5 +36,4 @@ abstract class AbstractContentForm extends AbstractAdminForm
 
     }
 
-
 }

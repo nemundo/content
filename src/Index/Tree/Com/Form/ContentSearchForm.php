@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nemundo\Content\Form;
+namespace Nemundo\Content\Index\Tree\Com\Form;
 
 
 use Nemundo\Content\Builder\ContentBuilder;

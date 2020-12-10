@@ -1,18 +1,20 @@
 <?php
 
 
-namespace Nemundo\Content\Com\Form;
+namespace Nemundo\Content\Index\Tree\Com\Form;
 
 
 use Nemundo\Content\Com\ListBox\ContentViewListBox;
-use Nemundo\Content\Data\Tree\TreeReader;
-use Nemundo\Content\Data\Tree\TreeUpdate;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeUpdate;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
 use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
 
 class ContentViewChangeForm extends BootstrapForm
 {
+
+    public $treeId;
 
     /**
      * @var AbstractTreeContentType
@@ -32,17 +34,23 @@ class ContentViewChangeForm extends BootstrapForm
 
         $formRow=new BootstrapFormRow($this);
 
+
+        $treeRow = (new TreeReader())->getRowById($this->treeId);
+
         $this->view = new ContentViewListBox($formRow);
         $this->view->contentType = $this->contentType;
-        $this->view->value = $this->contentType->getDefaultTreeViewId();
+        $this->view->value =$treeRow->viewId;  // $this->contentType->getDefaultTreeViewId();
         $this->view->submitOnChange = true;
 
-        $reader = new TreeReader();
+        /*$reader = new TreeReader();
         $reader->model->loadView();
-        $reader->filter->andEqual($reader->model->childId, $this->contentType->getContentId());
+        //$reader->filter->andEqual($reader->model->childId, $this->contentType->getContentId());
+        $reader->filter->andEqual($reader->model->id,$this->treeId);
         foreach ($reader->getData() as $treeRow) {
             $this->view->value = $treeRow->viewId;
-        }
+        }*/
+
+        $this->view->value = $treeRow->viewId;
 
         $this->submitButton->visible=false;
 
@@ -57,8 +65,9 @@ class ContentViewChangeForm extends BootstrapForm
 
         $update = new TreeUpdate();
         $update->viewId = $this->view->getValue();
-        $update->filter->andEqual($update->model->childId, $this->contentType->getContentId());
-        $update->update();
+        $update->updateById($this->treeId);
+        //$update->filter->andEqual($update->model->childId, $this->contentType->getContentId());
+        //$update->update();
         //$update->updateById($this->contentType->getContentId());
 
 

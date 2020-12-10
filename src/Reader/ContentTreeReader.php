@@ -7,7 +7,7 @@ namespace Nemundo\Content\Reader;
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Model\Join\ModelJoin;
 use Nemundo\Content\Data\Content\ContentReader;
-use Nemundo\Content\Data\Tree\TreeModel;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeModel;
 
 // ContentJoinTreeReader
 class ContentTreeReader extends ContentReader

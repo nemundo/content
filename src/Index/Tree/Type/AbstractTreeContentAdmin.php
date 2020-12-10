@@ -4,16 +4,20 @@
 namespace Nemundo\Content\Index\Tree\Type;
 
 
+use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Title\AdminTitle;
 use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\Content\Com\Container\ContentTypeFormContainer;
 use Nemundo\Content\Com\Container\ContentTypeSubmenuAddContainer;
 use Nemundo\Content\Com\Dropdown\ContentTypeCollectionSubmenuDropdown;
 use Nemundo\Content\Index\Tree\Com\Container\SortableContentContainer;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
+use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Parameter\DataIdParameter;
 use Nemundo\Content\View\AbstractContentAdmin;
+use Nemundo\Core\Debug\Debug;
 use Nemundo\Core\Http\Url\UrlReferer;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Web\Action\ActionSite;
@@ -54,8 +58,7 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
         $this->child->title[LanguageCode::DE] = 'Child Bearbeiten';
         $this->child->actionName = 'child-edit';
         $this->child->onAction = function () {
-            $dataId = (new DataIdParameter())->getValue();
-            $this->loadChildEdit($dataId);
+            $this->loadChildEdit();
         };
 
         $this->childNew = new EditActionSite($this);
@@ -110,9 +113,11 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
         $this->childContentDelete->actionName = 'child-content-delete';
         $this->childContentDelete->onAction = function () {
 
-            $content = (new ContentParameter())->getContentType(false);
-            $content->removeFromParent();
+            /*$content = (new ContentParameter())->getContentType(false);
+            $content->removeFromParent();*/
 
+            (new TreeDelete())->deleteById((new TreeParameter())->getValue());
+            //exit;
             (new UrlReferer())->redirect();
 
         };
@@ -133,6 +138,10 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
     protected function loadChildEdit()
     {
 
+        $btn=new AdminSiteButton($this);
+        $btn->site=clone($this->index);
+        $btn->site->title='Back';
+
         $dataId = (new DataIdParameter())->getValue();
 
         $contentType = clone($this->contentType);
@@ -149,11 +158,14 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
                 $dropdown->redirectSite = clone($this->childNew);
                 $dropdown->redirectSite->addParameter(new ContentParameter($this->contentType->getContentId()));
                 foreach ($this->contentType->getRestrictedContentTypeCollectionList() as $child) {
-
                     $dropdown->addContentTypeCollectionAsSubmenu($child);
                     //$dropdown->addContentTypeCollection($child);
-
                 }
+
+                foreach ($this->contentType->getRestrictedChildContentType() as $child) {
+                    $dropdown->addContentType($child);
+                }
+
 
             } else {
 

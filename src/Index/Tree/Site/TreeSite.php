@@ -11,7 +11,7 @@ use Nemundo\Db\Sql\Order\SortOrder;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-use Nemundo\Content\Data\Tree\TreePaginationReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreePaginationReader;
 use Nemundo\Web\Site\AbstractSite;
 
 class TreeSite extends AbstractSite

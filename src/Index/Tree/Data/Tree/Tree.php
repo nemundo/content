@@ -1,11 +1,10 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
-use Nemundo\Model\Data\AbstractModelUpdate;
-class TreeUpdate extends AbstractModelUpdate {
+namespace Nemundo\Content\Index\Tree\Data\Tree;
+class Tree extends \Nemundo\Model\Data\AbstractModelData {
 /**
 * @var TreeModel
 */
-public $model;
+protected $model;
 
 /**
 * @var string
@@ -31,11 +30,12 @@ public function __construct() {
 parent::__construct();
 $this->model = new TreeModel();
 }
-public function update() {
+public function save() {
 $this->typeValueList->setModelValue($this->model->childId, $this->childId);
 $this->typeValueList->setModelValue($this->model->parentId, $this->parentId);
 $this->typeValueList->setModelValue($this->model->itemOrder, $this->itemOrder);
 $this->typeValueList->setModelValue($this->model->viewId, $this->viewId);
-parent::update();
+$id = parent::save();
+return $id;
 }
 }

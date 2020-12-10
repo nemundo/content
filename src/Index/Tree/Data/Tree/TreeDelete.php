@@ -1,6 +1,6 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
-class TreeCount extends \Nemundo\Model\Count\AbstractModelDataCount {
+namespace Nemundo\Content\Index\Tree\Data\Tree;
+class TreeDelete extends \Nemundo\Model\Delete\AbstractModelDelete {
 /**
 * @var TreeModel
 */

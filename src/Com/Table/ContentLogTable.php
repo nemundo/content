@@ -10,7 +10,7 @@ use Nemundo\Db\Filter\Filter;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Content\Collection\AbstractContentTypeCollection;
-use Nemundo\Content\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 
 

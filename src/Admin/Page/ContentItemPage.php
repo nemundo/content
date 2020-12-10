@@ -21,6 +21,7 @@ use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\App\Explorer\Site\ItemSite;
 use Nemundo\Content\App\Log\Com\Container\LogContainer;
 use Nemundo\Content\Com\Container\JsonContentContainer;
+use Nemundo\Content\Com\ListBox\ContentViewListBox;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Index\Geo\Com\Container\GeoIndexContainer;
@@ -49,6 +50,15 @@ class ContentItemPage extends ContentTemplate
 
         $title = new AdminTitle($this);
         $title->content = $contentType->getSubject();
+
+
+
+        
+
+        $view = new ContentViewListBox($this);
+        $view->contentType = $contentType;
+
+
 
         /*if ($contentType->hasView()) {
             $contentType->getView($page);
@@ -234,11 +244,12 @@ class ContentItemPage extends ContentTemplate
         $container->redirectSite=ContentItemSite::$site;
 
 
+
+
+
         /*
         $container=new LogContainer($layout->col2);
         $container->contentType = $contentType;
-
-
 
         /*
         if ($contentType->isObjectOfTrait(MenuTrait::class)) {

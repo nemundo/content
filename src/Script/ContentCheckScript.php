@@ -9,8 +9,8 @@ use Nemundo\Core\Debug\Debug;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentReader;
-use Nemundo\Content\Data\Tree\TreeDelete;
-use Nemundo\Content\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Delete\TreeContentDelete;
 
 class ContentCheckScript extends AbstractConsoleScript

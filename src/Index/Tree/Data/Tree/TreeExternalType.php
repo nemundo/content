@@ -1,5 +1,5 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
+namespace Nemundo\Content\Index\Tree\Data\Tree;
 class TreeExternalType extends \Nemundo\Model\Type\External\ExternalType {
 /**
 * @var \Nemundo\Model\Type\Id\IdType

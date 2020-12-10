@@ -6,7 +6,7 @@ namespace Nemundo\Content\Delete;
 
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Content\Data\Content\ContentDelete;
-use Nemundo\Content\Data\Tree\TreeDelete;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
 
 class TreeContentDelete extends AbstractBase
 {

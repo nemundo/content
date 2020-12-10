@@ -12,7 +12,7 @@ use Nemundo\Com\TableBuilder\TableRow;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentReader;
-use Nemundo\Content\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Web\Site\AbstractSite;
 
 class ContentCheckSite extends AbstractSite

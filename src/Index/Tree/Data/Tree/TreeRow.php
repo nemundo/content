@@ -1,5 +1,5 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
+namespace Nemundo\Content\Index\Tree\Data\Tree;
 class TreeRow extends \Nemundo\Model\Row\AbstractModelDataRow {
 /**
 * @var \Nemundo\Model\Row\AbstractModelDataRow

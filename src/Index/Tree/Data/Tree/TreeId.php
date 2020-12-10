@@ -1,5 +1,5 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
+namespace Nemundo\Content\Index\Tree\Data\Tree;
 use Nemundo\Model\Id\AbstractModelIdValue;
 class TreeId extends AbstractModelIdValue {
 /**

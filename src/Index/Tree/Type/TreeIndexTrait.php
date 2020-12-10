@@ -4,11 +4,14 @@
 namespace Nemundo\Content\Index\Tree\Type;
 
 
+use Nemundo\Content\Builder\ContentBuilder;
 use Nemundo\Content\Collection\AbstractContentTypeCollection;
 use Nemundo\Content\Data\Content\ContentReader;
-use Nemundo\Content\Data\Tree\TreeCount;
-use Nemundo\Content\Data\Tree\TreeDelete;
-use Nemundo\Content\Data\Tree\TreeReader;
+use Nemundo\Content\Data\ContentView\ContentViewReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeCount;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeRow;
 use Nemundo\Content\Index\Tree\Writer\TreeWriter;
 use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Content\Type\AbstractContentType;
@@ -75,11 +78,11 @@ trait TreeIndexTrait
     {
 
         $list = $this->restrictedChildList;
-        foreach ($this->getRestrictedContentTypeCollectionList() as $collection) {
+        /*foreach ($this->getRestrictedContentTypeCollectionList() as $collection) {
             foreach ($collection->getContentTypeList() as $contentType) {
                 $list[]=$contentType;
             }
-        }
+        }*/
 
         return $list;
 
@@ -113,16 +116,21 @@ trait TreeIndexTrait
 
                 if (!$allowed) {
 
+                    /*
                     (new Debug())->write('Not allowed to attach');
-                    exit;
+                    exit;*/
 
                 }
 
             }
 
+
+
+
             $writer = new TreeWriter();
             $writer->parentId = $this->parentId;
             $writer->childId = $this->getContentId();
+            //$writer->viewId= $this->getDefaultTreeView() getDefaultTreeViewId();
             $writer->write();
 
         }
@@ -354,7 +362,7 @@ trait TreeIndexTrait
 
         $contentId = $this->getContentId();
 
-        /** @var ContentCustomRow[] $childList */
+        /** @var TreeRow[] $childList */
         $childList = [];
 
         if ($contentId !== null) {
@@ -363,11 +371,13 @@ trait TreeIndexTrait
             $reader->model->loadChild();
             $reader->model->child->loadContentType();
             $reader->model->child->loadUser();
+            $reader->model->loadView();
             $reader->filter->andEqual($reader->model->parentId, $contentId);
             $reader->addOrder($reader->model->itemOrder, $sortOrder);
             foreach ($reader->getData() as $treeRow) {
-                $treeRow->child->itemOrder = $treeRow->itemOrder;
-                $childList[] = $treeRow->child;
+                /*$treeRow->child->itemOrder = $treeRow->itemOrder;
+                $childList[] = $treeRow->child;*/
+                $childList[] = $treeRow;
             }
 
         }
@@ -540,7 +550,7 @@ trait TreeIndexTrait
 
         $view=null;
 
-        $reader=new TreeReader();
+        /*$reader=new TreeReader();
         $reader->model->loadView();
         $reader->filter->andEqual($reader->model->childId,$this->getContentId());
         foreach ($reader->getData() as $treeRow) {
@@ -552,7 +562,7 @@ trait TreeIndexTrait
                 $view->contentType = $this;
             }
 
-        }
+        }*/
 
         if ($view==null) {
             $view=$this->getDefaultView($parent);

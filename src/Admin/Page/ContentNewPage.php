@@ -7,7 +7,10 @@ namespace Nemundo\Content\Admin\Page;
 use Nemundo\Content\Admin\Site\ContentNewSite;
 use Nemundo\Content\Admin\Site\ContentSite;
 use Nemundo\Content\Admin\Template\ContentTemplate;
+use Nemundo\Content\App\Explorer\Site\ExplorerSite;
+use Nemundo\Content\Com\Container\ContentTypeFormContainer;
 use Nemundo\Content\Data\ContentType\ContentTypeReader;
+use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 
@@ -38,6 +41,14 @@ class ContentNewPage extends ContentTemplate
         if ($contentTypeParameter->exists()) {
 
             $contentType = (new ContentTypeReader())->getRowById($contentTypeParameter->getValue())->getContentType();
+
+            $container = new ContentTypeFormContainer($this);
+            $container->contentType = $contentType;
+            $container->redirectSite= ContentSite::$site;
+
+            /*$container->redirectSite = ExplorerSite::$site;  // ItemSite::$site;
+            $container->redirectSite->addParameter(new ContentParameter());
+
 
             $form = $contentType->getDefaultForm($this);
             $form->redirectSite= ContentSite::$site; /* ContentNewSite::$site;

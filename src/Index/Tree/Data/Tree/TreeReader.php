@@ -1,5 +1,5 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
+namespace Nemundo\Content\Index\Tree\Data\Tree;
 class TreeReader extends \Nemundo\Model\Reader\ModelDataReader {
 /**
 * @var TreeModel

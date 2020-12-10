@@ -4,10 +4,12 @@
 namespace Nemundo\Content\Index\Tree\Writer;
 
 
+use Nemundo\Content\Builder\ContentBuilder;
+use Nemundo\Content\Data\ContentView\ContentViewReader;
+use Nemundo\Content\Index\Tree\Data\Tree\Tree;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeCount;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeValue;
 use Nemundo\Core\Base\AbstractBase;
-use Nemundo\Content\Data\Tree\Tree;
-use Nemundo\Content\Data\Tree\TreeCount;
-use Nemundo\Content\Data\Tree\TreeValue;
 
 // TreeBuilder
 class TreeWriter extends AbstractBase
@@ -16,6 +18,8 @@ class TreeWriter extends AbstractBase
     public $parentId;
 
     public $childId;
+
+//    public $viewId;
 
     public function write()
     {
@@ -30,11 +34,25 @@ class TreeWriter extends AbstractBase
         }
         $itemOrder++;
 
+
+        $content = (new ContentBuilder())->getContent($this->childId);
+
+
+        $viewId = 0;
+        $reader = new ContentViewReader();
+        $reader->filter->andEqual($reader->model->contentTypeId, $content->typeId);
+        $reader->limit=1;
+        foreach ($reader->getData() as $viewRow) {
+            $viewId = $viewRow->id;
+        }
+
+
         $data = new Tree();
         $data->ignoreIfExists = true;
         $data->parentId = $this->parentId;
         $data->childId = $this->childId;
         $data->itemOrder = $itemOrder;
+        $data->viewId = $viewId;  //  $this->viewId;
         $data->save();
 
 

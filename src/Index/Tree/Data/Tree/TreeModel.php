@@ -1,5 +1,5 @@
 <?php
-namespace Nemundo\Content\Data\Tree;
+namespace Nemundo\Content\Index\Tree\Data\Tree;
 class TreeModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 /**
 * @var \Nemundo\Model\Type\Id\IdType
@@ -93,11 +93,6 @@ $index->addType($this->parentId);
 
 $index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
 $index->indexName = "child";
-$index->addType($this->childId);
-
-$index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
-$index->indexName = "parent_child";
-$index->addType($this->parentId);
 $index->addType($this->childId);
 
 }

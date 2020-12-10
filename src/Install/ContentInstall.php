@@ -11,6 +11,7 @@ use Nemundo\Content\Data\ContentModelCollection;
 use Nemundo\Content\Index\Geo\Install\GeoIndexInstall;
 use Nemundo\Content\Index\Group\Install\GroupInstall;
 use Nemundo\Content\Index\Search\Install\SearchIndexInstall;
+use Nemundo\Content\Index\Tree\Install\TreeInstall;
 use Nemundo\Content\Script\ContentCheckScript;
 use Nemundo\Content\Script\ContentCleanScript;
 use Nemundo\Content\Script\ContentUpdateScript;
@@ -36,6 +37,7 @@ class ContentInstall extends AbstractInstall
             ->addScript(new ContentCleanScript())
             ->addScript(new ContentCheckScript());
 
+        (new TreeInstall())->install();
         (new SearchIndexInstall())->install();
         (new GeoIndexInstall())->install();
         (new GroupInstall())->install();

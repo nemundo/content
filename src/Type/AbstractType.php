@@ -4,7 +4,7 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Content\Data\Tree\TreeReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Form\AbstractContentSearchForm;
 use Nemundo\Content\View\AbstractContentView;

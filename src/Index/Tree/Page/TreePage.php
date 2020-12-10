@@ -7,7 +7,7 @@ namespace Nemundo\Content\Index\Tree\Page;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Template\ContentTemplate;
-use Nemundo\Content\Data\Tree\TreePaginationReader;
+use Nemundo\Content\Index\Tree\Data\Tree\TreePaginationReader;
 use Nemundo\Db\Sql\Order\SortOrder;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;

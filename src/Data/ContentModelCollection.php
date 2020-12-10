@@ -8,6 +8,5 @@ $this->addModel(new \Nemundo\Content\Data\Content\ContentModel());
 $this->addModel(new \Nemundo\Content\Data\ContentIndex\ContentIndexModel());
 $this->addModel(new \Nemundo\Content\Data\ContentType\ContentTypeModel());
 $this->addModel(new \Nemundo\Content\Data\ContentView\ContentViewModel());
-$this->addModel(new \Nemundo\Content\Data\Tree\TreeModel());
 }
 }

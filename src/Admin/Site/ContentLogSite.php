@@ -8,7 +8,7 @@ use Nemundo\Admin\Com\Table\AdminLabelValueTable;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Content\Data\Content\ContentCount;
-use Nemundo\Content\Data\Tree\TreeCount;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeCount;
 
 use Nemundo\Web\Site\AbstractSite;
 
