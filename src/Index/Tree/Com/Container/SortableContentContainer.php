@@ -6,7 +6,7 @@ namespace Nemundo\Content\Index\Tree\Com\Container;
 
 use Nemundo\Admin\Com\Button\AdminIconSiteButton;
 use Nemundo\Content\App\Explorer\Site\ItemSite;
-use Nemundo\Content\Com\Form\ContentViewChangeForm;
+
 use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Content\Index\Tree\Site\ContentSortableSite;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
@@ -73,8 +73,9 @@ class SortableContentContainer extends AbstractHtmlContainer
 
             //$childContentType->getDefaultTreeView($div);
 
-            $view = new $treeRow->view->viewClass($div);
-            $view->contentType = $childContentType;
+            //$view = new $treeRow->view->viewClass($div);
+            $childContentType->getDefaultTreeView($div);
+            //$view->contentType = $childContentType;
 
 
 
@@ -82,16 +83,13 @@ class SortableContentContainer extends AbstractHtmlContainer
 
             if ($this->showRemoveIcon) {
                 $btn = new AdminIconSiteButton($div);
-                $btn->site = clone($this->deleteRedirect);  //ContentRemoveSite::$site);
-                $btn->site->addParameter(new TreeParameter($treeRow->id));  // ParentParameter($this->contentType->getContentId()));
-
-                /*$btn->site->addParameter(new ParentParameter($this->contentType->getContentId()));
-                $btn->site->addParameter(new ContentParameter($treeRow->id));*/
+                $btn->site = clone($this->deleteRedirect);
+                $btn->site->addParameter(new TreeParameter($treeRow->id));
             }
 
             if ($this->showEditIcon) {
                 $btn = new AdminIconSiteButton($div);
-                $btn->site = clone($this->editRedirect);  // clone(ContentEditSite::$site);
+                $btn->site = clone($this->editRedirect);
                 $btn->site->addParameter(new ContentParameter($treeRow->childId));
             }
 
@@ -101,9 +99,9 @@ class SortableContentContainer extends AbstractHtmlContainer
                 $btn->site->addParameter(new ContentParameter($treeRow->childId));
             }
 
-            $form = new ContentViewChangeForm($div);
+            /*$form = new ContentViewChangeForm($div);
             $form->contentType = $childContentType;
-            $form->treeId = $treeRow->id;
+            $form->treeId = $treeRow->id;*/
 
         }
 

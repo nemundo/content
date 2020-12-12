@@ -212,7 +212,7 @@ trait TreeIndexTrait
         $list = [];
 
         foreach ($this->getChild() as $contentCustomRow) {
-            $list[] = $contentCustomRow->getContentType();
+            $list[] = $contentCustomRow->child->getContentType();
         }
 
         return $list;
