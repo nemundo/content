@@ -24,6 +24,11 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
      */
     public $redirectSite;
 
+    /**
+     * @var bool
+     */
+    //public $appendParameter=true;
+
     public function getContent()
     {
 
@@ -36,7 +41,7 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
         foreach ($this->contentType->getFormList() as $form) {
 
             $panel = new BootstrapTabsPanelContainer($tab);
-            $panel->panelTitle = $form->formName;  // 'New';
+            $panel->panelTitle = $form->formName;
 
             if ($count == 0) {
                 $panel->active = true;
@@ -45,41 +50,10 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
 
             $panel->addContainer($form);
 
-            //$form = $this->contentType->getDefaultForm($panel);
             $form->redirectSite = $this->redirectSite;
-
-            /*$p = new Paragraph($panel);
-            $p->content = $form->formName;*/
+            //$form->appendParameter=$this->appendParameter;
 
         }
-
-
-        /*
-        if ($this->contentType->hasForm()) {
-
-            $panel = new BootstrapTabsPanelContainer($tab);
-            $panel->panelTitle = 'New';
-            $panel->active = true;
-
-            $form = $this->contentType->getDefaultForm($panel);
-            $form->redirectSite = $this->redirectSite;
-
-        }*/
-
-
-        /*if ($this->contentType->hasSearchForm()) {
-
-            $panel = new BootstrapTabsPanelContainer($tab);
-            $panel->panelTitle = 'Search';
-
-            if (!$this->contentType->hasForm()) {
-                $panel->active = true;
-            }
-
-            $form = $this->contentType->getSearchForm($panel);
-            $form->redirectSite = $this->redirectSite;
-
-        }*/
 
         return parent::getContent();
 
