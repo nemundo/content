@@ -43,10 +43,8 @@ trait TreeIndexTrait
      */
     private $restrictedChildList = [];
 
-    /**
-     * @var AbstractContentTypeCollection[]
-     */
-    private $restrictedContentTypeCollectionList = [];
+
+    private $restrictedContentTypeCollectionClassList = [];
 
     /**
      * @var string
@@ -54,11 +52,10 @@ trait TreeIndexTrait
     protected $parentListClass;
 
 
-    public function addRestrictedContentTypeCollection(AbstractContentTypeCollection $contentTypeCollection)
+    public function addRestrictedContentTypeCollectionClass($className)
     {
 
-        $this->restrictedContentTypeCollectionList[]=$contentTypeCollection;
-        // $this->restrictedChildList[]=$contentType;
+        $this->restrictedContentTypeCollectionClassList[]=$className;
 
         return $this;
 
@@ -91,7 +88,22 @@ trait TreeIndexTrait
 
     public function getRestrictedContentTypeCollectionList()
     {
-        return $this->restrictedContentTypeCollectionList;
+
+        /** @var AbstractContentTypeCollection $list */
+        $list=[];
+
+        foreach ($this->restrictedContentTypeCollectionClassList as $className) {
+
+            //$contentType=new $className();
+            $list[]=new $className();
+
+        }
+
+        return $list;
+
+        //return $this->restrictedContentTypeCollectionClassList;
+
+
     }
 
 
@@ -100,7 +112,6 @@ trait TreeIndexTrait
     {
 
         if ($this->parentId !== null) {
-
 
             $allowed = false;
 
@@ -123,9 +134,6 @@ trait TreeIndexTrait
                 }
 
             }
-
-
-
 
             $writer = new TreeWriter();
             $writer->parentId = $this->parentId;
@@ -154,7 +162,7 @@ trait TreeIndexTrait
 
         foreach ($this->getChild() as $customRow) {
 
-            $type = $customRow->getContentType();
+            $type = $customRow->child->getContentType();
             $type->deleteType();
 
         }

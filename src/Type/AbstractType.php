@@ -6,7 +6,7 @@ namespace Nemundo\Content\Type;
 
 use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Form\AbstractContentForm;
-use Nemundo\Content\Form\AbstractContentSearchForm;
+
 use Nemundo\Content\View\AbstractContentView;
 use Nemundo\Core\Base\AbstractBaseClass;
 use Nemundo\Html\Container\AbstractContainer;
@@ -57,11 +57,9 @@ abstract class AbstractType extends AbstractBaseClass
      */
     protected $viewClass;
 
-
     protected $viewClassList = [];
 
     protected $formClassList = [];
-
 
     /**
      * @var AbstractModelDataRow
@@ -81,7 +79,7 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var bool
      */
-    protected $restrictedGroup = false;
+    //protected $restrictedGroup = false;
 
 
     abstract protected function loadContentType();

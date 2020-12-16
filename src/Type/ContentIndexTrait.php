@@ -10,6 +10,7 @@ use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentId;
 use Nemundo\Content\Data\Content\ContentUpdate;
 use Nemundo\Core\Type\DateTime\DateTime;
+use Nemundo\User\Session\UserSession;
 use Nemundo\User\Type\UserSessionType;
 
 trait ContentIndexTrait
@@ -21,12 +22,12 @@ trait ContentIndexTrait
     /**
      * @var DateTime
      */
-    public $dateTime;
+    //public $dateTime;
 
     /**
      * @var string
      */
-    public $toId;
+    //public $toId;
 
 
     protected $contentId;
@@ -35,13 +36,14 @@ trait ContentIndexTrait
     protected function loadUserDateTime()
     {
 
+        /*
         $this->dateTime = (new DateTime())->setNow();
 
-        if ((new UserSessionType())->isUserLogged()) {
-            $this->toId = (new UserSessionType())->userId;
+        if ((new UserSession())->isUserLogged()) {
+            $this->toId = (new UserSession())->userId;
         } else {
             $this->toId = '';
-        }
+        }*/
 
     }
 
@@ -86,12 +88,22 @@ trait ContentIndexTrait
     protected function saveContent()
     {
 
+        //$this->dateTime = (new DateTime())->setNow();
+
+        $userId = null;
+        if ((new UserSession())->isUserLogged()) {
+            $userId  = (new UserSession())->userId;
+        } /*else {
+            $this->toId = '';
+        }*/
+
+
         $data = new Content();
         $data->ignoreIfExists = true;
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
-        $data->dateTime = $this->dateTime;
-        $data->userId = $this->toId;
+        $data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
+        $data->userId =$userId;  // $this->toId;
         $data->save();
 
     }

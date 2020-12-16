@@ -151,7 +151,7 @@ class ContentPage extends ContentTemplate
 
         $header = new TableHeader($table);
         $header->addText($contentReader->model->contentType->application->label);
-        $header->addText($contentReader->model->id->label);  // 'Content Id');
+        $header->addText($contentReader->model->id->label);
         $header->addText($contentReader->model->dataId->label);
         $header->addText('Type');
         $header->addText('Type Id');
@@ -183,12 +183,10 @@ class ContentPage extends ContentTemplate
             $row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
             $row->addText($contentRow->user->login);
 
-
             if ($contentType->isObjectOfTrait(JsonContentTrait::class)) {
-
-            $site = clone(ContentJsonSite::$site);  // ContentIndexSite::$site);
-            $site->addParameter(new ContentParameter($contentRow->id));
-            $row->addSite($site);
+                $site = clone(ContentJsonSite::$site);
+                $site->addParameter(new ContentParameter($contentRow->id));
+                $row->addSite($site);
             } else {
                 $row->addEmpty();
             }

@@ -28,6 +28,7 @@ abstract class AbstractContentType extends AbstractType
     protected $adminClass;
 
 
+    /*
     public function __construct($dataId = null)
     {
 
@@ -37,9 +38,9 @@ abstract class AbstractContentType extends AbstractType
             $this->formClass = ContentForm::class;
         }*/
 
-        $this->loadUserDateTime();
+      /*  $this->loadUserDateTime();
 
-    }
+    }*/
 
 
     public function saveType()
@@ -48,10 +49,7 @@ abstract class AbstractContentType extends AbstractType
         $this->saveData();
         $this->saveContent();
         $this->saveContentIndex();
-
         $this->saveIndex();
-
-
 
     }
 
@@ -133,6 +131,7 @@ abstract class AbstractContentType extends AbstractType
         return $admin;
 
     }
+
 
 
     private function hasProperty($class)

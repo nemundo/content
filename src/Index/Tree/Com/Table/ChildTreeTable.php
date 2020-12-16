@@ -33,13 +33,13 @@ class ChildTreeTable extends AbstractContentTypeContainer
             foreach ($this->contentType->getChild() as $contentRow) {
 
                 $row = new BootstrapClickableTableRow($table);
-                $contentType = $contentRow->getContentType();
+                $contentType = $contentRow->child->getContentType();
 
                 /*if ($contentType->hasViewSite()) {
                 $row->addSite($contentType->getSubjectViewSite());
                 }*/
                 $row->addText($contentType->getSubject());
-                $row->addText($contentRow->contentType->contentType);
+                $row->addText($contentRow->child->contentType->contentType);
 
                 $site = clone($this->redirectSite);
                 $site->addParameter(new ContentParameter($contentRow->id));

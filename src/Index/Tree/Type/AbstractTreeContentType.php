@@ -19,9 +19,18 @@ abstract class AbstractTreeContentType extends AbstractContentType
     public function saveType()
     {
 
+        $existsItem = false;
+        if ($this->existItem()) {
+            $existsItem=true;
+        }
+
         $this->saveData();
         $this->saveContent();
+
+        if (!$existsItem) {
         $this->saveTree();
+        }
+
         $this->onFinished();
         $this->saveIndex();
 

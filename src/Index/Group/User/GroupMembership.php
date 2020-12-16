@@ -12,6 +12,7 @@ use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Field\AbstractField;
+use Nemundo\User\Session\UserSession;
 use Nemundo\User\Type\UserSessionType;
 
 class GroupMembership extends AbstractBase
@@ -20,7 +21,7 @@ class GroupMembership extends AbstractBase
     public function getGroupList()
     {
 
-        $userId = (new UserSessionType())->userId;
+        $userId = (new UserSession())->userId;
 
         /** @var GroupRow[] $list */
         $list = [];
@@ -46,7 +47,7 @@ class GroupMembership extends AbstractBase
     public function getGroupIdList(AbstractContentType $groupType=null) {
 
 
-        $userId = (new UserSessionType())->userId;
+        $userId = (new UserSession())->userId;
 
         /** @var GroupRow[] $list */
         $list = [];
@@ -73,7 +74,7 @@ class GroupMembership extends AbstractBase
     public function hasGroup(AbstractContentType $groupType=null) {
 
         $value=false;
-        $userId = (new UserSessionType())->userId;
+        $userId = (new UserSession())->userId;
 
         $count = new GroupUserCount();
         $count->model->loadGroup();
