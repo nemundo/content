@@ -5,6 +5,8 @@ namespace Nemundo\Content\Form;
 
 
 use Nemundo\Admin\Com\Form\AbstractAdminForm;
+use Nemundo\Content\Parameter\ContentParameter;
+use Nemundo\Core\Debug\Debug;
 
 abstract class AbstractContentForm extends AbstractAdminForm
 {
@@ -30,6 +32,14 @@ abstract class AbstractContentForm extends AbstractAdminForm
 
         if ($this->appendParameter) {
             $this->redirectSite->addParameter($this->contentType->getParameter());
+        }
+
+        //(new Debug())->write($this->contentType->getContentId());
+        //exit;
+
+
+        if ($this->appendContentParameter) {
+            $this->redirectSite->addParameter((new ContentParameter($this->contentType->getContentId())));
         }
 
         parent::checkRedirect();

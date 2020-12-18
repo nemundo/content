@@ -20,6 +20,11 @@ trait ContentFormTrait
      */
     public $appendParameter = false;
 
+    /**
+     * @var bool
+     */
+    public $appendContentParameter=false;
+
     protected function loadUpdateForm()
     {
         (new Debug())->write('Function loadUpdateForm not defined');
