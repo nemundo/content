@@ -5,6 +5,7 @@ namespace Nemundo\Content\Index\Tree\Com\Form;
 
 
 use Nemundo\Admin\Com\Form\AbstractAdminForm;
+use Nemundo\Content\Form\ContentFormTrait;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Index\Tree\Writer\TreeWriter;
 use Nemundo\Content\Type\EventTrait;
@@ -16,13 +17,13 @@ abstract class AbstractContentSearchForm extends AbstractAdminForm
 
     use EventTrait;
 
-    //use ContentFormTrait;
+    use ContentFormTrait;
 
 
     /**
      * @var AbstractTreeContentType
      */
-    public $contentType;
+    /*public $contentType;*/
 
     public $formName = 'Search';
 

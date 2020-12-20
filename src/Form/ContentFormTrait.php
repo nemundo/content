@@ -25,6 +25,9 @@ trait ContentFormTrait
      */
     public $appendContentParameter=false;
 
+    //public $formName;  // = 'Search';
+
+
     protected function loadUpdateForm()
     {
         (new Debug())->write('Function loadUpdateForm not defined');
