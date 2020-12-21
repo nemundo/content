@@ -8,10 +8,11 @@ use Nemundo\Content\Data\Content\Content;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentId;
+use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\Content\ContentUpdate;
+use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Core\Type\DateTime\DateTime;
 use Nemundo\User\Session\UserSession;
-use Nemundo\User\Type\UserSessionType;
 
 trait ContentIndexTrait
 {
@@ -32,8 +33,13 @@ trait ContentIndexTrait
 
     protected $contentId;
 
+    /**
+     * @var ContentCustomRow
+     */
+    private $contentRow;
 
-    protected function loadUserDateTime()
+
+    /*protected function loadUserDateTime()
     {
 
         /*
@@ -44,6 +50,22 @@ trait ContentIndexTrait
         } else {
             $this->toId = '';
         }*/
+
+    //}
+
+
+    public function getContentRow()
+    {
+
+        if ($this->contentRow == null) {
+            $contentReader = new ContentReader();
+            $contentReader->model->loadUser();
+            $contentReader->filter->andEqual($contentReader->model->contentTypeId, $this->typeId);
+            $contentReader->filter->andEqual($contentReader->model->dataId, $this->getDataId());
+            $this->contentRow = $contentReader->getRow();
+        }
+
+        return $this->contentRow;
 
     }
 
@@ -92,7 +114,7 @@ trait ContentIndexTrait
 
         $userId = null;
         if ((new UserSession())->isUserLogged()) {
-            $userId  = (new UserSession())->userId;
+            $userId = (new UserSession())->userId;
         } /*else {
             $this->toId = '';
         }*/
@@ -103,7 +125,7 @@ trait ContentIndexTrait
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
         $data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
-        $data->userId =$userId;  // $this->toId;
+        $data->userId = $userId;  // $this->toId;
         $data->save();
 
     }
@@ -137,7 +159,6 @@ trait ContentIndexTrait
     {
 
         (new ContentDelete())->deleteById($this->getContentId());
-
 
     }
 
