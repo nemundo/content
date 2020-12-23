@@ -82,6 +82,12 @@ abstract class AbstractType extends AbstractBaseClass
     //protected $restrictedGroup = false;
 
 
+    /**
+     * @var bool
+     */
+    protected $deletable=true;
+
+
     abstract protected function loadContentType();
 
     public function __construct($dataId = null)
@@ -291,12 +297,28 @@ abstract class AbstractType extends AbstractBaseClass
     }*/
 
 
+
+
+
+
     public function isEditable()
     {
 
         return $this->hasForm();
 
     }
+
+
+
+    public function isDeletable()
+    {
+
+        return $this->deletable;
+
+    }
+
+
+
 
 
     // hasDefaultView

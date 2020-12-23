@@ -8,8 +8,6 @@ use Nemundo\Content\View\AbstractContentAdmin;
 use Nemundo\Core\Language\Translation;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Html\Container\AbstractContainer;
-use Nemundo\Html\Container\AbstractHtmlContainer;
-use Nemundo\Html\Paragraph\Paragraph;
 
 
 abstract class AbstractContentType extends AbstractType
@@ -38,9 +36,9 @@ abstract class AbstractContentType extends AbstractType
             $this->formClass = ContentForm::class;
         }*/
 
-      /*  $this->loadUserDateTime();
+    /*  $this->loadUserDateTime();
 
-    }*/
+  }*/
 
 
     public function saveType()
@@ -93,10 +91,10 @@ abstract class AbstractContentType extends AbstractType
 
         } else {*/
 
-            /** @var AbstractParentContentList $list */
-            $list = new $this->listClass($parent);
-            $list->contentType=$this;
-            //$list->parentId=
+        /** @var AbstractParentContentList $list */
+        $list = new $this->listClass($parent);
+        $list->contentType = $this;
+        //$list->parentId=
 
         //}
 
@@ -131,7 +129,6 @@ abstract class AbstractContentType extends AbstractType
         return $admin;
 
     }
-
 
 
     private function hasProperty($class)
