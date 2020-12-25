@@ -11,7 +11,7 @@ use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\App\Explorer\Site\ItemSite;
 use Nemundo\Content\Com\Container\AbstractContentTypeContainer;
 use Nemundo\Content\Index\Geo\Data\Distance\DistanceReader;
-use Nemundo\Content\Index\Geo\Type\GeoContentTypeTrait;
+use Nemundo\Content\Index\Geo\Type\GeoIndexTrait;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Geo\Map\GoogleMaps\GoogleMapsHyperlink;
@@ -26,7 +26,7 @@ class GeoIndexContainer extends AbstractContentTypeContainer
 
 
         /** $contentType GeoIndexTrait */
-        if ($this->contentType->isObjectOfTrait(GeoContentTypeTrait::class)) {
+        if ($this->contentType->isObjectOfTrait(GeoIndexTrait::class)) {
 
             //$subtitle = new AdminSubtitle($layout->col2);
             //$subtitle->content = 'Geo';

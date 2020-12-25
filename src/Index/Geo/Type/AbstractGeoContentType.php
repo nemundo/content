@@ -13,6 +13,6 @@ use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 abstract class AbstractGeoContentType extends AbstractTreeContentType
 {
 
-    use GeoContentTypeTrait;
+    use GeoIndexTrait;
 
 }

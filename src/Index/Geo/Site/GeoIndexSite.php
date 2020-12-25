@@ -9,7 +9,7 @@ class GeoIndexSite extends AbstractSite
 {
     protected function loadSite()
     {
-        $this->title = 'Geo Index';
+        $this->title = 'Geo';
         $this->url = 'geo-index';
     }
 
