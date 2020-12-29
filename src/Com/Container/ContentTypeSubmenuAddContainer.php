@@ -65,6 +65,17 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
         $dropdown = new ContentTypeSubmenuDropdown($this);
         $dropdown->redirectSite = $this->redirectSite;
 
+        $parameter = new ContentTypeParameter();
+        if ($parameter->hasValue()) {
+
+            $container=new ContentTypeFormContainer($this);
+            $container->contentType = $parameter->getContentType();
+            $container->contentType->parentId = $this->parentId;
+            //$container->pare
+
+        }
+
+
         /*
         $parameter = new ContentTypeParameter();
         if ($parameter->hasValue()) {

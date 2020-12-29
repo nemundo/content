@@ -4,6 +4,10 @@
 namespace Nemundo\Content\Com\Container;
 
 
+use Nemundo\Content\Admin\Site\ContentDeleteSite;
+use Nemundo\Content\Admin\Site\ContentEditSite;
+use Nemundo\Content\Admin\Site\ContentRemoveSite;
+use Nemundo\Content\Index\Tree\Com\Container\SortableContentContainer;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Html\Container\AbstractContainer;
 use Nemundo\Web\Site\AbstractSite;
@@ -30,6 +34,8 @@ class ContentTypeChildAdminContainer extends AbstractContainer
 
         $container = new SortableContentContainer($this);
         $container->contentType = $this->contentType;
+        $container->deleteRedirect = ContentRemoveSite::$site;  //DeleteSite::$site;
+        $container->editRedirect=ContentEditSite::$site;
         //$container->redirectSite=$this->redirectSite;
 
         return parent::getContent();

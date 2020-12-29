@@ -94,9 +94,9 @@ class SortableContentContainer extends AbstractHtmlContainer
             }
 
             if ($this->showViewIcon) {
-                $btn = new AdminIconSiteButton($div);
+                /*$btn = new AdminIconSiteButton($div);
                 $btn->site = clone(ItemSite::$site);
-                $btn->site->addParameter(new ContentParameter($treeRow->childId));
+                $btn->site->addParameter(new ContentParameter($treeRow->childId));*/
             }
 
             /*$form = new ContentViewChangeForm($div);
