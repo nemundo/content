@@ -27,11 +27,6 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
     /**
      * @var bool
      */
-    //public $appendParameter=true;
-
-    /**
-     * @var bool
-     */
     public $appendContentParameter = false;
 
     public function getContent()
@@ -56,7 +51,6 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
             $panel->addContainer($form);
 
             $form->redirectSite = $this->redirectSite;
-            //$form->appendParameter=$this->appendParameter;
             $form->appendContentParameter = $this->appendContentParameter;
 
         }
