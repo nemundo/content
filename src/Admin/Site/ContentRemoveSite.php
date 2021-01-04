@@ -4,6 +4,8 @@
 namespace Nemundo\Content\Admin\Site;
 
 
+use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
+use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ParentParameter;
 use Nemundo\Core\Http\Url\UrlReferer;
@@ -32,12 +34,16 @@ class ContentRemoveSite extends AbstractDeleteIconSite
     public function loadContent()
     {
 
-        $contentParameter = new ContentParameter();
+        /*$contentParameter = new ContentParameter();
         $contentParameter->contentTypeCheck = false;
         $contentType = $contentParameter->getContentType();
 
         $parentContentType = (new ParentParameter())->getContentType(false);
-        $parentContentType->removeChild($contentType->getContentId());
+        $parentContentType->removeChild($contentType->getContentId());*/
+
+        $treeId=(new TreeParameter())->getValue();
+        (new TreeDelete())->deleteById($treeId);
+
 
         (new UrlReferer())->redirect();
 

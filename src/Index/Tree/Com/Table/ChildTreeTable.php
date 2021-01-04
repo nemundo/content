@@ -42,7 +42,7 @@ class ChildTreeTable extends AbstractContentTypeContainer
                 $row->addText($contentRow->child->contentType->contentType);
 
                 $site = clone($this->redirectSite);
-                $site->addParameter(new ContentParameter($contentRow->id));
+                $site->addParameter(new ContentParameter($contentRow->childId));
                 $row->addClickableSite($site);
 
                 //$row->addClickableSite($contentType->getViewSite());
