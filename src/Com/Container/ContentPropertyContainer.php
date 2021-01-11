@@ -18,9 +18,9 @@ class ContentPropertyContainer extends AbstractContentContainer
         $widget->widgetTitle = 'Content';
 
         $table = new AdminLabelValueTable($widget);
-        $table->addLabelValue('Created', $this->contentType->getContentRow()->dateTime->getShortDateTimeLeadingZeroFormat());
+        //$table->addLabelValue('Created', $this->contentType->getContentRow()->dateTime->getShortDateTimeLeadingZeroFormat());
         $table->addLabelValue('Last Change', '');
-        $table->addLabelValue('User', $this->contentType->getContentRow()->user->displayName);
+        //$table->addLabelValue('User', $this->contentType->getContentRow()->user->displayName);
 
         return parent::getContent();
 

@@ -192,7 +192,7 @@
                     "field_name": "date_time",
                     "variable_name": "dateTime",
                     "allow_null": false,
-                    "is_deleted": false
+                    "is_deleted": true
                 },
                 {
                     "type": "user",
@@ -200,7 +200,7 @@
                     "field_name": "user",
                     "variable_name": "user",
                     "allow_null": false,
-                    "is_deleted": false
+                    "is_deleted": true
                 },
                 {
                     "type": "external",
@@ -218,13 +218,6 @@
                     "index_type": "index",
                     "field_name": [
                         "content_type"
-                    ]
-                },
-                {
-                    "index_name": "date_time",
-                    "index_type": "index",
-                    "field_name": [
-                        "date_time"
                     ]
                 },
                 {

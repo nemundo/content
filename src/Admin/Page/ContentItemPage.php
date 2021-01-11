@@ -45,7 +45,7 @@ class ContentItemPage extends ContentTemplate
         $contentType = (new ContentParameter())->getContentType(false);
 
         $contentReader = new ContentReader();
-        $contentReader->model->loadUser();
+        //$contentReader->model->loadUser();
         $contentRow = $contentReader->getRowById($contentType->getContentId());
 
         $title = new AdminTitle($this);
@@ -88,8 +88,8 @@ class ContentItemPage extends ContentTemplate
         $table1->addLabelValue('Data Id', $contentType->getDataId());
 
 
-        $table1->addLabelValue($contentReader->model->dateTime->label, $contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
-        $table1->addLabelValue($contentReader->model->user->label, $contentRow->user->displayName);
+        //$table1->addLabelValue($contentReader->model->dateTime->label, $contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
+        //$table1->addLabelValue($contentReader->model->user->label, $contentRow->user->displayName);
 
 
         if ($contentType->hasView()) {
@@ -137,7 +137,7 @@ class ContentItemPage extends ContentTemplate
                 $row->addText($contentRow->itemOrder);
                 $row->addText($childContentType->getClassName());
 
-                $row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
+                //$row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
 
 
                 $site = clone(ContentItemSite::$site);

@@ -325,7 +325,7 @@ trait TreeIndexTrait
         $reader = new TreeReader();
         $reader->model->loadChild();
         $reader->model->child->loadContentType();
-        $reader->model->child->loadUser();
+        //$reader->model->child->loadUser();
         $reader->filter->andEqual($reader->model->parentId, $this->getContentId());
         //$reader->filter->andEqual($reader->model->child->contentTypeId, $filterContentType->typeId);
         $reader->addOrder($reader->model->itemOrder, $sortOrder);
@@ -348,7 +348,7 @@ trait TreeIndexTrait
         $reader = new TreeReader();
         $reader->model->loadChild();
         $reader->model->child->loadContentType();
-        $reader->model->child->loadUser();
+        //$reader->model->child->loadUser();
         $reader->filter->andEqual($reader->model->parentId, $this->getContentId());
         $reader->filter->andEqual($reader->model->child->contentTypeId, $filterContentType->typeId);
         $reader->addOrder($reader->model->itemOrder, $sortOrder);
@@ -378,7 +378,7 @@ trait TreeIndexTrait
             $reader = new TreeReader();
             $reader->model->loadChild();
             $reader->model->child->loadContentType();
-            $reader->model->child->loadUser();
+            //$reader->model->child->loadUser();
             $reader->model->loadView();
             $reader->filter->andEqual($reader->model->parentId, $contentId);
             $reader->addOrder($reader->model->itemOrder, $sortOrder);
@@ -401,7 +401,7 @@ trait TreeIndexTrait
         $reader = new TreeReader();
         $reader->model->loadChild();
         $reader->model->child->loadContentType();
-        $reader->model->child->loadUser();
+        //$reader->model->child->loadUser();
         $reader->filter->andEqual($reader->model->parentId, $this->getContentId());
 
         return $reader;

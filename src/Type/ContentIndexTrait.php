@@ -59,7 +59,7 @@ trait ContentIndexTrait
 
         if ($this->contentRow == null) {
             $contentReader = new ContentReader();
-            $contentReader->model->loadUser();
+            //$contentReader->model->loadUser();
             $contentReader->filter->andEqual($contentReader->model->contentTypeId, $this->typeId);
             $contentReader->filter->andEqual($contentReader->model->dataId, $this->getDataId());
             $this->contentRow = $contentReader->getRow();
@@ -112,7 +112,7 @@ trait ContentIndexTrait
 
         //$this->dateTime = (new DateTime())->setNow();
 
-        $userId = null;
+        /*$userId = null;
         if ((new UserSession())->isUserLogged()) {
             $userId = (new UserSession())->userId;
         } /*else {
@@ -124,8 +124,8 @@ trait ContentIndexTrait
         $data->ignoreIfExists = true;
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
-        $data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
-        $data->userId = $userId;  // $this->toId;
+        //$data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
+        //$data->userId = $userId;  // $this->toId;
         $data->save();
 
     }
@@ -138,8 +138,8 @@ trait ContentIndexTrait
         $data->updateOnDuplicate = true;
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
-        $data->dateTime = $this->dateTime;
-        $data->userId = $this->toId;
+        //$data->dateTime = $this->dateTime;
+        //$data->userId = $this->toId;
         $data->save();
 
     }

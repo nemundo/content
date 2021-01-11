@@ -27,21 +27,6 @@ public $dataId;
 public $subject;
 
 /**
-* @var \Nemundo\Core\Type\DateTime\DateTime
-*/
-public $dateTime;
-
-/**
-* @var string
-*/
-public $userId;
-
-/**
-* @var \Nemundo\User\Data\User\UserRow
-*/
-public $user;
-
-/**
 * @var string
 */
 public $contentTypeId;
@@ -57,18 +42,10 @@ $this->row = $row;
 $this->id = $this->getModelValue($model->id);
 $this->dataId = $this->getModelValue($model->dataId);
 $this->subject = $this->getModelValue($model->subject);
-$this->dateTime = new \Nemundo\Core\Type\DateTime\DateTime($this->getModelValue($model->dateTime));
-$this->userId = $this->getModelValue($model->userId);
-if ($model->user !== null) {
-$this->loadNemundoUserDataUserUseruserRow($model->user);
-}
 $this->contentTypeId = $this->getModelValue($model->contentTypeId);
 if ($model->contentType !== null) {
 $this->loadNemundoContentDataContentTypeContentTypecontentTypeRow($model->contentType);
 }
-}
-private function loadNemundoUserDataUserUseruserRow($model) {
-$this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
 }
 private function loadNemundoContentDataContentTypeContentTypecontentTypeRow($model) {
 $this->contentType = new \Nemundo\Content\Row\ContentTypeCustomRow($this->row, $model);

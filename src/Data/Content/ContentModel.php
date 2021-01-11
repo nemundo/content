@@ -17,21 +17,6 @@ public $dataId;
 public $subject;
 
 /**
-* @var \Nemundo\Model\Type\DateTime\DateTimeType
-*/
-public $dateTime;
-
-/**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
-*/
-public $userId;
-
-/**
-* @var \Nemundo\User\Data\User\UserExternalType
-*/
-public $user;
-
-/**
 * @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
 */
 public $contentTypeId;
@@ -75,20 +60,6 @@ $this->subject->label = "Subject";
 $this->subject->allowNullValue = false;
 $this->subject->length = 255;
 
-$this->dateTime = new \Nemundo\Model\Type\DateTime\DateTimeType($this);
-$this->dateTime->tableName = "content_content";
-$this->dateTime->fieldName = "date_time";
-$this->dateTime->aliasFieldName = "content_content_date_time";
-$this->dateTime->label = "Date Time";
-$this->dateTime->allowNullValue = false;
-
-$this->userId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
-$this->userId->tableName = "content_content";
-$this->userId->fieldName = "user";
-$this->userId->aliasFieldName = "content_content_user";
-$this->userId->label = "User";
-$this->userId->allowNullValue = false;
-
 $this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
 $this->contentTypeId->tableName = "content_content";
 $this->contentTypeId->fieldName = "content_type";
@@ -100,25 +71,11 @@ $index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
 $index->indexName = "content_type";
 $index->addType($this->contentTypeId);
 
-$index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
-$index->indexName = "date_time";
-$index->addType($this->dateTime);
-
 $index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
 $index->indexName = "content_type_data_id";
 $index->addType($this->contentTypeId);
 $index->addType($this->dataId);
 
-}
-public function loadUser() {
-if ($this->user == null) {
-$this->user = new \Nemundo\User\Data\User\UserExternalType($this, "content_content_user");
-$this->user->tableName = "content_content";
-$this->user->fieldName = "user";
-$this->user->aliasFieldName = "content_content_user";
-$this->user->label = "User";
-}
-return $this;
 }
 public function loadContentType() {
 if ($this->contentType == null) {

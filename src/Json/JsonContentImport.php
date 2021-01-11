@@ -16,12 +16,22 @@ class JsonContentImport extends AbstractBase
 
         $reader = new JsonReader();
         $reader->fromFilename($filename);
-        foreach ($reader->getData() as $json) {
+
+        $json = $reader->getData();
+        //(new Debug())->write($data);
+        //exit;
+
+        //foreach ($reader->getData() as $json) {
+
+
+            (new Debug())->write($json);
 
             if (isset($json['content_type_id'])) {
 
                 $typeId = $json['content_type_id'];
                 $contentType = (new ContentTypeBuilder())->getContentType($typeId);
+
+                (new Debug())->write($contentType);
 
                 //$data = $json['data'];
 
@@ -37,7 +47,10 @@ class JsonContentImport extends AbstractBase
 
             }
 
-        }
+        //}
+
+
+        exit;
 
     }
 

@@ -43,6 +43,7 @@ trait JsonContentTrait
     }
 
 
+    // exportJson
     final public function getJson() {
 
         $json=new JsonText();

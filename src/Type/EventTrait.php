@@ -22,20 +22,9 @@ trait EventTrait
     }
 
 
-    public function getEventList() {
+    public function getEventList()
+    {
         return $this->eventList;
     }
-
-
-/*
-    public function saveEventOnCreate() {
-
-        foreach ($this->eventList as $event) {
-            $event->onCreate($this);
-            //$event->onUpdate($this);
-        }
-
-    }*/
-
 
 }

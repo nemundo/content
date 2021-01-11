@@ -25,4 +25,8 @@ abstract class AbstractContentEvent extends AbstractBase
 
     }
 
+
+    //onIndex
+
+
 }

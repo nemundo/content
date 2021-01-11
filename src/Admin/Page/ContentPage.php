@@ -86,7 +86,7 @@ class ContentPage extends ContentTemplate
         $contentReader = new ContentPaginationReader();
         $contentReader->model->loadContentType();
         $contentReader->model->contentType->loadApplication();
-        $contentReader->model->loadUser();
+        //$contentReader->model->loadUser();
 
         $filter = new Filter();
         $model = new ContentModel();
@@ -128,7 +128,7 @@ class ContentPage extends ContentTemplate
         }
 
         if ($user->hasValue()) {
-            $filter->andEqual($model->userId, $user->getValue());
+        //    $filter->andEqual($model->userId, $user->getValue());
         }
 
         if ($subject->hasValue()) {
@@ -180,8 +180,8 @@ class ContentPage extends ContentTemplate
 
             $row->addText($contentRow->subject);
             $row->addText($contentType->getSubject());
-            $row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
-            $row->addText($contentRow->user->login);
+            //$row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
+            //$row->addText($contentRow->user->login);
 
             if ($contentType->isObjectOfTrait(JsonContentTrait::class)) {
                 $site = clone(ContentJsonSite::$site);

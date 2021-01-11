@@ -21,22 +21,26 @@ abstract class AbstractTreeContentType extends AbstractContentType
 
         $existsItem = false;
         if ($this->existItem()) {
-            $existsItem=true;
+            $existsItem = true;
         }
 
         $this->saveData();
         $this->saveContent();
 
         if (!$existsItem) {
-        $this->saveTree();
+            $this->saveTree();
         }
 
         $this->onFinished();
         $this->saveIndex();
 
         foreach ($this->eventList as $event) {
+
+            if (!$existsItem) {
             $event->onCreate($this);
+            } else {
             $event->onUpdate($this);
+            }
         }
 
     }
