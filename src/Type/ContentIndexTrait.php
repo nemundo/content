@@ -12,7 +12,6 @@ use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\Content\ContentUpdate;
 use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Core\Type\DateTime\DateTime;
-use Nemundo\User\Session\UserSession;
 
 trait ContentIndexTrait
 {
@@ -120,13 +119,15 @@ trait ContentIndexTrait
         }*/
 
 
-        $data = new Content();
-        $data->ignoreIfExists = true;
-        $data->contentTypeId = $this->typeId;
-        $data->dataId = $this->getDataId();
-        //$data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
-        //$data->userId = $userId;  // $this->toId;
-        $data->save();
+        if (!$this->existContent()) {
+            $data = new Content();
+            //$data->ignoreIfExists = true;
+            $data->contentTypeId = $this->typeId;
+            $data->dataId = $this->getDataId();
+            //$data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
+            //$data->userId = $userId;  // $this->toId;
+            $data->save();
+        }
 
     }
 

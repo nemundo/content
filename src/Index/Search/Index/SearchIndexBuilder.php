@@ -3,7 +3,15 @@
 namespace Nemundo\Content\Index\Search\Index;
 
 
-
+use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexBulk;
+use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexCount;
+use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexDelete;
+use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
+use Nemundo\Content\Index\Search\Data\Word\WordBulk;
+use Nemundo\Content\Index\Search\Data\Word\WordCount;
+use Nemundo\Content\Index\Search\Data\Word\WordDelete;
+use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeBulk;
+use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeCount;
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Core\Text\KeywordList;
@@ -12,15 +20,6 @@ use Nemundo\Model\Count\ModelDataCount;
 use Nemundo\Model\Delete\ModelDelete;
 use Nemundo\Model\Id\ModelId;
 use Nemundo\Model\Reader\ModelDataReader;
-
-
-use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexBulk;
-use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexCount;
-use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexDelete;
-use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
-use Nemundo\Content\Index\Search\Data\Word\WordBulk;
-use Nemundo\Content\Index\Search\Data\Word\WordDelete;
-use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeBulk;
 
 
 class SearchIndexBuilder extends AbstractBase
@@ -115,21 +114,34 @@ class SearchIndexBuilder extends AbstractBase
 
         $data = new WordBulk();
         foreach ($this->wordList as $wordId => $word) {
-            $data->ignoreIfExists = true;
-            $data->id = $wordId;
-            $data->word = $word;
-            $data->save();
+            //$data->ignoreIfExists = true;
+
+            $count = new WordCount();
+            $count->filter->andEqual($count->model->id, $wordId);
+            if ($count->getCount() == 0) {
+                $data->id = $wordId;
+                $data->word = $word;
+                $data->save();
+            }
+
         }
         $data->saveBulk();
 
 
         $data = new WordContentTypeBulk();
         foreach ($this->wordList as $wordId => $word) {
-            $data->ignoreIfExists = true;
-            $data->id = $wordId;
-            $data->contentTypeId=$this->contentType->typeId;
-            $data->word = $word;
-            $data->save();
+            //$data->ignoreIfExists = true;
+
+            $count = new WordContentTypeCount();
+            $count->filter->andEqual($count->model->contentTypeId, $this->contentType->typeId);
+            if ($count->getCount() == 0) {
+                $data->id = $wordId;
+                $data->contentTypeId = $this->contentType->typeId;
+                $data->word = $word;
+                $data->save();
+            }
+
+
         }
         $data->saveBulk();
 
@@ -137,7 +149,7 @@ class SearchIndexBuilder extends AbstractBase
         $data = new SearchIndexBulk();
         foreach ($this->indexList as $wordId => $relevance) {
 
-            $data->ignoreIfExists = true;
+            //$data->ignoreIfExists = true;
             $data->contentId = $this->contentId;
             $data->wordId = $wordId;
             $data->contentTypeId = $this->contentType->typeId;

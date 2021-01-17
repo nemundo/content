@@ -9,10 +9,10 @@ use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\ContentType\ContentType;
+use Nemundo\Content\Data\ContentType\ContentTypeCount;
 use Nemundo\Content\Data\ContentType\ContentTypeDelete;
-use Nemundo\Content\Data\ContentType\ContentTypeId;
+use Nemundo\Content\Data\ContentType\ContentTypeUpdate;
 use Nemundo\Content\Data\ContentView\ContentView;
-
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
 use Nemundo\Core\Language\Translation;
@@ -28,25 +28,44 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
             $contentLabel = $contentType->getClassNameWithoutNamespace();
         }
 
-        $data = new ContentType();
-        $data->updateOnDuplicate = true;
-        $data->id = $contentType->typeId;
-        $data->contentType = $contentLabel;
-        $data->phpClass = $contentType->getClassName();
-        if ($this->application !== null) {
-            $data->applicationId = $this->application->applicationId;
+        $count = new ContentTypeCount();
+        $count->filter->andEqual($count->model->id, $contentType->typeId);
+        if ($count->getCount() == 0) {
+            $data = new ContentType();
+            //$data->updateOnDuplicate = true;
+            $data->id = $contentType->typeId;
+            $data->contentType = $contentLabel;
+            $data->phpClass = $contentType->getClassName();
+            if ($this->application !== null) {
+                $data->applicationId = $this->application->applicationId;
+            }
+            $data->setupStatus = true;
+            $data->save();
+        } else {
+
+            $update = new ContentTypeUpdate();
+            //$data->updateOnDuplicate = true;
+            //$data->id = $contentType->typeId;
+            $update->contentType = $contentLabel;
+            $update->phpClass = $contentType->getClassName();
+            if ($this->application !== null) {
+                $update->applicationId = $this->application->applicationId;
+            }
+            $update->setupStatus = true;
+            $update->updateById($contentType->typeId);
+
         }
-        $data->setupStatus = true;
-        $data->save();
 
         foreach ($contentType->getViewList() as $view) {
 
-            $data=new ContentView();
-            $data->updateOnDuplicate=true;
-            $data->contentTypeId=$contentType->typeId;
-            $data->viewName=$view->viewName;
-            $data->viewClass=$view->getClassName();
-            $data->save();
+
+            /*
+            $data = new ContentView();
+            $data->updateOnDuplicate = true;
+            $data->contentTypeId = $contentType->typeId;
+            $data->viewName = $view->viewName;
+            $data->viewClass = $view->getClassName();
+            $data->save();*/
 
         }
 

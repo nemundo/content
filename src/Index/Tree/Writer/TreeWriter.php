@@ -48,7 +48,7 @@ class TreeWriter extends AbstractBase
 
 
         $data = new Tree();
-        $data->ignoreIfExists = true;
+        //$data->ignoreIfExists = true;
         $data->parentId = $this->parentId;
         $data->childId = $this->childId;
         $data->itemOrder = $itemOrder;

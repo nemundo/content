@@ -220,16 +220,16 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
         $p = new Paragraph($this);
         $p->content = $contentType->getContentId();
 
-        $contentReader = new ContentReader();
-        $contentReader->model->loadUser();
-        $contentRow = $contentReader->getRowById($contentType->getContentId());
+        //$contentReader = new ContentReader();
+        //$contentReader->model->loadUser();
+        //$contentRow = $contentReader->getRowById($contentType->getContentId());
 
-        $table = new AdminLabelValueTable($this);
+        /*$table = new AdminLabelValueTable($this);
         $table->addLabelValue($contentReader->model->user->label, $contentRow->user->displayName);
         $table->addLabelValue($contentReader->model->dateTime->label, $contentRow->dateTime->getShortDateTimeLeadingZeroFormat());
 
         $log = new ContentLogTable($this);
-        $log->contentType = $contentType;
+        $log->contentType = $contentType;*/
 
     }
 
