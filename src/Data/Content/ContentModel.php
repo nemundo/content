@@ -57,7 +57,7 @@ $this->subject->tableName = "content_content";
 $this->subject->fieldName = "subject";
 $this->subject->aliasFieldName = "content_content_subject";
 $this->subject->label = "Subject";
-$this->subject->allowNullValue = false;
+$this->subject->allowNullValue = true;
 $this->subject->length = 255;
 
 $this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);

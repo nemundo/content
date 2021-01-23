@@ -23,6 +23,8 @@ trait SearchIndexTrait
      */
     private $searchIndex;
 
+
+
     protected function addSearchWord($word)
     {
 
@@ -48,7 +50,7 @@ trait SearchIndexTrait
     protected function saveSearchIndex()
     {
 
-        if ($this->isActive()) {
+        //if ($this->isActive()) {
 
             $this->onDataRow();
 
@@ -56,11 +58,12 @@ trait SearchIndexTrait
                 $this->searchIndex->saveSearchIndex();
             }
 
+            /*
         } else {
 
             $this->deleteSearchIndex();
 
-        }
+        }*/
 
     }
 
