@@ -7,6 +7,7 @@ namespace Nemundo\Content\Com\Container;
 use Nemundo\Admin\Com\Title\AdminSubtitle;
 use Nemundo\App\Application\Type\AbstractApplication;
 use Nemundo\Content\Com\Dropdown\ContentTypeSubmenuDropdown;
+use Nemundo\Content\Index\Tree\Event\TreeEvent;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Type\EventTrait;
@@ -68,9 +69,13 @@ class ContentTypeSubmenuAddContainer extends AbstractHtmlContainer
         $parameter = new ContentTypeParameter();
         if ($parameter->hasValue()) {
 
+            $event=new TreeEvent();
+            $event->parentId= $this->parentId;
+
             $container=new ContentTypeFormContainer($this);
             $container->contentType = $parameter->getContentType();
-            $container->contentType->parentId = $this->parentId;
+            $container->contentType->addEvent($event);
+            //$container->contentType->parentId =
             //$container->pare
 
         }

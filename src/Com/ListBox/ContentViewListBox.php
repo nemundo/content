@@ -33,6 +33,14 @@ class ContentViewListBox extends BootstrapListBox
     public function getContent()
     {
 
+
+        /*
+       foreach ( $this->contentType->getViewList() as $view) {
+           $this->addItem( $view->viewName,$view->viewName);
+       }*/
+
+
+
         $reader = new ContentViewReader();
         $reader->filter->andEqual($reader->model->contentTypeId, $this->contentType->typeId);
         $reader->addOrder($reader->model->viewName);

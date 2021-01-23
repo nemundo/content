@@ -4,6 +4,7 @@
 namespace Nemundo\Content\Index\Geo\Page;
 
 
+use Nemundo\Admin\Com\Button\AdminIconSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
@@ -12,8 +13,10 @@ use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexPaginationReader;
+use Nemundo\Content\Index\Geo\Site\Kml\GeoIndexKmlSite;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
@@ -22,6 +25,9 @@ class GeoIndexPage extends ContentTemplate
 
     public function getContent()
     {
+
+
+        // Container
 
 
         $form=new SearchForm($this);
@@ -39,9 +45,15 @@ class GeoIndexPage extends ContentTemplate
 
 
 
+        $btn=new AdminIconSiteButton($this);
+        $btn->site=GeoIndexKmlSite::$site;
 
 
-        $table = new AdminClickableTable($this);
+
+        $layout=new BootstrapTwoColumnLayout($this);
+
+
+        $table = new AdminClickableTable($layout->col1);
 
         $header = new TableHeader($table);
         $header->addText('Content Type');

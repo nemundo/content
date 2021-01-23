@@ -8,6 +8,7 @@ use Nemundo\Admin\Com\Button\AdminIconSiteButton;
 use Nemundo\Content\App\Explorer\Site\ItemSite;
 
 use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
+use Nemundo\Content\Index\Tree\Reader\ChildContentTypeReader;
 use Nemundo\Content\Index\Tree\Site\ContentSortableSite;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Parameter\ContentParameter;
@@ -57,13 +58,20 @@ class SortableContentContainer extends AbstractHtmlContainer
         $sortableDiv->id = 'cms_sortable_';
         $sortableDiv->sortableSite = ContentSortableSite::$site;
 
-        foreach ($this->contentType->getChild() as $treeRow) {
+
+        $reader = new ChildContentTypeReader();
+        $reader->contentType = $this->contentType;
+
+
+        //foreach ($this->contentType->getChild() as $treeRow) {
+        foreach ($reader->getTreeRowList() as $treeRow) {
 
             $itemDiv = new BootstrapJumbotron($sortableDiv);
             $itemDiv->id = 'item_' . $treeRow->id;
             //$itemDiv->id = 'item_' . $treeRow->id;
 
             //$childContentType = $treeRow->getContentType();
+
             $childContentType = $treeRow->child->getContentType();
 
             /*$p=new Paragraph($itemDiv);
@@ -74,7 +82,9 @@ class SortableContentContainer extends AbstractHtmlContainer
             //$childContentType->getDefaultTreeView($div);
 
             //$view = new $treeRow->view->viewClass($div);
-            $childContentType->getDefaultTreeView($div);
+            //$childContentType->getDefaultTreeView($div);
+            $childContentType->getDefaultView($div);
+
             //$view->contentType = $childContentType;
 
 

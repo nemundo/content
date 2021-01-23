@@ -34,6 +34,9 @@ abstract class AbstractTreeContentType extends AbstractContentType
         $this->onFinished();
         $this->saveIndex();
 
+        $this->runEvent();
+
+        /*
         foreach ($this->eventList as $event) {
 
             if (!$existsItem) {
@@ -41,7 +44,7 @@ abstract class AbstractTreeContentType extends AbstractContentType
             } else {
             $event->onUpdate($this);
             }
-        }
+        }*/
 
     }
 

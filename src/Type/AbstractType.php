@@ -4,9 +4,8 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
+use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Form\AbstractContentForm;
-
 use Nemundo\Content\View\AbstractContentView;
 use Nemundo\Core\Base\AbstractBaseClass;
 use Nemundo\Html\Container\AbstractContainer;
@@ -85,7 +84,7 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var bool
      */
-    protected $deletable=true;
+    protected $deletable = true;
 
 
     abstract protected function loadContentType();
@@ -213,10 +212,10 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-    public function getDefaultForm(AbstractContainer $parent=null)
+    public function getDefaultForm(AbstractContainer $parent = null)
     {
 
-        $form=null;
+        $form = null;
 
         if (isset($this->formClassList[0])) {
 
@@ -232,9 +231,9 @@ abstract class AbstractType extends AbstractBaseClass
 
             if ($this->hasForm()) {
 
-        /** @var AbstractContentForm $form */
-        $form = new $this->formClass($parent);
-        $form->contentType = $this;
+                /** @var AbstractContentForm $form */
+                $form = new $this->formClass($parent);
+                $form->contentType = $this;
 
             }
 
@@ -261,8 +260,8 @@ abstract class AbstractType extends AbstractBaseClass
 
         }
 
-        if (sizeof($list)==0) {
-            $list[]=$this->getDefaultForm();
+        if (sizeof($list) == 0) {
+            $list[] = $this->getDefaultForm();
         }
 
         return $list;
@@ -278,27 +277,23 @@ abstract class AbstractType extends AbstractBaseClass
              (new LogMessage())->writeError('No Form' . $this->getClassName());
          }*/
 
-        /** @var AbstractContentSearchForm $form */
-      /*  $form = new $this->searchFormClass($parent);
-        $form->contentType = $this;
+    /** @var AbstractContentSearchForm $form */
+    /*  $form = new $this->searchFormClass($parent);
+      $form->contentType = $this;
 
-        return $form;
+      return $form;
 
-    }*/
-
-
-   /* public function hasSearchForm()
-    {
-        $value = false;
-        if ($this->searchFormClass !== null) {
-            $value = true;
-        }
-        return $value;
-    }*/
+  }*/
 
 
-
-
+    /* public function hasSearchForm()
+     {
+         $value = false;
+         if ($this->searchFormClass !== null) {
+             $value = true;
+         }
+         return $value;
+     }*/
 
 
     public function isEditable()
@@ -309,16 +304,12 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
     public function isDeletable()
     {
 
         return $this->deletable;
 
     }
-
-
-
 
 
     // hasDefaultView
@@ -330,16 +321,13 @@ abstract class AbstractType extends AbstractBaseClass
             $value = true;
         }
 
-        if (sizeof($this->viewClassList)>0) {
-            $value=true;
+        if (sizeof($this->viewClassList) > 0) {
+            $value = true;
         }
 
         return $value;
 
     }
-
-
-
 
 
     public function getDefaultView(AbstractContainer $parent = null)
@@ -375,6 +363,24 @@ abstract class AbstractType extends AbstractBaseClass
         return $view;
 
     }
+
+
+
+    public function getView($viewId, AbstractContainer $parent = null) {
+
+
+        $viewRow = (new ContentViewReader())->getRowById($viewId);
+
+        $class =$viewRow->viewClass;
+
+        /** @var AbstractContentView $view */
+        $view = new $class($parent);
+        $view->contentType = $this;
+
+        return $view;
+
+    }
+
 
 
     public function getViewList()

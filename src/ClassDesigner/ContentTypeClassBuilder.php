@@ -25,9 +25,9 @@ class ContentTypeClassBuilder extends AbstractClassBuilder
         $phpClass = new PhpClass();
         $phpClass->project = $this->project;
         $phpClass->className = $typeClassName;
-        $phpClass->extendsFromClass = 'AbstractTreeContentType';
+        $phpClass->extendsFromClass = 'AbstractContentType';
         $phpClass->namespace = $namespace;
-        $phpClass->addUseClass('Nemundo\Content\Index\Tree\Type\AbstractTreeContentType');
+        $phpClass->addUseClass('Nemundo\Content\Type\AbstractContentType');
 
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;
@@ -44,6 +44,10 @@ class ContentTypeClassBuilder extends AbstractClassBuilder
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;
         $function->functionName = 'onUpdate()';
+
+        $function = new PhpFunction($phpClass);
+        $function->visibility = PhpVisibility::ProtectedVariable;
+        $function->functionName = 'onDelete()';
 
         $function = new PhpFunction($phpClass);
         $function->visibility = PhpVisibility::ProtectedVariable;

@@ -9,6 +9,7 @@ use Nemundo\Content\App\Explorer\Site\ItemSite;
 use Nemundo\Content\Com\Base\ContentTypeRedirectTrait;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Parameter\ContentParameter;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Package\Bootstrap\Breadcrumb\BootstrapBreadcrumb;
 
 // nach Content/Index/Com
@@ -30,7 +31,12 @@ class TreeBreadcrumb extends BootstrapBreadcrumb
      */
     //public $redirectSite;
 
-    public function addParentContentType(AbstractTreeContentType $contentType) {
+    public function addParentContentType(AbstractContentType $contentType) {
+
+
+
+
+
 
 
         foreach ($contentType->getParentParentContentTypeList() as $parent) {

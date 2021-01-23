@@ -10,6 +10,7 @@ use Nemundo\Content\Index\Search\Data\Word\WordDelete;
 use Nemundo\Content\Index\Search\Index\SearchIndexBuilder;
 use Nemundo\Core\Debug\Debug;
 
+// SearchContentIndexTrait
 trait SearchIndexTrait
 {
 

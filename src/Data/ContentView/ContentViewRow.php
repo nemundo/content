@@ -36,6 +36,11 @@ public $viewName;
 */
 public $viewClass;
 
+/**
+* @var bool
+*/
+public $setupStatus;
+
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
 $this->row = $row;
@@ -46,6 +51,7 @@ $this->loadNemundoContentDataContentTypeContentTypecontentTypeRow($model->conten
 }
 $this->viewName = $this->getModelValue($model->viewName);
 $this->viewClass = $this->getModelValue($model->viewClass);
+$this->setupStatus = boolval($this->getModelValue($model->setupStatus));
 }
 private function loadNemundoContentDataContentTypeContentTypecontentTypeRow($model) {
 $this->contentType = new \Nemundo\Content\Row\ContentTypeCustomRow($this->row, $model);

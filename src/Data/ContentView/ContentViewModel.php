@@ -26,6 +26,11 @@ public $viewName;
 */
 public $viewClass;
 
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $setupStatus;
+
 protected function loadModel() {
 $this->tableName = "content_view";
 $this->aliasTableName = "content_view";
@@ -66,6 +71,13 @@ $this->viewClass->aliasFieldName = "content_view_view_class";
 $this->viewClass->label = "View Class";
 $this->viewClass->allowNullValue = true;
 $this->viewClass->length = 255;
+
+$this->setupStatus = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->setupStatus->tableName = "content_view";
+$this->setupStatus->fieldName = "setup_status";
+$this->setupStatus->aliasFieldName = "content_view_setup_status";
+$this->setupStatus->label = "Setup Status";
+$this->setupStatus->allowNullValue = true;
 
 $index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
 $index->indexName = "view_class";

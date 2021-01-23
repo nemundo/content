@@ -28,6 +28,7 @@ use Nemundo\Content\Index\Geo\Com\Container\GeoIndexContainer;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
 use Nemundo\Content\Index\Search\Type\SearchIndexTrait;
 use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Index\Tree\Type\TreeIndexTrait;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
@@ -239,10 +240,39 @@ class ContentItemPage extends ContentTemplate
         $container=new JsonContentContainer($layout->col2);
         $container->contentType = $contentType;
 
+
+
+        $table=new AdminTable($layout->col2);
+
+        $header=new TableHeader($table);
+        $header->addText('Parent');
+
+        $reader = new TreeReader();
+        $reader->model->loadParent();
+        $reader->model->parent->loadContentType();
+        //$reader->model->child->loadUser();
+        $reader->model->loadView();
+        $reader->filter->andEqual($reader->model->childId, $contentType->getContentId());
+        //$reader->addOrder($reader->model->itemOrder, $sortOrder);
+        foreach ($reader->getData() as $treeRow) {
+            /*$treeRow->child->itemOrder = $treeRow->itemOrder;
+            $childList[] = $treeRow->child;*/
+            //$childList[] = $treeRow;
+
+            $row=new TableRow($table);
+            $row->addText($treeRow->parent->subject);
+
+        }
+
+
+
+
+
+        /*
         $container=new TreeIndexContainer($layout->col2);
         $container->contentType = $contentType;
         $container->redirectSite=ContentItemSite::$site;
-
+*/
 
 
 

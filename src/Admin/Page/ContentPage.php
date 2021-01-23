@@ -159,8 +159,8 @@ class ContentPage extends ContentTemplate
 
         $header->addText('Subject (Data)');
         $header->addText('Subject (Type)');
-        $header->addText('Date/Time');
-        $header->addText('User');
+        //$header->addText('Date/Time');
+        //$header->addText('User');
         $header->addEmpty();
         $header->addEmpty();
 

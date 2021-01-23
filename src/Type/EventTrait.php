@@ -27,4 +27,23 @@ trait EventTrait
         return $this->eventList;
     }
 
+
+    protected function runEvent() {
+
+        foreach ($this->eventList as $event) {
+
+            $event->onCreate($this);
+
+            /*
+            if (!$this->existsItem) {
+                $event->onCreate($this);
+            } else {
+                $event->onUpdate($this);
+            }*/
+        }
+
+    }
+
+
+
 }

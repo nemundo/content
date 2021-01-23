@@ -35,6 +35,17 @@ trait GeoIndexTrait
     }
 
 
+
+    // als Job???
+    protected function saveDistance() {
+
+
+
+
+    }
+
+
+
     public function getPlace()
     {
         return $this->getSubject();

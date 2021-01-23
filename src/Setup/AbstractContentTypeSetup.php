@@ -13,6 +13,9 @@ use Nemundo\Content\Data\ContentType\ContentTypeCount;
 use Nemundo\Content\Data\ContentType\ContentTypeDelete;
 use Nemundo\Content\Data\ContentType\ContentTypeUpdate;
 use Nemundo\Content\Data\ContentView\ContentView;
+use Nemundo\Content\Data\ContentView\ContentViewCount;
+use Nemundo\Content\Data\ContentView\ContentViewDelete;
+use Nemundo\Content\Data\ContentView\ContentViewUpdate;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
 use Nemundo\Core\Language\Translation;
@@ -32,7 +35,6 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
         $count->filter->andEqual($count->model->id, $contentType->typeId);
         if ($count->getCount() == 0) {
             $data = new ContentType();
-            //$data->updateOnDuplicate = true;
             $data->id = $contentType->typeId;
             $data->contentType = $contentLabel;
             $data->phpClass = $contentType->getClassName();
@@ -44,8 +46,6 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
         } else {
 
             $update = new ContentTypeUpdate();
-            //$data->updateOnDuplicate = true;
-            //$data->id = $contentType->typeId;
             $update->contentType = $contentLabel;
             $update->phpClass = $contentType->getClassName();
             if ($this->application !== null) {
@@ -56,18 +56,39 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
 
         }
 
+
+        $update = new ContentViewUpdate();
+        $update->filter->andEqual($update->model->contentTypeId, $contentType->typeId);
+        $update->setupStatus = false;
+        $update->update();
+
         foreach ($contentType->getViewList() as $view) {
 
-
-            /*
-            $data = new ContentView();
-            $data->updateOnDuplicate = true;
-            $data->contentTypeId = $contentType->typeId;
-            $data->viewName = $view->viewName;
-            $data->viewClass = $view->getClassName();
-            $data->save();*/
+            $count = new ContentViewCount();
+            $count->filter->andEqual($update->model->contentTypeId, $contentType->typeId);
+            $count->filter->andEqual($update->model->viewClass, $view->getClassName());
+            if ($count->getCount() == 0) {
+                $data = new ContentView();
+                $data->contentTypeId = $contentType->typeId;
+                $data->viewName = $view->viewName;
+                $data->viewClass = $view->getClassName();
+                $data->setupStatus = true;
+                $data->save();
+            } else {
+                $update = new ContentViewUpdate();
+                $update->filter->andEqual($update->model->contentTypeId, $contentType->typeId);
+                $update->filter->andEqual($update->model->viewClass, $view->getClassName());
+                $update->viewName = $view->viewName;
+                $update->setupStatus = true;
+                $update->update();
+            }
 
         }
+
+        $delete = new ContentViewDelete();
+        $delete->filter->andEqual($update->model->contentTypeId, $contentType->typeId);
+        $delete->filter->andEqual($update->model->setupStatus, false);
+        $delete->delete();
 
         return $this;
 

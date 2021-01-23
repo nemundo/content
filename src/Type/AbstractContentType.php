@@ -3,8 +3,8 @@
 
 namespace Nemundo\Content\Type;
 
-use Nemundo\Content\Index\Tree\Type\AbstractParentContentList;
 use Nemundo\Content\View\AbstractContentAdmin;
+use Nemundo\Content\View\AbstractContentList;
 use Nemundo\Core\Language\Translation;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Html\Container\AbstractContainer;
@@ -49,6 +49,8 @@ abstract class AbstractContentType extends AbstractType
         $this->saveContentIndex();
         $this->saveIndex();
 
+        $this->runEvent();
+
     }
 
 
@@ -66,6 +68,15 @@ abstract class AbstractContentType extends AbstractType
     }
 
 
+    public function getText()
+    {
+
+        $text = '';
+        return $text;
+
+    }
+
+
     public function hasList()
     {
 
@@ -78,25 +89,13 @@ abstract class AbstractContentType extends AbstractType
 
     }
 
+
     public function getList(AbstractContainer $parent)
     {
 
-        /*$list = null;
-
-        if ($this->listClass == null) {
-
-            $list = new Paragraph($parent);
-            $list->content = '[No List Object]';
-
-
-        } else {*/
-
-        /** @var AbstractParentContentList $list */
+        /** @var AbstractContentList $list */
         $list = new $this->listClass($parent);
         $list->contentType = $this;
-        //$list->parentId=
-
-        //}
 
         return $list;
 
