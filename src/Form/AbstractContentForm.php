@@ -34,10 +34,6 @@ abstract class AbstractContentForm extends AbstractAdminForm
             $this->redirectSite->addParameter($this->contentType->getParameter());
         }
 
-        //(new Debug())->write($this->contentType->getContentId());
-        //exit;
-
-
         if ($this->appendContentParameter) {
             $this->redirectSite->addParameter((new ContentParameter($this->contentType->getContentId())));
         }

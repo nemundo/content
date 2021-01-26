@@ -4,8 +4,8 @@
 namespace Nemundo\Content\Form;
 
 
-use Nemundo\Core\Debug\Debug;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
+use Nemundo\Core\Debug\Debug;
 
 trait ContentFormTrait
 {
@@ -23,9 +23,7 @@ trait ContentFormTrait
     /**
      * @var bool
      */
-    public $appendContentParameter=false;
-
-    //public $formName;  // = 'Search';
+    public $appendContentParameter = false;
 
 
     protected function loadUpdateForm()

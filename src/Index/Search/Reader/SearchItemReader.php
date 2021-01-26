@@ -8,6 +8,7 @@ use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\DataSource\AbstractDataSource;
 use Nemundo\Core\Base\DataSource\PaginationTrait;
+use Nemundo\Core\Debug\Debug;
 use Nemundo\Core\Text\SnippetText;
 use Nemundo\Core\Text\TextBold;
 use Nemundo\Core\Text\WordList;
@@ -28,22 +29,10 @@ class SearchItemReader extends AbstractDataSource
 
 
     /**
-     * @var bool
-     */
-    //public $filterContentType = false;
-
-
-    //public $paginationLimit;
-
-    // showAll
-
-    /**
      * @var AbstractContentType[]
      */
     private $filterContentTypeList = [];
 
-
-    //private $totalCount;
 
     public function __construct()
     {
@@ -75,8 +64,6 @@ class SearchItemReader extends AbstractDataSource
         if ($this->totalCount == null) {
 
             $this->totalCount = 0;
-
-            //if ($this->hasValue()) {
 
             if ($this->hasValue() || $this->returnEmptyResult) {
 
@@ -120,10 +107,16 @@ LEFT JOIN content_content ON content_search_index.content=content_content.id ';
 
             //(new Debug())->write($reader->sqlStatement->sql);
 
+
             $bold = new TextBold();
             $bold->addSearchQuery($this->query);
 
+
+            //(new Debug())->write($reader->sqlStatement);
+
             foreach ($reader->getData() as $sqlRow) {
+
+                //(new Debug())->write('result');
 
                 $searchItem = new SearchItem();
 
@@ -187,7 +180,7 @@ LEFT JOIN content_content ON content_search_index.content=content_content.id ';
             $sqlStatement->sql .= ' WHERE (';
             foreach ($keywordList->getHashList() as $value) {
 
-                $parameterName = 'word' . $n;
+                $parameterName = 'para_word' . $n;
                 $sqlStatement->sql .= 'word = :' . $parameterName;
 
                 $sqlStatement->addParameter($parameterName, $value, 'word');
@@ -203,37 +196,11 @@ LEFT JOIN content_content ON content_search_index.content=content_content.id ';
 
             $this->getContentTypeWhere($sqlStatement, true);
 
+            //$parameterName = 'para_count_field';
+            //$sqlStatement->sql .= ' GROUP BY content_search_index.content) data WHERE count_field=:'.$parameterName;
+            $sqlStatement->sql .= ' GROUP BY content_search_index.content) data WHERE count_field='.$keywordList->getWordCount();
 
-            /*
-            $filterContentTypeCount = sizeof($this->filterContentTypeList);
-            if ($filterContentTypeCount > 0) {
-
-                $sql .= ' AND ';
-
-
-                $sql .= '(';
-
-                $n = 0;
-                foreach ($this->filterContentTypeList as $contentType) {
-
-                    $parameterName = 'content_type_' . $n;
-                    $sql .= 'content_search_index.content_type = :' . $parameterName;
-                    $sqlStatement->addParameter($parameterName, $contentType->typeId, 'content_type');
-                    $n++;
-
-                    if ($filterContentTypeCount > $n) {
-                        $sql .= ' OR ';
-                    }
-
-                }
-
-                $sql .= ')';
-
-            }*/
-
-            $sqlStatement->sql .= ' GROUP BY content_search_index.content) data WHERE count_field=:count_field';
-            $sqlStatement->addParameter('count_field', $keywordList->getWordCount(), 'count_field');
-            //  $sqlStatement->sql .= $sqlStatement->sql;
+            //$sqlStatement->addParameter($parameterName, $keywordList->getWordCount(), 'count_field');
 
         } else {
 
@@ -302,16 +269,11 @@ LEFT JOIN content_content ON content_search_index.content=content_content.id ';
 FROM content_search_index 
 LEFT JOIN content_content_type ON content_search_index.content_type=content_content_type.id';
 
-//WHERE ';
-
             $reader->sqlStatement->sql = $sql;
             $reader->sqlStatement = $this->getWhere($reader->sqlStatement);
             $reader->sqlStatement->sql .= ' GROUP BY content_type';
 
             foreach ($reader->getData() as $dataRow) {
-
-                //(new Debug())->write($dataRow->getValue('content_type_label'));
-                //(new Debug())->write($dataRow->getValue('content_type_count'));
 
                 $item = new ContentTypeResultItem();
                 $item->contentTypeLabel = $dataRow->getValue('content_type_label');

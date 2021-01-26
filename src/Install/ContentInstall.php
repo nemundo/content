@@ -41,7 +41,7 @@ class ContentInstall extends AbstractInstall
         (new TreeInstall())->install();
         (new SearchIndexInstall())->install();
         (new GeoIndexInstall())->install();
-        (new GroupInstall())->install();
+        //(new GroupInstall())->install();
         (new LogInstall())->install();
 
     }

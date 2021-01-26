@@ -7,6 +7,7 @@ namespace Nemundo\Content\View;
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Table\AdminLabelValueTable;
 use Nemundo\Admin\Com\Title\AdminSubtitle;
+use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Content\Com\Table\ContentLogTable;
@@ -87,7 +88,11 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
 
             if ($this->contentType->hasForm()) {
                 $this->newButton = new AdminSiteButton($this);
-                $this->newButton->site = $this->new;
+                $this->newButton->site = clone($this->new);
+                //$this->newButton->site->addParameter(new ContentTypeParameter());
+                // add prameter
+
+
             }
 
             $this->loadIndex();
@@ -187,7 +192,13 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
     {
 
         $form = $this->contentType->getDefaultForm($this);
-        $form->redirectSite = $this->index;
+        $form->redirectSite = clone($this->index);
+
+        // add Parameter
+
+        $form->redirectSite->addParameter(new ContentTypeParameter());
+
+
 
     }
 

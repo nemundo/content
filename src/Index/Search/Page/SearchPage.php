@@ -37,7 +37,6 @@ class SearchPage extends ContentTemplate
             $searchReader->query = $queryParameter->getValue();
             $searchReader->paginationLimit= 30;
 
-
             $contentTypeParameter = new ContentTypeParameter();
             $contentTypeParameter->contentTypeCheck=false;
             if ($contentTypeParameter->hasValue()) {
@@ -47,7 +46,6 @@ class SearchPage extends ContentTemplate
             $resultText = [];
             $resultText[LanguageCode::EN] = 'Results found';
             $resultText[LanguageCode::DE] = 'Ergebnisse gefunden';
-
 
             $searchCount = $searchReader->getTotalCount();
 
