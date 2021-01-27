@@ -11,6 +11,8 @@ use Nemundo\Content\Row\ContentCustomRow;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\DataSource\AbstractDataSource;
 
+
+// ContentTypeParentReader
 class ParentContentTypeReader extends AbstractDataSource
 {
 
@@ -20,19 +22,10 @@ class ParentContentTypeReader extends AbstractDataSource
     public $contentType;
 
 
-
-
-
-
-
-
-
     protected function loadData()
     {
 
-
         $this->getParent($this->contentType->getContentId());
-
 
         /*
         $reader = new TreeReader();

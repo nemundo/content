@@ -36,8 +36,6 @@ class TreeBreadcrumb extends BootstrapBreadcrumb
     public function addParentContentType(AbstractContentType $contentType) {
 
 
-
-
         $reader=new ParentContentTypeReader();
         $reader->contentType = $contentType;
         foreach ($reader->getData() as $item) {
@@ -67,7 +65,7 @@ class TreeBreadcrumb extends BootstrapBreadcrumb
     }
 
 
-    public function addContentType(AbstractTreeContentType $contentType) {
+    public function addContentType(AbstractContentType $contentType) {
 
             $site = clone($this->redirectSite);
             $site->title = $contentType->getSubject();

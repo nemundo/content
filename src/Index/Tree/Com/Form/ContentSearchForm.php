@@ -38,7 +38,7 @@ class ContentSearchForm extends AbstractContentSearchForm
     protected function onSubmit()
     {
 
-        $this->saveTree((new ContentBuilder())->getContent($this->content->getValue()));
+         $this->saveTree((new ContentBuilder())->getContent($this->content->getValue()));
 
     }
 

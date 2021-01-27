@@ -8,6 +8,7 @@ use Nemundo\Admin\Com\Form\AbstractAdminForm;
 use Nemundo\Content\Form\ContentFormTrait;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Content\Index\Tree\Writer\TreeWriter;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\EventTrait;
 
 
@@ -38,15 +39,18 @@ abstract class AbstractContentSearchForm extends AbstractAdminForm
     }
 
 
-    protected function saveTree(AbstractTreeContentType $contentType)
+    protected function saveTree(AbstractContentType $contentType)
     {
 
         //if ($this->contentType->hasParent()) {
 
+        /*
         $writer = new TreeWriter();
         $writer->parentId = $this->contentType->getParentId();
         $writer->childId = $contentType->getContentId();
         $writer->write();
+*/
+
 
         foreach ($this->contentType->getEventList() as $event) {
             $event->onCreate($contentType);
