@@ -12,6 +12,7 @@ use Nemundo\Content\Index\Search\Data\Word\WordCount;
 use Nemundo\Content\Index\Search\Data\Word\WordDelete;
 use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeBulk;
 use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeCount;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Core\Text\KeywordList;
@@ -128,6 +129,7 @@ class SearchIndexBuilder extends AbstractBase
         $data->saveBulk();
 
 
+        /*
         $data = new WordContentTypeBulk();
         foreach ($this->wordList as $wordId => $word) {
             //$data->ignoreIfExists = true;
@@ -143,7 +145,7 @@ class SearchIndexBuilder extends AbstractBase
 
 
         }
-        $data->saveBulk();
+        $data->saveBulk();*/
 
 
         $data = new SearchIndexBulk();

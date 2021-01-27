@@ -8,7 +8,6 @@ use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexDelete;
 use Nemundo\Content\Index\Search\Data\SearchIndex\SearchIndexReader;
 use Nemundo\Content\Index\Search\Data\Word\WordDelete;
 use Nemundo\Content\Index\Search\Index\SearchIndexBuilder;
-use Nemundo\Core\Debug\Debug;
 
 // SearchContentIndexTrait
 trait SearchIndexTrait
@@ -22,7 +21,6 @@ trait SearchIndexTrait
      * @var SearchIndexBuilder
      */
     private $searchIndex;
-
 
 
     protected function addSearchWord($word)
@@ -52,18 +50,18 @@ trait SearchIndexTrait
 
         //if ($this->isActive()) {
 
-            $this->onDataRow();
+        $this->onDataRow();
 
-            if ($this->searchIndex !== null) {
-                $this->searchIndex->saveSearchIndex();
-            }
+        if ($this->searchIndex !== null) {
+            $this->searchIndex->saveSearchIndex();
+        }
 
-            /*
-        } else {
+        /*
+    } else {
 
-            $this->deleteSearchIndex();
+        $this->deleteSearchIndex();
 
-        }*/
+    }*/
 
     }
 
@@ -84,7 +82,6 @@ trait SearchIndexTrait
 
 
             // delete word content type
-
 
 
         }

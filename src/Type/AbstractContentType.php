@@ -26,21 +26,6 @@ abstract class AbstractContentType extends AbstractType
     protected $adminClass;
 
 
-    /*
-    public function __construct($dataId = null)
-    {
-
-        parent::__construct($dataId);
-
-        /*if ($this->formClass == null) {
-            $this->formClass = ContentForm::class;
-        }*/
-
-    /*  $this->loadUserDateTime();
-
-  }*/
-
-
     public function saveType()
     {
 
