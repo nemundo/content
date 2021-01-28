@@ -7,8 +7,13 @@ namespace Nemundo\Content\Index\Tree\Page;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Template\ContentTemplate;
+use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
 use Nemundo\Content\Index\Tree\Data\Tree\TreePaginationReader;
+use Nemundo\Content\Index\Tree\Parameter\ParentParameter;
+use Nemundo\Content\Index\Tree\Site\TreeSite;
+
 use Nemundo\Db\Sql\Order\SortOrder;
+use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
@@ -18,7 +23,29 @@ class TreePage extends ContentTemplate
     public function getContent()
     {
 
-        $table = new AdminClickableTable($this);
+
+        $layout=new BootstrapTwoColumnLayout($this);
+
+
+        $parentId = 1;
+        $parameter= new ParentParameter();
+        if ($parameter->hasValue()) {
+            $parentId=$parameter->getValue();
+            $parameter->getContentType(false)->getDefaultView($layout->col2);
+
+            $breadcrumb = new TreeBreadcrumb($layout->col1);
+            $breadcrumb->contentType = $parameter->getContentType(false);
+
+        }
+
+
+
+
+
+
+
+
+        $table = new AdminClickableTable($layout->col1);
 
         $header = new TableHeader($table);
         $header->addText('Parent');
@@ -35,6 +62,7 @@ class TreePage extends ContentTemplate
         $treeReader->model->parent->loadContentType();
         $treeReader->model->loadChild();
         $treeReader->model->child->loadContentType();
+        $treeReader->filter->andEqual($treeReader->model->parentId,$parentId);
         $treeReader->addOrder($treeReader->model->id, SortOrder::DESCENDING);
         $treeReader->paginationLimit = 50;
 
@@ -57,6 +85,10 @@ class TreePage extends ContentTemplate
             $row->addText($treeRow->childId);
             $row->addText($treeRow->itemOrder);
             $row->addText($treeRow->viewId);
+
+            $site=clone(TreeSite::$site);
+            $site->addParameter(new ParentParameter($treeRow->childId));
+            $row->addClickableSite($site);
 
         }
 

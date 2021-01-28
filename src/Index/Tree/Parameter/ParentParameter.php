@@ -1,8 +1,10 @@
 <?php
 
 
-namespace Nemundo\Content\Parameter;
+namespace Nemundo\Content\Index\Tree\Parameter;
 
+
+use Nemundo\Content\Parameter\AbstractContentUrlParameter;
 
 class ParentParameter extends AbstractContentUrlParameter
 {

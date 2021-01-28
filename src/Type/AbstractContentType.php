@@ -15,6 +15,9 @@ abstract class AbstractContentType extends AbstractType
 
     use ContentIndexTrait;
 
+
+    // $listingClass
+
     /**
      * @var string
      */

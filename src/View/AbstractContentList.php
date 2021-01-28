@@ -11,6 +11,7 @@ use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Web\Site\AbstractSite;
 
+// AbstractContentListing
 abstract class AbstractContentList extends AbstractHtmlContainer
 {
 

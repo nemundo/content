@@ -77,7 +77,7 @@
             "namespace": "Nemundo\\Content\\Index\\Tree\\Data\\TreeIndex",
             "row_class_name": "",
             "primary_index": "auto_increment",
-            "is_deleted": false,
+            "is_deleted": true,
             "type": [
                 {
                     "type": "external",

@@ -4,23 +4,24 @@
 namespace Nemundo\Content\Index\Tree\Site;
 
 
-use Nemundo\Admin\Com\Table\AdminClickableTable;
-use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Index\Tree\Page\TreePage;
-use Nemundo\Db\Sql\Order\SortOrder;
-use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
-use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
-use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-use Nemundo\Content\Index\Tree\Data\Tree\TreePaginationReader;
 use Nemundo\Web\Site\AbstractSite;
 
 class TreeSite extends AbstractSite
 {
 
+    /**
+     * @var TreeSite
+     */
+    public static $site;
+
     protected function loadSite()
     {
+
         $this->title = 'Tree';
         $this->url = 'tree';
+
+        TreeSite::$site = $this;
 
     }
 
