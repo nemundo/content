@@ -5,11 +5,11 @@ namespace Nemundo\Content\Index\Tree\Type;
 
 
 use Nemundo\Content\View\AbstractContentAdmin;
-use Nemundo\Content\View\AbstractContentList;
+use Nemundo\Content\View\AbstractContentListing;
 use Nemundo\Html\Container\AbstractHtmlContainer;
 
 
-class AbstractParentContentList extends AbstractContentList
+class AbstractParentContentListing extends AbstractContentListing
 {
 
     /**

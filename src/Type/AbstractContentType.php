@@ -4,7 +4,7 @@
 namespace Nemundo\Content\Type;
 
 use Nemundo\Content\View\AbstractContentAdmin;
-use Nemundo\Content\View\AbstractContentList;
+use Nemundo\Content\View\AbstractContentListing;
 use Nemundo\Core\Language\Translation;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Html\Container\AbstractContainer;
@@ -15,13 +15,10 @@ abstract class AbstractContentType extends AbstractType
 
     use ContentIndexTrait;
 
-
-    // $listingClass
-
     /**
      * @var string
      */
-    protected $listClass;
+    protected $listingClass;
 
     /**
      * @var string
@@ -69,7 +66,7 @@ abstract class AbstractContentType extends AbstractType
     {
 
         $value = false;
-        if ($this->listClass !== null) {
+        if ($this->listingClass !== null) {
             $value = true;
         }
 
@@ -81,8 +78,8 @@ abstract class AbstractContentType extends AbstractType
     public function getList(AbstractContainer $parent)
     {
 
-        /** @var AbstractContentList $list */
-        $list = new $this->listClass($parent);
+        /** @var AbstractContentListing $list */
+        $list = new $this->listingClass($parent);
         $list->contentType = $this;
 
         return $list;

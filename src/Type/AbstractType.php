@@ -6,6 +6,7 @@ namespace Nemundo\Content\Type;
 
 use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Form\AbstractContentForm;
+use Nemundo\Content\Form\AbstractContentFormPart;
 use Nemundo\Content\View\AbstractContentView;
 use Nemundo\Core\Base\AbstractBaseClass;
 use Nemundo\Html\Container\AbstractContainer;
@@ -45,6 +46,14 @@ abstract class AbstractType extends AbstractBaseClass
      * @var string
      */
     protected $formClass;
+
+    /**
+     * @var string
+     */
+    protected $formPartClass;
+
+
+
 
     /**
      * @var string
@@ -242,6 +251,20 @@ abstract class AbstractType extends AbstractBaseClass
         return $form;
 
     }
+
+
+
+    public function getFormPart(AbstractContainer $parent = null) {
+
+        /** @var AbstractContentFormPart $formPart */
+        $formPart = new $this->formPartClass($parent);
+        $formPart->contentType = $this;
+
+        return $formPart;
+
+    }
+
+
 
 
     public function getFormList()

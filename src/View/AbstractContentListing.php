@@ -12,7 +12,7 @@ use Nemundo\Html\Container\AbstractHtmlContainer;
 use Nemundo\Web\Site\AbstractSite;
 
 // AbstractContentListing
-abstract class AbstractContentList extends AbstractHtmlContainer
+abstract class AbstractContentListing extends AbstractHtmlContainer
 {
 
     /**

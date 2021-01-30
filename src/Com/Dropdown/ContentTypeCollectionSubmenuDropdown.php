@@ -7,11 +7,13 @@ namespace Nemundo\Content\Com\Dropdown;
 use Nemundo\Content\Collection\AbstractContentTypeCollection;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Package\Bootstrap\Dropdown\BootstrapDropdown;
+use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 use Nemundo\Package\BootstrapDropdown\BootstrapSubmenuDropdown;
 use Nemundo\Package\BootstrapDropdown\Submenu;
 use Nemundo\Web\Site\AbstractSite;
 
-class ContentTypeCollectionSubmenuDropdown extends BootstrapSubmenuDropdown
+class ContentTypeCollectionSubmenuDropdown extends BootstrapSiteDropdown  // BootstrapSubmenuDropdown
 {
 
     use ContentTypeDropdownTrait;
