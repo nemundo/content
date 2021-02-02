@@ -4,15 +4,14 @@ namespace Nemundo\Content\Index\Search\Com;
 
 
 use Nemundo\Admin\Com\Button\AdminSearchButton;
-
 use Nemundo\Com\FormBuilder\SearchForm;
+use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
+use Nemundo\Content\Index\Search\Site\Json\SearchJsonSite;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Html\Character\HtmlCharacter;
 use Nemundo\Package\Bootstrap\Autocomplete\BootstrapAutocompleteMultipleValueTextBox;
 use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
-use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
-use Nemundo\Content\Index\Search\Site\Json\SearchJsonSite;
 
 
 class QueryContentSearchForm extends SearchForm
@@ -28,32 +27,27 @@ class QueryContentSearchForm extends SearchForm
 
         $formRow = new BootstrapFormRow($this);
 
-        /*$this->query = new BootstrapTextBox($formRow);
-        $this->query->name = (new SearchQueryParameter())->parameterName;
-        $this->query->searchItem = true;
-        $this->query->placeholder = 'Search';
-        $this->query->label = HtmlCharacter::NON_BREAKING_SPACE;
-        $this->query->autofocus = true;*/
-
         $this->query = new BootstrapAutocompleteMultipleValueTextBox($formRow);
         $this->query->name = (new SearchQueryParameter())->parameterName;
         $this->query->seperator = ' ';
         $this->query->searchMode = true;
+        $this->query->column = true;
+        $this->query->columnSize=4;
         $this->query->placeholder[LanguageCode::EN] = 'Search';
         $this->query->placeholder[LanguageCode::DE] = 'Suche';
-
         $this->query->label = HtmlCharacter::NON_BREAKING_SPACE;
         $this->query->sourceSite = SearchJsonSite::$site;
 
-
-        new AdminSearchButton($formRow);
+        $button = new AdminSearchButton($formRow);
+        $button->column = true;
 
         return parent::getContent();
 
     }
 
 
-    public function hasValue() {
+    public function hasValue()
+    {
 
         return (new SearchQueryParameter())->hasValue();
 
@@ -69,9 +63,10 @@ class QueryContentSearchForm extends SearchForm
     }
 
 
-    public function getWordId() {
+    public function getWordId()
+    {
 
-        $wordId =(new SearchQueryParameter())->getWordId();  // md5(mb_strtolower( $this->getSearchQuery()));
+        $wordId = (new SearchQueryParameter())->getWordId();  // md5(mb_strtolower( $this->getSearchQuery()));
         return $wordId;
     }
 
