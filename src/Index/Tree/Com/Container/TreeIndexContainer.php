@@ -18,9 +18,9 @@ class TreeIndexContainer extends AbstractContentTypeContainer
         $widget = new AdminWidget($this);
         $widget->widgetTitle = 'Tree';
 
-        $table = new ParentTreeTable($widget);
+        /*$table = new ParentTreeTable($widget);
         $table->contentType = $this->contentType;
-        $table->redirectSite = $this->redirectSite;
+        $table->redirectSite = $this->redirectSite;*/
 
         $table = new ChildTreeTable($widget);
         $table->contentType = $this->contentType;

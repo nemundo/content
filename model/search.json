@@ -181,7 +181,7 @@
         {
             "template": "default",
             "model_id": "af0e5f92-2dc8-4aa5-86e5-8312777ace7e",
-            "label": "WordContent Type",
+            "label": "Word Content Type",
             "class_name": "WordContentType",
             "table_name": "content_search_word_content_type",
             "namespace": "Nemundo\\Content\\Index\\Search\\Data\\WordContentType",

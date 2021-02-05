@@ -3,9 +3,9 @@
 namespace Nemundo\Content\Index\Search\Site\Json;
 
 
+use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Autocomplete\AbstractAutocompleteJsonSite;
 use Nemundo\Package\Bootstrap\Autocomplete\AutocompleteParameter;
-use Nemundo\Content\Index\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeReader;
 
 
@@ -37,6 +37,7 @@ class SearchContentTypeJsonSite extends AbstractAutocompleteJsonSite
         foreach ($wordReader->getData() as $wordRow) {
             $this->addWord($wordRow->word);
         }
+
 
 
     }

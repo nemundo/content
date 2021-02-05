@@ -24,7 +24,7 @@ public $word;
 protected function loadModel() {
 $this->tableName = "content_search_word_content_type";
 $this->aliasTableName = "content_search_word_content_type";
-$this->label = "WordContent Type";
+$this->label = "Word Content Type";
 
 $this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
 

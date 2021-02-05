@@ -52,10 +52,6 @@ class ContentItemPage extends ContentTemplate
         $title = new AdminTitle($this);
         $title->content = $contentType->getSubject();
 
-
-
-        
-
         $view = new ContentViewListBox($this);
         $view->contentType = $contentType;
 
@@ -83,7 +79,6 @@ class ContentItemPage extends ContentTemplate
 
         $table1->addLabelValue('Content Type Class', $contentType->getClassName());
         $table1->addLabelValue('Content Type Id', $contentType->typeId);
-
 
         $table1->addLabelValue('Content Id', $contentType->getContentId());
         $table1->addLabelValue('Data Id', $contentType->getDataId());

@@ -129,13 +129,14 @@ class SearchIndexBuilder extends AbstractBase
         $data->saveBulk();
 
 
-        /*
+
         $data = new WordContentTypeBulk();
         foreach ($this->wordList as $wordId => $word) {
             //$data->ignoreIfExists = true;
 
             $count = new WordContentTypeCount();
             $count->filter->andEqual($count->model->contentTypeId, $this->contentType->typeId);
+            $count->filter->andEqual($count->model->id, $wordId);
             if ($count->getCount() == 0) {
                 $data->id = $wordId;
                 $data->contentTypeId = $this->contentType->typeId;
@@ -143,9 +144,8 @@ class SearchIndexBuilder extends AbstractBase
                 $data->save();
             }
 
-
         }
-        $data->saveBulk();*/
+        $data->saveBulk();
 
 
         $data = new SearchIndexBulk();

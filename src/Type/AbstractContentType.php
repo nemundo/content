@@ -75,7 +75,7 @@ abstract class AbstractContentType extends AbstractType
     }
 
 
-    public function getList(AbstractContainer $parent)
+    public function getListing(AbstractContainer $parent)
     {
 
         /** @var AbstractContentListing $list */

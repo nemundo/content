@@ -15,7 +15,7 @@ trait GeoIndexTrait
      * @return AbstractGeoCoordinate
      */
     abstract public function getCoordinate();
-
+    // getGeoCoordinate
 
     protected function saveGeoIndex()
     {
