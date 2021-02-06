@@ -18,7 +18,7 @@ class ContentSortableSite extends AbstractSortableSite
     protected function loadSite()
     {
 
-        $this->url='content-sortable';
+        $this->url = 'content-sortable';
         ContentSortableSite::$site = $this;
 
     }

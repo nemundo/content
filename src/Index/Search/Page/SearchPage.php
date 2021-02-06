@@ -7,7 +7,7 @@ namespace Nemundo\Content\Index\Search\Page;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Admin\Template\ContentTemplate;
-use Nemundo\Content\Index\Search\Com\QueryContentSearchForm;
+use Nemundo\Content\Index\Search\Com\Form\QueryContentSearchForm;
 use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
 use Nemundo\Content\Index\Search\Reader\SearchItemReader;
 use Nemundo\Content\Index\Search\Site\SearchSite;

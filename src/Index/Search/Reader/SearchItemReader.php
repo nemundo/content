@@ -9,6 +9,7 @@ use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\DataSource\AbstractDataSource;
 use Nemundo\Core\Base\DataSource\PaginationTrait;
 use Nemundo\Core\Debug\Debug;
+use Nemundo\Core\Log\LogMessage;
 use Nemundo\Core\Text\SnippetText;
 use Nemundo\Core\Text\TextBold;
 use Nemundo\Core\Text\WordList;
@@ -123,6 +124,8 @@ LEFT JOIN content_content ON content_search_index.content=content_content.id ';
                 $className = $sqlRow->getValue('php_class');
                 $dataId = $sqlRow->getValue('data_id');
 
+                if (class_exists($className)) {
+
                 /** @var AbstractTreeContentType $contentType */
                 $contentType = new $className($dataId);
 
@@ -137,6 +140,10 @@ LEFT JOIN content_content ON content_search_index.content=content_content.id ';
                 $searchItem->contentId = $sqlRow->getValue('content');
 
                 $this->addItem($searchItem);
+
+                } else {
+                    (new LogMessage())->writeError('Content Type not found. Class: '.$className);
+                }
 
             }
 

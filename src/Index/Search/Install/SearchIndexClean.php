@@ -17,9 +17,10 @@ class SearchIndexClean extends AbstractClean
     {
 
 
+        /*
         $setup = new ContentTypeSetup();
         $setup->removeContent(new SearchLogContentType());
-
+*/
 
         $setup = new ModelCollectionSetup();
         $setup->removeCollection(new SearchCollection());

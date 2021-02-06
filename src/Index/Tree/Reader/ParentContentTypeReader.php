@@ -86,12 +86,9 @@ class ParentContentTypeReader extends AbstractDataSource
         foreach ($reader->getData() as $treeRow) {
 //            $list[] = $treeRow->parent->getContentType();
 
-             $this->getParent($treeRow->parentId);  //,$list);
+            //$this->getParent($treeRow->parentId);  //,$list);
 
             $this->addItem($treeRow->parent->getContentType());
-
-
-
 
         }
 
