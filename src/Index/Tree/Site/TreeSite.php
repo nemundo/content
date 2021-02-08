@@ -23,6 +23,8 @@ class TreeSite extends AbstractSite
 
         TreeSite::$site = $this;
 
+        new ChildDeleteSite($this);
+
     }
 
     public function loadContent()

@@ -109,23 +109,10 @@ trait ContentIndexTrait
     protected function saveContent()
     {
 
-        //$this->dateTime = (new DateTime())->setNow();
-
-        /*$userId = null;
-        if ((new UserSession())->isUserLogged()) {
-            $userId = (new UserSession())->userId;
-        } /*else {
-            $this->toId = '';
-        }*/
-
-
         if (!$this->existContent()) {
             $data = new Content();
-            //$data->ignoreIfExists = true;
             $data->contentTypeId = $this->typeId;
             $data->dataId = $this->getDataId();
-            //$data->dateTime = (new DateTime())->setNow();  //$this->dateTime;
-            //$data->userId = $userId;  // $this->toId;
             $data->save();
         }
 
@@ -139,8 +126,6 @@ trait ContentIndexTrait
         $data->updateOnDuplicate = true;
         $data->contentTypeId = $this->typeId;
         $data->dataId = $this->getDataId();
-        //$data->dateTime = $this->dateTime;
-        //$data->userId = $this->toId;
         $data->save();
 
     }
