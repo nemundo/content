@@ -213,7 +213,6 @@
                     "index_name": "search",
                     "index_type": "search_index",
                     "field_name": [
-                        "content_type",
                         "word"
                     ]
                 }

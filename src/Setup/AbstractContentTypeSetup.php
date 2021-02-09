@@ -71,7 +71,7 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
                 $data = new ContentView();
                 $data->contentTypeId = $contentType->typeId;
                 $data->viewName = $view->viewName;
-                $data->viewClass = $view->getClassName();
+                $data->viewClass  = $view->getClassName();
                 $data->setupStatus = true;
                 $data->save();
             } else {

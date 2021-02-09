@@ -63,10 +63,16 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var string
      */
-    protected $viewClass;
+    //protected $viewClass;
 
+    /**
+     * @var string[]
+     */
     protected $viewClassList = [];
 
+    /**
+     * @var string[]
+     */
     protected $formClassList = [];
 
     /**
@@ -340,9 +346,9 @@ abstract class AbstractType extends AbstractBaseClass
     {
 
         $value = false;
-        if ($this->viewClass !== null) {
+        /*if ($this->viewClassList[]  !== null) {
             $value = true;
-        }
+        }*/
 
         if (sizeof($this->viewClassList) > 0) {
             $value = true;

@@ -134,6 +134,10 @@ class SearchIndexBuilder extends AbstractBase
         foreach ($this->wordList as $wordId => $word) {
             //$data->ignoreIfExists = true;
 
+            // PROBLEM:  word als id bei mehreren content type !!!!
+
+
+            /*
             $count = new WordContentTypeCount();
             $count->filter->andEqual($count->model->contentTypeId, $this->contentType->typeId);
             $count->filter->andEqual($count->model->id, $wordId);
@@ -142,7 +146,7 @@ class SearchIndexBuilder extends AbstractBase
                 $data->contentTypeId = $this->contentType->typeId;
                 $data->word = $word;
                 $data->save();
-            }
+            }*/
 
         }
         $data->saveBulk();

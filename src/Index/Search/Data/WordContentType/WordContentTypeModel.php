@@ -56,7 +56,6 @@ $this->word->length = 50;
 
 $index = new \Nemundo\Model\Definition\Index\ModelSearchIndex($this);
 $index->indexName = "search";
-$index->addType($this->contentTypeId);
 $index->addType($this->word);
 
 }

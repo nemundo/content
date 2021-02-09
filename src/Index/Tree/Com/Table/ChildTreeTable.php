@@ -6,6 +6,7 @@ namespace Nemundo\Content\Index\Tree\Com\Table;
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\AdminTableHeader;
+use Nemundo\Content\App\Explorer\Site\ViewEditSite;
 use Nemundo\Content\Com\Container\AbstractContentTypeContainer;
 use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Content\Index\Tree\Reader\ChildContentReader;
@@ -26,6 +27,7 @@ class ChildTreeTable extends AbstractContentTypeContainer
         $header = new AdminTableHeader($table);
         $header->addText('Child');
         $header->addText('Typ');
+        $header->addText('View');
         $header->addEmpty();
 
         /*
@@ -55,6 +57,15 @@ class ChildTreeTable extends AbstractContentTypeContainer
             $row = new BootstrapClickableTableRow($table);
             $row->addText($treeRow->child->subject);
             $row->addText($treeRow->child->contentType->contentType);
+            //$row->addText($treeRow->view->viewName);
+
+
+            $site = clone(ViewEditSite::$site);
+            $site->title = $treeRow->view->viewName;
+            $site->addParameter(new TreeParameter($treeRow->id));
+            $row->addSite($site);
+
+
 
             $site = clone(ChildDeleteSite::$site);
             $site->addParameter(new TreeParameter($treeRow->id));

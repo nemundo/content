@@ -81,6 +81,7 @@ $this->setupStatus->allowNullValue = true;
 
 $index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
 $index->indexName = "view_class";
+$index->addType($this->contentTypeId);
 $index->addType($this->viewClass);
 
 }

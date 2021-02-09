@@ -8,6 +8,7 @@ use Nemundo\Content\Com\ListBox\ContentViewListBox;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeUpdate;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
+use Nemundo\Core\Debug\Debug;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
 use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
 
@@ -19,7 +20,7 @@ class ContentViewChangeForm extends BootstrapForm
     /**
      * @var AbstractTreeContentType
      */
-    public $contentType;
+    //public $contentType;
 
     /**
      * @var ContentViewListBox
@@ -35,10 +36,13 @@ class ContentViewChangeForm extends BootstrapForm
         $formRow=new BootstrapFormRow($this);
 
 
-        $treeRow = (new TreeReader())->getRowById($this->treeId);
+        $treeReader = new TreeReader();
+        $treeReader->model->loadChild();
+        $treeReader->model->child->loadContentType();
+        $treeRow = $treeReader->getRowById($this->treeId);
 
         $this->view = new ContentViewListBox($formRow);
-        $this->view->contentType = $this->contentType;
+        $this->view->contentType = $treeRow->child->getContentType();  // $this->contentType;
         $this->view->value =$treeRow->viewId;  // $this->contentType->getDefaultTreeViewId();
         $this->view->submitOnChange = true;
 
@@ -66,6 +70,11 @@ class ContentViewChangeForm extends BootstrapForm
         $update = new TreeUpdate();
         $update->viewId = $this->view->getValue();
         $update->updateById($this->treeId);
+
+        //(new Debug())->write($this->treeId);
+        //exit;
+
+
         //$update->filter->andEqual($update->model->childId, $this->contentType->getContentId());
         //$update->update();
         //$update->updateById($this->contentType->getContentId());

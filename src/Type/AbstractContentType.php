@@ -31,7 +31,16 @@ abstract class AbstractContentType extends AbstractType
 
         $this->saveData();
         $this->saveContent();
+
+
+
+        // für update !!!
+        //$this->getDataRow();
+
         $this->saveContentIndex();
+
+
+
         $this->saveIndex();
 
         $this->runEvent();

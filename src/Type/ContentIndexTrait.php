@@ -109,6 +109,8 @@ trait ContentIndexTrait
     protected function saveContent()
     {
 
+        $this->dataRow = null;
+
         if (!$this->existContent()) {
             $data = new Content();
             $data->contentTypeId = $this->typeId;
