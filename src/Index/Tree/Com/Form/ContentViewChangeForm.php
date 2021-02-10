@@ -10,7 +10,7 @@ use Nemundo\Content\Index\Tree\Data\Tree\TreeUpdate;
 use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 
 class ContentViewChangeForm extends BootstrapForm
 {
@@ -33,7 +33,7 @@ class ContentViewChangeForm extends BootstrapForm
         //new ContentHiddenInput($this);
         //(new Debug())->write($this->contentType);
 
-        $formRow=new BootstrapFormRow($this);
+        $formRow=new BootstrapRow($this);
 
 
         $treeReader = new TreeReader();

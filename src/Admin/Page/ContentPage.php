@@ -27,7 +27,7 @@ use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Order\SortOrder;
 use Nemundo\Html\Paragraph\Paragraph;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
@@ -42,7 +42,7 @@ class ContentPage extends ContentTemplate
 
         $form = new SearchForm($this);
 
-        $formRow = new BootstrapFormRow($form);
+        $formRow = new BootstrapRow($form);
 
         $application = new ApplicationListBox($formRow);
         $application->submitOnChange = true;

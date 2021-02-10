@@ -15,7 +15,7 @@ use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexPaginationReader;
 use Nemundo\Content\Index\Geo\Site\Kml\GeoIndexKmlSite;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
@@ -32,7 +32,7 @@ class GeoIndexPage extends ContentTemplate
 
         $form=new SearchForm($this);
 
-        $formRow = new BootstrapFormRow($form);
+        $formRow = new BootstrapRow($form);
 
         $application=new ApplicationListBox($formRow);
         $application->submitOnChange = true;

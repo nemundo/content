@@ -39,10 +39,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_content_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-$this->id->visible->form = false;
-$this->id->visible->table = false;
-$this->id->visible->view = false;
-$this->id->visible->form = false;
 
 $this->dataId = new \Nemundo\Model\Type\Text\TextType($this);
 $this->dataId->tableName = "content_content";

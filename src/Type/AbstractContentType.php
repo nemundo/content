@@ -5,6 +5,7 @@ namespace Nemundo\Content\Type;
 
 use Nemundo\Content\View\AbstractContentAdmin;
 use Nemundo\Content\View\AbstractContentListing;
+use Nemundo\Content\View\Listing\ContentListing;
 use Nemundo\Core\Language\Translation;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Html\Container\AbstractContainer;
@@ -24,6 +25,16 @@ abstract class AbstractContentType extends AbstractType
      * @var string
      */
     protected $adminClass;
+
+
+
+    public function __construct($dataId = null)
+    {
+
+        $this->listingClass=ContentListing::class;
+
+        parent::__construct($dataId);
+    }
 
 
     public function saveType()

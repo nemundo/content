@@ -8,6 +8,7 @@ use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Form\AbstractContentFormPart;
 use Nemundo\Content\View\AbstractContentView;
+use Nemundo\Content\View\Listing\ContentListing;
 use Nemundo\Core\Base\AbstractBaseClass;
 use Nemundo\Html\Container\AbstractContainer;
 use Nemundo\Html\Paragraph\Paragraph;
@@ -106,6 +107,8 @@ abstract class AbstractType extends AbstractBaseClass
 
     public function __construct($dataId = null)
     {
+
+       // $this->listingClass=ContentListing::class;
 
         $this->loadContentType();
         $this->fromDataId($dataId);

@@ -159,7 +159,7 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
         (new ContentTypeDelete())->deleteById($contentType->typeId);
 
         return $this;
-    }
 
+    }
 
 }

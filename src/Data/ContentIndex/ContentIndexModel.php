@@ -34,10 +34,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_content_index_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-$this->id->visible->form = false;
-$this->id->visible->table = false;
-$this->id->visible->view = false;
-$this->id->visible->form = false;
 
 $this->contentId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
 $this->contentId->tableName = "content_content_index";

@@ -7,6 +7,7 @@ namespace Nemundo\Content\Index\Tree\Reader;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeRow;
 
+// ContentTypeChldReader
 class ChildContentTypeReader extends AbstractParentChildContentTypeReader
 {
 

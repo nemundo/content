@@ -39,10 +39,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_geo_index_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-$this->id->visible->form = false;
-$this->id->visible->table = false;
-$this->id->visible->view = false;
-$this->id->visible->form = false;
 
 $this->coordinate = new \Nemundo\Model\Type\Geo\GeoCoordinateType($this);
 $this->coordinate->tableName = "content_geo_index";

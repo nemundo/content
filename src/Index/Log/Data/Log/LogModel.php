@@ -54,10 +54,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_log_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-$this->id->visible->form = false;
-$this->id->visible->table = false;
-$this->id->visible->view = false;
-$this->id->visible->form = false;
 
 $this->dateTime = new \Nemundo\Model\Type\DateTime\CreatedDateTimeType($this);
 $this->dateTime->tableName = "content_log";
@@ -65,7 +61,6 @@ $this->dateTime->fieldName = "date_time";
 $this->dateTime->aliasFieldName = "content_log_date_time";
 $this->dateTime->label = "Date Time";
 $this->dateTime->allowNullValue = true;
-$this->dateTime->visible->form = false;
 
 $this->contentLogId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
 $this->contentLogId->tableName = "content_log";
@@ -106,7 +101,6 @@ $this->user->tableName = "content_log";
 $this->user->fieldName = "user";
 $this->user->aliasFieldName = "content_log_user";
 $this->user->label = "User";
-$this->user->visible->form = false;
 }
 return $this;
 }

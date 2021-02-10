@@ -19,7 +19,7 @@ use Nemundo\Content\Data\ContentType\ContentTypeReader;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Core\Type\Number\Number;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
@@ -36,7 +36,7 @@ class ContentTypePage extends ContentTemplate
 
         $form = new SearchForm($layout->col1);
 
-        $formRow = new BootstrapFormRow($form);
+        $formRow = new BootstrapRow($form);
 
         $application = new ApplicationListBox($formRow);
         $application->submitOnChange = true;

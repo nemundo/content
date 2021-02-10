@@ -11,7 +11,7 @@ use Nemundo\Content\Index\Search\Site\Json\SearchJsonSite;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Html\Character\HtmlCharacter;
 use Nemundo\Package\Bootstrap\Autocomplete\BootstrapAutocompleteMultipleValueTextBox;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 
 
@@ -26,7 +26,7 @@ class QueryContentSearchForm extends SearchForm
     public function getContent()
     {
 
-        $formRow = new BootstrapFormRow($this);
+        $formRow = new BootstrapRow($this);
 
         $this->query = new BootstrapAutocompleteMultipleValueTextBox($formRow);
         $this->query->name = (new SearchQueryParameter())->parameterName;

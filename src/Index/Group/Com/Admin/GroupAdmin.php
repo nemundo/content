@@ -13,7 +13,7 @@ use Nemundo\Com\TableBuilder\TableRow;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Html\Formatting\Bold;
 use Nemundo\Html\Table\Th;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
@@ -108,7 +108,7 @@ class GroupAdmin extends AbstractActionPanel
             //if ($this->filterGroupType) {
             $form = new SearchForm($layout->col1);
 
-            $formRow = new BootstrapFormRow($form);
+            $formRow = new BootstrapRow($form);
 
             $groupType =new GroupTypeListBox($formRow);
             //$groupType = new GroupTypeListBox($formRow);

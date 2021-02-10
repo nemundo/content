@@ -8,7 +8,7 @@ use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Tree\Writer\TreeWriter;
 use Nemundo\Content\Package\ContentJsPackage;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
-use Nemundo\Package\Bootstrap\Form\BootstrapFormRow;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Form\AbstractContentForm;
@@ -50,7 +50,7 @@ class ContentTreeAttachmentForm extends BootstrapForm
         $subtitle->content='Attach to ...';
 
 
-        $row=new BootstrapFormRow($this);
+        $row=new BootstrapRow($this);
 
         $contentTypeListBox = new ContentTypeListBox($row);
         $contentTypeListBox->name='content-type-attachment';

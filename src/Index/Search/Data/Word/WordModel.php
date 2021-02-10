@@ -24,10 +24,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_search_word_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-$this->id->visible->form = false;
-$this->id->visible->table = false;
-$this->id->visible->view = false;
-$this->id->visible->form = false;
 
 $this->word = new \Nemundo\Model\Type\Text\TextType($this);
 $this->word->tableName = "content_search_word";
