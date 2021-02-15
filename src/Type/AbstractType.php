@@ -46,7 +46,7 @@ abstract class AbstractType extends AbstractBaseClass
     /**
      * @var string
      */
-    protected $formClass;
+    //protected $formClass;
 
     /**
      * @var string
@@ -218,9 +218,9 @@ abstract class AbstractType extends AbstractBaseClass
     public function hasForm()
     {
         $value = false;
-        if ($this->formClass !== null) {
+        /*if ($this->formClass !== null) {
             $value = true;
-        }
+        }*/
 
         if (isset($this->formClassList[0])) {
             $value = true;
@@ -243,7 +243,7 @@ abstract class AbstractType extends AbstractBaseClass
 
         } else {
 
-            /*if ($this->formClass == null) {
+            /*if ($this->formClassList[] == null) {
                 (new LogMessage())->writeError('No Form' . $this->getClassName());
             }*/
 
@@ -305,7 +305,7 @@ abstract class AbstractType extends AbstractBaseClass
     public function getSearchForm(AbstractContainer $parent)
     {
 
-        /* if ($this->formClass == null) {
+        /* if ($this->formClassList[] == null) {
              (new LogMessage())->writeError('No Form' . $this->getClassName());
          }*/
 
@@ -373,14 +373,16 @@ abstract class AbstractType extends AbstractBaseClass
             $view = new $this->viewClassList[0]($parent);
             $view->contentType = $this;
 
-        } else {
+        }
+
+        /*else {
 
             /** @var AbstractContentView $view */
-            $view = null;
+        /*    $view = null;
             if ($this->hasView()) {
 
                 /** @var AbstractContentView $view */
-                $view = new $this->viewClass($parent);
+        /*        $view = new $this->viewClass($parent);
                 $view->contentType = $this;
 
             } else {
@@ -390,7 +392,7 @@ abstract class AbstractType extends AbstractBaseClass
 
             }
 
-        }
+        }*/
 
         return $view;
 

@@ -4,20 +4,16 @@
 namespace Nemundo\Content\Index\Tree\Page;
 
 
-use Nemundo\Admin\Com\Table\AdminClickableTable;
-use Nemundo\Com\TableBuilder\TableHeader;
+use Nemundo\Admin\Com\Table\AdminTable;
+use Nemundo\Admin\Com\Table\AdminTableHeader;
+use Nemundo\Com\FormBuilder\SearchForm;
+use Nemundo\Com\TableBuilder\TableRow;
 use Nemundo\Content\Admin\Template\ContentTemplate;
-use Nemundo\Content\App\Explorer\Content\Base\BaseContainerContentType;
-use Nemundo\Content\App\Explorer\Data\ExplorerContentType\ExplorerContentType;
-use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
-use Nemundo\Content\Index\Tree\Data\Tree\TreePaginationReader;
-use Nemundo\Content\Index\Tree\Parameter\ParentParameter;
-use Nemundo\Content\Index\Tree\Site\TreeSite;
-
-use Nemundo\Db\Sql\Order\SortOrder;
+use Nemundo\Content\Com\ListBox\ContentTypeListBox;
+use Nemundo\Content\Index\Tree\Com\Admin\RestrictedContentTypeAdmin;
+use Nemundo\Content\Index\Tree\Com\Form\RestrictedContentTypeForm;
+use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeReader;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
-use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
-use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
 class TreePage extends ContentTemplate
 {
@@ -26,7 +22,36 @@ class TreePage extends ContentTemplate
     {
 
 
-        $layout=new BootstrapTwoColumnLayout($this);
+        $admin=new RestrictedContentTypeAdmin($this);
+
+        //layout->col2);
+        //$admin->contentTypeId=$contentTypeListBox->getValue();
+
+
+        /*
+        $layout = new BootstrapTwoColumnLayout($this);
+
+        $form = new SearchForm($layout->col1);
+
+        $contentTypeListBox = new ContentTypeListBox($form);
+        $contentTypeListBox->submitOnChange = true;
+        $contentTypeListBox->searchMode = true;
+
+        if ($contentTypeListBox->hasValue()) {
+
+            $form = new RestrictedContentTypeForm($layout->col2);
+            $form->contentTypeId = $contentTypeListBox->getValue();
+
+            $admin=new RestrictedContentTypeAdmin($layout->col2);
+            $admin->contentTypeId=$contentTypeListBox->getValue();
+
+        }*/
+
+
+
+
+
+
 
 
 
@@ -103,7 +128,6 @@ class TreePage extends ContentTemplate
 
         $pagination = new BootstrapPagination($this);
         $pagination->paginationReader = $treeReader;*/
-
 
 
         return parent::getContent();

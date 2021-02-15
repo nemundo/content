@@ -63,6 +63,7 @@ class ChildTreeTable extends AbstractContentTypeContainer
             $site = clone(ViewEditSite::$site);
             $site->title = $treeRow->view->viewName;
             $site->addParameter(new TreeParameter($treeRow->id));
+            $site->addParameter(new ContentParameter());
             $row->addSite($site);
 
 

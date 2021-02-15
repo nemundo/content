@@ -50,14 +50,14 @@ $this->contentTypeId->tableName = "content_view";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_view_content_type";
 $this->contentTypeId->label = "Content Type";
-$this->contentTypeId->allowNullValue = true;
+$this->contentTypeId->allowNullValue = false;
 
 $this->viewName = new \Nemundo\Model\Type\Text\TextType($this);
 $this->viewName->tableName = "content_view";
 $this->viewName->fieldName = "view_name";
 $this->viewName->aliasFieldName = "content_view_view_name";
 $this->viewName->label = "View Name";
-$this->viewName->allowNullValue = true;
+$this->viewName->allowNullValue = false;
 $this->viewName->length = 255;
 
 $this->viewClass = new \Nemundo\Model\Type\Text\TextType($this);
@@ -65,7 +65,7 @@ $this->viewClass->tableName = "content_view";
 $this->viewClass->fieldName = "view_class";
 $this->viewClass->aliasFieldName = "content_view_view_class";
 $this->viewClass->label = "View Class";
-$this->viewClass->allowNullValue = true;
+$this->viewClass->allowNullValue = false;
 $this->viewClass->length = 255;
 
 $this->setupStatus = new \Nemundo\Model\Type\Number\YesNoType($this);
