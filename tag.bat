@@ -1,5 +1,5 @@
 git add *
 git commit -m "."
 git push
-git tag 0.7
+git tag 0.8
 git push --tags
