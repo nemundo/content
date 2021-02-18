@@ -7,21 +7,29 @@ use Nemundo\Admin\Com\Table\AdminTableHeader;
 use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableRow;
-use Nemundo\Content\Com\ListBox\ContentTypeListBox;
+use Nemundo\Content\Collection\ContentTypeCollection;
+use Nemundo\Content\Com\ListBox\ContentTypeCollectionListBox;
 use Nemundo\Content\Index\Tree\Base\RestrictedContentTypeTrait;
 use Nemundo\Content\Index\Tree\Com\Form\RestrictedContentTypeForm;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeDelete;
 use Nemundo\Content\Index\Tree\Parameter\RestrictedContentTypeParameter;
 use Nemundo\Core\Http\Url\UrlReferer;
+use Nemundo\Html\Container\AbstractContainer;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Web\Action\AbstractActionPanel;
 use Nemundo\Web\Action\ActionSite;
 use Nemundo\Web\Action\Site\DeleteActionSite;
 
-class RestrictedContentTypeAdmin extends AbstractActionPanel
+class RestrictedContentTypeCollectionAdmin extends AbstractActionPanel
 {
 
     use RestrictedContentTypeTrait;
+
+
+    /**
+     * @var ContentTypeCollection
+     */
+    public $contentTypeCollection;
 
     //public $contentTypeId;
 
@@ -35,6 +43,15 @@ class RestrictedContentTypeAdmin extends AbstractActionPanel
      */
     private $delete;
 
+
+    public function __construct(AbstractContainer $parentContainer = null)
+    {
+        parent::__construct($parentContainer);
+        $this->contentTypeCollection = new ContentTypeCollection();
+
+    }
+
+
     protected function loadActionSite()
     {
 
@@ -46,9 +63,11 @@ class RestrictedContentTypeAdmin extends AbstractActionPanel
 
             $form = new SearchForm($layout->col1);
 
-            $contentTypeListBox = new ContentTypeListBox($form);
+            $contentTypeListBox = new ContentTypeCollectionListBox($form);
+            $contentTypeListBox->contentTypeCollection = $this->contentTypeCollection;
             $contentTypeListBox->submitOnChange = true;
             $contentTypeListBox->searchMode = true;
+            //$contentTypeListBox->emptyValueAsDefault=false;
 
             if ($contentTypeListBox->hasValue()) {
 

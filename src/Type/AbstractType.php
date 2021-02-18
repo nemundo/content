@@ -85,6 +85,7 @@ abstract class AbstractType extends AbstractBaseClass
      * @var AbstractSite
      */
     protected $viewSite;
+    // site
 
     /**
      * @var string
@@ -103,6 +104,7 @@ abstract class AbstractType extends AbstractBaseClass
     protected $deletable = true;
 
 
+    // loadType
     abstract protected function loadContentType();
 
     public function __construct($dataId = null)
@@ -439,6 +441,7 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    // hasSite
     public function hasViewSite()
     {
 

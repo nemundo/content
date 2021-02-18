@@ -8,6 +8,7 @@ use Nemundo\Admin\Com\Table\AdminTable;
 use Nemundo\Admin\Com\Table\AdminTableHeader;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableRow;
+use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Admin\Template\ContentTemplate;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Tree\Com\Admin\RestrictedContentTypeAdmin;
@@ -15,7 +16,7 @@ use Nemundo\Content\Index\Tree\Com\Form\RestrictedContentTypeForm;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeReader;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 
-class TreePage extends ContentTemplate
+class TreePage extends AbstractTemplateDocument  // ContentTemplate
 {
 
     public function getContent()
@@ -23,6 +24,9 @@ class TreePage extends ContentTemplate
 
 
         $admin=new RestrictedContentTypeAdmin($this);
+
+
+
 
         //layout->col2);
         //$admin->contentTypeId=$contentTypeListBox->getValue();

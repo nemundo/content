@@ -13,6 +13,8 @@ abstract class AbstractContentUrlParameter extends AbstractUrlParameter
 
     use ContentTypeCheckTrait;
 
+
+    // getContent
     public function getContentType($checkContentType = true)
     {
 

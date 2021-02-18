@@ -7,11 +7,14 @@ namespace Nemundo\Content\Index\Tree\Type;
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Title\AdminTitle;
 use Nemundo\Admin\Com\Widget\AdminWidget;
+use Nemundo\Content\App\Explorer\Site\NewSite;
 use Nemundo\Content\Com\Container\ContentTypeFormContainer;
 use Nemundo\Content\Com\Container\ContentTypeSubmenuAddContainer;
 use Nemundo\Content\Com\Dropdown\ContentTypeCollectionSubmenuDropdown;
 use Nemundo\Content\Index\Tree\Com\Container\SortableContentContainer;
+use Nemundo\Content\Index\Tree\Com\Dropdown\RestrictedContentTypeDropdown;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
+use Nemundo\Content\Index\Tree\Event\TreeEvent;
 use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
@@ -79,7 +82,12 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
                 $title->content = $contentType->getSubject();
 
                 $contentTypeNew = $contentTypeParameter->getContentType();
-                $contentTypeNew->parentId = $contentType->getContentId();
+                //$contentTypeNew->parentId = $contentType->getContentId();
+
+                $event=new TreeEvent();
+                $event->parentId = $contentType->getContentId();
+                $contentTypeNew->addEvent($event);
+
 
                 $widget = new AdminWidget($this);
                 $widget->widgetTitle = $contentTypeNew->typeLabel;
@@ -150,6 +158,13 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
         $title = new AdminTitle($this);
         $title->content = $contentType->getSubject();
 
+        $dropdown=new RestrictedContentTypeDropdown($this);
+        $dropdown->redirectSite =  clone($this->childNew);  //clone(NewSite::$site);
+        $dropdown->redirectSite->addParameter(new ContentParameter());
+        $dropdown->contentTypeId = $contentType->typeId;
+
+
+        /*
         if ($this->contentType->allowChild) {
 
             if ($this->contentType->restrictedChild) {
@@ -176,7 +191,7 @@ class AbstractTreeContentAdmin extends AbstractContentAdmin
 
             }
 
-        }
+        }*/
 
         $container = new SortableContentContainer($this);
         $container->contentType = $contentType;

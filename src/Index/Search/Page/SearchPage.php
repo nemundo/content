@@ -6,7 +6,10 @@ namespace Nemundo\Content\Index\Search\Page;
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Com\TableBuilder\TableHeader;
+use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Admin\Template\ContentTemplate;
+use Nemundo\Content\App\Explorer\Com\Container\SearchContainer;
+use Nemundo\Content\App\Explorer\Site\ExplorerSite;
 use Nemundo\Content\Index\Search\Com\Form\QueryContentSearchForm;
 use Nemundo\Content\Index\Search\Parameter\SearchQueryParameter;
 use Nemundo\Content\Index\Search\Reader\SearchItemReader;
@@ -22,12 +25,19 @@ use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Web\Site\Site;
 
-class SearchPage extends ContentTemplate
+class SearchPage extends AbstractTemplateDocument  // ContentTemplate
 {
 
     public function getContent()
     {
 
+
+        $contanier = new SearchContainer($this);
+
+//        $contanier->redirectSite = ExplorerSite::$site;
+
+
+        /*
         new QueryContentSearchForm($this);
 
         $queryParameter = new SearchQueryParameter();
@@ -95,7 +105,7 @@ class SearchPage extends ContentTemplate
                 $site = new Site();
                 $site->title = $label;
                 $site->removeParameter(new ContentTypeParameter());
-                $list->addSite($site);
+                //$list->addSite($site);
             }
 
 
@@ -111,13 +121,13 @@ class SearchPage extends ContentTemplate
                     $site->addParameter(new SearchQueryParameter());
                     $site->addParameter(new ContentTypeParameter($item->contentTypeId));
                     $site->title = $item->contentTypeLabel;
-                    $list->addSite($site);
+                    //$list->addSite($site);
 
                 }
 
             }
 
-        }
+        }*/
 
         return parent::getContent();
 
