@@ -28,7 +28,7 @@ class ContentActionSetup extends AbstractContentTypeSetup
     public function removeContentAction(AbstractContentAction $contentAction)
     {
 
-        $this->removeType($contentAction);
+//        $this->removeType($contentAction);
 
         //parent::removeTContentType($contentAction);
 
