@@ -18,20 +18,20 @@ use Nemundo\Content\Index\Tree\Site\TreeSite;
 
 use Nemundo\Web\Site\AbstractSite;
 
-class ContentSite extends AbstractSite
+class ContentAdminSite extends AbstractSite
 {
 
     /**
-     * @var ContentSite
+     * @var ContentAdminSite
      */
     public static $site;
 
     protected function loadSite()
     {
-        $this->title = 'Content';
-        $this->url = 'content';
+        $this->title = 'Content Admin';
+        $this->url = 'content-admin';
 
-        ContentSite::$site = $this;
+        ContentAdminSite::$site = $this;
 
         new ContentNewSite($this);
         new ContentRemoveSite($this);
