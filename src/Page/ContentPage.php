@@ -12,6 +12,7 @@ use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\App\Explorer\Site\ExplorerSite;
 use Nemundo\Content\App\Explorer\Site\ListingSite;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
+use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentModel;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
@@ -68,21 +69,13 @@ class ContentPage extends AbstractTemplateDocument
             if ($contentType->hasList()) {
 
                 $list = $contentType->getListing($layout->col1);
-                //$list->redirectSite = ContentSite::$site;  // ExplorerSite::$site;  // ListingSite::$site;  // ExplorerSite::$site;
-                //$list->redirectSite->addParameter(new ContentTypeParameter());
+
+                $list->redirectSite = ContentSite::$site;  // ExplorerSite::$site;  // ListingSite::$site;  // ExplorerSite::$site;
+                $list->redirectSite->addParameter(new ContentTypeParameter());
 
             }
 
-            if ($contentType->hasForm()) {
 
-                $widget=new AdminWidget($layout->col2);
-                $widget->widgetTitle='New';
-
-                $form = $contentType->getDefaultForm($widget);
-                $form->redirectSite = clone(ContentSite::$site);
-                $form->redirectSite->addParameter(new ContentTypeParameter());
-                //$list->redirectSite = ExplorerSite::$site;
-            }
 
 
             $contentParameter = new ContentParameter();
@@ -90,8 +83,26 @@ class ContentPage extends AbstractTemplateDocument
 
                 $content = $contentParameter->getContentType(false);
                 if ($content->hasView()) {
-                    $content->getDefaultView($layout->col2);
+                    //$content->getDefaultView($layout->col2);
+
+                    $widget=new ContentWidget($layout->col2);
+                    $widget->contentType=$content;
+
                 }
+
+            } else {
+
+                if ($contentType->hasForm()) {
+
+                    $widget=new AdminWidget($layout->col2);
+                    $widget->widgetTitle='New';
+
+                    $form = $contentType->getDefaultForm($widget);
+                    $form->redirectSite = clone(ContentSite::$site);
+                    $form->redirectSite->addParameter(new ContentTypeParameter());
+                    //$list->redirectSite = ExplorerSite::$site;
+                }
+
 
             }
 

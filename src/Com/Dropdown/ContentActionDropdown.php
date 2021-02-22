@@ -20,6 +20,28 @@ class ContentActionDropdown extends BootstrapSiteDropdown
     public function getContent()
     {
 
+        foreach ($this->getContentActionList() as $contentAction) {
+
+            $site = clone(ContentActionSite::$site);
+            $site->title = $contentAction->actionLabel;
+            $site->addParameter(new ContentParameter($this->contentId));
+            $site->addParameter(new ContentActionParameter($contentAction->typeId));
+
+            $this->addSite($site);
+        }
+
+
+        return parent::getContent();
+
+    }
+
+
+
+
+
+    public function addAllAction() {
+
+
 
         $reader = new ContentActionReader();
         $reader->model->loadContentType();
@@ -52,9 +74,8 @@ class ContentActionDropdown extends BootstrapSiteDropdown
 
         }
 
-        return parent::getContent();
-
     }
+
 
 
 }

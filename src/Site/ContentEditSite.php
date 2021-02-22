@@ -31,19 +31,6 @@ class ContentEditSite extends AbstractEditIconSite
 
         (new ContentEditPage())->render();
 
-        /*
-        $page = (new DefaultTemplateFactory())->getDefaultTemplate();
-
-        $contentParameter = new ContentParameter();
-        $contentParameter->contentTypeCheck = false;
-        $contentType = $contentParameter->getContentType();
-
-        $form = $contentType->getDefaultForm($page);
-        new UrlRefererHiddenInput($form);
-        $form->redirectSite = new UrlRefererSite();
-
-        $page->render();*/
-
     }
 
 }

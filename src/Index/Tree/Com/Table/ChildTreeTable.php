@@ -13,6 +13,7 @@ use Nemundo\Content\Index\Tree\Reader\ChildContentReader;
 use Nemundo\Content\Index\Tree\Reader\ChildContentTypeReader;
 use Nemundo\Content\Index\Tree\Site\ChildDeleteSite;
 use Nemundo\Content\Parameter\ContentParameter;
+use Nemundo\Content\Site\ContentEditSite;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
 
@@ -65,6 +66,12 @@ class ChildTreeTable extends AbstractContentTypeContainer
             $site->addParameter(new TreeParameter($treeRow->id));
             $site->addParameter(new ContentParameter());
             $row->addSite($site);
+
+
+
+            $site = clone(ContentEditSite::$site);
+            $site->addParameter(new ContentParameter($treeRow->childId));
+            $row->addIconSite($site);
 
 
 

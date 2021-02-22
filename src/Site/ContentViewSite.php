@@ -22,7 +22,7 @@ class ContentViewSite extends AbstractIconSite
     protected function loadSite()
     {
 
-        $this->url = 'content-item';
+        $this->url = 'content-view';
         $this->icon=new ViewIcon();
         $this->menuActive = false;
         ContentViewSite::$site = $this;

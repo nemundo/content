@@ -3,91 +3,75 @@
 namespace Nemundo\Content\Com\Widget;
 
 
-use Nemundo\Admin\Com\Widget\AdminWidget;
-use Nemundo\Com\FormBuilder\SearchForm;
+use Nemundo\Content\Action\ContentActionTrait;
+use Nemundo\Content\Action\EditContentAction;
+use Nemundo\Content\Builder\ContentViewBuilder;
 use Nemundo\Content\Com\Dropdown\ContentActionDropdown;
-use Nemundo\Content\Com\Input\ContentHiddenInput;
-use Nemundo\Content\Com\ListBox\ContentViewListBox;
-use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Type\AbstractContentType;
-use Nemundo\Content\View\AbstractContentView;
+use Nemundo\Html\Block\Div;
+use Nemundo\Html\Formatting\Italic;
 use Nemundo\Html\Heading\H5;
-use Nemundo\Html\Inline\Span;
 use Nemundo\Package\Bootstrap\Card\BootstrapCard;
-use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 
 class ContentWidget extends BootstrapCard  // AdminWidget
 {
+
+    use ContentActionTrait;
 
     /**
      * @var AbstractContentType
      */
     public $contentType;
 
+    public $viewId;
+
+    public $widgetTitle;
 
     public function getContent()
     {
 
+        $div = new Div($this->cardHeader);
+        $div->addCssClass('d-flex justify-content-between align-items-center');
 
-        /*
-        <div class="card">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>*/
+        $divTitle = new Div($div);
 
 
+        $title = $this->widgetTitle;
+        if ( $title== null) {
+            $title=$this->contentType->getSubject();
+        }
 
-        //$this->widgetTitle = $this->contentType->getSubject();
+        $h5 = new H5($divTitle);
+        $h5->content = $title;
 
+        $divMenu = new Div($div);
 
-        $row = new BootstrapRow($this->cardHeader);
-
-        $h5 = new H5($this->cardHeader);
-        $h5->content = $this->contentType->getSubject();
-
-
-
-        $dropdown = new ContentActionDropdown($row);  //$this->cardTitle);
+        $dropdown = new ContentActionDropdown($divMenu);
         $dropdown->contentId = $this->contentType->getContentId();
+        $dropdown->showToggle = false;
+
+        foreach ($this->getContentActionList() as $action) {
+            $dropdown->addContentAction($action);
+        }
 
 
-        //$form=new ContentViewChangeForm($this->cardTitle);
-        //$form->
 
-        $form = new SearchForm($row);   // ($this->cardTitle);
-
-        //$row = new BootstrapRow($form);
-
-        $viewListBox = new ContentViewListBox($form);
-        $viewListBox->contentType = $this->contentType;
-        $viewListBox->submitOnChange = true;
-        $viewListBox->searchMode = true;
-
-        new ContentHiddenInput($form);
+        $i = new Italic($dropdown->dropdownButton);
+        $i->addCssClass('fa fa-ellipsis-v');
 
 
 
 
+        if ($this->viewId == null) {
 
-
-        if ($viewListBox->hasValue()) {
-
-            $viewRow = (new ContentViewReader())->getRowById($viewListBox->getValue());
-
-            $class = $viewRow->viewClass;
-
-            /** @var AbstractContentView $view */
-            $view = new $class($this);
-            $view->contentType = $this->contentType;
-
-        } else {
             $this->contentType->getDefaultView($this);
+        } else {
+
+            $builder = new ContentViewBuilder();
+            $builder->contentType = $this->contentType;
+            $builder->viewId = $this->viewId;
+            $builder->getView($this);
+
         }
 
 

@@ -4,7 +4,9 @@ namespace Nemundo\Content\Page;
 
 
 use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererHiddenInput;
+use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererRequest;
 use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererSite;
+use Nemundo\Com\Html\Hyperlink\UrlHyperlink;
 use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Parameter\ContentParameter;
 
@@ -19,8 +21,15 @@ class ContentEditPage extends AbstractTemplateDocument
         $contentType = $contentParameter->getContentType();
 
         $form = $contentType->getDefaultForm($this);
-        new UrlRefererHiddenInput($form);
+        $hidden = new UrlRefererHiddenInput($form);
         $form->redirectSite = new UrlRefererSite();
+
+
+        /*
+        $hyperlink = new UrlHyperlink($this);
+        $hyperlink->content = 'Zurück '. (new UrlRefererRequest())->getValue();
+        $hyperlink->url = (new UrlRefererRequest())->getValue();
+*/
 
         return parent::getContent();
 
