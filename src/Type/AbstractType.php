@@ -402,6 +402,24 @@ abstract class AbstractType extends AbstractBaseClass
 
 
 
+    public function getDefaultViewId() {
+
+        $viewId=null;
+
+        $reader = new ContentViewReader();
+        $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+        $reader->limit = 1;
+        foreach ($reader->getData() as $viewRow) {
+            $viewId=$viewRow->id;
+        }
+
+        return $viewId;
+
+    }
+
+
+
+
     public function getView($viewId, AbstractContainer $parent = null) {
 
 

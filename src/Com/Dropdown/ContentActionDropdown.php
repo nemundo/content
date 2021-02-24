@@ -39,7 +39,7 @@ class ContentActionDropdown extends BootstrapSiteDropdown
 
 
 
-    public function addAllAction() {
+    public function addDefaultAction() {
 
 
 

@@ -18,4 +18,13 @@ abstract class AbstractContentAction extends AbstractType
 
     }
 
+
+
+    public function isMenuVisible() {
+
+        return true;
+
+    }
+
+
 }

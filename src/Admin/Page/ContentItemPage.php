@@ -43,7 +43,7 @@ class ContentItemPage extends ContentTemplate
     {
 
 
-        $contentType = (new ContentParameter())->getContentType(false);
+        $contentType = (new ContentParameter())->getContent(false);
 
         $contentReader = new ContentReader();
         //$contentReader->model->loadUser();

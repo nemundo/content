@@ -11,6 +11,7 @@ use Nemundo\Content\Action\EditContentAction;
 use Nemundo\Content\Action\ViewContentAction;
 use Nemundo\Content\Application\ContentApplication;
 use Nemundo\Content\Data\ContentModelCollection;
+use Nemundo\Content\Index\Geo\Application\GeoApplication;
 use Nemundo\Content\Index\Geo\Install\GeoIndexInstall;
 use Nemundo\Content\Index\Log\Install\LogInstall;
 use Nemundo\Content\Index\Relation\Application\RelationApplication;
@@ -32,8 +33,7 @@ class ContentInstall extends AbstractInstall
 
         (new ApplicationSetup())
             ->addApplication(new ContentApplication())
-        ->addApplication(new RelationApplication())
-        ;
+            ->addApplication(new RelationApplication());
 
         (new ModelCollectionSetup())
             ->addCollection(new ContentModelCollection());
@@ -56,7 +56,10 @@ class ContentInstall extends AbstractInstall
 
         //(new TreeInstall())->install();
         //(new SearchIndexInstall())->install();
-        (new GeoIndexInstall())->install();
+        //(new GeoIndexInstall())->install();
+
+      //  (new GeoApplication())->installApp();
+
         //(new GroupInstall())->install();
         (new LogInstall())->install();
 

@@ -31,26 +31,6 @@ class ChildTreeTable extends AbstractContentTypeContainer
         $header->addText('View');
         $header->addEmpty();
 
-        /*
-        $reader = new ChildContentTypeReader();
-        $reader->contentType = $this->contentType;
-
-        foreach ($reader->getData() as $contentType) {
-
-            $row = new BootstrapClickableTableRow($table);
-            $row->addText($contentType->getSubject());
-            $row->addText($contentType->typeLabel);
-
-            //$site = clone(ChildDe)
-
-
-            $site = clone($this->redirectSite);
-            $site->addParameter(new ContentParameter($contentType->getContentId()));
-            $row->addClickableSite($site);
-
-        }*/
-
-
         $reader = new ChildContentReader();
         $reader->contentType = $this->contentType;
         foreach ($reader->getData() as $treeRow) {
@@ -73,12 +53,9 @@ class ChildTreeTable extends AbstractContentTypeContainer
             $site->addParameter(new ContentParameter($treeRow->childId));
             $row->addIconSite($site);
 
-
-
             $site = clone(ChildDeleteSite::$site);
             $site->addParameter(new TreeParameter($treeRow->id));
             $row->addIconSite($site);
-
 
             $site = clone($this->redirectSite);
             $site->addParameter(new ContentParameter($treeRow->childId));

@@ -43,7 +43,7 @@ class ContentListing extends AbstractContentListing
 
             $dropdown = new ContentActionDropdown($row);
             $dropdown->contentId = $contentRow->id;
-            $dropdown->addAllAction();
+            $dropdown->addDefaultAction();
 
         }
 

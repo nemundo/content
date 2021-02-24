@@ -144,7 +144,12 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
 
             if ($contentCount == $contentCountTmp) {
                 (new \Nemundo\Core\Log\LogMessage())->writeError('Invalid Content. Could not delete.');
-                exit;
+                //exit;
+
+                $delete = new ContentDelete();
+                $delete->filter->andEqual($delete->model->contentTypeId, $contentType->typeId);
+                $delete->delete();
+
             }
             $contentCountTmp=$contentCount;
 

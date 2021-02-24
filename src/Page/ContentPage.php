@@ -81,12 +81,13 @@ class ContentPage extends AbstractTemplateDocument
             $contentParameter = new ContentParameter();
             if ($contentParameter->hasValue()) {
 
-                $content = $contentParameter->getContentType(false);
+                $content = $contentParameter->getContent(false);
                 if ($content->hasView()) {
                     //$content->getDefaultView($layout->col2);
 
                     $widget=new ContentWidget($layout->col2);
                     $widget->contentType=$content;
+                    $widget->loadAction=true;
 
                 }
 

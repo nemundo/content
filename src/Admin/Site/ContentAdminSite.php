@@ -14,7 +14,7 @@ use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
 use Nemundo\Content\Index\Group\Site\GroupSite;
 use Nemundo\Content\Index\Search\Site\SearchSite;
 use Nemundo\Content\Index\Search\Site\SearchWordSite;
-use Nemundo\Content\Index\Tree\Site\TreeSite;
+use Nemundo\Content\Index\Tree\Site\TreeAdminSite;
 
 use Nemundo\Web\Site\AbstractSite;
 
@@ -47,7 +47,7 @@ class ContentAdminSite extends AbstractSite
 
         new GroupSite($this);
         new GeoIndexSite($this);
-        new TreeSite($this);
+        new TreeAdminSite($this);
         new ImportSite($this);
 
         new ContentItemSite($this);

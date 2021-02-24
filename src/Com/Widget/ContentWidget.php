@@ -22,10 +22,17 @@ class ContentWidget extends BootstrapCard  // AdminWidget
      * @var AbstractContentType
      */
     public $contentType;
+//content
+
 
     public $viewId;
 
     public $widgetTitle;
+
+    /**
+     * @var bool
+     */
+    public $loadAction=false;
 
     public function getContent()
     {
@@ -54,6 +61,9 @@ class ContentWidget extends BootstrapCard  // AdminWidget
             $dropdown->addContentAction($action);
         }
 
+        if ($this->loadAction) {
+            $dropdown->addDefaultAction();
+        }
 
 
         $i = new Italic($dropdown->dropdownButton);

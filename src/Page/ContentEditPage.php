@@ -18,7 +18,7 @@ class ContentEditPage extends AbstractTemplateDocument
 
         $contentParameter = new ContentParameter();
         $contentParameter->contentTypeCheck = false;
-        $contentType = $contentParameter->getContentType();
+        $contentType = $contentParameter->getContent();
 
         $form = $contentType->getDefaultForm($this);
         $hidden = new UrlRefererHiddenInput($form);
