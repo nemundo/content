@@ -23,8 +23,10 @@ class ContentSite extends AbstractSite
         ContentSite::$site = $this;
 
         new ContentViewSite($this);
+        new ContentNewSite($this);
         new ContentEditSite($this);
         new ContentDeleteSite($this);
+        new ContentActionSite($this);
 
     }
 

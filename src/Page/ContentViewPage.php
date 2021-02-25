@@ -7,11 +7,18 @@ namespace Nemundo\Content\Page;
 use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Action\AbstractContentAction;
+use Nemundo\Content\App\Explorer\Site\NewSite;
 use Nemundo\Content\Com\Form\ContentViewSearchForm;
 use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Data\ContentAction\ContentActionReader;
+use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
+use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
+use Nemundo\Content\Index\Tree\Com\Dropdown\RestrictedContentTypeDropdown;
+use Nemundo\Content\Index\Tree\Reader\ChildContentReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentViewParameter;
+use Nemundo\Content\Site\ContentNewSite;
+use Nemundo\Content\Site\ContentViewSite;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 
 class ContentViewPage extends AbstractTemplateDocument
@@ -37,19 +44,36 @@ class ContentViewPage extends AbstractTemplateDocument
 //        $view->contentType = $contentType;
 
 
-       $form= new ContentViewSearchForm($layout->col1);
-        $form->contentType=$contentType;
+
+
+        $breadcrumb=new TreeBreadcrumb($layout->col1);
+        $breadcrumb->redirectSite=ContentViewSite::$site;
+        $breadcrumb->addParentContentType($contentType);
+        $breadcrumb->addContentType($contentType);
+
+      /*  $dropdown=new RestrictedContentTypeDropdown($layout->col1);
+        $dropdown->redirectSite = clone(ContentNewSite::$site);
+        $dropdown->redirectSite->addParameter(new ContentParameter());
+        $dropdown->contentTypeId = $contentType->typeId;*/
+
+
+        //$form = new ContentViewSearchForm($layout->col1);
+        //$form->contentType = $contentType;
+
+
 
         $widget = new ContentWidget($layout->col1);
         $widget->contentType = $contentType;
-$widget->viewId= (new ContentViewParameter())->getValue();
+        $widget->viewId = (new ContentViewParameter())->getValue();
+        //$widget->loadAction=true;
+        $widget->redirectSite=ContentViewSite::$site;
 
 
 
-
-
-
-
+        /*
+        $container = new TreeIndexContainer($layout->col2);
+        $container->contentType = $contentType;
+        $container->redirectSite= ContentViewSite::$site;*/
 
 
 
@@ -64,7 +88,7 @@ $widget->viewId= (new ContentViewParameter())->getValue();
             //$this->addContentAction($actionRow->contentType->getContentType());
 
             /** @var AbstractContentAction $actionContentType */
-            $actionContentType = $actionRow->contentType->getContentType();
+           $actionContentType = $actionRow->contentType->getContentType();
 
             if ($actionContentType->hasView()) {
 
@@ -78,6 +102,27 @@ $widget->viewId= (new ContentViewParameter())->getValue();
             }
 
         }
+
+
+
+        /*
+
+        $reader = new ChildContentReader();
+        $reader->contentType = $contentType;
+        foreach ($reader->getData() as $treeRow) {
+
+            $widget = new ContentWidget($layout->col1);
+            $widget->contentType = $treeRow->child->getContentType();
+            $widget->redirectSite= ContentViewSite::$site;
+
+            //$treeRow->child->getContentType()->getDefaultView($layout->col1);
+
+        }*/
+
+
+
+
+
 
         return parent::getContent();
 

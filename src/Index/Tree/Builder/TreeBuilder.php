@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nemundo\Content\Index\Tree\Writer;
+namespace Nemundo\Content\Index\Tree\Builder;
 
 
 use Nemundo\Content\Builder\ContentBuilder;
@@ -12,7 +12,7 @@ use Nemundo\Content\Index\Tree\Data\Tree\TreeValue;
 use Nemundo\Core\Base\AbstractBase;
 
 // TreeBuilder
-class TreeWriter extends AbstractBase
+class TreeBuilder extends AbstractBase
 {
 
     public $parentId;
@@ -38,13 +38,14 @@ class TreeWriter extends AbstractBase
         $content = (new ContentBuilder())->getContent($this->childId);
 
 
+        /*
         $viewId = 0;
         $reader = new ContentViewReader();
         $reader->filter->andEqual($reader->model->contentTypeId, $content->typeId);
         $reader->limit=1;
         foreach ($reader->getData() as $viewRow) {
             $viewId = $viewRow->id;
-        }
+        }*/
 
 
         $data = new Tree();
@@ -52,7 +53,7 @@ class TreeWriter extends AbstractBase
         $data->parentId = $this->parentId;
         $data->childId = $this->childId;
         $data->itemOrder = $itemOrder;
-        $data->viewId = $viewId;  //  $this->viewId;
+        $data->viewId = $content->getDefaultViewId();  // $viewId;  //  $this->viewId;
         $data->save();
 
 

@@ -16,6 +16,7 @@ use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentModel;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
+use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\ContentSite;
@@ -38,15 +39,9 @@ class ContentPage extends AbstractTemplateDocument
     {
 
 
-
-
         $form = new SearchForm($this);
 
-        $formRow = new BootstrapColumn($form);  // new BootstrapRow() new DashboardRow() new BootstrapRow($form);
-
-
-        //new BootstrapTwoColumnLayout()
-
+        $formRow = new BootstrapColumn($form);
         $formRow->columnWidth= 2;
 
 
@@ -88,6 +83,12 @@ class ContentPage extends AbstractTemplateDocument
                     $widget=new ContentWidget($layout->col2);
                     $widget->contentType=$content;
                     $widget->loadAction=true;
+                    $widget->redirectSite= ContentSite::$site;
+
+                    $container = new TreeIndexContainer($layout->col2);
+                    $container->contentType= $content;
+                    $container->redirectSite=ContentSite::$site;
+
 
                 }
 

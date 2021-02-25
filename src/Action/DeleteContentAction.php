@@ -27,6 +27,10 @@ class DeleteContentAction extends AbstractContentAction
         $content = (new ContentBuilder())->getContent($this->actionContentId);
         $content->deleteType();
 
+
+        // redirect --> remove content parameter
+
+
     }
 
 

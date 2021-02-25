@@ -6,7 +6,7 @@ namespace Nemundo\Content\Parameter;
 
 use Nemundo\Web\Parameter\AbstractUrlParameter;
 
-
+// ViewParameter
 class ContentViewParameter extends AbstractUrlParameter
 {
 
@@ -17,6 +17,7 @@ class ContentViewParameter extends AbstractUrlParameter
     }
 
 
+    /*
     public function getValue()
     {
 
@@ -27,7 +28,7 @@ class ContentViewParameter extends AbstractUrlParameter
 
         return $value;
 
-    }
+    }*/
 
 
 }
