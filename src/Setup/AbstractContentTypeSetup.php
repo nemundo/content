@@ -5,7 +5,6 @@ namespace Nemundo\Content\Setup;
 
 
 use Nemundo\App\Application\Setup\AbstractSetup;
-
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentDelete;
 use Nemundo\Content\Data\Content\ContentReader;
@@ -19,7 +18,6 @@ use Nemundo\Content\Data\ContentView\ContentViewDelete;
 use Nemundo\Content\Data\ContentView\ContentViewUpdate;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
-use Nemundo\Core\Debug\Debug;
 use Nemundo\Core\Language\Translation;
 
 abstract class AbstractContentTypeSetup extends AbstractSetup
@@ -73,7 +71,7 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
                 $data = new ContentView();
                 $data->contentTypeId = $contentType->typeId;
                 $data->viewName = $view->viewName;
-                $data->viewClass  = $view->getClassName();
+                $data->viewClass = $view->getClassName();
                 $data->setupStatus = true;
                 $data->save();
             } else {
@@ -151,7 +149,7 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
                 $delete->delete();
 
             }
-            $contentCountTmp=$contentCount;
+            $contentCountTmp = $contentCount;
 
         } while ($contentCount > 0);
 
@@ -167,7 +165,8 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
     }
 
 
-    public function removeType(AbstractType $type) {
+    public function removeType(AbstractType $type)
+    {
 
         (new ContentTypeDelete())->deleteById($type->typeId);
         return $this;

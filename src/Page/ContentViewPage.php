@@ -65,7 +65,7 @@ class ContentViewPage extends AbstractTemplateDocument
         $widget = new ContentWidget($layout->col1);
         $widget->contentType = $contentType;
         $widget->viewId = (new ContentViewParameter())->getValue();
-        //$widget->loadAction=true;
+        $widget->loadAction=true;
         $widget->redirectSite=ContentViewSite::$site;
 
 
@@ -97,7 +97,8 @@ class ContentViewPage extends AbstractTemplateDocument
                 $widget = new AdminWidget($layout->col2);
                 $widget->widgetTitle = $actionContentType->typeLabel;
 
-                $actionContentType->getDefaultView($widget);
+                $view =  $actionContentType->getDefaultView($widget);
+$view->redirectSite= ContentViewSite::$site;
 
             }
 

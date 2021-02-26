@@ -61,7 +61,7 @@ class ContentInstall extends AbstractInstall
       //  (new GeoApplication())->installApp();
 
         //(new GroupInstall())->install();
-        (new LogInstall())->install();
+       // (new LogInstall())->install();
 
     }
 

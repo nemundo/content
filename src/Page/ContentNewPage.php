@@ -9,6 +9,8 @@ use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererRequest;
 use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererSite;
 use Nemundo\Com\Html\Hyperlink\UrlHyperlink;
 use Nemundo\Com\Template\AbstractTemplateDocument;
+use Nemundo\Content\App\Explorer\Site\ExplorerSite;
+use Nemundo\Content\Com\Container\ContentTypeFormContainer;
 use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
 use Nemundo\Content\Index\Tree\Event\TreeEvent;
 use Nemundo\Content\Parameter\ContentParameter;
@@ -45,9 +47,19 @@ class ContentNewPage extends AbstractTemplateDocument
         $widget->widgetTitle = $contentType->typeLabel;
 
 
+        /*
         $form = $contentType->getDefaultForm($widget);
         $hidden = new UrlRefererHiddenInput($form);
-        $form->redirectSite = new UrlRefererSite();
+        $form->redirectSite = new UrlRefererSite();*/
+
+
+        $container = new ContentTypeFormContainer($widget);
+        $container->contentType = $contentType;
+        $container->redirectSite =  new UrlRefererSite();  //clone(ExplorerSite::$site);
+        //$container->redirectSite->addParameter($contentParamter);
+
+
+
 
 
         /*

@@ -4,6 +4,7 @@
 namespace Nemundo\Content\Type;
 
 
+use Nemundo\Content\Data\ContentType\ContentTypeCount;
 use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Form\AbstractContentFormPart;
@@ -537,6 +538,24 @@ abstract class AbstractType extends AbstractBaseClass
         return !$this->createMode;
 
     }
+
+
+
+    public function isInstalled() {
+
+        $value = false;
+
+        $count=new ContentTypeCount();
+        $count->filter->andEqual($count->model->id,$this->typeId);
+        if ($count->getCount() == 1) {
+            $value=true;
+        }
+
+        return $value;
+
+    }
+
+
 
 
     /*

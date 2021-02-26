@@ -35,6 +35,11 @@ class ContentWidget extends BootstrapCard  // AdminWidget
 
     public $showHeader = true;
 
+    /**
+     * @var bool
+     */
+    public $showMenu = true;
+
     public $widgetTitle;
 
     /**
@@ -64,76 +69,83 @@ class ContentWidget extends BootstrapCard  // AdminWidget
         $h5 = new H5($divTitle);
         $h5->content = $title;
 
-        $divMenu = new Div($divTitle);
+
+        if ($this->showMenu) {
+
+            $divMenu = new Div($divTitle);
+
+            $dropdown = new RestrictedContentTypeDropdown($divMenu);
+            $dropdown->redirectSite = clone(ContentNewSite::$site);
+            $dropdown->redirectSite->addParameter(new ContentParameter());
+            $dropdown->contentTypeId = $this->contentType->typeId;
 
 
-        $dropdown = new RestrictedContentTypeDropdown($divMenu);
-        $dropdown->redirectSite = clone(ContentNewSite::$site);
-        $dropdown->redirectSite->addParameter(new ContentParameter());
-        $dropdown->contentTypeId = $this->contentType->typeId;
+            $dropdown = new BootstrapSiteDropdown($divMenu);
+
+            //$dropdown->showToggle=false;
+
+            $i = new Italic($dropdown->dropdownButton);
+            $i->addCssClass('fa fa-file');
+
+            $reader = new ContentViewReader();
+            $reader->filter->andEqual($reader->model->contentTypeId, $this->contentType->typeId);
+            $reader->addOrder($reader->model->viewName);
+            foreach ($reader->getData() as $viewRow) {
+
+                if ($this->redirectSite !== null) {
+
+                    $site = clone($this->redirectSite);  // new Site();
+                    $site->title = $viewRow->viewName;
+                    $site->addParameter(new ContentParameter());
+                    $site->addParameter(new ContentViewParameter($viewRow->id));
+
+                    //(new Debug())->write($site->getUrl());
+                    //(new Debug())->write($viewRow->id);
 
 
-        $dropdown = new BootstrapSiteDropdown($divMenu);
+                    $dropdown->addSite($site);
+                }
 
-        //$dropdown->showToggle=false;
+                //$dropdown->addItem($viewRow->viewName,'');
+                //$this->addItem($viewRow->id, $viewRow->viewName);
 
-        $i = new Italic($dropdown->dropdownButton);
-        $i->addCssClass('fa fa-file');
-
-        $reader = new ContentViewReader();
-        $reader->filter->andEqual($reader->model->contentTypeId, $this->contentType->typeId);
-        $reader->addOrder($reader->model->viewName);
-        foreach ($reader->getData() as $viewRow) {
-
-            $site = clone($this->redirectSite);  // new Site();
-            $site->title = $viewRow->viewName;
-            $site->addParameter(new ContentParameter());
-            $site->addParameter(new ContentViewParameter($viewRow->id));
-
-            //(new Debug())->write($site->getUrl());
-            //(new Debug())->write($viewRow->id);
+            }
 
 
-            $dropdown->addSite($site);
+            $dropdown = new ContentActionDropdown($divMenu);
+            $dropdown->contentId = $this->contentType->getContentId();
+            $dropdown->showToggle = false;
+
+            foreach ($this->getContentActionList() as $action) {
+                $dropdown->addContentAction($action);
+            }
+
+            if ($this->loadAction) {
+                $dropdown->addDefaultAction();
+            }
 
 
-            //$dropdown->addItem($viewRow->viewName,'');
-            //$this->addItem($viewRow->id, $viewRow->viewName);
+            $i = new Italic($dropdown->dropdownButton);
+            $i->addCssClass('fa fa-ellipsis-v');
 
         }
 
 
-        $dropdown = new ContentActionDropdown($divMenu);
-        $dropdown->contentId = $this->contentType->getContentId();
-        $dropdown->showToggle = false;
-
-        foreach ($this->getContentActionList() as $action) {
-            $dropdown->addContentAction($action);
-        }
-
-        if ($this->loadAction) {
-            $dropdown->addDefaultAction();
-        }
-
-
-        $i = new Italic($dropdown->dropdownButton);
-        $i->addCssClass('fa fa-ellipsis-v');
-
-
+        $view = null;
         if ($this->viewId == null) {
 
             $view = $this->contentType->getDefaultView($this);
-            $view->redirectSite = $this->redirectSite;
 
         } else {
 
             $builder = new ContentViewBuilder();
             $builder->contentType = $this->contentType;
             $builder->viewId = $this->viewId;
-            $builder->getView($this);
+            $view = $builder->getView($this);
 
         }
 
+        $view->redirectSite = $this->redirectSite;
 
         return parent::getContent();
 

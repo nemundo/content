@@ -32,7 +32,7 @@ class SearchSite extends AbstractSite
         new SearchContentTypeJsonSite($this);
 
 
-        new ContentViewSite($this);
+        //new ContentViewSite($this);
 
 
     }
