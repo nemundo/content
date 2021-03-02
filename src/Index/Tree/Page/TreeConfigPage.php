@@ -14,17 +14,18 @@ use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Tree\Com\Admin\RestrictedContentTypeAdmin;
 use Nemundo\Content\Index\Tree\Com\Form\RestrictedContentTypeForm;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeReader;
+use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 
-class TreeAdminPage extends AbstractTemplateDocument  // ContentTemplate
+class TreeConfigPage extends AbstractTemplateDocument  // ContentTemplate
 {
 
     public function getContent()
     {
 
 
-        new RestrictedContentTypeAdmin($this);
-
+        $admin = new RestrictedContentTypeAdmin($this);
+$admin->contentTypeId= (new ContentTypeParameter())->getValue();
 
 
 
