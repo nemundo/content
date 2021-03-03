@@ -30,7 +30,7 @@ class ViewChangeDropdown extends BootstrapSiteDropdown
 
         //$this->showToggle=true;
 
-        $this->dropdownButton->addCssClass('btn-primary dropdown-toggle');
+        //$this->dropdownButton->addCssClass('btn-primary dropdown-toggle');
 
         $reader = new ContentViewReader();
         $reader->filter->andEqual($reader->model->contentTypeId, $this->contentType->typeId);

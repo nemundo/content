@@ -2,14 +2,20 @@
 
 namespace Nemundo\Content\Index\Geo\Site\Kml;
 
+use Hikefly\App\Hike\Content\Hike\HikeContentType;
+use Hikefly\App\Hike\Data\Hike\HikeReader;
+use Nemundo\Com\Html\Hyperlink\UrlHyperlink;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Content\Parameter\ContentParameter;
+use Nemundo\Core\Type\Text\Html;
 use Nemundo\Geo\Kml\Document\KmlDocument;
 use Nemundo\Geo\Kml\Object\KmlMarker;
 use Nemundo\Html\Container\Container;
+use Nemundo\Html\Paragraph\Paragraph;
+use Nemundo\Package\Bootstrap\Image\BootstrapResponsiveImage;
 use Nemundo\Package\FontAwesome\Site\AbstractKmlIconSite;
 
-class GeoIndexKmlSite extends AbstractKmlIconSite
+class GeoContentKmlSite extends AbstractKmlIconSite
 {
 
     /**
@@ -35,22 +41,14 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
 
         $reader = new GeoIndexReader();
         $reader->model->loadContent();
-        $reader->model->content->loadContentType();
-
-        $contentParameter = new ContentParameter();
-        if ($contentParameter->hasValue()) {
-            $reader->filter->andEqual($reader->model->contentId, $contentParameter->getValue());
-        }
-
-        foreach ($reader->getData() as $geoIndexRow) {
+  $reader->filter->andEqual($reader->model->contentId,(new ContentParameter())->getValue());
+        foreach ($reader->getData() as $hikeRow) {
 
             $placemark = new KmlMarker($kml);
-            $placemark->label = $geoIndexRow->content->subject;
-            $placemark->coordinate = $geoIndexRow->coordinate;
+            $placemark->label = $hikeRow->content->subject;
+            $placemark->coordinate = $hikeRow->coordinate;
 
             //$description = new Container();
-
-            $view = $geoIndexRow->content->getContentType()->getDefaultView();
 
             /*
             $p = new Paragraph($description);
@@ -64,7 +62,7 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
             $hyperlink->url = (new HikeContentType($hikeRow->id))->getViewSite()->getUrlWithDomain();
 */
 
-            $placemark->description = $view->getContent()->bodyContent;  // $hyperlink->getBodyContent();
+            //$placemark->description = $description->getContent()->bodyContent;  // $hyperlink->getBodyContent();
 
         }
 

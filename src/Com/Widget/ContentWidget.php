@@ -15,6 +15,7 @@ use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Html\Block\Div;
 use Nemundo\Html\Formatting\Italic;
 use Nemundo\Html\Heading\H5;
+use Nemundo\Html\Inline\Span;
 use Nemundo\Package\Bootstrap\Card\BootstrapCard;
 use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 use Nemundo\Package\Bootstrap\Utility\BootstrapSpacing;
@@ -79,10 +80,14 @@ class ContentWidget extends BootstrapCard  // AdminWidget
     public function getContent()
     {
 
+        $this->addCssClass(BootstrapSpacing::MARIGN_3);
+
         $div = new Div($this->cardHeader);
         $div->addCssClass('d-flex justify-content-between align-items-center');
+        //$div->addCssClass('d-flex justify-content-between align-items-left');
 
         //$divTitle = new Div($div);
+
 
 
         $title = $this->widgetTitle;
@@ -90,8 +95,25 @@ class ContentWidget extends BootstrapCard  // AdminWidget
             $title = $this->contentType->getSubject();
         }
 
-        $h5 = new H5($div);  // ($divTitle);
+        $leftDiv = new Div($div);
+        $leftDiv->addCssClass('d-flex flex-row bd-highlight mb-3');
+
+        $h5 = new H5($leftDiv);  // ($divTitle);
         $h5->content = $title;
+        $h5->addCssClass('p-2 bd-highlight');
+
+        if ($this->editable) {
+            $dropdown = new ViewChangeDropdown($leftDiv);
+            $dropdown->contentType = $this->contentType;
+            $dropdown->redirectSite = $this->redirectSite;
+            $dropdown->showToggle=false;
+            $dropdown->addCssClass('p-2 bd-highlight');
+
+            $i = new Italic($dropdown->dropdownButton);
+            $i->addCssClass('fa fa-angle-down');
+
+
+        }
 
 
         //if ($this->showMenu) {
@@ -205,9 +227,6 @@ class ContentWidget extends BootstrapCard  // AdminWidget
             // Plus Icon
 
 
-            $dropdown = new ViewChangeDropdown($div);
-            $dropdown->contentType = $this->contentType;
-            $dropdown->redirectSite = $this->redirectSite;
 
         }
 
