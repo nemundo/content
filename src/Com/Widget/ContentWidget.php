@@ -3,6 +3,7 @@
 namespace Nemundo\Content\Com\Widget;
 
 
+use Nemundo\Com\Html\Hyperlink\SiteHyperlink;
 use Nemundo\Content\Action\ContentActionTrait;
 use Nemundo\Content\Builder\ContentViewBuilder;
 use Nemundo\Content\Com\Dropdown\ContentActionDropdown;
@@ -12,12 +13,11 @@ use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeC
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Site\ContentNewSite;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Html\Block\ContentDiv;
 use Nemundo\Html\Block\Div;
 use Nemundo\Html\Formatting\Italic;
 use Nemundo\Html\Heading\H5;
-use Nemundo\Html\Inline\Span;
 use Nemundo\Package\Bootstrap\Card\BootstrapCard;
-use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 use Nemundo\Package\Bootstrap\Utility\BootstrapSpacing;
 use Nemundo\Web\Site\AbstractSite;
 
@@ -38,6 +38,10 @@ class ContentWidget extends BootstrapCard  // AdminWidget
      */
     public $editable = true;
 
+    /**
+     * @var bool
+     */
+    public $viewEditable = true;
 
     public $viewId;
 
@@ -62,7 +66,7 @@ class ContentWidget extends BootstrapCard  // AdminWidget
 
 
     /**
-     * @var BootstrapSiteDropdown
+     * @var ContentActionDropdown
      */
     public $actionDropdown;
 
@@ -89,7 +93,6 @@ class ContentWidget extends BootstrapCard  // AdminWidget
         //$divTitle = new Div($div);
 
 
-
         $title = $this->widgetTitle;
         if ($title == null) {
             $title = $this->contentType->getSubject();
@@ -98,15 +101,36 @@ class ContentWidget extends BootstrapCard  // AdminWidget
         $leftDiv = new Div($div);
         $leftDiv->addCssClass('d-flex flex-row bd-highlight mb-3');
 
-        $h5 = new H5($leftDiv);  // ($divTitle);
+        $divTitle = new Div();
+
+        $small = new ContentDiv($divTitle);
+        $small->content = $this->contentType->typeLabel;
+
+        $h5 = new H5($divTitle);
         $h5->content = $title;
         $h5->addCssClass('p-2 bd-highlight');
 
-        if ($this->editable) {
+
+        if ($this->contentType->hasViewSite()) {
+
+            $hyperlink = new SiteHyperlink($leftDiv);
+            $hyperlink->addCssClass('text-dark');
+            $hyperlink->site = $this->contentType->getViewSite();
+            $hyperlink->showSiteTitle = false;
+            $hyperlink->addContainer($divTitle);
+
+        } else {
+
+            $leftDiv->addContainer($divTitle);
+
+        }
+
+
+        if ($this->viewEditable) {
             $dropdown = new ViewChangeDropdown($leftDiv);
             $dropdown->contentType = $this->contentType;
             $dropdown->redirectSite = $this->redirectSite;
-            $dropdown->showToggle=false;
+            $dropdown->showToggle = false;
             $dropdown->addCssClass('p-2 bd-highlight');
 
             $i = new Italic($dropdown->dropdownButton);
@@ -160,7 +184,7 @@ class ContentWidget extends BootstrapCard  // AdminWidget
         }*/
 
 
-        //   $dropdown = new ContentActionDropdown($div);  // ($divTitle);  // ($divMenu);
+        // $dropdown = new ContentActionDropdown($div);  // ($divTitle);  // ($divMenu);
 
 
         if ($this->editable) {
@@ -170,14 +194,37 @@ class ContentWidget extends BootstrapCard  // AdminWidget
 
             $this->actionDropdown->contentId = $this->contentType->getContentId();
             $this->actionDropdown->showToggle = false;
+            //$this->actionDropdown->act contentac
+
 
             /*
-            foreach ($this->getContentActionList() as $action) {
-                $dropdown->addContentAction($action);
+            (new Debug())->write($this->contentType->getContentId());
+            (new Debug())->write($this->contentType->getSubject());
+            (new Debug())->write($this->contentType->getDataId());
+*/
+
+            /*foreach ($this->getContentActionList() as $contentAction) {
+
+                $site = clone(ContentActionSite::$site);
+                $site->title = $contentAction->actionLabel;
+                $site->addParameter(new ContentParameter($this->contentType->getContentId()));
+                $site->addParameter(new ContentActionParameter($contentAction->typeId));
+
+                //$this->actionDropdown->addc
             }*/
 
 
             /*
+             *
+             * foreach ($this->getContentActionList() as $contentAction) {
+
+            $site = clone(ContentActionSite::$site);
+            $site->title = $contentAction->actionLabel;
+            $site->addParameter(new ContentParameter($this->contentId));
+            $site->addParameter(new ContentActionParameter($contentAction->typeId));
+
+            $this->addSite($site);
+        }
             $site = clone(ChildOrderSite::$site);
             $site->addParameter(new ContentParameter());
             $this->actionDropdown->addSite($site);
@@ -187,7 +234,7 @@ class ContentWidget extends BootstrapCard  // AdminWidget
             //$this->actionDropdown->addSeperator();
 
             if ($this->loadAction) {
-            $this->actionDropdown->addDefaultAction();
+                $this->actionDropdown->addDefaultAction();
             }
 
 
@@ -225,7 +272,6 @@ class ContentWidget extends BootstrapCard  // AdminWidget
 
 
             // Plus Icon
-
 
 
         }
