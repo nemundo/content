@@ -21,6 +21,9 @@ use Nemundo\Package\Bootstrap\Card\BootstrapCard;
 use Nemundo\Package\Bootstrap\Utility\BootstrapSpacing;
 use Nemundo\Web\Site\AbstractSite;
 
+
+// ContentContainer (ohne Widget Style)
+
 class ContentWidget extends BootstrapCard  // AdminWidget
 {
 
@@ -84,7 +87,7 @@ class ContentWidget extends BootstrapCard  // AdminWidget
     public function getContent()
     {
 
-        $this->addCssClass(BootstrapSpacing::MARIGN_3);
+        //$this->addCssClass(BootstrapSpacing::PADDING_3);
 
         $div = new Div($this->cardHeader);
         $div->addCssClass('d-flex justify-content-between align-items-center');

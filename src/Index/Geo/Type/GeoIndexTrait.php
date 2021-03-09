@@ -5,6 +5,7 @@ namespace Nemundo\Content\Index\Geo\Type;
 
 
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
+use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexDelete;
 use Nemundo\Core\Type\Geo\AbstractGeoCoordinate;
 
 
@@ -33,6 +34,18 @@ trait GeoIndexTrait
         }
 
     }
+
+
+
+    protected function deleteGeoIndex() {
+
+
+        $delete = new GeoIndexDelete();
+        $delete->filter->andEqual($delete->model->contentId,$this->getContentId());
+        $delete->delete();
+
+    }
+
 
 
 

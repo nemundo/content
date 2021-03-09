@@ -3,17 +3,25 @@
 namespace Nemundo\Content\Index\Tree\Com\Form;
 
 
+use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Content\Builder\ContentTypeBuilder;
 use Nemundo\Content\Com\Input\ContentTypeHiddenInput;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentType;
 use Nemundo\Content\Index\Tree\Setup\RestrictedContentTypeSetup;
 use Nemundo\Package\Bootstrap\Form\BootstrapForm;
+use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 
 class RestrictedContentTypeForm extends BootstrapForm
 {
 
     public $contentTypeId;
+
+
+    /**
+     * @var ApplicationListBox
+     */
+    private $application;
 
     /**
      * @var ContentTypeListBox
@@ -23,7 +31,11 @@ class RestrictedContentTypeForm extends BootstrapForm
     public function getContent()
     {
 
-        $this->restrictedContentType = new ContentTypeListBox($this);
+        $formRow = new BootstrapRow($this);
+
+        $this->application=new ApplicationListBox($formRow);
+
+        $this->restrictedContentType = new ContentTypeListBox($formRow);
         $this->restrictedContentType->label = 'Restrictecd Content Type';
         $this->restrictedContentType->name = 'restricted_content_type';
 

@@ -230,7 +230,7 @@ class ContentItemPage extends ContentTemplate
 
         $container=new GeoIndexContainer($layout->col2);
         $container->contentType=$contentType;
-        $container->redirectSite=ItemSite::$site;
+        $container->redirectSite= ContentItemSite::$site;
 
         $container=new JsonContentContainer($layout->col2);
         $container->contentType = $contentType;

@@ -1,18 +1,18 @@
 <?php
 
 
-namespace Nemundo\Content\Index\Tree\Site;
+namespace Nemundo\Content\Index\Tree\Site\Sortable;
 
 
 use Nemundo\Content\Index\Tree\Data\Tree\TreeUpdate;
 use Nemundo\Core\Debug\Debug;
 use Nemundo\Package\JqueryUi\Sortable\AbstractSortableSite;
 
-class ContentSortableSite extends AbstractSortableSite
+class ContentSortableJsonSite extends AbstractSortableSite
 {
 
     /**
-     * @var ContentSortableSite
+     * @var ContentSortableJsonSite
      */
     public static $site;
 
@@ -20,7 +20,7 @@ class ContentSortableSite extends AbstractSortableSite
     {
 
         $this->url = 'content-sortable';
-        ContentSortableSite::$site = $this;
+        ContentSortableJsonSite::$site = $this;
 
     }
 
@@ -28,7 +28,7 @@ class ContentSortableSite extends AbstractSortableSite
     public function loadContent()
     {
 
-        (new Debug())->write($_GET);
+        //(new Debug())->write($_GET);
 
         $itemOrder = 0;
         foreach ($this->getItemOrderList() as $value) {

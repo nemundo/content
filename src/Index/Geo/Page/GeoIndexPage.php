@@ -124,8 +124,11 @@ class GeoIndexPage extends AbstractTemplateDocument  // ContentTemplate
             $content = $contentParameter->getContent(false);
 
             $widget = new ContentWidget($layout->col2);
+            $widget->redirectSite= GeoIndexSite::$site;
+
             $widget->contentType=$content;
             //$widget->loadAction=true;
+
 
             $widget->addContentAction(new EditContentAction());
             $widget->addContentAction(new ViewContentAction());
