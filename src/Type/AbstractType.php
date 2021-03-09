@@ -38,6 +38,7 @@ abstract class AbstractType extends AbstractBaseClass
      */
     protected $dataId;
     // --> private???
+    // not possible, da der Wert in onCreate gesetzt wird
 
     /**
      * @var bool

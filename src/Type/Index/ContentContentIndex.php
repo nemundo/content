@@ -4,28 +4,29 @@ namespace Nemundo\Content\Type\Index;
 
 
 use Nemundo\Content\Data\Content\Content;
-use Nemundo\Content\Type\AbstractContentType;
-use Nemundo\Paragliding\Flyland\Content\Startplatz\StartplatzContentType;
+use Nemundo\Content\Data\Content\ContentCount;
 
 class ContentContentIndex extends AbstractContentIndex
 {
 
-
-
-
     public function buildIndex()
     {
 
-        $data = new Content();
-        $data->contentTypeId = $this->contentType->typeId;   // (new StartplatzContentType())->typeId;  //  $this->typeId;
-        $data->dataId = $this->contentType->getDataId();  // $dataId;  // $this->getDataId();
-        $data->subject = $this->contentType->getSubject();
-        $data->save();
+        $count = new ContentCount();
+        $count->filter->andEqual($count->model->contentTypeId, $this->contentType->typeId);
+        $count->filter->andEqual($count->model->dataId, $this->contentType->getDataId());
+        if ($count->getCount() == 0) {
+
+            $data = new Content();
+            $data->contentTypeId = $this->contentType->typeId;
+            $data->dataId = $this->contentType->getDataId();
+            $data->subject = $this->contentType->getSubject();
+            $data->save();
+
+        }
 
         return $this;
 
-        // TODO: Implement buildIndex() method.
     }
-
 
 }
