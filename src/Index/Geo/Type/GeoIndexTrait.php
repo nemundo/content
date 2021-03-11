@@ -25,12 +25,19 @@ trait GeoIndexTrait
 
         if ($coordinate->hasValue()) {
 
+
+            $index=new GeoContentIndex($this);
+            $index->buildIndex();
+
+            /*
             $data = new GeoIndex();
             $data->updateOnDuplicate = true;
             $data->place = $this->getPlace();
             $data->coordinate = $coordinate;
             $data->contentId = $this->getContentId();
-            $data->save();
+            $data->save();*/
+
+
         }
 
     }

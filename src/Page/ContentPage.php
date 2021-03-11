@@ -9,6 +9,7 @@ use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
+use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
 use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
 use Nemundo\Content\Parameter\ContentParameter;
@@ -35,7 +36,7 @@ class ContentPage extends AbstractTemplateDocument
         $applicationListBox->column = true;
         $applicationListBox->columnSize = 2;
 
-        $contentTypeListBox = new ContentTypeListBox($formRow);
+        $contentTypeListBox = new ViewContentTypeListBox($formRow);  // new ContentTypeListBox($formRow);
         $contentTypeListBox->searchMode = true;
         $contentTypeListBox->submitOnChange = true;
         $contentTypeListBox->column = true;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nemundo\Content\Index\Tree\Page;
+namespace Nemundo\Content\Index\Tree\Page\Admin;
 
 
 use Nemundo\Admin\Com\Table\AdminTable;
@@ -14,10 +14,11 @@ use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Index\Tree\Com\Admin\RestrictedContentTypeAdmin;
 use Nemundo\Content\Index\Tree\Com\Form\RestrictedContentTypeForm;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeReader;
+use Nemundo\Content\Index\Tree\Template\TreeAdminTemplate;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 
-class TreeConfigPage extends AbstractTemplateDocument  // ContentTemplate
+class ConfigPage extends TreeAdminTemplate // AbstractTemplateDocument  // ContentTemplate
 {
 
     public function getContent()

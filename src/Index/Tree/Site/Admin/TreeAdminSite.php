@@ -1,10 +1,12 @@
 <?php
 
 
-namespace Nemundo\Content\Index\Tree\Site;
+namespace Nemundo\Content\Index\Tree\Site\Admin;
 
 
-use Nemundo\Content\Index\Tree\Page\TreeAdminPage;
+
+use Nemundo\Content\Index\Tree\Page\Admin\TreeAdminPage;
+use Nemundo\Content\Index\Tree\Site\ChildDeleteSite;
 use Nemundo\Web\Site\AbstractSite;
 
 class TreeAdminSite extends AbstractSite
@@ -19,11 +21,14 @@ class TreeAdminSite extends AbstractSite
     {
 
         $this->title = 'Tree';
-        $this->url = 'tree';
+        $this->url = 'tree-admin';
 
         TreeAdminSite::$site = $this;
 
+        new ConfigSite($this);
+
         new ChildDeleteSite($this);
+
 
     }
 
@@ -31,6 +36,7 @@ class TreeAdminSite extends AbstractSite
     {
 
         (new TreeAdminPage())->render();
+
 
         /*
         $page = (new DefaultTemplateFactory())->getDefaultTemplate();

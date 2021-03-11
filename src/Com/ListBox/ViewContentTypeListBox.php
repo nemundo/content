@@ -16,7 +16,7 @@ class ViewContentTypeListBox extends BootstrapListBox
     protected function loadContainer()
     {
 
-        $this->label = 'Content Type';
+        $this->label = 'Content Type (View)';
         $this->name = (new ContentTypeParameter())->parameterName;
 
     }

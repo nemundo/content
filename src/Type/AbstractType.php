@@ -371,13 +371,30 @@ abstract class AbstractType extends AbstractBaseClass
 
         $view = null;
 
-        if (isset($this->viewClassList[0])) {
+
+        $reader = new ContentViewReader();
+        $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+        $reader->filter->andEqual($reader->model->defaultView, true);
+        $reader->limit = 1;
+        foreach ($reader->getData() as $viewRow) {
+
+            //$viewClass = $viewRow->viewClass;
 
             /** @var AbstractContentView $view */
-            $view = new $this->viewClassList[0]($parent);
+            $view= new $viewRow->viewClass($parent);
             $view->contentType = $this;
 
         }
+
+
+        /*
+        if (isset($this->viewClassList[0])) {
+
+            /** @var AbstractContentView $view */
+        /*    $view = new $this->viewClassList[0]($parent);
+            $view->contentType = $this;
+
+        }*/
 
         /*else {
 
@@ -410,10 +427,25 @@ abstract class AbstractType extends AbstractBaseClass
 
         $reader = new ContentViewReader();
         $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+        $reader->filter->andEqual($reader->model->defaultView, true);
         $reader->limit = 1;
         foreach ($reader->getData() as $viewRow) {
             $viewId=$viewRow->id;
         }
+
+        if ($viewId == null) {
+
+            $reader = new ContentViewReader();
+            $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+            $reader->limit = 1;
+            foreach ($reader->getData() as $viewRow) {
+                $viewId=$viewRow->id;
+            }
+
+
+        }
+
+
 
         return $viewId;
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace Nemundo\Content\Index\Tree\Site;
+namespace Nemundo\Content\Index\Tree\Site\Admin;
 
-use Nemundo\Content\Index\Tree\Page\TreeConfigPage;
+use Nemundo\Content\Index\Tree\Page\Admin\ConfigPage;
 use Nemundo\Content\Index\Tree\Page\TreePage;
 use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Web\Site\AbstractSite;
 
-class TreeConfigSite extends AbstractSite
+class ConfigSite extends AbstractSite
 {
 
     /**
-     * @var TreeConfigSite
+     * @var ConfigSite
      */
     public static $site;
 
@@ -20,7 +20,7 @@ class TreeConfigSite extends AbstractSite
         $this->title = 'Config';
         $this->url = 'tree-config';
 
-        TreeConfigSite::$site=$this;
+        ConfigSite::$site=$this;
 
         //new TreeNewSite($this);
         //TreeSite::$site = $this;
@@ -30,7 +30,7 @@ class TreeConfigSite extends AbstractSite
     public function loadContent()
     {
 
-        (new TreeConfigPage())->render();
+        (new ConfigPage())->render();
 
 
     }

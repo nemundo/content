@@ -51,8 +51,8 @@ class ContentInstall extends AbstractInstall
             ->addContentAction(new ViewContentAction());
 
 
-        (new SearchApplication())->installApp();
-        (new TreeApplication())->installApp();
+        (new SearchApplication())->installApp()->setAppMenuActive();
+        (new TreeApplication())->installApp()->setAppMenuActive();
 
         //(new TreeInstall())->install();
         //(new SearchIndexInstall())->install();
