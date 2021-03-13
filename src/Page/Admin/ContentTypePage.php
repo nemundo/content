@@ -14,8 +14,7 @@ use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\Html\Listing\UnorderedList;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Com\Template\AbstractTemplateDocument;
-use Nemundo\Content\Admin\Site\Json\ApplicationJsonSite;
-use Nemundo\Content\Admin\Site\Json\ContentTypeJsonSite;
+
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
 use Nemundo\Content\Com\Widget\ContentWidget;
@@ -49,7 +48,7 @@ class ContentTypePage extends ContentAdminTemplate
         $layout->col2->columnWidth = 0;
 
 
-        /*
+
         $form = new SearchForm($layout->col1);
 
         $formRow = new BootstrapRow($form);
@@ -57,23 +56,25 @@ class ContentTypePage extends ContentAdminTemplate
         $application = new ApplicationListBox($formRow);
         $application->submitOnChange = true;
         $application->searchMode = true;
+        $application->column=true;
+        $application->columnSize=2;
 
-        new AdminSearchButton($formRow);*/
+        //new AdminSearchButton($formRow);
 
 
         $contentTypeReader = new ContentTypeReader();
         $contentTypeReader->model->loadApplication();
 
-        /*if ($application->hasValue()) {
+        if ($application->hasValue()) {
             $contentTypeReader->filter->andEqual($contentTypeReader->model->applicationId, $application->getValue());
 
 
-            $btn = new AdminSiteButton($layout->col1);
+         /*   $btn = new AdminSiteButton($layout->col1);
             $btn->site = clone(ApplicationJsonSite::$site);
-            $btn->site->addParameter(new ApplicationParameter());
+            $btn->site->addParameter(new ApplicationParameter());*/
 
 
-        }*/
+        }
 
         $contentTypeReader->addOrder($contentTypeReader->model->contentType);
 
