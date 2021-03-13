@@ -26,7 +26,7 @@ use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
-class GeoIndexPage extends AbstractTemplateDocument  // ContentTemplate
+class GeoIndexPage extends AbstractTemplateDocument
 {
 
     public function getContent()

@@ -10,7 +10,7 @@ use Nemundo\Content\Index\Geo\Install\GeoIndexUninstall;
 use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
 
 // GeoIndexApplication
-class GeoApplication extends AbstractApplication
+class GeoIndexApplication extends AbstractApplication
 {
     protected function loadApplication()
     {
