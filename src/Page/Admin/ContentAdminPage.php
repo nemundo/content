@@ -23,7 +23,9 @@ use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\Admin\ContentAdminSite;
+use Nemundo\Content\Site\ContentDeleteSite;
 use Nemundo\Content\Site\ContentSite;
+use Nemundo\Content\Site\ContentViewSite;
 use Nemundo\Content\Template\ContentAdminTemplate;
 use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Core\Type\Number\Number;
@@ -174,9 +176,11 @@ class ContentAdminPage extends ContentAdminTemplate
         $header->addText($contentReader->model->dataId->label);
         $header->addText('Type');
         $header->addText('Type Id');
+        $header->addText('Subject (Data)');
+
         $header->addText('Class');
 
-        $header->addText('Subject (Data)');
+
         $header->addText('Subject (Type)');
         //$header->addText('Date/Time');
         //$header->addText('User');
@@ -194,11 +198,14 @@ class ContentAdminPage extends ContentAdminTemplate
             $row->addText($contentRow->dataId);
             $row->addText($contentRow->contentType->contentType);
             $row->addText($contentRow->contentTypeId);
-
-            $row->addText($contentType->getClassName());
-
             $row->addText($contentRow->subject);
+
+            if ($contentType !== null) {
+                $row->addText($contentType->getClassName());
             $row->addText($contentType->getSubject());
+        }
+
+
             //$row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
             //$row->addText($contentRow->user->login);
 
@@ -217,15 +224,15 @@ class ContentAdminPage extends ContentAdminTemplate
             $row->addSite($site);*/
 
 
-            /*
+
             $site = clone(ContentDeleteSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
             $row->addIconSite($site);
 
-            $site = clone(ContentItemSite::$site);
+            $site = clone(ContentViewSite::$site);  // ContentItemSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
             $row->addClickableSite($site);
-            */
+
 
 
         }

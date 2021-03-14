@@ -4,8 +4,7 @@
 namespace Nemundo\Content\Index\Geo\Type;
 
 
-use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
-use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexDelete;
+use Nemundo\Content\Index\Geo\Index\GeoContentIndex;
 use Nemundo\Core\Type\Geo\AbstractGeoCoordinate;
 
 
@@ -16,6 +15,7 @@ trait GeoIndexTrait
      * @return AbstractGeoCoordinate
      */
     abstract public function getCoordinate();
+
     // getGeoCoordinate
 
     protected function saveGeoIndex()
@@ -26,8 +26,7 @@ trait GeoIndexTrait
         if ($coordinate->hasValue()) {
 
 
-            $index=new GeoContentIndex($this);
-            $index->buildIndex();
+            (new GeoContentIndex($this))->buildIndex();
 
             /*
             $data = new GeoIndex();
@@ -43,27 +42,25 @@ trait GeoIndexTrait
     }
 
 
+    protected function deleteGeoIndex()
+    {
 
-    protected function deleteGeoIndex() {
+        (new GeoContentIndex($this))->deleteIndex();
 
-
+        /*
         $delete = new GeoIndexDelete();
-        $delete->filter->andEqual($delete->model->contentId,$this->getContentId());
-        $delete->delete();
+        $delete->filter->andEqual($delete->model->contentId, $this->getContentId());
+        $delete->delete();*/
 
     }
-
-
 
 
     // als Job???
-    protected function saveDistance() {
-
-
+    protected function saveDistance()
+    {
 
 
     }
-
 
 
     public function getPlace()

@@ -1,11 +1,14 @@
 <?php
 
-namespace Nemundo\Content\Index\Geo\Type;
+namespace Nemundo\Content\Index\Geo\Index;
 
 
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
+use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexDelete;
+use Nemundo\Content\Index\Geo\Type\GeoIndexTrait;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\Index\AbstractContentIndex;
+
 
 class GeoContentIndex extends AbstractContentIndex
 {
@@ -29,5 +32,17 @@ class GeoContentIndex extends AbstractContentIndex
 
         // TODO: Implement buildIndex() method.
     }
+
+
+    public function deleteIndex()
+    {
+
+        $delete = new GeoIndexDelete();
+        $delete->filter->andEqual($delete->model->contentId, $this->contentType->getContentId());
+        $delete->delete();
+
+        // TODO: Implement deleteIndex() method.
+    }
+
 
 }

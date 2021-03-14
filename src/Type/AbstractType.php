@@ -9,10 +9,8 @@ use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Form\AbstractContentFormPart;
 use Nemundo\Content\View\AbstractContentView;
-use Nemundo\Content\View\Listing\ContentListing;
 use Nemundo\Core\Base\AbstractBaseClass;
 use Nemundo\Html\Container\AbstractContainer;
-use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Model\Row\AbstractModelDataRow;
 use Nemundo\Web\Parameter\AbstractUrlParameter;
 use Nemundo\Web\Site\AbstractSite;
@@ -54,8 +52,6 @@ abstract class AbstractType extends AbstractBaseClass
      * @var string
      */
     protected $formPartClass;
-
-
 
 
     /**
@@ -112,7 +108,7 @@ abstract class AbstractType extends AbstractBaseClass
     public function __construct($dataId = null)
     {
 
-       // $this->listingClass=ContentListing::class;
+        // $this->listingClass=ContentListing::class;
 
         $this->loadContentType();
         $this->fromDataId($dataId);
@@ -130,6 +126,12 @@ abstract class AbstractType extends AbstractBaseClass
 
         return $this;
 
+    }
+
+
+    public function getTypeLabel()
+    {
+        return $this->typeLabel;
     }
 
 
@@ -266,8 +268,8 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
-    public function getFormPart(AbstractContainer $parent = null) {
+    public function getFormPart(AbstractContainer $parent = null)
+    {
 
         /** @var AbstractContentFormPart $formPart */
         $formPart = new $this->formPartClass($parent);
@@ -276,8 +278,6 @@ abstract class AbstractType extends AbstractBaseClass
         return $formPart;
 
     }
-
-
 
 
     public function getFormList()
@@ -373,7 +373,7 @@ abstract class AbstractType extends AbstractBaseClass
 
 
         $reader = new ContentViewReader();
-        $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+        $reader->filter->andEqual($reader->model->contentTypeId, $this->typeId);
         $reader->filter->andEqual($reader->model->defaultView, true);
         $reader->limit = 1;
         foreach ($reader->getData() as $viewRow) {
@@ -381,7 +381,7 @@ abstract class AbstractType extends AbstractBaseClass
             //$viewClass = $viewRow->viewClass;
 
             /** @var AbstractContentView $view */
-            $view= new $viewRow->viewClass($parent);
+            $view = new $viewRow->viewClass($parent);
             $view->contentType = $this;
 
         }
@@ -420,31 +420,30 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    public function getDefaultViewId()
+    {
 
-    public function getDefaultViewId() {
-
-        $viewId=null;
+        $viewId = null;
 
         $reader = new ContentViewReader();
-        $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+        $reader->filter->andEqual($reader->model->contentTypeId, $this->typeId);
         $reader->filter->andEqual($reader->model->defaultView, true);
         $reader->limit = 1;
         foreach ($reader->getData() as $viewRow) {
-            $viewId=$viewRow->id;
+            $viewId = $viewRow->id;
         }
 
         if ($viewId == null) {
 
             $reader = new ContentViewReader();
-            $reader->filter->andEqual($reader->model->contentTypeId,$this->typeId);
+            $reader->filter->andEqual($reader->model->contentTypeId, $this->typeId);
             $reader->limit = 1;
             foreach ($reader->getData() as $viewRow) {
-                $viewId=$viewRow->id;
+                $viewId = $viewRow->id;
             }
 
 
         }
-
 
 
         return $viewId;
@@ -452,14 +451,13 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
-
-    public function getView($viewId, AbstractContainer $parent = null) {
+    public function getView($viewId, AbstractContainer $parent = null)
+    {
 
 
         $viewRow = (new ContentViewReader())->getRowById($viewId);
 
-        $class =$viewRow->viewClass;
+        $class = $viewRow->viewClass;
 
         /** @var AbstractContentView $view */
         $view = new $class($parent);
@@ -468,7 +466,6 @@ abstract class AbstractType extends AbstractBaseClass
         return $view;
 
     }
-
 
 
     // getViewLisitng
@@ -573,22 +570,20 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
-
-    public function isInstalled() {
+    public function isInstalled()
+    {
 
         $value = false;
 
-        $count=new ContentTypeCount();
-        $count->filter->andEqual($count->model->id,$this->typeId);
+        $count = new ContentTypeCount();
+        $count->filter->andEqual($count->model->id, $this->typeId);
         if ($count->getCount() == 1) {
-            $value=true;
+            $value = true;
         }
 
         return $value;
 
     }
-
-
 
 
     /*

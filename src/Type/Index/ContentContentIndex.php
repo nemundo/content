@@ -29,4 +29,12 @@ class ContentContentIndex extends AbstractContentIndex
 
     }
 
+
+    public function deleteIndex() {
+
+
+
+    }
+
+
 }

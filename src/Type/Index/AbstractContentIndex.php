@@ -14,13 +14,13 @@ abstract class AbstractContentIndex extends AbstractBase
      */
     protected $contentType;
 
-    abstract public function buildIndex();  //$dataId);
+    abstract public function buildIndex();
 
+    abstract public function deleteIndex();
 
-    public function __construct(AbstractContentType $contentType) {
-        $this->contentType=$contentType;
+    public function __construct(AbstractContentType $contentType)
+    {
+        $this->contentType = $contentType;
     }
-
-
 
 }
