@@ -107,17 +107,14 @@ class ContentListingPage extends ContentAdminTemplate
                     $widget->widgetTitle = 'New';
 
                     $form = $contentType->getDefaultForm($widget);
-                    $form->redirectSite = clone(ContentAdminSite::$site);
+                    $form->redirectSite = clone(ContentListingSite::$site);
                     $form->redirectSite->addParameter(new ContentTypeParameter());
-                    //$list->redirectSite = ExplorerSite::$site;
-                }
 
+                }
 
             }
 
-
         }
-
 
         return parent::getContent();
 
