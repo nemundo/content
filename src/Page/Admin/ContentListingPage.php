@@ -79,14 +79,13 @@ class ContentListingPage extends ContentAdminTemplate
 
 
                 $btn=new AdminSiteButton($layout->col2);
-                $btn->site = clone(ContentAdminSite::$site);
+                $btn->site = clone(ContentListingSite::$site);
                 $btn->site->addParameter(new ContentTypeParameter());
                 $btn->site->title='New';
 
 
                 $content = $contentParameter->getContent(false);
                 if ($content->hasView()) {
-                    //$content->getDefaultView($layout->col2);
 
                     $widget = new ContentWidget($layout->col2);
                     $widget->contentType = $content;

@@ -24,6 +24,7 @@ use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\Admin\ContentAdminSite;
 use Nemundo\Content\Site\ContentDeleteSite;
+use Nemundo\Content\Site\ContentEditSite;
 use Nemundo\Content\Site\ContentSite;
 use Nemundo\Content\Site\ContentViewSite;
 use Nemundo\Content\Template\ContentAdminTemplate;
@@ -224,6 +225,10 @@ class ContentAdminPage extends ContentAdminTemplate
             $row->addSite($site);*/
 
 
+
+            $site = clone(ContentEditSite::$site);
+            $site->addParameter(new ContentParameter($contentRow->id));
+            $row->addIconSite($site);
 
             $site = clone(ContentDeleteSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
