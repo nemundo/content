@@ -4,7 +4,7 @@
 namespace Nemundo\Content\Index\Geo\Type;
 
 
-use Nemundo\Content\Index\Geo\Index\GeoContentIndex;
+use Nemundo\Content\Index\Geo\Index\GeoIndexBuilder;
 use Nemundo\Core\Type\Geo\AbstractGeoCoordinate;
 
 
@@ -26,7 +26,7 @@ trait GeoIndexTrait
         if ($coordinate->hasValue()) {
 
 
-            (new GeoContentIndex($this))->buildIndex();
+            (new GeoIndexBuilder($this))->buildIndex();
 
             /*
             $data = new GeoIndex();
@@ -45,7 +45,7 @@ trait GeoIndexTrait
     protected function deleteGeoIndex()
     {
 
-        (new GeoContentIndex($this))->deleteIndex();
+        (new GeoIndexBuilder($this))->deleteIndex();
 
         /*
         $delete = new GeoIndexDelete();

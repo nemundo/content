@@ -19,7 +19,7 @@ class ContentAdminSite extends AbstractSite
     protected function loadSite()
     {
         $this->title = 'Content';
-        $this->url = 'content-admin';
+        $this->url = 'content-admin2';
 
         ContentAdminSite::$site = $this;
 

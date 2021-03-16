@@ -5,37 +5,26 @@ namespace Nemundo\Content\Page\Admin;
 
 
 use Nemundo\Admin\Com\Button\AdminSearchButton;
-use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\AdminLabelValueTable;
-use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
-use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
-use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
-use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Data\Content\ContentCount;
 use Nemundo\Content\Data\Content\ContentModel;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
-use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Site\Admin\ContentAdminSite;
 use Nemundo\Content\Site\ContentDeleteSite;
 use Nemundo\Content\Site\ContentEditSite;
-use Nemundo\Content\Site\ContentSite;
 use Nemundo\Content\Site\ContentViewSite;
 use Nemundo\Content\Template\ContentAdminTemplate;
-use Nemundo\Content\Type\JsonContentTrait;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
 use Nemundo\Db\Sql\Order\SortOrder;
 use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
-use Nemundo\Package\Bootstrap\Layout\BootstrapThreeColumnLayout;
-use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
@@ -48,8 +37,6 @@ class ContentAdminPage extends ContentAdminTemplate
     {
 
 
-
-
         $form = new SearchForm($this);
 
         $formRow = new BootstrapRow($form);
@@ -57,25 +44,25 @@ class ContentAdminPage extends ContentAdminTemplate
         $application = new ApplicationListBox($formRow);
         $application->submitOnChange = true;
         $application->searchMode = true;
-        $application->column=true;
+        $application->column = true;
         $application->columnSize = 1;
 
         $listbox = new ContentTypeListBox($formRow);
         $listbox->submitOnChange = true;
         $listbox->searchMode = true;
-        $listbox->column=true;
+        $listbox->column = true;
         $listbox->columnSize = 1;
 
         $contentIdTextBox = new BootstrapTextBox($formRow);
         $contentIdTextBox->label = 'Content Id';
         $contentIdTextBox->searchMode = true;
-        $contentIdTextBox->column=true;
+        $contentIdTextBox->column = true;
         $contentIdTextBox->columnSize = 1;
 
         $dataIdTextBox = new BootstrapTextBox($formRow);
         $dataIdTextBox->label = 'Data Id';
         $dataIdTextBox->searchMode = true;
-        $dataIdTextBox->column=true;
+        $dataIdTextBox->column = true;
         $dataIdTextBox->columnSize = 1;
 
         /*
@@ -87,7 +74,7 @@ class ContentAdminPage extends ContentAdminTemplate
         $subject = new BootstrapTextBox($formRow);
         $subject->label = 'Subject';
         $subject->searchMode = true;
-        $subject->column=true;
+        $subject->column = true;
         $subject->columnSize = 1;
 
 
@@ -126,7 +113,7 @@ class ContentAdminPage extends ContentAdminTemplate
             $btn->site = clone(ContentTypeRemoveSite::$site);
             $btn->site->addParameter($contentTypeParameter);*/
 
-            $filter->andEqual($model->contentTypeId, $contentTypeParameter->getValue());
+            //          $filter->andEqual($model->contentTypeId, $contentTypeParameter->getValue());
 
             $contentType = $contentTypeParameter->getContentType();
 
@@ -203,8 +190,8 @@ class ContentAdminPage extends ContentAdminTemplate
 
             if ($contentType !== null) {
                 $row->addText($contentType->getClassName());
-            $row->addText($contentType->getSubject());
-        }
+                $row->addText($contentType->getSubject());
+            }
 
 
             //$row->addText($contentRow->dateTime->getShortDateTimeWithSecondLeadingZeroFormat());
@@ -225,7 +212,6 @@ class ContentAdminPage extends ContentAdminTemplate
             $row->addSite($site);*/
 
 
-
             $site = clone(ContentEditSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
             $row->addIconSite($site);
@@ -239,14 +225,11 @@ class ContentAdminPage extends ContentAdminTemplate
             $row->addClickableSite($site);
 
 
-
         }
 
 
         $pagination = new BootstrapPagination($this);
         $pagination->paginationReader = $contentReader;
-
-
 
 
         /*
@@ -316,27 +299,27 @@ class ContentAdminPage extends ContentAdminTemplate
                     $container = new TreeIndexContainer($layout->col3);
                     $container->contentType = $content;
                     $container->redirectSite = ContentAdminSite::$site;*/
-/*
-                }
+        /*
+                        }
 
-            } else {
+                    } else {
 
-                if ($contentType->hasForm()) {
+                        if ($contentType->hasForm()) {
 
-                    $widget = new AdminWidget($layout->col2);
-                    $widget->widgetTitle = 'New';
+                            $widget = new AdminWidget($layout->col2);
+                            $widget->widgetTitle = 'New';
 
-                    $form = $contentType->getDefaultForm($widget);
-                    $form->redirectSite = clone(ContentAdminSite::$site);
-                    $form->redirectSite->addParameter(new ContentTypeParameter());
-                    //$list->redirectSite = ExplorerSite::$site;
-                }
-
-
-            }
+                            $form = $contentType->getDefaultForm($widget);
+                            $form->redirectSite = clone(ContentAdminSite::$site);
+                            $form->redirectSite->addParameter(new ContentTypeParameter());
+                            //$list->redirectSite = ExplorerSite::$site;
+                        }
 
 
-        }*/
+                    }
+
+
+                }*/
 
 
         return parent::getContent();

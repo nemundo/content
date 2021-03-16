@@ -7,10 +7,10 @@ use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexDelete;
 use Nemundo\Content\Index\Geo\Type\GeoIndexTrait;
 use Nemundo\Content\Type\AbstractContentType;
-use Nemundo\Content\Type\Index\AbstractContentIndex;
+use Nemundo\Content\Type\Index\AbstractIndexBuilder;
 
 
-class GeoContentIndex extends AbstractContentIndex
+class GeoIndexBuilder extends AbstractIndexBuilder
 {
 
     /**
