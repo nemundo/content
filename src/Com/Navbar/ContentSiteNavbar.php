@@ -12,6 +12,11 @@ use Nemundo\Content\Index\Search\Site\SearchSite;
 class ContentSiteNavbar extends AdminSiteNavbar
 {
 
+    /**
+     * @var bool
+     */
+    public $showPasswordChange = true;
+
     protected function loadContainer()
     {
         parent::loadContainer();
@@ -28,8 +33,11 @@ class ContentSiteNavbar extends AdminSiteNavbar
     public function getContent()
     {
 
-        $this->addUserMenuSite(PasswordChangeSite::$site);
-        $this->addUserMenuDivider();
+        if ($this->showPasswordChange) {
+            $this->addUserMenuSite(PasswordChangeSite::$site);
+            $this->addUserMenuDivider();
+        }
+
         $this->addUserMenuSite(LogoutSite::$site);
 
         return parent::getContent();
