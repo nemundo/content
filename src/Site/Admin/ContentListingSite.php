@@ -18,7 +18,7 @@ class ContentListingSite extends AbstractSite
 
     protected function loadSite()
     {
-        $this->title = 'Lising';
+        $this->title = 'Listing';
         $this->url = 'content-listing';
 
         ContentListingSite::$site = $this;
