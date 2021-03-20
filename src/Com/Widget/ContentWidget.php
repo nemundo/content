@@ -106,7 +106,7 @@ class ContentWidget extends BootstrapCard  // AdminWidget
             $divTitle = new Div();
 
             $small = new ContentDiv($divTitle);
-            $small->content = $this->contentType->typeLabel;
+            $small->content = $this->contentType->getTypeLabel();
 
             $h5 = new H5($divTitle);
             $h5->content = $title;
@@ -150,9 +150,18 @@ class ContentWidget extends BootstrapCard  // AdminWidget
                 $this->actionDropdown->contentId = $this->contentType->getContentId();
                 $this->actionDropdown->showToggle = false;
 
+                foreach ($this->getContentActionList() as $contentAction) {
+                    $this->actionDropdown->addContentAction($contentAction);
+                }
+
+
+
                 if ($this->loadAction) {
                     $this->actionDropdown->addDefaultAction();
                 }
+
+
+
 
 
                 $i = new Italic($this->actionDropdown->dropdownButton);

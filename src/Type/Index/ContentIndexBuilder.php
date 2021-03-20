@@ -6,7 +6,7 @@ namespace Nemundo\Content\Type\Index;
 use Nemundo\Content\Data\Content\Content;
 use Nemundo\Content\Data\Content\ContentCount;
 
-class IndexBuilderBuilder extends AbstractIndexBuilder
+class ContentIndexBuilder extends AbstractIndexBuilder
 {
 
     public function buildIndex()

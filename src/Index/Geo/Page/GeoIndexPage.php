@@ -93,14 +93,17 @@ class GeoIndexPage extends AbstractTemplateDocument
 
         foreach ($geoReader->getData() as $geoRow) {
 
-            $row = new BootstrapClickableTableRow($table);
 
-            $row->addText($geoRow->content->contentType->contentType);
-            $row->addText($geoRow->place);
-            $row->addText($geoRow->coordinate->getText());
 
 
             $contentType = $geoRow->content->getContentType();
+
+            $row = new BootstrapClickableTableRow($table);
+
+            //$row->addText($geoRow->content->contentType->contentType);
+            $row->addText($contentType->getTypeLabel());
+            $row->addText($geoRow->place);
+            $row->addText($geoRow->coordinate->getText());
 
             $site = clone(GeoIndexSite::$site);
             $site->addParameter(new ContentParameter($contentType->getContentId()));

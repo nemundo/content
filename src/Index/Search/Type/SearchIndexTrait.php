@@ -36,8 +36,13 @@ trait SearchIndexTrait
     {
 
         if ($this->searchIndex == null) {
-            $this->searchIndex = new SearchIndexBuilder($this->getContentId());
-            $this->searchIndex->contentType = $this;
+            //$this->searchIndex = new SearchIndexBuilder($this->getContentId());
+            //$this->searchIndex->contentType = $this;
+
+            $this->searchIndex = new SearchIndexBuilder($this);
+
+            //$this->searchIndex->contentType = $this;
+
         }
 
         $this->searchIndex->addText($text);
@@ -53,7 +58,7 @@ trait SearchIndexTrait
         $this->onDataRow();
 
         if ($this->searchIndex !== null) {
-            $this->searchIndex->saveSearchIndex();
+            $this->searchIndex->buildIndex();
         }
 
         /*
@@ -69,6 +74,10 @@ trait SearchIndexTrait
     protected function deleteSearchIndex()
     {
 
+
+        (new SearchIndexBuilder($this))->deleteIndex();
+
+        /*
 
         $searchIndexReader = new SearchIndexReader();
         $searchIndexReader->filter->andEqual($searchIndexReader->model->contentId, $this->getContentId());
@@ -89,7 +98,7 @@ trait SearchIndexTrait
 
         $delete = new SearchIndexDelete();
         $delete->filter->andEqual($delete->model->contentId, $this->getContentId());
-        $delete->delete();
+        $delete->delete();*/
 
     }
 

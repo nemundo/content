@@ -11,7 +11,7 @@ use Nemundo\Content\Data\Content\ContentId;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Data\Content\ContentUpdate;
 use Nemundo\Content\Row\ContentCustomRow;
-use Nemundo\Content\Type\Index\IndexBuilderBuilder;
+use Nemundo\Content\Type\Index\ContentIndexBuilder;
 use Nemundo\Core\Type\DateTime\DateTime;
 
 trait ContentIndexTrait
@@ -114,7 +114,7 @@ trait ContentIndexTrait
 
         if (!$this->existContent()) {
 
-            $index=new IndexBuilderBuilder($this);
+            $index=new ContentIndexBuilder($this);
             $index->buildIndex();
 
             /*

@@ -30,6 +30,8 @@ abstract class AbstractType extends AbstractBaseClass
      * @var string|string[]
      */
     public $typeLabel;
+// protected
+
 
     /**
      * @var string

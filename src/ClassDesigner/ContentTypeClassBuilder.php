@@ -100,6 +100,7 @@ class ContentTypeClassBuilder extends AbstractClassBuilder
         $function->functionName = 'loadView()';
         $function->add('$this->viewName=\'default\';');
         $function->add('$this->viewId = \'' . (new UniqueId())->getUniqueId() . '\';');
+        $function->add('$this->defaultView = true;');
 
         $function = new PhpFunction($phpClass);
         $function->functionName = 'getContent()';

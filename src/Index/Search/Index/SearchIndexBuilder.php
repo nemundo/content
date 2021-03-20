@@ -13,6 +13,7 @@ use Nemundo\Content\Index\Search\Data\Word\WordDelete;
 use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeBulk;
 use Nemundo\Content\Index\Search\Data\WordContentType\WordContentTypeCount;
 use Nemundo\Content\Type\AbstractContentType;
+use Nemundo\Content\Type\Index\AbstractIndexBuilder;
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Core\Text\KeywordList;
@@ -23,23 +24,24 @@ use Nemundo\Model\Id\ModelId;
 use Nemundo\Model\Reader\ModelDataReader;
 
 
-class SearchIndexBuilder extends AbstractBase
+class SearchIndexBuilder extends AbstractIndexBuilder  // AbstractBase
 {
 
     /**
      * @var AbstractContentType
      */
-    public $contentType;
+    //public $contentType;
 
     /**
      * @var string
      */
-    public $contentId;
+    //public $contentId;
 
     private $wordList = [];
     private $indexList = [];
 
 
+    /*
     public function __construct($contentId = null)
     {
 
@@ -47,7 +49,7 @@ class SearchIndexBuilder extends AbstractBase
             $this->contentId = $contentId;
         }
 
-    }
+    }*/
 
 
     public function addText($text, $relevance = 0)
@@ -92,16 +94,17 @@ class SearchIndexBuilder extends AbstractBase
     }
 
 
-    public function saveSearchIndex()
+    public function buildIndex()
     {
 
+
         $searchIndexReader = new SearchIndexReader();
-        $searchIndexReader->filter->andEqual($searchIndexReader->model->contentId, $this->contentId);
+        $searchIndexReader->filter->andEqual($searchIndexReader->model->contentId, $this->contentType->getContentId());
         foreach ($searchIndexReader->getData() as $searchIndexRow) {
 
             $count = new SearchIndexCount();
             $count->filter->andEqual($count->model->wordId, $searchIndexRow->wordId);
-            $count->filter->andNotEqual($searchIndexReader->model->contentId, $this->contentId);
+            $count->filter->andNotEqual($searchIndexReader->model->contentId, $this->contentType->getContentId());
             if ($count->getCount() === 0) {
                 (new WordDelete())->deleteById($searchIndexRow->wordId);
             }
@@ -109,7 +112,7 @@ class SearchIndexBuilder extends AbstractBase
         }
 
         $delete = new SearchIndexDelete();
-        $delete->filter->andEqual($delete->model->contentId, $this->contentId);
+        $delete->filter->andEqual($delete->model->contentId, $this->contentType->getContentId());
         $delete->delete();
 
 
@@ -156,7 +159,7 @@ class SearchIndexBuilder extends AbstractBase
         foreach ($this->indexList as $wordId => $relevance) {
 
             //$data->ignoreIfExists = true;
-            $data->contentId = $this->contentId;
+            $data->contentId = $this->contentType->getContentId();
             $data->wordId = $wordId;
             $data->contentTypeId = $this->contentType->typeId;
             $data->save();
@@ -169,6 +172,36 @@ class SearchIndexBuilder extends AbstractBase
     }
 
 
+
+    public function deleteIndex()
+    {
+
+        $searchIndexReader = new SearchIndexReader();
+        $searchIndexReader->filter->andEqual($searchIndexReader->model->contentId, $this->contentType->getContentId());
+        foreach ($searchIndexReader->getData() as $searchIndexRow) {
+
+            $count = new SearchIndexCount();
+            $count->filter->andEqual($count->model->wordId, $searchIndexRow->wordId);
+            $count->filter->andNotEqual($searchIndexReader->model->contentId, $this->contentType->getContentId());
+            if ($count->getCount() === 1) {
+                (new WordDelete())->deleteById($searchIndexRow->wordId);
+            }
+
+
+            // delete word content type
+
+
+        }
+
+        $delete = new SearchIndexDelete();
+        $delete->filter->andEqual($delete->model->contentId, $this->contentType->getContentId());
+        $delete->delete();
+
+
+    }
+
+
+    /*
     public function removeFromIndex()
     {
 
@@ -234,6 +267,6 @@ class SearchIndexBuilder extends AbstractBase
 
         }
 
-    }
+    }*/
 
 }
