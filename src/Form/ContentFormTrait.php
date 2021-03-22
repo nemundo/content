@@ -4,14 +4,14 @@
 namespace Nemundo\Content\Form;
 
 
-use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Debug\Debug;
 
 trait ContentFormTrait
 {
 
     /**
-     * @var AbstractTreeContentType
+     * @var AbstractContentType
      */
     public $contentType;
 

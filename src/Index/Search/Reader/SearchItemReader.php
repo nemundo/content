@@ -3,9 +3,9 @@
 namespace Nemundo\Content\Index\Search\Reader;
 
 
+use Nemundo\Com\Pagination\PaginationTrait;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\DataSource\AbstractDataSource;
-use Nemundo\Core\Base\DataSource\PaginationTrait;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Core\Text\SnippetText;
 use Nemundo\Core\Text\TextBold;

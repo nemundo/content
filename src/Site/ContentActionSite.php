@@ -4,6 +4,8 @@ namespace Nemundo\Content\Site;
 
 
 use Nemundo\Admin\Com\Widget\AdminWidget;
+use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererHiddenInput;
+use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererSite;
 use Nemundo\Content\Action\AbstractContentAction;
 use Nemundo\Content\Parameter\ContentActionParameter;
 use Nemundo\Content\Parameter\ContentParameter;
@@ -36,9 +38,8 @@ class ContentActionSite extends AbstractSite
     {
 
         /** @var AbstractContentAction $action */
-        $action = (new ContentActionParameter())->getContentType(false);
+        $action = (new ContentActionParameter())->getContentType();
         $action->actionContentId = (new ContentParameter())->getValue();
-
 
         $found = false;
 
@@ -59,25 +60,8 @@ class ContentActionSite extends AbstractSite
             $widget->widgetTitle = $action->actionLabel;
 
             $form = $action->getDefaultForm($widget);
-
-
-            /*
-            $hidden = new TextInput($form);  // new HiddenInput($form);
-            $hidden->name = 'url_referer';
-            //$hidden->value = (new UrlReferer())->getUrl();
-
-
-            $urlRefererRequest = new PostRequest('url_referer');
-            if ($urlRefererRequest->hasValue()) {
-                $hidden->value = $urlRefererRequest->getValue();
-
-
-
-            } else {
-                $hidden->value = (new UrlReferer())->getUrl();
-            }*/
-
-            //(new Debug())->write((new UrlReferer())->getUrl());
+            $hidden = new UrlRefererHiddenInput($form);
+            $form->redirectSite = new UrlRefererSite();
 
             $document->render();
 
@@ -88,7 +72,7 @@ class ContentActionSite extends AbstractSite
 
         if ($action->hasViewSite()) {
 
-            $site = $action->getViewSite();  //->redirect();
+            $site = $action->getViewSite();
             $site->addParameter(new ContentParameter());
             $site->redirect();
 
