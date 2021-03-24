@@ -5,6 +5,7 @@ namespace Nemundo\Content\Site\Admin;
 
 
 use Nemundo\Content\Page\Admin\ContentAdminPage;
+use Nemundo\Content\Site\Json\JsonExportSite;
 use Nemundo\Web\Site\AbstractSite;
 
 
@@ -27,6 +28,8 @@ class ContentAdminSite extends AbstractSite
         new ContentTypeSite($this);
 
         new ContentRemoveSite($this);
+
+        new JsonExportSite($this);
 
         //new ContentNewSite($this);
         //new ContentRemoveSite($this);

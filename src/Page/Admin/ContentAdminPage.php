@@ -21,6 +21,7 @@ use Nemundo\Content\Site\Admin\ContentRemoveSite;
 use Nemundo\Content\Site\ContentDeleteSite;
 use Nemundo\Content\Site\ContentEditSite;
 use Nemundo\Content\Site\ContentViewSite;
+use Nemundo\Content\Site\Json\JsonExportSite;
 use Nemundo\Content\Template\ContentAdminTemplate;
 use Nemundo\Core\Type\Number\Number;
 use Nemundo\Db\Filter\Filter;
@@ -210,10 +211,12 @@ class ContentAdminPage extends ContentAdminTemplate
                 $row->addEmpty();
             }*/
 
-            /*
-            $site = clone(ContentJsonSite::$site);
+
+            $site = clone(JsonExportSite::$site);
             $site->addParameter(new ContentParameter($contentRow->id));
-            $row->addSite($site);*/
+            $row->addSite($site);
+
+
 
 
             $site = clone(ContentEditSite::$site);

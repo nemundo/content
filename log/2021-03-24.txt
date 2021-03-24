@@ -1,0 +1,8 @@
+2021-03-24 11:58:29	Content Type is not registred. Class: Nemundo\Roundshot\Content\RoundshotKml\RoundshotKmlContentType
+2021-03-24 12:00:20	Content Type is not registred. Class: Nemundo\Roundshot\Content\RoundshotKml\RoundshotKmlContentType
+2021-03-24 12:00:20	Content Type is not registred. Class: Nemundo\Roundshot\Content\Roundshot\RoundshotContentType
+2021-03-24 12:00:41	Content Type is not registred. Class: Nemundo\Roundshot\Content\RoundshotKml\RoundshotKmlContentType
+2021-03-24 12:00:41	Content Type is not registred. Class: Nemundo\Roundshot\Content\Roundshot\RoundshotContentType
+2021-03-24 12:00:42	Content Type is not registred. Class: Nemundo\Roundshot\Content\Roundshot\RoundshotContentType
+2021-03-24 12:03:37	Content Type is not registred. Class: Nemundo\Roundshot\Content\RoundshotKml\RoundshotKmlContentType
+2021-03-24 12:03:37	Content Type is not registred. Class: Nemundo\Roundshot\Content\Roundshot\RoundshotContentType
