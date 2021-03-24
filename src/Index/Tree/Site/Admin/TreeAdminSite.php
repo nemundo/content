@@ -7,6 +7,7 @@ namespace Nemundo\Content\Index\Tree\Site\Admin;
 
 use Nemundo\Content\Index\Tree\Page\Admin\TreeAdminPage;
 use Nemundo\Content\Index\Tree\Site\ChildDeleteSite;
+use Nemundo\Content\Index\Tree\Site\ViewEditSite;
 use Nemundo\Web\Site\AbstractSite;
 
 class TreeAdminSite extends AbstractSite
@@ -28,6 +29,9 @@ class TreeAdminSite extends AbstractSite
         new ConfigSite($this);
 
         //new ChildDeleteSite($this);
+
+        new ViewEditSite($this);
+        new ChildDeleteSite($this);
 
 
     }

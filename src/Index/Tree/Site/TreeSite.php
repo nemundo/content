@@ -18,8 +18,8 @@ class TreeSite extends AbstractSite
         $this->url = 'tree';
         $this->menuActive = false;
 
-        new ViewEditSite($this);
-        new ChildDeleteSite($this);
+       /* new ViewEditSite($this);
+        new ChildDeleteSite($this);*/
 
     }
 

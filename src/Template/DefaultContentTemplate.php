@@ -48,7 +48,7 @@ class DefaultContentTemplate extends BootstrapDocument
         $this->navbar->logoUrl = AdminConfig::$logoUrl;  // WebConfig::$webUrl . 'img/logo.png';
         $this->navbar->brand= ResponseConfig::$title;
         $this->navbar->site = AdminConfig::$webController;
-        $this->navbar->searchMode= AdminConfig::$searchMode;  // false;
+        $this->navbar->searchMode= AdminConfig::$searchMode;
 
         parent::addContainer($this->navbar);
 
@@ -58,8 +58,6 @@ class DefaultContentTemplate extends BootstrapDocument
         parent::addContainer($this->container);
 
         parent::loadContainer();
-
-        //$this->title = ResponseConfig::$title;  // AdminConfig::$pageTitle;
 
     }
 
@@ -78,7 +76,9 @@ class DefaultContentTemplate extends BootstrapDocument
         //$this->addCssUrl(WebConfig::$webUrl . 'css/style.css');
 
 
-
+        if (ResponseConfig::$title == null) {
+            ResponseConfig::$title = AdminConfig::$pageTitle;
+        }
 
         $this->title = ResponseConfig::$title;
 
