@@ -36,32 +36,6 @@ class SearchIndexContainer extends AbstractHtmlContainer
 
         new QueryContentSearchForm($this);
 
-
-        /*
-        $form = new SearchForm($this);
-
-        $formRow = new BootstrapRow($form);
-
-        /*$application = new ApplicationListBox($formRow);
-        $application->submitOnChange = true;
-        $application->searchMode = true;*/
-
-
-        /*$listbox = new ContentTypeListBox($formRow);
-        $listbox->submitOnChange = true;
-        $listbox->searchMode = true;*/
-
-
-        /*
-                $listbox = new ContentTypeCollectionListBox($formRow);
-                $listbox->submitOnChange = true;
-                $listbox->searchMode = true;
-                $listbox->contentTypeCollection=new BaseContentTypeCollection();*/
-
-
-        //new AdminSearchButton($formRow);
-
-
         $queryParameter = new SearchQueryParameter();
         if ($queryParameter->hasValue()) {
 
@@ -82,11 +56,6 @@ class SearchIndexContainer extends AbstractHtmlContainer
 
             $searchReader = new SearchItemReader();
             $searchReader->query = $queryParameter->getValue();
-
-
-            //$searchReader->addFilterContentType(new RoundshotContentType());
-            //$searchReader->addFilterContentType()
-
 
             $searchReader->paginationLimit = 30;
 
@@ -135,7 +104,7 @@ class SearchIndexContainer extends AbstractHtmlContainer
             $list = new BootstrapSiteList($layout->col2);
             foreach ($searchReader->getContentTypeList() as $contentTypeResultItem) {
 
-                $site = new Site();  // clone($this->redirectSite);
+                $site = new Site();
                 $site->title = $contentTypeResultItem->contentTypeLabel;
                 $site->addParameter(new ContentTypeParameter($contentTypeResultItem->contentTypeId));
 

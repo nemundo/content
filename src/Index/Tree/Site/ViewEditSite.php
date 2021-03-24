@@ -5,7 +5,6 @@ namespace Nemundo\Content\Index\Tree\Site;
 
 use Nemundo\Content\Index\Tree\Page\ViewEditPage;
 use Nemundo\Package\FontAwesome\Site\AbstractEditIconSite;
-use Nemundo\Web\Site\AbstractSite;
 
 class ViewEditSite extends AbstractEditIconSite
 {
@@ -19,9 +18,8 @@ class ViewEditSite extends AbstractEditIconSite
     {
         $this->title = 'View Edit';
         $this->url = 'view-edit';
-        //$this->menuActive=false;
 
-        ViewEditSite::$site=$this;
+        ViewEditSite::$site = $this;
     }
 
     public function loadContent()

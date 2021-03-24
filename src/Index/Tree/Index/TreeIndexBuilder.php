@@ -1,27 +1,29 @@
 <?php
 
 
-namespace Nemundo\Content\Index\Tree\Builder;
+namespace Nemundo\Content\Index\Tree\Index;
 
 
 use Nemundo\Content\Builder\ContentBuilder;
 use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Index\Tree\Data\Tree\Tree;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeCount;
+use Nemundo\Content\Index\Tree\Data\Tree\TreeDelete;
 use Nemundo\Content\Index\Tree\Data\Tree\TreeValue;
+use Nemundo\Content\Type\Index\AbstractIndexBuilder;
 use Nemundo\Core\Base\AbstractBase;
 
 // TreeBuilder
-class TreeBuilder extends AbstractBase
+class TreeIndexBuilder extends AbstractIndexBuilder
 {
 
     public $parentId;
 
-    public $childId;
+    //public $childId;
 
 //    public $viewId;
 
-    public function write()
+    public function buildIndex()
     {
 
         $value = new TreeValue();
@@ -35,7 +37,7 @@ class TreeBuilder extends AbstractBase
         $itemOrder++;
 
 
-        $content = (new ContentBuilder())->getContent($this->childId);
+        //$content = (new ContentBuilder())->getContent($this->childId);
 
 
         /*
@@ -51,9 +53,9 @@ class TreeBuilder extends AbstractBase
         $data = new Tree();
         //$data->ignoreIfExists = true;
         $data->parentId = $this->parentId;
-        $data->childId = $this->childId;
+        $data->childId =$this->contentType->getContentId();   // $this->childId;
         $data->itemOrder = $itemOrder;
-        $data->viewId = $content->getDefaultViewId();  // $viewId;  //  $this->viewId;
+        $data->viewId = $this->contentType->getDefaultViewId();  // $content->getDefaultViewId();  // $viewId;  //  $this->viewId;
         $data->save();
 
 
@@ -68,7 +70,7 @@ class TreeBuilder extends AbstractBase
 
         $count = new TreeCount();
         $count->filter->andEqual($count->model->parentId, $this->parentId);
-        $count->filter->andEqual($count->model->childId, $this->childId);
+        $count->filter->andEqual($count->model->childId, $this->contentType->getContentId());   // $this->childId);
         if ($count->getCount() > 0) {
             $value = true;
         }
@@ -77,5 +79,17 @@ class TreeBuilder extends AbstractBase
 
     }
 
+
+
+    public function deleteIndex()
+    {
+
+        $delete = new TreeDelete();
+        $delete->filter->orEqual($delete->model->parentId, $this->parentId);
+        $delete->filter->orEqual($delete->model->childId, $this->contentType->getContentId());
+        $delete->delete();
+
+        // TODO: Implement deleteIndex() method.
+    }
 
 }

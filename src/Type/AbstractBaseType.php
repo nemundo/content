@@ -4,17 +4,13 @@
 namespace Nemundo\Content\Type;
 
 
-use Nemundo\Content\Form\AbstractContentForm;
-use Nemundo\Content\View\AbstractContentView;
 use Nemundo\Core\Base\AbstractBaseClass;
-use Nemundo\Html\Container\AbstractContainer;
-use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Model\Row\AbstractModelDataRow;
-use Nemundo\Web\Parameter\AbstractUrlParameter;
-use Nemundo\Web\Site\AbstractSite;
 
 
 // AbstractDataType
+// AbstractContentBaseType
+// AbstractType
 abstract class AbstractBaseType extends AbstractBaseClass
 {
 

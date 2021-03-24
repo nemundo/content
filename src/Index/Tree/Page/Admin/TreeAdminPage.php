@@ -5,25 +5,25 @@ namespace Nemundo\Content\Index\Tree\Page\Admin;
 
 
 use Nemundo\Admin\Com\Button\AdminSiteButton;
+use Nemundo\Admin\Com\Table\AdminClickableTable;
+use Nemundo\Admin\Com\Table\AdminTableHeader;
+use Nemundo\Admin\Com\Table\Row\AdminClickableTableRow;
 use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\App\Application\Com\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
-use Nemundo\Com\Template\AbstractTemplateDocument;
-use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
 use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
+use Nemundo\Content\Index\Tree\Data\Tree\TreePaginationReader;
 use Nemundo\Content\Index\Tree\Site\Admin\TreeAdminSite;
 use Nemundo\Content\Index\Tree\Template\TreeAdminTemplate;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Parameter\ContentViewParameter;
 use Nemundo\Content\Site\Admin\ContentAdminSite;
-use Nemundo\Content\Site\ContentSite;
-use Nemundo\Content\Template\ContentAdminTemplate;
 use Nemundo\Package\Bootstrap\Layout\BootstrapThreeColumnLayout;
-use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
+use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 
 
 class TreeAdminPage extends TreeAdminTemplate
@@ -50,7 +50,7 @@ class TreeAdminPage extends TreeAdminTemplate
         $contentTypeListBox->columnSize = 2;
 
         if ($applicationListBox->hasValue()) {
-            $contentTypeListBox->applicationId=$applicationListBox->getValue();
+            $contentTypeListBox->applicationId = $applicationListBox->getValue();
         }
 
         $contentTypeParameter = new ContentTypeParameter();
@@ -59,14 +59,14 @@ class TreeAdminPage extends TreeAdminTemplate
             $contentType = $contentTypeParameter->getContentType();
 
             $layout = new BootstrapThreeColumnLayout($this);
-            $layout->col1->columnWidth= 4;
-            $layout->col2->columnWidth= 6;
-            $layout->col3->columnWidth= 2;
+            $layout->col1->columnWidth = 4;
+            $layout->col2->columnWidth = 6;
+            $layout->col3->columnWidth = 2;
 
             if ($contentType->hasList()) {
 
                 $contentTypeListBox = $contentType->getListing($layout->col1);
-                $contentTypeListBox->redirectSite =TreeAdminSite::$site;
+                $contentTypeListBox->redirectSite = TreeAdminSite::$site;
                 $contentTypeListBox->redirectSite->addParameter(new ContentTypeParameter());
 
             }
@@ -76,10 +76,10 @@ class TreeAdminPage extends TreeAdminTemplate
             if ($contentParameter->hasValue()) {
 
 
-                $btn=new AdminSiteButton($layout->col2);
+                $btn = new AdminSiteButton($layout->col2);
                 $btn->site = clone(ContentAdminSite::$site);
                 $btn->site->addParameter(new ContentTypeParameter());
-                $btn->site->title='New';
+                $btn->site->title = 'New';
 
 
                 $content = $contentParameter->getContent(false);
@@ -119,6 +119,42 @@ class TreeAdminPage extends TreeAdminTemplate
 
 
         }
+
+
+        $treeReader = new TreePaginationReader();
+        $treeReader->model->loadParent();
+        $treeReader->model->parent->loadContentType();
+        $treeReader->model->loadChild();
+        $treeReader->model->child->loadContentType();
+        $treeReader->model->loadView();
+
+        $table = new AdminClickableTable($this);
+
+        $header = new AdminTableHeader($table);
+        $header->addText($treeReader->model->parent->label);
+        $header->addEmpty();
+
+        $header->addText($treeReader->model->child->label);
+        $header->addEmpty();
+
+        $header->addText($treeReader->model->view->label);
+
+
+
+        foreach ($treeReader->getData() as $treeRow) {
+
+            $row = new AdminClickableTableRow($table);
+            $row->addText($treeRow->parent->contentType->contentType);
+            $row->addText($treeRow->parent->subject);
+            $row->addText($treeRow->child->contentType->contentType);
+            $row->addText($treeRow->child->subject);
+            $row->addText($treeRow->view->viewName);
+
+        }
+
+
+        $pagination = new BootstrapPagination($this);
+        $pagination->paginationReader = $treeReader;
 
 
         return parent::getContent();

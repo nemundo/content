@@ -3,7 +3,6 @@
 namespace Nemundo\Content\Action;
 
 
-use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Content\Type\AbstractType;
 
 
@@ -14,13 +13,14 @@ abstract class AbstractContentAction extends AbstractType
 
     public $actionContentId;
 
-    public function onAction() {
+    public function onAction()
+    {
 
     }
 
 
-
-    public function isMenuVisible() {
+    public function isMenuVisible()
+    {
 
         return true;
 

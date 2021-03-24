@@ -6,7 +6,6 @@ namespace Nemundo\Content\Index\Search\Script;
 
 use Nemundo\App\Script\Type\AbstractConsoleScript;
 use Nemundo\Core\Debug\Debug;
-use Nemundo\Content\Index\Content\Data\Content\ContentReader;
 use Nemundo\Content\Index\Search\Install\SearchIndexClean;
 use Nemundo\Content\Index\Search\Type\SearchIndexTrait;
 

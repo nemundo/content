@@ -30,9 +30,9 @@ class ContentSite extends AbstractSite
         new ContentEditSite($this);
         new ContentDeleteSite($this);
         new ContentActionSite($this);
-        new ContentRemoveSite($this);
+        //new ContentRemoveSite($this);
 
-        new ViewEditSite($this);
+        //new ViewEditSite($this);
 
 
         new ContentSortableSite($this);

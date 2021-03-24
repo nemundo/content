@@ -11,8 +11,9 @@ class TreeParameter extends AbstractUrlParameter
 
     protected function loadParameter()
     {
-        $this->parameterName='tree';
-        // TODO: Implement loadParameter() method.
+
+        $this->parameterName = 'tree';
+
     }
 
 }

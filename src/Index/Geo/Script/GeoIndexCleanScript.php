@@ -10,6 +10,7 @@ class GeoIndexCleanScript extends AbstractConsoleScript
     protected function loadScript()
     {
         $this->scriptName = 'geoindex-clean';
+        $this->description = 'Delete Geo Index';
     }
 
     public function run()

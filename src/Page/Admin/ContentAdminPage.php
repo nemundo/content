@@ -50,6 +50,7 @@ class ContentAdminPage extends ContentAdminTemplate
         $application->columnSize = 1;
 
         $listbox = new ContentTypeListBox($formRow);
+        $listbox->applicationId = $application->getValue();
         $listbox->submitOnChange = true;
         $listbox->searchMode = true;
         $listbox->column = true;

@@ -6,7 +6,6 @@ namespace Nemundo\Content\Form;
 
 use Nemundo\Admin\Com\Form\AbstractAdminForm;
 use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Core\Debug\Debug;
 
 abstract class AbstractContentForm extends AbstractAdminForm
 {

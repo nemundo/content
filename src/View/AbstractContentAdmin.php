@@ -8,12 +8,13 @@ use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Table\AdminLabelValueTable;
 use Nemundo\Admin\Com\Title\AdminSubtitle;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Language\LanguageCode;
 use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Content\Com\Table\ContentLogTable;
 use Nemundo\Content\Data\Content\ContentReader;
 use Nemundo\Content\Parameter\DataIdParameter;
-use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
+
 use Nemundo\Web\Action\AbstractActionPanel;
 use Nemundo\Web\Action\ActionSite;
 use Nemundo\Web\Action\Site\ActiveActionSite;
@@ -25,7 +26,7 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
 {
 
     /**
-     * @var AbstractTreeContentType
+     * @var AbstractContentType
      */
     public $contentType;
 
@@ -89,16 +90,11 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
             if ($this->contentType->hasForm()) {
                 $this->newButton = new AdminSiteButton($this);
                 $this->newButton->site = clone($this->new);
-                //$this->newButton->site->addParameter(new ContentTypeParameter());
-                // add prameter
-
-
             }
 
             $this->loadIndex();
 
         };
-
 
         $this->new = new ActionSite($this);
         $this->new->title[LanguageCode::EN] = 'New';
@@ -132,7 +128,6 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
             (new UrlReferer())->redirect();
 
         };
-
 
         $this->active = new ActiveActionSite($this);
         $this->active->title[LanguageCode::EN] = 'Active';
@@ -193,12 +188,7 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
 
         $form = $this->contentType->getDefaultForm($this);
         $form->redirectSite = clone($this->index);
-
-        // add Parameter
-
         $form->redirectSite->addParameter(new ContentTypeParameter());
-
-
 
     }
 
@@ -210,7 +200,6 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
         $contentType->fromDataId($dataId);
         $form = $contentType->getDefaultForm($this);
         $form->redirectSite = $this->index;
-
 
     }
 
@@ -231,20 +220,9 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
         $p = new Paragraph($this);
         $p->content = $contentType->getContentId();
 
-        //$contentReader = new ContentReader();
-        //$contentReader->model->loadUser();
-        //$contentRow = $contentReader->getRowById($contentType->getContentId());
-
-        /*$table = new AdminLabelValueTable($this);
-        $table->addLabelValue($contentReader->model->user->label, $contentRow->user->displayName);
-        $table->addLabelValue($contentReader->model->dateTime->label, $contentRow->dateTime->getShortDateTimeLeadingZeroFormat());
-
-        $log = new ContentLogTable($this);
-        $log->contentType = $contentType;*/
-
     }
 
-
+/*
     protected function loadActive($dataId)
     {
         $this->contentType->fromDataId($dataId)->setActive();
@@ -256,7 +234,7 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
 
         $this->contentType->fromDataId($dataId)->setInactive();
 
-    }
+    }*/
 
 
     protected function loadDelete($dataId)
@@ -295,6 +273,7 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
     }
 
 
+    /*
     protected function getActiveSite($dataId)
     {
 
@@ -312,6 +291,6 @@ abstract class AbstractContentAdmin extends AbstractActionPanel
         $site->addParameter(new DataIdParameter($dataId));
         return $site;
 
-    }
+    }*/
 
 }

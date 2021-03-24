@@ -27,7 +27,7 @@ class TreeAdminSite extends AbstractSite
 
         new ConfigSite($this);
 
-        new ChildDeleteSite($this);
+        //new ChildDeleteSite($this);
 
 
     }

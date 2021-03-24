@@ -4,7 +4,6 @@ namespace Nemundo\Content\Index\Tree\Reader;
 
 
 use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;
-use Nemundo\Content\Row\ContentCustomRow;
 
 class ChildContentReader extends AbstractParentChildContentReader
 {
@@ -21,7 +20,6 @@ class ChildContentReader extends AbstractParentChildContentReader
         $reader->addOrder($reader->model->itemOrder);
         $reader->limit = $this->limit;
         foreach ($reader->getData() as $treeRow) {
-            //$this->addItem($treeRow->child);
             $this->addItem($treeRow);
         }
 
