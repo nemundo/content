@@ -1,6 +1,6 @@
 <?php
 
-namespace Nemundo\Content\Page;
+namespace Nemundo\Content\Index\Tree\Page;
 
 
 use Nemundo\Admin\Com\Widget\AdminWidget;
@@ -18,7 +18,7 @@ use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\ContentViewSite;
 
 // TreeContentNew
-class ContentNewPage extends AbstractTemplateDocument
+class TreeContentNewPage extends AbstractTemplateDocument
 {
 
     public function getContent()

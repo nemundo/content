@@ -8,7 +8,7 @@ use Nemundo\Admin\Com\Button\AdminSearchButton;
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Widget\AdminWidget;
-use Nemundo\App\Application\Com\ApplicationListBox;
+use Nemundo\App\Application\Com\ListBox\ApplicationListBox;
 use Nemundo\App\Application\Parameter\ApplicationParameter;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\Html\Listing\UnorderedList;

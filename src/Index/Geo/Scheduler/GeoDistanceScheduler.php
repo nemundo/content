@@ -7,10 +7,10 @@ use Nemundo\Content\Index\Geo\Data\Distance\Distance;
 use Nemundo\Content\Index\Geo\Data\Distance\DistanceDelete;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Core\Debug\Debug;
-use Nemundo\Geo\Coordinate\GeoCoordinateDistance;
+use Nemundo\Core\Geo\GeoCoordinateDistance;
 
-// GeoDistanceScheduler
-class DistanceScheduler extends AbstractScheduler
+
+class GeoDistanceScheduler extends AbstractScheduler
 {
     protected function loadScheduler()
     {
@@ -24,6 +24,8 @@ class DistanceScheduler extends AbstractScheduler
     public function run()
     {
 
+
+        // contenttype
 
         (new DistanceDelete())->delete();
 

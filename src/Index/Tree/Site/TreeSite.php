@@ -21,6 +21,9 @@ class TreeSite extends AbstractSite
        /* new ViewEditSite($this);
         new ChildDeleteSite($this);*/
 
+        (new ContentRemoveFromTreeSite($this));
+
+
     }
 
     public function loadContent()

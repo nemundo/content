@@ -4,7 +4,7 @@
 namespace Nemundo\Content\Site;
 
 
-use Nemundo\Content\Index\Tree\Site\ContentRemoveSite;
+use Nemundo\Content\Index\Tree\Site\ContentRemoveFromTreeSite;
 use Nemundo\Content\Index\Tree\Site\Sortable\ContentSortableSite;
 use Nemundo\Content\Index\Tree\Site\ViewEditSite;
 use Nemundo\Content\Page\ContentPage;
@@ -26,7 +26,8 @@ class ContentSite extends AbstractSite
         ContentSite::$site = $this;
 
         new ContentViewSite($this);
-        new ContentNewSite($this);
+        //new TreeContentNewSite($this);
+
         new ContentEditSite($this);
         new ContentDeleteSite($this);
         new ContentActionSite($this);

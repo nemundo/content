@@ -9,7 +9,7 @@ use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\AdminTableHeader;
 use Nemundo\Admin\Com\Table\Row\AdminClickableTableRow;
 use Nemundo\Admin\Com\Widget\AdminWidget;
-use Nemundo\App\Application\Com\ApplicationListBox;
+use Nemundo\App\Application\Com\ListBox\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
 use Nemundo\Content\Com\Widget\ContentWidget;

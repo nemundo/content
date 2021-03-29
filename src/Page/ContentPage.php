@@ -5,7 +5,7 @@ namespace Nemundo\Content\Page;
 
 
 use Nemundo\Admin\Com\Widget\AdminWidget;
-use Nemundo\App\Application\Com\ApplicationListBox;
+use Nemundo\App\Application\Com\ListBox\ApplicationListBox;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;

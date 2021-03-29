@@ -23,14 +23,13 @@ class GeoIndexBuilder extends AbstractIndexBuilder
 
         $data = new GeoIndex();
         $data->updateOnDuplicate = true;
-        $data->place = $this->contentType->getSubject();  // $this->getPlace();
-        $data->coordinate =  $this->contentType->getCoordinate();  // $coordinate;
-        $data->contentId = $this->contentType->getContentId();  // fromDataId($dataId)->getContentId();
+        $data->place = $this->contentType->getSubject();
+        $data->coordinate =  $this->contentType->getCoordinate();
+        $data->contentId = $this->contentType->getContentId();
         $data->save();
 
         return $this;
 
-        // TODO: Implement buildIndex() method.
     }
 
 

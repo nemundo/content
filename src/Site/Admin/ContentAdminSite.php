@@ -19,42 +19,19 @@ class ContentAdminSite extends AbstractSite
 
     protected function loadSite()
     {
+
         $this->title = 'Content';
         $this->url = 'content-admin';
 
         ContentAdminSite::$site = $this;
 
+        new ContentNewSite($this);
         new ContentListingSite($this);
         new ContentTypeSite($this);
-
-        new ContentRemoveSite($this);
-
+        new DebugSite($this);
+        new AllContentRemoveSite($this);
         new JsonExportSite($this);
 
-        //new ContentNewSite($this);
-        //new ContentRemoveSite($this);
-
-        /*
-        new ContentTypeSite($this);
-
-        new ContentJsonSite($this);
-        new ContentTypeJsonSite($this);
-        new ApplicationJsonSite($this);
-
-
-        new SearchSite($this);
-        new SearchWordSite($this);
-
-        new GroupSite($this);
-        new GeoIndexSite($this);
-        new TreeAdminSite($this);
-        new ImportSite($this);
-
-        new ContentItemSite($this);
-        new ContentDeleteSite($this);
-        new ContentTypeRemoveSite($this);
-
-        new ContentContainerSite($this);*/
 
     }
 

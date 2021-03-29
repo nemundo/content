@@ -4,10 +4,10 @@
 namespace Nemundo\Content\Com\Container;
 
 
-use Nemundo\Admin\Com\Title\AdminSubtitle;
 use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererHiddenInput;
-use Nemundo\Content\Index\Tree\Type\AbstractTreeContentType;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Html\Container\AbstractHtmlContainer;
+use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Package\Bootstrap\Tabs\Panel\BootstrapTabsPanel;
 use Nemundo\Package\Bootstrap\Tabs\Panel\BootstrapTabsPanelContainer;
 use Nemundo\Web\Site\AbstractSite;
@@ -16,7 +16,7 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
 {
 
     /**
-     * @var AbstractTreeContentType
+     * @var AbstractContentType
      */
     public $contentType;
 
@@ -36,6 +36,8 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
         //$subtitle = new AdminSubtitle($this);
         //$subtitle->content = $this->contentType->typeLabel;
 
+        if ($this->contentType!==null) {
+
         $tab = new BootstrapTabsPanel($this);
 
         $count = 0;
@@ -43,7 +45,6 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
 
 
             $hidden = new UrlRefererHiddenInput($form);
-
 
 
             $panel = new BootstrapTabsPanelContainer($tab);
@@ -58,6 +59,13 @@ class ContentTypeFormContainer extends AbstractHtmlContainer
 
             $form->redirectSite = $this->redirectSite;
             $form->appendContentParameter = $this->appendContentParameter;
+
+        }
+
+        } else {
+
+            $p=new Paragraph($this);
+            $p->content='No Form available';
 
         }
 

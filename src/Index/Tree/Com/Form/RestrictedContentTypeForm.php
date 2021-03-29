@@ -3,7 +3,7 @@
 namespace Nemundo\Content\Index\Tree\Com\Form;
 
 
-use Nemundo\App\Application\Com\ApplicationListBox;
+use Nemundo\App\Application\Com\ListBox\ApplicationListBox;
 use Nemundo\Content\Builder\ContentTypeBuilder;
 use Nemundo\Content\Com\Input\ContentTypeHiddenInput;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;

@@ -8,6 +8,7 @@ use Nemundo\Admin\AdminConfig;
 use Nemundo\Admin\Com\Navbar\AdminSiteNavbar;
 use Nemundo\Content\Com\Navbar\ContentSiteNavbar;
 use Nemundo\Html\Container\AbstractContainer;
+use Nemundo\Html\Header\LibraryHeader;
 use Nemundo\Package\Bootstrap\Document\BootstrapDocument;
 use Nemundo\Package\Bootstrap\Layout\Container\BootstrapContainer;
 use Nemundo\Package\FontAwesome\FontAwesomePackage;
@@ -46,7 +47,7 @@ class DefaultContentTemplate extends BootstrapDocument
         $this->navbar->showPasswordChange=false;
         $this->navbar->searchMode=AdminConfig::$searchMode;
         $this->navbar->logoUrl = AdminConfig::$logoUrl;  // WebConfig::$webUrl . 'img/logo.png';
-        $this->navbar->brand= ResponseConfig::$title;
+        $this->navbar->brand= LibraryHeader::$documentTitle;  // ResponseConfig::$title;
         $this->navbar->site = AdminConfig::$webController;
         $this->navbar->searchMode= AdminConfig::$searchMode;
 
@@ -75,7 +76,7 @@ class DefaultContentTemplate extends BootstrapDocument
 
         //$this->addCssUrl(WebConfig::$webUrl . 'css/style.css');
 
-
+/*
         if (ResponseConfig::$title == null) {
             ResponseConfig::$title = AdminConfig::$pageTitle;
         }
@@ -83,7 +84,11 @@ class DefaultContentTemplate extends BootstrapDocument
         $this->title = ResponseConfig::$title;
 
         new OpenGraph($this);
-        new TwitterCard($this);
+        new TwitterCard($this);*/
+
+        LibraryHeader::addHeaderContainer(new OpenGraph());
+        LibraryHeader::addHeaderContainer(new TwitterCard());
+
 
         return parent::getContent();
 

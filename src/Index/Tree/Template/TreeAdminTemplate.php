@@ -20,6 +20,8 @@ class TreeAdminTemplate extends AbstractTemplateDocument
         $nav = new AdminNavigation($this);
         $nav->site = TreeAdminSite::$site;
 
+        //$nav->addSite()
+
 
     }
 

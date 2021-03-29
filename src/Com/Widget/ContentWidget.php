@@ -11,7 +11,7 @@ use Nemundo\Content\Index\Tree\Com\Dropdown\RestrictedContentTypeDropdown;
 use Nemundo\Content\Index\Tree\Com\Dropdown\ViewChangeDropdown;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeCount;
 use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Content\Site\ContentNewSite;
+use Nemundo\Content\Site\TreeContentNewSite;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Html\Block\ContentDiv;
 use Nemundo\Html\Block\Div;
@@ -178,7 +178,7 @@ class ContentWidget extends BootstrapCard  // AdminWidget
                 if ($count->getCount() > 0) {
 
                     $dropdown = new RestrictedContentTypeDropdown($div);
-                    $dropdown->redirectSite = clone(ContentNewSite::$site);
+                    $dropdown->redirectSite = clone(TreeContentNewSite::$site);
                     $dropdown->redirectSite->addParameter(new ContentParameter($this->contentType->getContentId()));
                     $dropdown->contentTypeId = $this->contentType->typeId;
                     $dropdown->icon = 'fa fa-plus';

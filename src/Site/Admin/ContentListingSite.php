@@ -18,13 +18,14 @@ class ContentListingSite extends AbstractSite
 
     protected function loadSite()
     {
+
         $this->title = 'Listing';
         $this->url = 'content-listing';
 
         ContentListingSite::$site = $this;
 
-
     }
+
 
     public function loadContent()
     {
@@ -32,6 +33,5 @@ class ContentListingSite extends AbstractSite
         (new ContentListingPage())->render();
 
     }
-
 
 }
