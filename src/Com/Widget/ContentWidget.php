@@ -11,7 +11,7 @@ use Nemundo\Content\Index\Tree\Com\Dropdown\RestrictedContentTypeDropdown;
 use Nemundo\Content\Index\Tree\Com\Dropdown\ViewChangeDropdown;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeCount;
 use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Content\Site\TreeContentNewSite;
+use Nemundo\Content\Index\Tree\Site\TreeContentNewSite;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Html\Block\ContentDiv;
 use Nemundo\Html\Block\Div;

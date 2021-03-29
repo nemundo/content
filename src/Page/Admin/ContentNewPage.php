@@ -14,14 +14,12 @@ class ContentNewPage extends ContentAdminTemplate
     public function getContent()
     {
 
-
         $form = new ApplicationContentTypeSearchForm($this);
-
-
 
         $parameter = new ContentTypeParameter();
         if ($parameter->hasValue()) {
-            new ContentTypeFormContainer($this);
+            $container = new ContentTypeFormContainer($this);
+            $container->contentType=$parameter->getContentType();
         }
 
 
