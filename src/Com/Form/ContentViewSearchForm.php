@@ -5,7 +5,7 @@ namespace Nemundo\Content\Com\Form;
 
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Content\Com\Input\ContentHiddenInput;
-use Nemundo\Content\Com\ListBox\ContentViewListBox;
+use Nemundo\Content\Com\ListBox\ViewListBox;
 use Nemundo\Content\Type\AbstractContentType;
 
 class ContentViewSearchForm extends SearchForm
@@ -20,7 +20,7 @@ class ContentViewSearchForm extends SearchForm
     {
 
 
-        $viewListBox = new ContentViewListBox($this);
+        $viewListBox = new ViewListBox($this);
         $viewListBox->contentType = $this->contentType;
         $viewListBox->submitOnChange = true;
         $viewListBox->searchMode = true;
