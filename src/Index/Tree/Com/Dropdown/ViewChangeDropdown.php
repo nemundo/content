@@ -6,7 +6,7 @@ namespace Nemundo\Content\Index\Tree\Com\Dropdown;
 use Nemundo\Content\Com\Base\ContentTypeRedirectTrait;
 use Nemundo\Content\Data\ContentView\ContentViewReader;
 use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Content\Parameter\ContentViewParameter;
+use Nemundo\Content\Parameter\ViewParameter;
 use Nemundo\Html\Formatting\Italic;
 use Nemundo\Package\Bootstrap\Dropdown\BootstrapSiteDropdown;
 use Nemundo\Web\Site\AbstractSite;
@@ -42,7 +42,7 @@ class ViewChangeDropdown extends BootstrapSiteDropdown
                 $site = clone($this->redirectSite);
                 $site->title = $viewRow->viewName;
                 $site->addParameter(new ContentParameter());
-                $site->addParameter(new ContentViewParameter($viewRow->id));
+                $site->addParameter(new ViewParameter($viewRow->id));
 
 
                 //(new Debug())->write($site->getUrl());

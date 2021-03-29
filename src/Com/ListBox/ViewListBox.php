@@ -5,8 +5,7 @@ namespace Nemundo\Content\Com\ListBox;
 
 
 use Nemundo\Content\Data\ContentView\ContentViewReader;
-
-use Nemundo\Content\Parameter\ContentViewParameter;
+use Nemundo\Content\Parameter\ViewParameter;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 
@@ -14,22 +13,16 @@ use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 class ViewListBox extends BootstrapListBox
 {
 
-    /**
-     * @var AbstractContentType
-     */
-   // public $contentType;
-
-
-    private $contentId;
+    private $contentTypeId;
 
 
     protected function loadContainer()
     {
 
         $this->label = 'View';
-        $this->name = (new ContentViewParameter())->getParameterName();
+        $this->name = (new ViewParameter())->getParameterName();
 
-        $this->emptyValueAsDefault=false;
+        $this->emptyValueAsDefault = false;
 
     }
 
@@ -38,7 +31,7 @@ class ViewListBox extends BootstrapListBox
     {
 
         $reader = new ContentViewReader();
-        $reader->filter->andEqual($reader->model->contentTypeId, $this->contentId);
+        $reader->filter->andEqual($reader->model->contentTypeId, $this->contentTypeId);
         $reader->addOrder($reader->model->viewName);
         foreach ($reader->getData() as $viewRow) {
             $this->addItem($viewRow->id, $viewRow->viewName);
@@ -49,19 +42,20 @@ class ViewListBox extends BootstrapListBox
     }
 
 
-    public function fromContentId($contentId) {
+    public function fromContentTypeId($contentTypeId)
+    {
 
-        $this->contentId=$contentId;
+        $this->contentTypeId = $contentTypeId;
         return $this;
     }
 
-    public function fromContent(AbstractContentType $content) {
 
-        $this->contentId=$this->contentType->getDataId();
+    public function fromContent(AbstractContentType $contentType)
+    {
+
+        $this->contentTypeId = $contentType->typeId;
         return $this;
 
     }
-
-
 
 }

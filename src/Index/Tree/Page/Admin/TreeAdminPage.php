@@ -19,7 +19,7 @@ use Nemundo\Content\Index\Tree\Site\Admin\TreeAdminSite;
 use Nemundo\Content\Index\Tree\Template\TreeAdminTemplate;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Parameter\ContentViewParameter;
+use Nemundo\Content\Parameter\ViewParameter;
 use Nemundo\Content\Site\Admin\ContentAdminSite;
 use Nemundo\Package\Bootstrap\Layout\BootstrapThreeColumnLayout;
 use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
@@ -90,7 +90,7 @@ class TreeAdminPage extends TreeAdminTemplate
                     $widget->contentType = $content;
                     $widget->loadAction = true;
 
-                    $widget->viewId = (new ContentViewParameter())->getValue();
+                    $widget->viewId = (new ViewParameter())->getValue();
 
                     $widget->redirectSite = ContentAdminSite::$site;
 
