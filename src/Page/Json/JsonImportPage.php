@@ -1,18 +1,16 @@
 <?php
 
-namespace Nemundo\Content\App\Explorer\Page\Json;
+namespace Nemundo\Content\Page\Json;
 
 use Nemundo\Com\Template\AbstractTemplateDocument;
-use Nemundo\Content\App\Explorer\Template\ExplorerTemplate;
 use Nemundo\Content\Com\Form\JsonImportForm;
 
-class JsonImportPage extends ExplorerTemplate
+class JsonImportPage extends AbstractTemplateDocument
 {
     public function getContent()
     {
 
-        $form=new JsonImportForm($this);
-
+        $form = new JsonImportForm($this);
 
 
         return parent::getContent();

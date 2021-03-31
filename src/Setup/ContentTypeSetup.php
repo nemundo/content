@@ -45,7 +45,7 @@ class ContentTypeSetup extends AbstractContentTypeSetup
 
 
 
-
+/*
     public function resetSetupStatus()
     {
 
@@ -63,6 +63,6 @@ class ContentTypeSetup extends AbstractContentTypeSetup
         $delete->filter->andEqual($delete->model->setupStatus, false);
         $delete->delete();
 
-    }
+    }*/
 
 }
