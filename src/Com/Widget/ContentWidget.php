@@ -10,8 +10,8 @@ use Nemundo\Content\Com\Dropdown\ContentActionDropdown;
 use Nemundo\Content\Index\Tree\Com\Dropdown\RestrictedContentTypeDropdown;
 use Nemundo\Content\Index\Tree\Com\Dropdown\ViewChangeDropdown;
 use Nemundo\Content\Index\Tree\Data\RestrictedContentType\RestrictedContentTypeCount;
-use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Index\Tree\Site\TreeContentNewSite;
+use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Html\Block\ContentDiv;
 use Nemundo\Html\Block\Div;
@@ -105,8 +105,12 @@ class ContentWidget extends BootstrapCard  // AdminWidget
 
             $divTitle = new Div();
 
-            $small = new ContentDiv($divTitle);
-            $small->content = $this->contentType->getTypeLabel();
+            $typeLabel = $this->contentType->getTypeLabel();
+            if ($title !== $typeLabel) {
+                $small = new ContentDiv($divTitle);
+                $small->content = $typeLabel;
+            }
+            
 
             $h5 = new H5($divTitle);
             $h5->content = $title;
@@ -155,18 +159,13 @@ class ContentWidget extends BootstrapCard  // AdminWidget
                 }
 
 
-
                 if ($this->loadAction) {
                     $this->actionDropdown->addDefaultAction();
                 }
 
 
-
-
-
                 $i = new Italic($this->actionDropdown->dropdownButton);
                 $i->addCssClass('fa fa-ellipsis-v');
-
 
 
                 $div = new Div($this);
@@ -191,7 +190,6 @@ class ContentWidget extends BootstrapCard  // AdminWidget
             }
 
         }
-
 
 
         $div = new Div($this);
