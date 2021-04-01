@@ -63,7 +63,8 @@ class GeoIndexPage extends AbstractTemplateDocument
 
 
         $btn = new AdminIconSiteButton($this);
-        $btn->site = GeoIndexKmlSite::$site;
+        $btn->site = clone(GeoIndexKmlSite::$site);
+        $btn->site->addParameter(new ContentTypeParameter());
 
 
         $layout = new BootstrapTwoColumnLayout($this);

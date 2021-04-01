@@ -4,6 +4,7 @@ namespace Nemundo\Content\Index\Geo\Site\Kml;
 
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Content\Parameter\ContentParameter;
+use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Geo\Kml\Document\KmlDocument;
 use Nemundo\Geo\Kml\Object\KmlMarker;
 use Nemundo\Package\FontAwesome\Site\AbstractKmlIconSite;
@@ -26,6 +27,7 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
 
     }
 
+
     public function loadContent()
     {
 
@@ -35,6 +37,11 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
         $reader = new GeoIndexReader();
         $reader->model->loadContent();
         $reader->model->content->loadContentType();
+
+        $contentTypeParameter = new ContentTypeParameter();
+        if ($contentTypeParameter->hasValue()) {
+            $reader->filter->andEqual($reader->model->content->contentTypeId, $contentTypeParameter->getValue());
+        }
 
         $contentParameter = new ContentParameter();
         if ($contentParameter->hasValue()) {
@@ -47,29 +54,11 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
             $placemark->label = $geoIndexRow->content->subject;
             $placemark->coordinate = $geoIndexRow->coordinate;
 
-            //$description = new Container();
-
-
             $contentType = $geoIndexRow->content->getContentType();
-
             if ($contentType->hasView()) {
 
-                //$view = $geoIndexRow->content->getContentType()->getDefaultView();
                 $view = $contentType->getDefaultView();
-
-                /*
-                $p = new Paragraph($description);
-                $p->content = (new Html($hikeRow->description))->getValue();
-
-                $img = new BootstrapResponsiveImage($description);
-                $img->src = $hikeRow->image->getImageUrlWithDomain($hikeRow->model->imageAutoSize800);
-
-                $hyperlink = new UrlHyperlink($description);
-                $hyperlink->content = 'More';
-                $hyperlink->url = (new HikeContentType($hikeRow->id))->getViewSite()->getUrlWithDomain();
-    */
-
-                $placemark->description = $view->getContent()->bodyContent;  // $hyperlink->getBodyContent();
+                $placemark->description = $view->getContent()->bodyContent;
 
             }
 
@@ -79,4 +68,5 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
 
 
     }
+
 }
