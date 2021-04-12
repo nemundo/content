@@ -9,6 +9,7 @@ use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Com\Container\AbstractContentTypeContainer;
 use Nemundo\Content\Index\Geo\Data\Distance\DistanceReader;
+use Nemundo\Content\Index\Geo\Reader\GeoDistanceReader;
 use Nemundo\Content\Index\Geo\Type\GeoIndexTrait;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Core\Type\Number\Number;
@@ -41,6 +42,32 @@ class GeoIndexContainer extends AbstractContentTypeContainer
             $header->addText('Distance');
 
 
+            $reader = new GeoDistanceReader();
+            $reader->contentId=$this->contentType->getContentId();
+            foreach ($reader->getData() as $geoDistanceItem) {
+
+                $row = new BootstrapClickableTableRow($table);
+
+                $content = $geoDistanceItem->getContent();
+
+                $row->addText($content->getSubject());
+                $row->addText($content->getTypeLabel());
+                $row->addText($geoDistanceItem->getDistanceText());
+
+                //$row->addText((new Number($distanceRow->distance / 1000))->roundNumber(0) . ' km');
+
+                if ($this->redirectSite !==null) {
+                    $site = clone($this->redirectSite);
+                    $site->addParameter(new ContentParameter($geoDistanceItem->contentId));
+                    $row->addClickableSite($site);
+                }
+
+            }
+
+
+
+
+            /*
             $reader = new DistanceReader();
             $reader->model->loadContentTo();
             $reader->model->contentTo->loadContentType();
@@ -61,7 +88,7 @@ class GeoIndexContainer extends AbstractContentTypeContainer
                 $row->addClickableSite($site);
                 }
 
-            }
+            }*/
 
         }
 

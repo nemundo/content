@@ -5,7 +5,9 @@ namespace Nemundo\Content\Index\Geo\Reader;
 
 
 use Nemundo\Content\Index\Geo\Data\Distance\DistanceReader;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\DataSource\AbstractDataSource;
+use Nemundo\Db\Filter\Filter;
 
 class GeoDistanceReader extends AbstractDataSource
 {
@@ -14,9 +16,24 @@ class GeoDistanceReader extends AbstractDataSource
     public $contentId;
 
 
-    public $limit=100;
+    public $limit = 100;
 
-    public function filterByDistance() {
+    /**
+     * @var AbstractContentType[]
+     */
+    private $contentTypeFilterList=[];
+
+    public function filterByDistance()
+    {
+
+    }
+
+
+    public function addContentTypeFilter(AbstractContentType $contentType)
+    {
+
+        $this->contentTypeFilterList[] = $contentType;
+        return $this;
 
     }
 
@@ -24,11 +41,20 @@ class GeoDistanceReader extends AbstractDataSource
     protected function loadData()
     {
 
-
         $reader = new DistanceReader();
         $reader->model->loadContentTo();
         $reader->model->contentTo->loadContentType();
         $reader->filter->andEqual($reader->model->contentFromId, $this->contentId);
+
+        if (sizeof($this->contentTypeFilterList) > 0) {
+            $filter = new Filter();
+            foreach ($this->contentTypeFilterList as $contentType) {
+                $filter->orEqual($reader->model->contentFrom->contentTypeId, $contentType->typeId);
+            }
+            $reader->filter->andFilter($filter);
+        }
+
+
         $reader->addOrder($reader->model->distance);
         $reader->limit = $this->limit;
 

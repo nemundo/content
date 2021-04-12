@@ -5,6 +5,7 @@ namespace Nemundo\Content\Index\Geo\Reader;
 
 
 use Nemundo\Content\Builder\ContentBuilder;
+use Nemundo\Content\Type\AbstractContentType;
 use Nemundo\Core\Base\AbstractBase;
 use Nemundo\Core\Type\Number\Number;
 
@@ -15,11 +16,19 @@ class GeoDistanceItem extends AbstractBase
 
     public $distance;
 
+    /**
+     * @var AbstractContentType
+     */
+    private $content;
+
     public function getContent()
     {
 
-        $content = (new ContentBuilder())->getContent($this->contentId);
-        return $content;
+        if ($this->content == null) {
+            $this->content = (new ContentBuilder())->getContent($this->contentId);
+        }
+
+        return $this->content;
 
     }
 
