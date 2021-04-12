@@ -47,9 +47,12 @@ class GeoDistanceReader extends AbstractDataSource
         $reader->filter->andEqual($reader->model->contentFromId, $this->contentId);
 
         if (sizeof($this->contentTypeFilterList) > 0) {
+
+            $reader->model->loadContentFrom();
+
             $filter = new Filter();
             foreach ($this->contentTypeFilterList as $contentType) {
-                $filter->orEqual($reader->model->contentFrom->contentTypeId, $contentType->typeId);
+                $filter->orEqual($reader->model->contentTo->contentTypeId, $contentType->typeId);
             }
             $reader->filter->andFilter($filter);
         }

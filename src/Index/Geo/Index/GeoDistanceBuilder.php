@@ -48,14 +48,15 @@ class GeoDistanceBuilder extends AbstractIndexBuilder
                         $insertItem = false;
                     }
 
-                    if ($insertItem) {
-                        $data->contentFromId = $geoIndexRowFrom->contentId;
-                        $data->contentToId = $geoIndexRowTo->contentId;
-                        $data->distance = $distance->getDistanceInMetre();
-                        $data->save();
-                    }
-
                 }
+
+                if ($insertItem) {
+                    $data->contentFromId = $geoIndexRowFrom->contentId;
+                    $data->contentToId = $geoIndexRowTo->contentId;
+                    $data->distance = $distance->getDistanceInMetre();
+                    $data->save();
+                }
+
 
             }
 
@@ -70,9 +71,8 @@ class GeoDistanceBuilder extends AbstractIndexBuilder
     {
 
         $delete = new DistanceDelete();
-        $delete->filter->andEqual($delete->model->contentFromId, $this->contentType->getDataId());
+        $delete->filter->andEqual($delete->model->contentFromId, $this->contentType->getContentId());
         $delete->delete();
-
 
     }
 
