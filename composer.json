@@ -13,7 +13,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Nemundo\\Content\\": "src/"
+      "Nemundo\\Content\\": "src/",
+      "Nemundo\\ContentTest\\": "test/"
     }
   }
 }

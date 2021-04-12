@@ -6,9 +6,11 @@ namespace Nemundo\Content\Template;
 
 use Nemundo\Admin\AdminConfig;
 use Nemundo\Admin\Com\Navbar\AdminSiteNavbar;
+use Nemundo\Com\Template\AbstractTemplateDocument;
+use Nemundo\Com\Template\TemplateDocument;
 use Nemundo\Content\Com\Navbar\ContentSiteNavbar;
 use Nemundo\Html\Container\AbstractContainer;
-use Nemundo\Html\Header\LibraryHeader;
+use Nemundo\Com\Html\Header\LibraryHeader;
 use Nemundo\Package\Bootstrap\Document\BootstrapDocument;
 use Nemundo\Package\Bootstrap\Layout\Container\BootstrapContainer;
 use Nemundo\Package\FontAwesome\FontAwesomePackage;
@@ -20,7 +22,7 @@ use Nemundo\Package\TwitterCard\TwitterCard;
 use Nemundo\Web\ResponseConfig;
 use Nemundo\Web\WebConfig;
 
-class DefaultContentTemplate extends BootstrapDocument
+class DefaultContentTemplate extends  //Templd TemplateDocument  // AbstractTemplateDocument  // BootstrapDocument
 {
 
     /**
