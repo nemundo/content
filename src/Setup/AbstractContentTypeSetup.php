@@ -175,15 +175,37 @@ abstract class AbstractContentTypeSetup extends AbstractSetup
     {
 
         (new ContentTypeDelete())->deleteById($type->typeId);
+
+
+
         return $this;
 
     }
 
 
+
+
+    public function removeContentTypeQuickly(AbstractContentType $contentType)
+    {
+
+        $delete = new ContentDelete();
+        $delete->filter->andEqual($delete->model->contentTypeId, $contentType->typeId);
+        $delete->delete();
+
+
+        $this->removeContentType($contentType);
+
+        return $this;
+
+    }
+
+
+
+
     public function removeContentType(AbstractContentType $contentType)
     {
 
-        $this->removeContent($contentType);
+        //$this->removeContent($contentType);
 
         (new ContentTypeDelete())->deleteById($contentType->typeId);
 

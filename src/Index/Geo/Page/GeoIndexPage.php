@@ -22,6 +22,7 @@ use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
+use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
@@ -45,13 +46,17 @@ class GeoIndexPage extends AbstractTemplateDocument
         $application->submitOnChange = true;
         $application->searchMode = true;*/
 
+
+        $q = new BootstrapTextBox($formRow);
+
+
         $listbox = new BootstrapListBox($formRow);  // new ContentTypeListBox($formRow);
         $listbox->label = 'Content Type';
         $listbox->name = (new ContentTypeParameter())->getParameterName();
         $listbox->submitOnChange = true;
         $listbox->searchMode = true;
-        $listbox->column=true;
-        $listbox->columnSize=2;
+        $listbox->column = true;
+        $listbox->columnSize = 2;
 
         $reader = new GeoIndexReader();
         $reader->model->loadContent();
@@ -93,16 +98,17 @@ class GeoIndexPage extends AbstractTemplateDocument
 
             $contentType = $geoRow->content->getContentType();
 
-            if ($contentType!==null) {
-            $row = new BootstrapClickableTableRow($table);
-            $row->addText($contentType->getTypeLabel());
-            $row->addText($geoRow->place);
-            $row->addText($geoRow->coordinate->getText());
+            if ($contentType !== null) {
+                $row = new BootstrapClickableTableRow($table);
+                $row->addText($contentType->getTypeLabel());
+                $row->addText($geoRow->place);
 
-            $site = clone(GeoIndexSite::$site);
-            $site->addParameter(new ContentParameter($contentType->getContentId()));
-            $site->addParameter(new ContentTypeParameter());
-            $row->addClickableSite($site);
+                $row->addText($geoRow->coordinate->getText());
+
+                $site = clone(GeoIndexSite::$site);
+                $site->addParameter(new ContentParameter($contentType->getContentId()));
+                $site->addParameter(new ContentTypeParameter());
+                $row->addClickableSite($site);
 
             } else {
                 (new LogMessage())->writeError('No Content Type');
@@ -114,16 +120,15 @@ class GeoIndexPage extends AbstractTemplateDocument
         $pagination->paginationReader = $geoReader;
 
 
-
-        $contentParameter=new ContentParameter();
+        $contentParameter = new ContentParameter();
         if ($contentParameter->hasValue()) {
 
             $content = $contentParameter->getContent(false);
 
             $widget = new ContentWidget($layout->col2);
-            $widget->redirectSite= GeoIndexSite::$site;
+            $widget->redirectSite = GeoIndexSite::$site;
 
-            $widget->contentType=$content;
+            $widget->contentType = $content;
             //$widget->loadAction=true;
 
             $widget->addContentAction(new EditContentAction());
@@ -137,13 +142,9 @@ class GeoIndexPage extends AbstractTemplateDocument
             // empty
 
 
-
-
-
             $container = new GeoIndexContainer($layout->col2);
-            $container->contentType=$content;
-            $container->redirectSite=GeoIndexSite::$site;
-
+            $container->contentType = $content;
+            $container->redirectSite = GeoIndexSite::$site;
 
 
         }

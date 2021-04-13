@@ -24,4 +24,11 @@ abstract class AbstractIndexBuilder extends AbstractBase
         $this->contentType = $contentType;
     }
 
+
+    public function removeAllIndex() {
+
+
+    }
+
+
 }

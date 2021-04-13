@@ -76,4 +76,16 @@ class GeoDistanceBuilder extends AbstractIndexBuilder
 
     }
 
+
+    /*
+    public function deleteAllIndex()
+    {
+
+        $delete = new DistanceDelete();
+        $delete->filter->andEqual($delete->model->contentFrom->contentTypeId, $this->contentType->typeId);
+        $delete->delete();
+
+    }*/
+
+
 }

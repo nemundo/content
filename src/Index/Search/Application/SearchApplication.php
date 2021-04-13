@@ -14,7 +14,7 @@ class SearchApplication extends AbstractApplication
 
     protected function loadApplication()
     {
-        $this->project=new ContentProject();
+        $this->project = new ContentProject();
         $this->application = 'Search';
         $this->applicationId = '05f06170-f360-4207-ab09-1c8d17370c77';
         $this->modelCollectionClass = SearchModelCollection::class;

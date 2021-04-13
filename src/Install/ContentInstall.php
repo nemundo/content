@@ -30,6 +30,8 @@ class ContentInstall extends AbstractInstall
 
         (new ApplicationSetup())
             ->addApplication(new ContentApplication())
+            ->addApplication(new SearchApplication())
+            ->addApplication(new TreeApplication())
             ->addApplication(new RelationApplication());
 
         (new ModelCollectionSetup())

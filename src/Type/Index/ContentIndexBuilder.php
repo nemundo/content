@@ -5,6 +5,8 @@ namespace Nemundo\Content\Type\Index;
 
 use Nemundo\Content\Data\Content\Content;
 use Nemundo\Content\Data\Content\ContentCount;
+use Nemundo\Content\Data\Content\ContentDelete;
+use Nemundo\Content\Data\ContentType\ContentTypeDelete;
 
 class ContentIndexBuilder extends AbstractIndexBuilder
 {
@@ -31,6 +33,22 @@ class ContentIndexBuilder extends AbstractIndexBuilder
 
 
     public function deleteIndex() {
+
+
+
+    }
+
+
+
+    public function removeAllIndex()
+    {
+
+        $delete = new ContentDelete();
+        $delete->filter->andEqual($delete->model->contentTypeId, $this->contentType->typeId);
+        $delete->delete();
+
+        (new ContentTypeDelete())->deleteById($this->contentType->typeId);
+
 
 
 
