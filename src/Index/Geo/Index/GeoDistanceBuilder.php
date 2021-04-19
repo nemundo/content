@@ -8,7 +8,7 @@ use Nemundo\Content\Index\Geo\Data\Distance\DistanceBulk;
 use Nemundo\Content\Index\Geo\Data\Distance\DistanceDelete;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Content\Type\Index\AbstractIndexBuilder;
-use Nemundo\Core\Geo\GeoCoordinateDistance;
+use Nemundo\Core\Geo\Distance\GeoCoordinateDistance;
 
 class GeoDistanceBuilder extends AbstractIndexBuilder
 {

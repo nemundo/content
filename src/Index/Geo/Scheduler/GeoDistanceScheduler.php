@@ -7,7 +7,7 @@ use Nemundo\Content\Index\Geo\Data\Distance\Distance;
 use Nemundo\Content\Index\Geo\Data\Distance\DistanceDelete;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Core\Debug\Debug;
-use Nemundo\Core\Geo\GeoCoordinateDistance;
+use Nemundo\Core\Geo\Distance\GeoCoordinateDistance;
 
 
 class GeoDistanceScheduler extends AbstractScheduler

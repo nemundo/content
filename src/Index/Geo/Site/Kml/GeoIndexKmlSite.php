@@ -5,8 +5,8 @@ namespace Nemundo\Content\Index\Geo\Site\Kml;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Geo\Kml\Document\KmlDocument;
-use Nemundo\Geo\Kml\Object\KmlMarker;
+use Nemundo\Kml\Document\KmlDocument;
+use Nemundo\Kml\Object\KmlMarker;
 use Nemundo\Package\FontAwesome\Site\AbstractKmlIconSite;
 
 class GeoIndexKmlSite extends AbstractKmlIconSite

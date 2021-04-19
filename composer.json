@@ -9,12 +9,19 @@
     }
   ],
   "require": {
-    "nemundo/framework": "*"
+    "nemundo/framework": "*",
+    "nemundo/kml": "*"
   },
   "autoload": {
     "psr-4": {
       "Nemundo\\Content\\": "src/",
       "Nemundo\\ContentTest\\": "test/"
+    }
+  },
+  "repositories": {
+    "kml": {
+      "type": "vcs",
+      "url": "https://github.com/nemundo/kml"
     }
   }
 }
