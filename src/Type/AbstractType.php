@@ -270,6 +270,19 @@ abstract class AbstractType extends AbstractBaseClass
     }
 
 
+    public function hasFormPart() {
+
+        $value=false;
+
+        if ($this->formPartClass!==null) {
+            $value=true;
+        }
+
+        return $value;
+
+    }
+
+
     public function getFormPart(AbstractContainer $parent = null)
     {
 
