@@ -18,12 +18,16 @@ class GeoIndexSite extends AbstractSite
 
     protected function loadSite()
     {
-        $this->title = 'Geo';
+        $this->title = 'Geo Index';
         $this->url = 'geo-index';
 
         GeoIndexSite::$site=$this;
 
+        new AroundSite($this);
+
+
         new GeoIndexKmlSite($this);
+        new GeoContentKmlSite($this);
 
     }
 

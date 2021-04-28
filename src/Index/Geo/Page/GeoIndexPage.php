@@ -6,6 +6,8 @@ namespace Nemundo\Content\Index\Geo\Page;
 
 use Nemundo\Admin\Com\Button\AdminIconSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
+use Nemundo\Admin\Com\Table\Row\AdminClickableTableRow;
+use Nemundo\Admin\Parameter\PageParameter;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Com\Template\AbstractTemplateDocument;
@@ -16,8 +18,11 @@ use Nemundo\Content\Index\Geo\Action\KmlContentAction;
 use Nemundo\Content\Index\Geo\Com\Container\GeoIndexContainer;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexPaginationReader;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
+use Nemundo\Content\Index\Geo\Parameter\GeoIndexParameter;
 use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
+use Nemundo\Content\Index\Geo\Site\Kml\GeoContentKmlSite;
 use Nemundo\Content\Index\Geo\Site\Kml\GeoIndexKmlSite;
+use Nemundo\Content\Index\Geo\Template\GeoIndexTemplate;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Core\Log\LogMessage;
@@ -28,7 +33,7 @@ use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
-class GeoIndexPage extends AbstractTemplateDocument
+class GeoIndexPage extends GeoIndexTemplate
 {
 
     public function getContent()
@@ -99,16 +104,34 @@ class GeoIndexPage extends AbstractTemplateDocument
             $contentType = $geoRow->content->getContentType();
 
             if ($contentType !== null) {
-                $row = new BootstrapClickableTableRow($table);
+                $row = new AdminClickableTableRow($table);
+
+                if ($geoRow->id == (new GeoIndexParameter())->getValue()) {
+                    $row->setActiveRow();
+                }
+
                 $row->addText($contentType->getTypeLabel());
                 $row->addText($geoRow->place);
 
                 $row->addText($geoRow->coordinate->getText());
 
+
+                if ($contentType->hasKmlMarker()) {
+                    $site = clone(GeoContentKmlSite::$site);
+                    $site->addParameter(new GeoIndexParameter($geoRow->id));
+                    $row->addSite($site);
+                } else {
+                    $row->addEmpty();
+                }
+
+
                 $site = clone(GeoIndexSite::$site);
                 $site->addParameter(new ContentParameter($contentType->getContentId()));
                 $site->addParameter(new ContentTypeParameter());
+                $site->addParameter(new PageParameter());
+                $site->addParameter(new GeoIndexParameter($geoRow->id));
                 $row->addClickableSite($site);
+
 
             } else {
                 (new LogMessage())->writeError('No Content Type');

@@ -137,7 +137,7 @@ abstract class AbstractContentType extends AbstractType
     }
 
 
-    private function hasProperty($class)
+    protected function hasProperty($class)
     {
 
         $value = false;

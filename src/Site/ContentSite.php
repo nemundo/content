@@ -28,6 +28,8 @@ class ContentSite extends AbstractSite
         new ContentViewSite($this);
         //new TreeContentNewSite($this);
 
+        new ContentNewSite($this);
+
         new ContentEditSite($this);
         new ContentDeleteSite($this);
         new ContentActionSite($this);

@@ -4,15 +4,15 @@
 namespace Nemundo\Content\Site\Admin;
 
 
-use Nemundo\Content\Page\Admin\ContentNewPage;
+use Nemundo\Content\Page\Admin\ContentAdminNewPage;
 use Nemundo\Web\Site\AbstractSite;
 
 
-class ContentNewSite extends AbstractSite
+class ContentAdminNewSite extends AbstractSite
 {
 
     /**
-     * @var ContentNewSite
+     * @var ContentAdminNewSite
      */
     public static $site;
 
@@ -22,14 +22,14 @@ class ContentNewSite extends AbstractSite
         $this->url = 'content-new';
         $this->menuActive=false;
 
-        ContentNewSite::$site = $this;
+        ContentAdminNewSite::$site = $this;
     }
 
 
     public function loadContent()
     {
 
-        (new ContentNewPage())->render();
+        (new ContentAdminNewPage())->render();
 
     }
 

@@ -3,11 +3,14 @@
 namespace Nemundo\Content\Index\Tree\Page\Sortable;
 
 
+use Nemundo\Admin\Com\Button\AdminIconSiteButton;
 use Nemundo\Admin\Com\Widget\AdminWidget;
 use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererHiddenInput;
 use Nemundo\Com\FormBuilder\UrlReferer\UrlRefererSite;
 use Nemundo\Com\Template\AbstractTemplateDocument;
+use Nemundo\Content\Index\Tree\Parameter\TreeParameter;
 use Nemundo\Content\Index\Tree\Reader\ChildContentReader;
+use Nemundo\Content\Index\Tree\Site\ContentRemoveFromTreeSite;
 use Nemundo\Content\Index\Tree\Site\Sortable\ContentSortableJsonSite;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Html\Block\Div;
@@ -47,6 +50,10 @@ class ChildOrderPage extends AbstractTemplateDocument
 
             $div = new Div($itemDiv);
             $treeRow->child->getContentType()->getDefaultView($div);
+
+            $btn=new AdminIconSiteButton($itemDiv);
+            $btn->site=clone(ContentRemoveFromTreeSite::$site);
+            $btn->site->addParameter(new TreeParameter($treeRow->id));
 
         }
 

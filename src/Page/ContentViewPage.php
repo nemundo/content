@@ -13,6 +13,7 @@ use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ViewParameter;
 use Nemundo\Content\Site\ContentViewSite;
+use Nemundo\Core\Debug\Debug;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 
 class ContentViewPage extends AbstractTemplateDocument
@@ -34,8 +35,10 @@ class ContentViewPage extends AbstractTemplateDocument
         $widget->contentType = $contentType;
         $widget->viewId = (new ViewParameter())->getValue();
         //$widget->loadAction = true;
-        $widget->editable=false;
+        $widget->editable=true;
         $widget->redirectSite = ContentViewSite::$site;
+
+
 
 
         /*
@@ -58,9 +61,14 @@ class ContentViewPage extends AbstractTemplateDocument
 
             if ($actionContentType->hasView()) {
 
-                /*
+                // (new Debug())->write('action');
+
+
                 $actionContentType->actionContentId = $contentType->getContentId();
 
+                $widget->addContentAction($actionContentType);
+
+                /*
                 $widget = new AdminWidget($layout->col2);
                 $widget->widgetTitle = $actionContentType->typeLabel;
 

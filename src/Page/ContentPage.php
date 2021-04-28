@@ -11,22 +11,24 @@ use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
 use Nemundo\Content\Com\Widget\ContentWidget;
+use Nemundo\Content\Index\Tree\Com\Container\ContentChildContainer;
 use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\ContentSite;
+use Nemundo\Content\Template\ContentTemplate;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 
 
-class ContentPage extends AbstractTemplateDocument
+class ContentPage extends ContentTemplate
 {
 
     public function getContent()
     {
 
 
-        $form = new SearchForm($this);
+       /* $form = new SearchForm($this);
 
         $formRow = new BootstrapRow($form);
 
@@ -44,7 +46,7 @@ class ContentPage extends AbstractTemplateDocument
 
         if ($applicationListBox->hasValue()) {
             $contentTypeListBox->applicationId=$applicationListBox->getValue();
-        }
+        }*/
 
         $contentTypeParameter = new ContentTypeParameter();
         if ($contentTypeParameter->hasValue()) {
@@ -76,14 +78,19 @@ class ContentPage extends AbstractTemplateDocument
                     $widget->loadAction = true;
                     $widget->redirectSite = ContentSite::$site;
 
+                    /*
                     $container = new TreeIndexContainer($layout->col2);
                     $container->contentType = $content;
-                    $container->redirectSite = ContentSite::$site;
+                    $container->redirectSite = ContentSite::$site;*/
+
+                    $container = new ContentChildContainer($layout->col2);
+                    $container->contentType=$content;
+
 
 
                 }
 
-            } else {
+            } /*else {
 
                 if ($contentType->hasForm()) {
 
@@ -97,7 +104,7 @@ class ContentPage extends AbstractTemplateDocument
                 }
 
 
-            }
+            }*/
 
 
         }

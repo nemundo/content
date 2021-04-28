@@ -8,7 +8,7 @@ use Nemundo\Admin\Com\Navigation\AdminNavigation;
 use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Site\Admin\ContentAdminSite;
 use Nemundo\Content\Site\Admin\ContentListingSite;
-use Nemundo\Content\Site\Admin\ContentNewSite;
+use Nemundo\Content\Site\Admin\ContentAdminNewSite;
 use Nemundo\Content\Site\Admin\AllContentRemoveSite;
 use Nemundo\Content\Site\Admin\ContentTypeSite;
 use Nemundo\Content\Site\Admin\DebugSite;
@@ -27,7 +27,7 @@ class ContentAdminTemplate extends AbstractTemplateDocument
         //$nav->site = ContentAdminSite::$site;
 
         $nav->addSite(ContentAdminSite::$site);
-        $nav->addSite(ContentNewSite::$site);
+        $nav->addSite(ContentAdminNewSite::$site);
         $nav->addSite(ContentListingSite::$site);
         $nav->addSite(ContentTypeSite::$site);
         $nav->addSite(DebugSite::$site);

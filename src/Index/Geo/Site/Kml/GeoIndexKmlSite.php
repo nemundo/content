@@ -5,11 +5,12 @@ namespace Nemundo\Content\Index\Geo\Site\Kml;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Kml\Document\KmlDocument;
-use Nemundo\Kml\Object\KmlMarker;
+use Nemundo\Geo\Kml\Document\KmlDocument;
+use Nemundo\Geo\Kml\Object\KmlMarker;
+use Nemundo\Geo\Kml\Site\AbstractKmlSite;
 use Nemundo\Package\FontAwesome\Site\AbstractKmlIconSite;
 
-class GeoIndexKmlSite extends AbstractKmlIconSite
+class GeoIndexKmlSite extends AbstractKmlSite
 {
 
     /**
@@ -54,13 +55,13 @@ class GeoIndexKmlSite extends AbstractKmlIconSite
             $placemark->label = $geoIndexRow->content->subject;
             $placemark->coordinate = $geoIndexRow->coordinate;
 
-            $contentType = $geoIndexRow->content->getContentType();
+            /*$contentType = $geoIndexRow->content->getContentType();
             if ($contentType->hasView()) {
 
                 $view = $contentType->getDefaultView();
                 $placemark->description = $view->getContent()->bodyContent;
 
-            }
+            }*/
 
         }
 
