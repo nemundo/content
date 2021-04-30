@@ -40,6 +40,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "geo_distance";
+$this->id->externalTableName = "geo_distance";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "geo_distance_id";
 $this->id->label = "Id";
@@ -61,6 +62,7 @@ $this->contentToId->allowNullValue = true;
 
 $this->distance = new \Nemundo\Model\Type\Number\NumberType($this);
 $this->distance->tableName = "geo_distance";
+$this->distance->externalTableName = "geo_distance";
 $this->distance->fieldName = "distance";
 $this->distance->aliasFieldName = "geo_distance_distance";
 $this->distance->label = "Distance";

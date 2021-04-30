@@ -20,6 +20,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_search_word";
+$this->id->externalTableName = "content_search_word";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_search_word_id";
 $this->id->label = "Id";
@@ -27,6 +28,7 @@ $this->id->allowNullValue = false;
 
 $this->word = new \Nemundo\Model\Type\Text\TextType($this);
 $this->word->tableName = "content_search_word";
+$this->word->externalTableName = "content_search_word";
 $this->word->fieldName = "word";
 $this->word->aliasFieldName = "content_search_word_word";
 $this->word->label = "Word";

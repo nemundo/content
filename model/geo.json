@@ -73,6 +73,37 @@
         },
         {
             "template": "default",
+            "model_id": "d3462dc5-0586-4597-b01e-60cd5a8a0c85",
+            "label": "Geo Content Type",
+            "class_name": "GeoContentType",
+            "table_name": "geo_geo_content_type",
+            "namespace": "Nemundo\\Content\\Index\\Geo\\Data\\GeoContentType",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "external",
+                    "label": "Content Type",
+                    "field_name": "content_type",
+                    "variable_name": "contentType",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "69c1a9f4-3412-4446-92a4-2e81a75bed3f"
+                }
+            ],
+            "index": [
+                {
+                    "index_name": "content_type",
+                    "index_type": "unique_index",
+                    "field_name": [
+                        "content_type"
+                    ]
+                }
+            ]
+        },
+        {
+            "template": "default",
             "model_id": "5d630988-afd0-4cca-a477-9dc0ffa5fd3a",
             "label": "Geo Index",
             "class_name": "GeoIndex",

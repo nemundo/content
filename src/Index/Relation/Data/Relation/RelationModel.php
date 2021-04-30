@@ -35,6 +35,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "relation_relation";
+$this->id->externalTableName = "relation_relation";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "relation_relation_id";
 $this->id->label = "Id";

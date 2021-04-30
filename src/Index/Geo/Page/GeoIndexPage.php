@@ -8,14 +8,16 @@ use Nemundo\Admin\Com\Button\AdminIconSiteButton;
 use Nemundo\Admin\Com\Table\AdminClickableTable;
 use Nemundo\Admin\Com\Table\Row\AdminClickableTableRow;
 use Nemundo\Admin\Parameter\PageParameter;
+use Nemundo\App\Application\Parameter\ApplicationParameter;
 use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\TableBuilder\TableHeader;
-use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Action\EditContentAction;
 use Nemundo\Content\Action\ViewContentAction;
+use Nemundo\Content\Com\Container\ContentTypeFormContainer;
 use Nemundo\Content\Com\Widget\ContentWidget;
 use Nemundo\Content\Index\Geo\Action\KmlContentAction;
 use Nemundo\Content\Index\Geo\Com\Container\GeoIndexContainer;
+use Nemundo\Content\Index\Geo\Com\ListBox\GeoContentTypeListBox;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexPaginationReader;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndexReader;
 use Nemundo\Content\Index\Geo\Parameter\GeoIndexParameter;
@@ -25,13 +27,13 @@ use Nemundo\Content\Index\Geo\Site\Kml\GeoIndexKmlSite;
 use Nemundo\Content\Index\Geo\Template\GeoIndexTemplate;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
+use Nemundo\Content\Site\ContentDeleteSite;
 use Nemundo\Core\Log\LogMessage;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapListBox;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
 use Nemundo\Package\Bootstrap\Pagination\BootstrapPagination;
-use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 
 class GeoIndexPage extends GeoIndexTemplate
 {
@@ -55,6 +57,7 @@ class GeoIndexPage extends GeoIndexTemplate
         $q = new BootstrapTextBox($formRow);
 
 
+        /*
         $listbox = new BootstrapListBox($formRow);  // new ContentTypeListBox($formRow);
         $listbox->label = 'Content Type';
         $listbox->name = (new ContentTypeParameter())->getParameterName();
@@ -69,7 +72,18 @@ class GeoIndexPage extends GeoIndexTemplate
         $reader->addGroup($reader->model->content->contentTypeId);
         foreach ($reader->getData() as $indexRow) {
             $listbox->addItem($indexRow->content->contentTypeId, $indexRow->content->contentType->contentType);
-        }
+        }*/
+
+
+
+        $listbox=new GeoContentTypeListBox($formRow);
+        $listbox->submitOnChange = true;
+        $listbox->searchMode = true;
+        $listbox->column = true;
+        $listbox->columnSize = 2;
+
+
+
 
 
         $btn = new AdminIconSiteButton($this);
@@ -119,11 +133,15 @@ class GeoIndexPage extends GeoIndexTemplate
                 if ($contentType->hasKmlMarker()) {
                     $site = clone(GeoContentKmlSite::$site);
                     $site->addParameter(new GeoIndexParameter($geoRow->id));
-                    $row->addSite($site);
+                    $row->addIconSite($site);
                 } else {
                     $row->addEmpty();
                 }
 
+
+                $site = clone(ContentDeleteSite::$site);
+                $site->addParameter(new ContentParameter($contentType->getContentId()));
+                $row->addIconSite($site);
 
                 $site = clone(GeoIndexSite::$site);
                 $site->addParameter(new ContentParameter($contentType->getContentId()));
@@ -141,6 +159,22 @@ class GeoIndexPage extends GeoIndexTemplate
 
         $pagination = new BootstrapPagination($this);
         $pagination->paginationReader = $geoReader;
+
+
+        $parameter = new ContentTypeParameter();
+        if ($parameter->hasValue()) {
+
+            $contentType = $parameter->getContentType();
+
+            if ($contentType->hasForm()) {
+                $container = new ContentTypeFormContainer($layout->col2);
+                $container->contentType = $contentType;
+                $container->redirectSite = clone(GeoIndexSite::$site);
+                $container->redirectSite->addParameter(new ApplicationParameter());
+                $container->redirectSite->addParameter(new ContentTypeParameter());
+            }
+
+        }
 
 
         $contentParameter = new ContentParameter();

@@ -25,6 +25,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_action";
+$this->id->externalTableName = "content_action";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_action_id";
 $this->id->label = "Id";

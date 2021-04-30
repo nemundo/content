@@ -40,6 +40,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_application_content_type";
+$this->id->externalTableName = "content_application_content_type";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_application_content_type_id";
 $this->id->label = "Id";
@@ -61,6 +62,7 @@ $this->contentTypeId->allowNullValue = true;
 
 $this->setupStatus = new \Nemundo\Model\Type\Number\YesNoType($this);
 $this->setupStatus->tableName = "content_application_content_type";
+$this->setupStatus->externalTableName = "content_application_content_type";
 $this->setupStatus->fieldName = "setup_status";
 $this->setupStatus->aliasFieldName = "content_application_content_type_setup_status";
 $this->setupStatus->label = "Setup Status";

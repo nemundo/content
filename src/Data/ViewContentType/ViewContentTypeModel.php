@@ -25,6 +25,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_view_content_type";
+$this->id->externalTableName = "content_view_content_type";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_view_content_type_id";
 $this->id->label = "Id";
@@ -36,6 +37,10 @@ $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_view_content_type_content_type";
 $this->contentTypeId->label = "Content Type";
 $this->contentTypeId->allowNullValue = false;
+
+$index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
+$index->indexName = "content_type";
+$index->addType($this->contentTypeId);
 
 }
 public function loadContentType() {

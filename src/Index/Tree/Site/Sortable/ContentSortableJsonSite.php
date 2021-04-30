@@ -28,7 +28,7 @@ class ContentSortableJsonSite extends AbstractSortableSite
     public function loadContent()
     {
 
-        //(new Debug())->write($_GET);
+        (new Debug())->write($_POST);
 
         $itemOrder = 0;
         foreach ($this->getItemOrderList() as $value) {

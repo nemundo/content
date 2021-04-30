@@ -18,6 +18,12 @@ abstract class AbstractContentFormPart extends AbstractHtmlContainer
      */
     public $contentType;
 
+    /**
+     * @var string
+     */
+    public $label;
+
+
     abstract public function saveData();
 
 

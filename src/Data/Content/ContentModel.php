@@ -35,6 +35,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_content";
+$this->id->externalTableName = "content_content";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_content_id";
 $this->id->label = "Id";
@@ -42,6 +43,7 @@ $this->id->allowNullValue = false;
 
 $this->dataId = new \Nemundo\Model\Type\Text\TextType($this);
 $this->dataId->tableName = "content_content";
+$this->dataId->externalTableName = "content_content";
 $this->dataId->fieldName = "data_id";
 $this->dataId->aliasFieldName = "content_content_data_id";
 $this->dataId->label = "Data Id";
@@ -50,6 +52,7 @@ $this->dataId->length = 36;
 
 $this->subject = new \Nemundo\Model\Type\Text\TextType($this);
 $this->subject->tableName = "content_content";
+$this->subject->externalTableName = "content_content";
 $this->subject->fieldName = "subject";
 $this->subject->aliasFieldName = "content_content_subject";
 $this->subject->label = "Subject";

@@ -35,6 +35,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_geo_index";
+$this->id->externalTableName = "content_geo_index";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_geo_index_id";
 $this->id->label = "Id";
@@ -42,6 +43,7 @@ $this->id->allowNullValue = false;
 
 $this->coordinate = new \Nemundo\Model\Type\Geo\GeoCoordinateType($this);
 $this->coordinate->tableName = "content_geo_index";
+$this->coordinate->externalTableName = "content_geo_index";
 $this->coordinate->fieldName = "coordinate";
 $this->coordinate->aliasFieldName = "content_geo_index_coordinate";
 $this->coordinate->label = "Coordinate";
@@ -49,6 +51,7 @@ $this->coordinate->allowNullValue = false;
 
 $this->place = new \Nemundo\Model\Type\Text\TextType($this);
 $this->place->tableName = "content_geo_index";
+$this->place->externalTableName = "content_geo_index";
 $this->place->fieldName = "place";
 $this->place->aliasFieldName = "content_geo_index_place";
 $this->place->label = "Place";

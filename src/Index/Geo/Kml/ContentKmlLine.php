@@ -16,16 +16,4 @@ class ContentKmlLine extends KmlLine
      */
     public $content;
 
-    public function getContent()
-    {
-
-
-
-
-
-        return parent::getContent();
-
-    }
-
-
 }

@@ -45,6 +45,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_search_index";
+$this->id->externalTableName = "content_search_index";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_search_index_id";
 $this->id->label = "Id";

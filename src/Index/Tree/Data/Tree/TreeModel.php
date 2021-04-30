@@ -50,6 +50,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_tree";
+$this->id->externalTableName = "content_tree";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_tree_id";
 $this->id->label = "Id";
@@ -71,6 +72,7 @@ $this->parentId->allowNullValue = false;
 
 $this->itemOrder = new \Nemundo\Model\Type\Number\NumberType($this);
 $this->itemOrder->tableName = "content_tree";
+$this->itemOrder->externalTableName = "content_tree";
 $this->itemOrder->fieldName = "item_order";
 $this->itemOrder->aliasFieldName = "content_tree_item_order";
 $this->itemOrder->label = "Item Order";

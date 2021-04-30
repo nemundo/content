@@ -45,6 +45,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_view";
+$this->id->externalTableName = "content_view";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_view_id";
 $this->id->label = "Id";
@@ -59,6 +60,7 @@ $this->contentTypeId->allowNullValue = false;
 
 $this->viewName = new \Nemundo\Model\Type\Text\TextType($this);
 $this->viewName->tableName = "content_view";
+$this->viewName->externalTableName = "content_view";
 $this->viewName->fieldName = "view_name";
 $this->viewName->aliasFieldName = "content_view_view_name";
 $this->viewName->label = "View Name";
@@ -67,6 +69,7 @@ $this->viewName->length = 255;
 
 $this->viewClass = new \Nemundo\Model\Type\Text\TextType($this);
 $this->viewClass->tableName = "content_view";
+$this->viewClass->externalTableName = "content_view";
 $this->viewClass->fieldName = "view_class";
 $this->viewClass->aliasFieldName = "content_view_view_class";
 $this->viewClass->label = "View Class";
@@ -75,6 +78,7 @@ $this->viewClass->length = 255;
 
 $this->setupStatus = new \Nemundo\Model\Type\Number\YesNoType($this);
 $this->setupStatus->tableName = "content_view";
+$this->setupStatus->externalTableName = "content_view";
 $this->setupStatus->fieldName = "setup_status";
 $this->setupStatus->aliasFieldName = "content_view_setup_status";
 $this->setupStatus->label = "Setup Status";
@@ -82,6 +86,7 @@ $this->setupStatus->allowNullValue = true;
 
 $this->defaultView = new \Nemundo\Model\Type\Number\YesNoType($this);
 $this->defaultView->tableName = "content_view";
+$this->defaultView->externalTableName = "content_view";
 $this->defaultView->fieldName = "default_view";
 $this->defaultView->aliasFieldName = "content_view_default_view";
 $this->defaultView->label = "Default View";

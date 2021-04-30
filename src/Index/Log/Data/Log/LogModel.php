@@ -50,6 +50,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_log";
+$this->id->externalTableName = "content_log";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_log_id";
 $this->id->label = "Id";
@@ -57,6 +58,7 @@ $this->id->allowNullValue = false;
 
 $this->dateTime = new \Nemundo\Model\Type\DateTime\CreatedDateTimeType($this);
 $this->dateTime->tableName = "content_log";
+$this->dateTime->externalTableName = "content_log";
 $this->dateTime->fieldName = "date_time";
 $this->dateTime->aliasFieldName = "content_log_date_time";
 $this->dateTime->label = "Date Time";

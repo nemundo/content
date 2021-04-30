@@ -40,6 +40,7 @@ $this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_content_type";
+$this->id->externalTableName = "content_content_type";
 $this->id->fieldName = "id";
 $this->id->aliasFieldName = "content_content_type_id";
 $this->id->label = "Id";
@@ -47,6 +48,7 @@ $this->id->allowNullValue = false;
 
 $this->phpClass = new \Nemundo\Model\Type\Text\TextType($this);
 $this->phpClass->tableName = "content_content_type";
+$this->phpClass->externalTableName = "content_content_type";
 $this->phpClass->fieldName = "php_class";
 $this->phpClass->aliasFieldName = "content_content_type_php_class";
 $this->phpClass->label = "Php Class";
@@ -55,6 +57,7 @@ $this->phpClass->length = 255;
 
 $this->contentType = new \Nemundo\Model\Type\Text\TextType($this);
 $this->contentType->tableName = "content_content_type";
+$this->contentType->externalTableName = "content_content_type";
 $this->contentType->fieldName = "content_type";
 $this->contentType->aliasFieldName = "content_content_type_content_type";
 $this->contentType->label = "Content Type";
@@ -63,6 +66,7 @@ $this->contentType->length = 255;
 
 $this->setupStatus = new \Nemundo\Model\Type\Number\YesNoType($this);
 $this->setupStatus->tableName = "content_content_type";
+$this->setupStatus->externalTableName = "content_content_type";
 $this->setupStatus->fieldName = "setup_status";
 $this->setupStatus->aliasFieldName = "content_content_type_setup_status";
 $this->setupStatus->label = "Setup Status";

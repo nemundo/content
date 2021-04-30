@@ -51,9 +51,15 @@ class GeoIndexKmlSite extends AbstractKmlSite
 
         foreach ($reader->getData() as $geoIndexRow) {
 
+
+            $contentType = $geoIndexRow->content->getContentType();
+            $contentType->getKmlMarker($kml);
+
+
+            /*
             $placemark = new KmlMarker($kml);
             $placemark->label = $geoIndexRow->content->subject;
-            $placemark->coordinate = $geoIndexRow->coordinate;
+            $placemark->coordinate = $geoIndexRow->coordinate;*/
 
             /*$contentType = $geoIndexRow->content->getContentType();
             if ($contentType->hasView()) {

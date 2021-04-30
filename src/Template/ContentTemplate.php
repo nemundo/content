@@ -11,6 +11,7 @@ use Nemundo\Com\FormBuilder\SearchForm;
 use Nemundo\Com\Template\AbstractTemplateDocument;
 
 use Nemundo\Content\Com\Form\ApplicationContentTypeSearchForm;
+use Nemundo\Content\Com\ListBox\ContentTypeListBox;
 use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\Admin\ContentAdminSite;
@@ -34,7 +35,33 @@ class ContentTemplate extends AbstractTemplateDocument
         parent::loadContainer();
 
 
-        $form = new ApplicationContentTypeSearchForm($this);
+        $form = new SearchForm($this);   // new ApplicationContentTypeSearchForm($this);
+
+        $formRow = new BootstrapRow($form);
+
+        $applicationListBox = new ApplicationListBox($formRow);
+        $applicationListBox->searchMode = true;
+        $applicationListBox->submitOnChange = true;
+        $applicationListBox->column = true;
+        $applicationListBox->columnSize = 2;
+
+        $contentTypeListBox = new ViewContentTypeListBox($formRow);
+        $contentTypeListBox->searchMode = true;
+        $contentTypeListBox->submitOnChange = true;
+        $contentTypeListBox->column = true;
+        $contentTypeListBox->columnSize = 2;
+
+        if ($applicationListBox->hasValue()) {
+            $contentTypeListBox->applicationId = $applicationListBox->getValue();
+        }
+
+
+
+
+
+
+
+
 
         /*
         $form = new SearchForm($this);
