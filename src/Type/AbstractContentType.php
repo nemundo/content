@@ -27,11 +27,10 @@ abstract class AbstractContentType extends AbstractType
     protected $adminClass;
 
 
-
     public function __construct($dataId = null)
     {
 
-        $this->listingClass=ContentListing::class;
+        $this->listingClass = ContentListing::class;
 
         parent::__construct($dataId);
     }
@@ -44,12 +43,10 @@ abstract class AbstractContentType extends AbstractType
         $this->saveContent();
 
 
-
         // für update !!!
         //$this->getDataRow();
 
         $this->saveContentIndex();
-
 
 
         $this->saveIndex();

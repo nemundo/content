@@ -18,7 +18,6 @@ class ContentActionSetup extends AbstractContentTypeSetup
 
         parent::addContentType($contentAction);
 
-
         $count = new ContentActionCount();
         $count->filter->andEqual($count->model->contentTypeId, $contentAction->typeId);
         if ($count->getCount() == 0) {

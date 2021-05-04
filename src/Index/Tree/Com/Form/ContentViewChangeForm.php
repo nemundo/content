@@ -28,7 +28,7 @@ class ContentViewChangeForm extends BootstrapForm
         $treeRow = $treeReader->getRowById($this->treeId);
 
         $this->view = new ViewListBox($this);
-        $this->view->contentType = $treeRow->child->getContentType();
+        $this->view->fromContentTypeId( $treeRow->child->contentTypeId);
         $this->view->value = $treeRow->viewId;
 
         return parent::getContent();

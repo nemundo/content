@@ -4,6 +4,7 @@ namespace Nemundo\Content\View\Listing;
 
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
+use Nemundo\Admin\Com\Table\Row\AdminClickableTableRow;
 use Nemundo\Com\TableBuilder\TableHeader;
 use Nemundo\Content\Com\Dropdown\ContentActionDropdown;
 use Nemundo\Content\Data\Content\ContentPaginationReader;
@@ -32,7 +33,12 @@ class ContentListing extends AbstractContentListing
 
         foreach ($contentReader->getData() as $contentRow) {
 
-            $row = new BootstrapClickableTableRow($table);
+            $row = new AdminClickableTableRow($table);
+
+            if ((new ContentParameter())->getValue() ==$contentRow->id) {
+                $row->setActiveRow();
+            }
+
             $row->addText($contentRow->subject);
 
             if ($this->redirectSite !== null) {

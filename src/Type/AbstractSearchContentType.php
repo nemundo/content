@@ -19,6 +19,8 @@ abstract class AbstractSearchContentType extends AbstractContentType
         parent::saveType();
         $this->saveSearchIndex();
 
+        return $this;
+
     }
 
 

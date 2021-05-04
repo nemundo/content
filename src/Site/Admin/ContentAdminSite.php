@@ -31,7 +31,7 @@ class ContentAdminSite extends AbstractSite
         new DebugSite($this);
         new AllContentRemoveSite($this);
         new JsonExportSite($this);
-
+        new ActionAdminSite($this);
 
     }
 

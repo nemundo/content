@@ -2,6 +2,7 @@
 
 namespace Nemundo\Content\Index\Tree\Site;
 
+use Nemundo\Content\Index\Tree\Page\TreePage;
 use Nemundo\Web\Site\AbstractSite;
 
 class TreeSite extends AbstractSite
@@ -16,7 +17,12 @@ class TreeSite extends AbstractSite
     {
         $this->title = 'Tree';
         $this->url = 'tree';
-        $this->menuActive = false;
+        //$this->menuActive = false;
+
+
+        TreeSite::$site = $this;
+
+
 
        /* new ViewEditSite($this);
         new ChildDeleteSite($this);*/
@@ -29,6 +35,6 @@ class TreeSite extends AbstractSite
 
     public function loadContent()
     {
-
+        (new TreePage())->render();
     }
 }

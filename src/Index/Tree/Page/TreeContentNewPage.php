@@ -13,12 +13,13 @@ use Nemundo\Com\Template\AbstractTemplateDocument;
 use Nemundo\Content\Com\Container\ContentTypeFormContainer;
 use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
 use Nemundo\Content\Index\Tree\Event\TreeEvent;
+use Nemundo\Content\Index\Tree\Template\TreeTemplate;
 use Nemundo\Content\Parameter\ContentParameter;
 use Nemundo\Content\Parameter\ContentTypeParameter;
 use Nemundo\Content\Site\ContentViewSite;
 
 // TreeContentNew
-class TreeContentNewPage extends AbstractTemplateDocument
+class TreeContentNewPage extends TreeTemplate  // AbstractTemplateDocument
 {
 
     public function getContent()
@@ -34,12 +35,12 @@ class TreeContentNewPage extends AbstractTemplateDocument
         $contentType->addEvent($event);
 
 
-
+/*
 $breadcrumb=new TreeBreadcrumb($this);
 $breadcrumb->redirectSite=ContentViewSite::$site;
 $breadcrumb->addParentContentType((new ContentParameter())->getContent());
 $breadcrumb->addContentType((new ContentParameter())->getContent());
-$breadcrumb->addActiveItem('New');
+$breadcrumb->addActiveItem('New');*/
 
 
         $widget = new AdminWidget($this);

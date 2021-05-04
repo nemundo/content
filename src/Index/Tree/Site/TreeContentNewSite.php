@@ -18,6 +18,7 @@ class TreeContentNewSite extends AbstractEditIconSite
 
     protected function loadSite()
     {
+        $this->title='New';
         $this->url = 'content-new';
         TreeContentNewSite::$site = $this;
     }
