@@ -12,6 +12,7 @@ use Nemundo\Content\Site\Admin\ContentAdminSite;
 use Nemundo\Content\Site\Admin\ContentListingSite;
 use Nemundo\Content\Site\Admin\ContentTypeSite;
 use Nemundo\Content\Site\Admin\DebugSite;
+use Nemundo\Content\Site\Admin\IndexTypeSite;
 
 
 class ContentAdminTemplate extends AbstractTemplateDocument
@@ -27,6 +28,7 @@ class ContentAdminTemplate extends AbstractTemplateDocument
         $nav->addSite(ContentAdminNewSite::$site);
         $nav->addSite(ContentListingSite::$site);
         $nav->addSite(ContentTypeSite::$site);
+        $nav->addSite(IndexTypeSite::$site);
         $nav->addSite(ActionAdminSite::$site);
         $nav->addSite(DebugSite::$site);
 

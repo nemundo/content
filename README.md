@@ -4,9 +4,9 @@ Content Framework
 
 ### Installation
 ```
+composer config repositories.content vcs https://github.com/nemundo/content
 composer require nemundo/content
 ```
-
 
 ### Class Designer
 ```

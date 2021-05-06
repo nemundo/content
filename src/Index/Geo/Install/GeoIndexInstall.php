@@ -13,7 +13,9 @@ use Nemundo\Content\Index\Geo\Application\GeoIndexApplication;
 use Nemundo\Content\Index\Geo\Data\GeoModelCollection;
 use Nemundo\Content\Index\Geo\Scheduler\GeoDistanceScheduler;
 use Nemundo\Content\Index\Geo\Script\GeoIndexCleanScript;
+use Nemundo\Content\Index\Geo\Type\GeoIndexType;
 use Nemundo\Content\Setup\ContentActionSetup;
+use Nemundo\Content\Setup\IndexTypeSetup;
 use Nemundo\Model\Setup\ModelCollectionSetup;
 
 class GeoIndexInstall extends AbstractInstall
@@ -38,6 +40,9 @@ class GeoIndexInstall extends AbstractInstall
 
         (new ContentActionSetup())
             ->addContentAction(new KmlContentAction());
+
+        (new IndexTypeSetup())->addIndexType(new GeoIndexType());
+
 
     }
 

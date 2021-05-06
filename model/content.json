@@ -571,6 +571,29 @@
         },
         {
             "template": "default",
+            "model_id": "e2a556f8-e988-4ce0-8474-db0d11ba131c",
+            "label": "Index Type",
+            "class_name": "IndexType",
+            "table_name": "content_index_type",
+            "namespace": "Nemundo\\Content\\Data\\IndexType",
+            "row_class_name": "",
+            "primary_index": "text_id",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Index Type",
+                    "field_name": "index_type",
+                    "variable_name": "indexType",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
             "model_id": "8ee824aa-017d-4e07-a6b7-c502bac16deb",
             "label": "View Content Type",
             "class_name": "ViewContentType",

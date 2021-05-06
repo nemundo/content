@@ -28,6 +28,7 @@ class ContentAdminSite extends AbstractSite
         new ContentAdminNewSite($this);
         new ContentListingSite($this);
         new ContentTypeSite($this);
+        new IndexTypeSite($this);
         new DebugSite($this);
         new AllContentRemoveSite($this);
         new JsonExportSite($this);

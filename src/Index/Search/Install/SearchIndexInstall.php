@@ -8,6 +8,8 @@ use Nemundo\App\Application\Setup\ApplicationSetup;
 use Nemundo\App\Script\Setup\ScriptSetup;
 
 use Nemundo\Content\Index\Search\Data\SearchModelCollection;
+use Nemundo\Content\Index\Search\Type\SearchIndexType;
+use Nemundo\Content\Setup\IndexTypeSetup;
 use Nemundo\Model\Setup\ModelCollectionSetup;
 
 use Nemundo\Content\Index\Search\Application\SearchApplication;
@@ -33,6 +35,9 @@ class SearchIndexInstall extends AbstractInstall
         (new ScriptSetup(new SearchApplication()))
             ->addScript(new SearchCleanScript())
             ->addScript(new WordCleanScript());
+
+        (new IndexTypeSetup())->addIndexType(new SearchIndexType());
+
 
     }
 
