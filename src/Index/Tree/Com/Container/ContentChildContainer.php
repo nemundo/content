@@ -24,7 +24,7 @@ class ContentChildContainer extends AbstractHtmlContainer
     public function getContent()
     {
 
-        (new Hr($this));
+        //(new Hr($this));
 
         $reader = new ChildContentReader();
         $reader->contentType = $this->contentType;
