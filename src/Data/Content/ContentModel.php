@@ -17,7 +17,7 @@ public $dataId;
 public $subject;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $contentTypeId;
 
@@ -59,7 +59,7 @@ $this->subject->label = "Subject";
 $this->subject->allowNullValue = true;
 $this->subject->length = 255;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->contentTypeId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->contentTypeId->tableName = "content_content";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_content_content_type";

@@ -33,7 +33,7 @@ $this->word->fieldName = "word";
 $this->word->aliasFieldName = "content_search_word_word";
 $this->word->label = "Word";
 $this->word->allowNullValue = false;
-$this->word->length = 50;
+$this->word->length = 255;
 
 $index = new \Nemundo\Model\Definition\Index\ModelSearchIndex($this);
 $index->indexName = "word";

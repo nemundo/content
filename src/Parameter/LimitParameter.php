@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Parameter;use Nemundo\Content\Data\Content\ContentReader;use Nemundo\Web\Parameter\AbstractUrlParameter;class LimitParameter extends AbstractUrlParameter{    protected function loadParameter()    {        $this->parameterName = 'limit';        $this->defaultValue=null;    }}

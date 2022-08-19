@@ -1,46 +1,1 @@
-<?php
-
-
-namespace Nemundo\Content\Form;
-
-
-use Nemundo\Admin\Com\Form\AbstractAdminForm;
-use Nemundo\Content\Parameter\ContentParameter;
-
-abstract class AbstractContentForm extends AbstractAdminForm
-{
-
-    use ContentFormTrait;
-
-    public $formName = 'New';
-
-    public function getContent()
-    {
-
-        if ($this->contentType->existItem()) {
-            $this->loadUpdateForm();
-        } else {
-            $this->loadCreateForm();
-        }
-
-        return parent::getContent();
-
-    }
-
-
-    protected function checkRedirect()
-    {
-
-        if ($this->appendParameter) {
-            $this->redirectSite->addParameter($this->contentType->getParameter());
-        }
-
-        if ($this->appendContentParameter) {
-            $this->redirectSite->addParameter((new ContentParameter($this->contentType->getContentId())));
-        }
-
-        parent::checkRedirect();
-
-    }
-
-}
+<?phpnamespace Nemundo\Content\Form;use Nemundo\Admin\Com\Form\AbstractAdminEditForm;use Nemundo\Content\Action\AbstractContentAction;use Nemundo\Html\Container\AbstractContainer;abstract class AbstractContentForm extends AbstractAdminEditForm{    use ContentFormTrait;    // formLabel[languagecode]    //public $formName = 'New';    public $formName = 'Neu';    /**     * @var AbstractContentAction[]     */    public $actionList = [];    public function __construct(AbstractContainer $parentContainer = null)    {        parent::__construct($parentContainer);        $this->loadForm();    }    protected function loadForm()    {    }    public function addAction(AbstractContentAction $action)    {        $this->actionList[] = $action;        return $this;    }    public function getActionList()    {        return $this->actionList;    }}

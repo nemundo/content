@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Parameter;use Nemundo\Web\Parameter\AbstractUrlParameter;abstract class AbstractContentParameter extends AbstractUrlParameter{    abstract public function getContent();}

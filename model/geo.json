@@ -138,6 +138,23 @@
                     "allow_null": false,
                     "is_deleted": false,
                     "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
+                },
+                {
+                    "type": "large_text",
+                    "label": "Description",
+                    "field_name": "description",
+                    "variable_name": "description",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "text",
+                    "label": "Image Url",
+                    "field_name": "image_url",
+                    "variable_name": "imageUrl",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
                 }
             ],
             "index": [

@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Action;use Nemundo\Content\Type\AbstractContentType;use Nemundo\Html\Container\AbstractHtmlContainer;// AbstractActionContentViewabstract class AbstractActionView extends AbstractHtmlContainer{    /**     * @var AbstractContentType     */    //public $content;    public $contentId;}

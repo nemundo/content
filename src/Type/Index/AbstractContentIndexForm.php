@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Type\Index;use Nemundo\Content\Type\AbstractContentType;use Nemundo\Package\Bootstrap\Form\BootstrapForm;class AbstractContentIndexForm extends BootstrapForm{    /**     * @var AbstractContentType     */    public $content;}

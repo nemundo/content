@@ -7,7 +7,7 @@ class SearchIndexModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+* @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
 */
 public $contentId;
 
@@ -17,7 +17,7 @@ public $contentId;
 public $content;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $wordId;
 
@@ -27,7 +27,7 @@ public $wordId;
 public $word;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $contentTypeId;
 
@@ -51,21 +51,21 @@ $this->id->aliasFieldName = "content_search_index_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->contentId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->contentId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
 $this->contentId->tableName = "content_search_index";
 $this->contentId->fieldName = "content";
 $this->contentId->aliasFieldName = "content_search_index_content";
 $this->contentId->label = "Content";
 $this->contentId->allowNullValue = false;
 
-$this->wordId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->wordId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->wordId->tableName = "content_search_index";
 $this->wordId->fieldName = "word";
 $this->wordId->aliasFieldName = "content_search_index_word";
 $this->wordId->label = "Word";
 $this->wordId->allowNullValue = false;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->contentTypeId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->contentTypeId->tableName = "content_search_index";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_search_index_content_type";

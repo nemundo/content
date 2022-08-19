@@ -7,21 +7,31 @@ class ContentActionModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\Text\TextType
 */
-public $contentTypeId;
+public $action;
 
 /**
-* @var \Nemundo\Content\Data\ContentType\ContentTypeExternalType
+* @var \Nemundo\Model\Type\Text\TextType
 */
-public $contentType;
+public $phpClass;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $menuActive;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $setupStatus;
 
 protected function loadModel() {
 $this->tableName = "content_action";
 $this->aliasTableName = "content_action";
 $this->label = "Content Action";
 
-$this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
+$this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "content_action";
@@ -31,26 +41,39 @@ $this->id->aliasFieldName = "content_action_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
-$this->contentTypeId->tableName = "content_action";
-$this->contentTypeId->fieldName = "content_type";
-$this->contentTypeId->aliasFieldName = "content_action_content_type";
-$this->contentTypeId->label = "Content Type";
-$this->contentTypeId->allowNullValue = false;
+$this->action = new \Nemundo\Model\Type\Text\TextType($this);
+$this->action->tableName = "content_action";
+$this->action->externalTableName = "content_action";
+$this->action->fieldName = "action";
+$this->action->aliasFieldName = "content_action_action";
+$this->action->label = "Action";
+$this->action->allowNullValue = false;
+$this->action->length = 255;
 
-$index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
-$index->indexName = "content_type";
-$index->addType($this->contentTypeId);
+$this->phpClass = new \Nemundo\Model\Type\Text\TextType($this);
+$this->phpClass->tableName = "content_action";
+$this->phpClass->externalTableName = "content_action";
+$this->phpClass->fieldName = "php_class";
+$this->phpClass->aliasFieldName = "content_action_php_class";
+$this->phpClass->label = "Php Class";
+$this->phpClass->allowNullValue = false;
+$this->phpClass->length = 255;
 
-}
-public function loadContentType() {
-if ($this->contentType == null) {
-$this->contentType = new \Nemundo\Content\Data\ContentType\ContentTypeExternalType($this, "content_action_content_type");
-$this->contentType->tableName = "content_action";
-$this->contentType->fieldName = "content_type";
-$this->contentType->aliasFieldName = "content_action_content_type";
-$this->contentType->label = "Content Type";
-}
-return $this;
+$this->menuActive = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->menuActive->tableName = "content_action";
+$this->menuActive->externalTableName = "content_action";
+$this->menuActive->fieldName = "menu_active";
+$this->menuActive->aliasFieldName = "content_action_menu_active";
+$this->menuActive->label = "Menu Active";
+$this->menuActive->allowNullValue = false;
+
+$this->setupStatus = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->setupStatus->tableName = "content_action";
+$this->setupStatus->externalTableName = "content_action";
+$this->setupStatus->fieldName = "setup_status";
+$this->setupStatus->aliasFieldName = "content_action_setup_status";
+$this->setupStatus->label = "Setup Status";
+$this->setupStatus->allowNullValue = false;
+
 }
 }

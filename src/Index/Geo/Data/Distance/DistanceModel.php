@@ -7,7 +7,7 @@ class DistanceModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+* @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
 */
 public $contentFromId;
 
@@ -17,7 +17,7 @@ public $contentFromId;
 public $contentFrom;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+* @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
 */
 public $contentToId;
 
@@ -46,14 +46,14 @@ $this->id->aliasFieldName = "geo_distance_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->contentFromId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->contentFromId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
 $this->contentFromId->tableName = "geo_distance";
 $this->contentFromId->fieldName = "content_from";
 $this->contentFromId->aliasFieldName = "geo_distance_content_from";
 $this->contentFromId->label = "Content From";
 $this->contentFromId->allowNullValue = true;
 
-$this->contentToId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->contentToId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
 $this->contentToId->tableName = "geo_distance";
 $this->contentToId->fieldName = "content_to";
 $this->contentToId->aliasFieldName = "geo_distance_content_to";

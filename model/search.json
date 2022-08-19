@@ -40,6 +40,15 @@
                     "variable_name": "text",
                     "allow_null": false,
                     "is_deleted": false
+                },
+                {
+                    "type": "image",
+                    "label": "Image Small",
+                    "field_name": "image_small",
+                    "variable_name": "imageSmall",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "format": []
                 }
             ],
             "index": [
@@ -165,7 +174,7 @@
                     "variable_name": "word",
                     "allow_null": false,
                     "is_deleted": false,
-                    "length": "50"
+                    "length": "255"
                 }
             ],
             "index": [

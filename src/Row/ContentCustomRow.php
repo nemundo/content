@@ -1,26 +1,1 @@
-<?php
-
-
-namespace Nemundo\Content\Row;
-
-use Nemundo\Content\Data\Content\ContentRow;
-use Nemundo\Content\Index\Geo\Type\GeoIndexTrait;
-use Nemundo\Content\Type\AbstractContentType;
-
-
-class ContentCustomRow extends ContentRow
-{
-
-    public $itemOrder;
-
-    public function getContentType()
-    {
-
-        /** @var AbstractContentType|GeoIndexTrait $contentType */
-        $contentType = $this->contentType->getContentType($this->dataId);
-
-        return $contentType;
-
-    }
-
-}
+<?phpnamespace Nemundo\Content\Row;use Nemundo\Content\Data\Content\ContentRow;use Nemundo\Content\Index\Geo\Type\GeoIndexTrait;use Nemundo\Content\Type\AbstractContentType;use Nemundo\Content\Type\JsonContentTrait;class ContentCustomRow extends ContentRow{    public function getContent()    {        /** @var AbstractContentType|GeoIndexTrait|JsonContentTrait $content */        $content = $this->contentType->getContentType($this->dataId);        return $content;    }    public function getSubjectContentType() {        $subject=$this->subject.' ('.$this->contentType->contentType.')';        return $subject;    }}

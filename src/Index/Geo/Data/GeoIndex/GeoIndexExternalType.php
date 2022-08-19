@@ -26,6 +26,16 @@ public $contentId;
 */
 public $content;
 
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $description;
+
+/**
+* @var \Nemundo\Model\Type\Text\TextType
+*/
+public $imageUrl;
+
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = GeoIndexModel::class;
@@ -62,6 +72,22 @@ $this->contentId->tableName = $this->parentFieldName . "_" . $this->externalTabl
 $this->contentId->aliasFieldName = $this->contentId->tableName ."_".$this->contentId->fieldName;
 $this->contentId->label = "Content";
 $this->addType($this->contentId);
+
+$this->description = new \Nemundo\Model\Type\Text\LargeTextType();
+$this->description->fieldName = "description";
+$this->description->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->description->externalTableName = $this->externalTableName;
+$this->description->aliasFieldName = $this->description->tableName . "_" . $this->description->fieldName;
+$this->description->label = "Description";
+$this->addType($this->description);
+
+$this->imageUrl = new \Nemundo\Model\Type\Text\TextType();
+$this->imageUrl->fieldName = "image_url";
+$this->imageUrl->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->imageUrl->externalTableName = $this->externalTableName;
+$this->imageUrl->aliasFieldName = $this->imageUrl->tableName . "_" . $this->imageUrl->fieldName;
+$this->imageUrl->label = "Image Url";
+$this->addType($this->imageUrl);
 
 }
 public function loadContent() {

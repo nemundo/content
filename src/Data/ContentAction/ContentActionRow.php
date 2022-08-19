@@ -19,23 +19,30 @@ public $id;
 /**
 * @var string
 */
-public $contentTypeId;
+public $action;
 
 /**
-* @var \Nemundo\Content\Row\ContentTypeCustomRow
+* @var string
 */
-public $contentType;
+public $phpClass;
+
+/**
+* @var bool
+*/
+public $menuActive;
+
+/**
+* @var bool
+*/
+public $setupStatus;
 
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
 $this->row = $row;
 $this->id = $this->getModelValue($model->id);
-$this->contentTypeId = $this->getModelValue($model->contentTypeId);
-if ($model->contentType !== null) {
-$this->loadNemundoContentDataContentTypeContentTypecontentTypeRow($model->contentType);
-}
-}
-private function loadNemundoContentDataContentTypeContentTypecontentTypeRow($model) {
-$this->contentType = new \Nemundo\Content\Row\ContentTypeCustomRow($this->row, $model);
+$this->action = $this->getModelValue($model->action);
+$this->phpClass = $this->getModelValue($model->phpClass);
+$this->menuActive = boolval($this->getModelValue($model->menuActive));
+$this->setupStatus = boolval($this->getModelValue($model->setupStatus));
 }
 }

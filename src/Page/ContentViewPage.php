@@ -1,88 +1,1 @@
-<?php
-
-
-namespace Nemundo\Content\Page;
-
-
-use Nemundo\Admin\Com\Widget\AdminWidget;
-use Nemundo\Com\Template\AbstractTemplateDocument;
-use Nemundo\Content\Action\AbstractContentAction;
-use Nemundo\Content\Com\Widget\ContentWidget;
-use Nemundo\Content\Data\ContentAction\ContentActionReader;
-use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;
-use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Content\Parameter\ViewParameter;
-use Nemundo\Content\Site\ContentViewSite;
-use Nemundo\Core\Debug\Debug;
-use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
-
-class ContentViewPage extends AbstractTemplateDocument
-{
-
-    public function getContent()
-    {
-
-        $layout = new BootstrapTwoColumnLayout($this);
-
-        $contentType = (new ContentParameter())->getContent(false);
-
-        $breadcrumb = new TreeBreadcrumb($layout->col1);
-        $breadcrumb->redirectSite = ContentViewSite::$site;
-        $breadcrumb->addParentContentType($contentType);
-        $breadcrumb->addContentType($contentType);
-
-        $widget = new ContentWidget($layout->col1);
-        $widget->contentType = $contentType;
-        $widget->viewId = (new ViewParameter())->getValue();
-        //$widget->loadAction = true;
-        $widget->editable=true;
-        $widget->redirectSite = ContentViewSite::$site;
-
-
-
-
-        /*
-        $container = new TreeIndexContainer($layout->col2);
-        $container->contentType = $contentType;
-        $container->redirectSite= ContentViewSite::$site;*/
-
-
-        $reader = new ContentActionReader();
-        $reader->model->loadContentType();
-        $reader->addOrder($reader->model->contentType->contentType);
-
-        // sort nach action label
-
-        foreach ($reader->getData() as $actionRow) {
-            //$this->addContentAction($actionRow->contentType->getContentType());
-
-            /** @var AbstractContentAction $actionContentType */
-            $actionContentType = $actionRow->contentType->getContentType();
-
-            if ($actionContentType->hasView()) {
-
-                // (new Debug())->write('action');
-
-
-                $actionContentType->actionContentId = $contentType->getContentId();
-
-                $widget->addContentAction($actionContentType);
-
-                /*
-                $widget = new AdminWidget($layout->col2);
-                $widget->widgetTitle = $actionContentType->typeLabel;
-
-                $view = $actionContentType->getDefaultView($widget);
-                $view->redirectSite = ContentViewSite::$site;
-*/
-
-
-            }
-
-        }
-
-        return parent::getContent();
-
-    }
-
-}
+<?phpnamespace Nemundo\Content\Page;use Nemundo\Admin\Com\Breadcrumb\AdminBreadcrumb;use Nemundo\Admin\Com\Layout\AdminFlexboxLayout;use Nemundo\Admin\Com\Layout\Grid\AdminTwoColumnGridLayout;use Nemundo\Admin\Com\Widget\AdminWidget;use Nemundo\Com\Template\AbstractTemplateDocument;use Nemundo\Content\Action\AbstractContentAction;use Nemundo\Content\Action\Com\ActionWidget;use Nemundo\Content\Action\Com\Container\ContentActionContainer;use Nemundo\Content\Com\Card\ContentCard;use Nemundo\Content\Com\Widget\ContentWidget;use Nemundo\Content\Data\ContentAction\ContentActionReader;use Nemundo\Content\Index\Tree\Com\Breadcrumb\TreeBreadcrumb;use Nemundo\Content\Parameter\ContentParameter;use Nemundo\Content\Parameter\ViewParameter;use Nemundo\Content\Site\ContentSite;use Nemundo\Content\Site\ContentViewSite;use Nemundo\Core\Debug\Debug;use Nemundo\Html\Block\Div;use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;class ContentViewPage extends AbstractTemplateDocument{    public function getContent()    {        //$layout = new BootstrapTwoColumnLayout($this);        //$content = (new ContentParameter())->getContent(false);        /*$breadcrumb = new TreeBreadcrumb($layout->col1);        $breadcrumb->redirectSite = ContentViewSite::$site;        $breadcrumb->addParentContentType($content);        $breadcrumb->addContentType($content);*/        $item = (new ContentParameter())->getContentItem();        $container = new AdminTwoColumnGridLayout($this);        $left = new AdminFlexboxLayout($container);        $breadcrumb=new AdminBreadcrumb($left);        $breadcrumb->addSite(ContentSite::$site);        $breadcrumb->addText($item->getSubject());        $contentId = (new ContentParameter())->getValue();        $right = new Div($container);        $card=new ContentCard($left);        $card->contentId=$contentId;        $action=new ContentActionContainer($right);        $action->contentId=$contentId;        /*        $widget = new ContentWidget($layout->col1);        $widget->contentType = $content;        $widget->viewId = (new ViewParameter())->getValue();        $widget->loadAction = false;        $widget->editable=false;        $widget->showAction=false;        $widget->redirectSite = ContentViewSite::$site;*/        /*        $widget=new ActionWidget($layout->col1);        $widget->content= $content;        /*        $container = new TreeIndexContainer($layout->col2);        $container->contentType = $contentType;        $container->redirectSite= ContentViewSite::$site;*/        //$reader = new ContentActionReader();        /*$reader->model->loadContentType();        $reader->addOrder($reader->model->contentType->contentType);*/        // sort nach action label       // foreach ($reader->getData() as $actionRow) {            //$this->addContentAction($actionRow->contentType->getContentType());            /** @var AbstractContentAction $actionContentType */           /* $actionContentType = $actionRow->contentType->getContentType();            if ($actionContentType->hasView()) {                // (new Debug())->write('action');                $actionContentType->actionContentId = $contentType->getContentId();                $widget->addContentAction($actionContentType);                /*                $widget = new AdminWidget($layout->col2);                $widget->widgetTitle = $actionContentType->typeLabel;                $view = $actionContentType->getDefaultView($widget);                $view->redirectSite = ContentViewSite::$site;*/            //}        //}        return parent::getContent();    }}

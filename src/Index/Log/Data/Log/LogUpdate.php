@@ -10,20 +10,14 @@ public $model;
 /**
 * @var string
 */
-public $contentLogId;
-
-/**
-* @var string
-*/
-public $contentItemId;
+public $contentId;
 
 public function __construct() {
 parent::__construct();
 $this->model = new LogModel();
 }
 public function update() {
-$this->typeValueList->setModelValue($this->model->contentLogId, $this->contentLogId);
-$this->typeValueList->setModelValue($this->model->contentItemId, $this->contentItemId);
+$this->typeValueList->setModelValue($this->model->contentId, $this->contentId);
 parent::update();
 }
 }

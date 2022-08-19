@@ -10,14 +10,32 @@ public $model;
 /**
 * @var string
 */
-public $contentTypeId;
+public $action;
+
+/**
+* @var string
+*/
+public $phpClass;
+
+/**
+* @var bool
+*/
+public $menuActive;
+
+/**
+* @var bool
+*/
+public $setupStatus;
 
 public function __construct() {
 parent::__construct();
 $this->model = new ContentActionModel();
 }
 public function update() {
-$this->typeValueList->setModelValue($this->model->contentTypeId, $this->contentTypeId);
+$this->typeValueList->setModelValue($this->model->action, $this->action);
+$this->typeValueList->setModelValue($this->model->phpClass, $this->phpClass);
+$this->typeValueList->setModelValue($this->model->menuActive, $this->menuActive);
+$this->typeValueList->setModelValue($this->model->setupStatus, $this->setupStatus);
 parent::update();
 }
 }

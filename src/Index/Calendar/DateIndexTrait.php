@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Index\Calendar;use Nemundo\Core\Type\DateTime\Date;trait DateIndexTrait{    /**     * @return Date     */    abstract public function getDate();}

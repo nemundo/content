@@ -17,7 +17,7 @@ public $coordinate;
 public $place;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+* @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
 */
 public $contentId;
 
@@ -25,6 +25,16 @@ public $contentId;
 * @var \Nemundo\Content\Data\Content\ContentExternalType
 */
 public $content;
+
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $description;
+
+/**
+* @var \Nemundo\Model\Type\Text\TextType
+*/
+public $imageUrl;
 
 protected function loadModel() {
 $this->tableName = "content_geo_index";
@@ -58,12 +68,29 @@ $this->place->label = "Place";
 $this->place->allowNullValue = false;
 $this->place->length = 255;
 
-$this->contentId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->contentId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
 $this->contentId->tableName = "content_geo_index";
 $this->contentId->fieldName = "content";
 $this->contentId->aliasFieldName = "content_geo_index_content";
 $this->contentId->label = "Content";
 $this->contentId->allowNullValue = false;
+
+$this->description = new \Nemundo\Model\Type\Text\LargeTextType($this);
+$this->description->tableName = "content_geo_index";
+$this->description->externalTableName = "content_geo_index";
+$this->description->fieldName = "description";
+$this->description->aliasFieldName = "content_geo_index_description";
+$this->description->label = "Description";
+$this->description->allowNullValue = false;
+
+$this->imageUrl = new \Nemundo\Model\Type\Text\TextType($this);
+$this->imageUrl->tableName = "content_geo_index";
+$this->imageUrl->externalTableName = "content_geo_index";
+$this->imageUrl->fieldName = "image_url";
+$this->imageUrl->aliasFieldName = "content_geo_index_image_url";
+$this->imageUrl->label = "Image Url";
+$this->imageUrl->allowNullValue = false;
+$this->imageUrl->length = 255;
 
 $index = new \Nemundo\Model\Definition\Index\ModelUniqueIndex($this);
 $index->indexName = "content";

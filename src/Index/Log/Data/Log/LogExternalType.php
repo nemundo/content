@@ -12,16 +12,6 @@ public $id;
 public $dateTime;
 
 /**
-* @var \Nemundo\Model\Type\Id\IdType
-*/
-public $contentLogId;
-
-/**
-* @var \Nemundo\Content\Data\Content\ContentExternalType
-*/
-public $contentLog;
-
-/**
 * @var \Nemundo\Model\Type\User\CreatedUserType
 */
 public $userId;
@@ -34,12 +24,12 @@ public $user;
 /**
 * @var \Nemundo\Model\Type\Id\IdType
 */
-public $contentItemId;
+public $contentId;
 
 /**
 * @var \Nemundo\Content\Data\Content\ContentExternalType
 */
-public $contentItem;
+public $content;
 
 protected function loadExternalType() {
 parent::loadExternalType();
@@ -62,13 +52,6 @@ $this->dateTime->aliasFieldName = $this->dateTime->tableName . "_" . $this->date
 $this->dateTime->label = "Date Time";
 $this->addType($this->dateTime);
 
-$this->contentLogId = new \Nemundo\Model\Type\Id\IdType();
-$this->contentLogId->fieldName = "content_log";
-$this->contentLogId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->contentLogId->aliasFieldName = $this->contentLogId->tableName ."_".$this->contentLogId->fieldName;
-$this->contentLogId->label = "Content Log";
-$this->addType($this->contentLogId);
-
 $this->userId = new \Nemundo\Model\Type\User\CreatedUserType();
 $this->userId->fieldName = "user";
 $this->userId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
@@ -76,24 +59,13 @@ $this->userId->aliasFieldName = $this->userId->tableName ."_".$this->userId->fie
 $this->userId->label = "User";
 $this->addType($this->userId);
 
-$this->contentItemId = new \Nemundo\Model\Type\Id\IdType();
-$this->contentItemId->fieldName = "content_item";
-$this->contentItemId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->contentItemId->aliasFieldName = $this->contentItemId->tableName ."_".$this->contentItemId->fieldName;
-$this->contentItemId->label = "Content Item";
-$this->addType($this->contentItemId);
+$this->contentId = new \Nemundo\Model\Type\Id\IdType();
+$this->contentId->fieldName = "content";
+$this->contentId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->contentId->aliasFieldName = $this->contentId->tableName ."_".$this->contentId->fieldName;
+$this->contentId->label = "Content";
+$this->addType($this->contentId);
 
-}
-public function loadContentLog() {
-if ($this->contentLog == null) {
-$this->contentLog = new \Nemundo\Content\Data\Content\ContentExternalType(null, $this->parentFieldName . "_content_log");
-$this->contentLog->fieldName = "content_log";
-$this->contentLog->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->contentLog->aliasFieldName = $this->contentLog->tableName ."_".$this->contentLog->fieldName;
-$this->contentLog->label = "Content Log";
-$this->addType($this->contentLog);
-}
-return $this;
 }
 public function loadUser() {
 if ($this->user == null) {
@@ -106,14 +78,14 @@ $this->addType($this->user);
 }
 return $this;
 }
-public function loadContentItem() {
-if ($this->contentItem == null) {
-$this->contentItem = new \Nemundo\Content\Data\Content\ContentExternalType(null, $this->parentFieldName . "_content_item");
-$this->contentItem->fieldName = "content_item";
-$this->contentItem->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->contentItem->aliasFieldName = $this->contentItem->tableName ."_".$this->contentItem->fieldName;
-$this->contentItem->label = "Content Item";
-$this->addType($this->contentItem);
+public function loadContent() {
+if ($this->content == null) {
+$this->content = new \Nemundo\Content\Data\Content\ContentExternalType(null, $this->parentFieldName . "_content");
+$this->content->fieldName = "content";
+$this->content->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->content->aliasFieldName = $this->content->tableName ."_".$this->content->fieldName;
+$this->content->label = "Content";
+$this->addType($this->content);
 }
 return $this;
 }

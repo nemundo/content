@@ -1,29 +1,1 @@
-<?php
-
-namespace Nemundo\Content\Index\Tree\Reader;
-
-
-use Nemundo\Content\Index\Tree\Data\Tree\TreeRow;
-use Nemundo\Content\Type\AbstractContentType;
-use Nemundo\Core\Base\DataSource\AbstractDataSource;
-
-abstract class AbstractParentChildContentReader extends AbstractDataSource
-{
-
-    /**
-     * @var AbstractContentType
-     */
-    public $contentType;
-
-    public $limit;
-
-
-    /**
-     * @return TreeRow[]
-     */
-    public function getData()
-    {
-        return parent::getData();
-    }
-
-}
+<?phpnamespace Nemundo\Content\Index\Tree\Reader;use Nemundo\Content\Data\Content\ContentRow;use Nemundo\Content\Index\Tree\Data\Tree\TreeReader;use Nemundo\Content\Index\Tree\Data\Tree\TreeRow;use Nemundo\Content\Type\AbstractContentType;use Nemundo\Core\Base\DataSource\AbstractDataSource;abstract class AbstractParentChildContentReader extends AbstractDataSource{    /**     * @var AbstractContentType     */    //public $contentType;    //public $limit;    public $contentId;    /**     * @var TreeReader     */    //protected $treeReader;    protected function loadData()    {       /* $reader = new TreeReader();        $reader->model->loadChild();        $reader->model->child->loadContentType();        $reader->model->loadView();        //$reader->filter->andEqual($reader->model->parentId, $this->contentId);        $reader->addOrder($reader->model->itemOrder);        //$reader->limit = $this->limit;        foreach ($reader->getData() as $treeRow) {            $this->addItem($treeRow->child);        }*/    }    /**     * @return ContentRow[]     */    public function getData()    {        return parent::getData();    }}

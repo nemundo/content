@@ -7,7 +7,7 @@ class WordContentTypeModel extends \Nemundo\Model\Definition\Model\AbstractModel
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $contentTypeId;
 
@@ -36,7 +36,7 @@ $this->id->aliasFieldName = "content_search_word_content_type_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->contentTypeId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->contentTypeId->tableName = "content_search_word_content_type";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_search_word_content_type_content_type";

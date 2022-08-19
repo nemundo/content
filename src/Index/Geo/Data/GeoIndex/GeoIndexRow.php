@@ -36,6 +36,16 @@ public $contentId;
 */
 public $content;
 
+/**
+* @var string
+*/
+public $description;
+
+/**
+* @var string
+*/
+public $imageUrl;
+
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
 $this->row = $row;
@@ -47,6 +57,8 @@ $this->contentId = intval($this->getModelValue($model->contentId));
 if ($model->content !== null) {
 $this->loadNemundoContentDataContentContentcontentRow($model->content);
 }
+$this->description = $this->getModelValue($model->description);
+$this->imageUrl = $this->getModelValue($model->imageUrl);
 }
 private function loadNemundoContentDataContentContentcontentRow($model) {
 $this->content = new \Nemundo\Content\Row\ContentCustomRow($this->row, $model);

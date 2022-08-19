@@ -29,7 +29,7 @@
                     "field_name": "content_log",
                     "variable_name": "contentLog",
                     "allow_null": true,
-                    "is_deleted": false,
+                    "is_deleted": true,
                     "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
                 },
                 {
@@ -46,11 +46,28 @@
                     "field_name": "content_item",
                     "variable_name": "contentItem",
                     "allow_null": true,
+                    "is_deleted": true,
+                    "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
+                },
+                {
+                    "type": "external",
+                    "label": "Content",
+                    "field_name": "content",
+                    "variable_name": "content",
+                    "allow_null": false,
                     "is_deleted": false,
                     "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
                 }
             ],
-            "index": []
+            "index": [
+                {
+                    "index_name": "content",
+                    "index_type": "index",
+                    "field_name": [
+                        "content"
+                    ]
+                }
+            ]
         }
     ]
 }

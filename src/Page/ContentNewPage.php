@@ -1,41 +1,1 @@
-<?php
-
-namespace Nemundo\Content\Page;
-
-
-use Nemundo\App\Application\Parameter\ApplicationParameter;
-use Nemundo\Content\Com\Container\ContentTypeFormContainer;
-use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Site\ContentSite;
-use Nemundo\Content\Template\ContentTemplate;
-use Nemundo\Html\Paragraph\Paragraph;
-
-class ContentNewPage extends ContentTemplate
-{
-
-    public function getContent()
-    {
-
-        $parameter = new ContentTypeParameter();
-        if ($parameter->hasValue()) {
-
-            $contentType = $parameter->getContentType();
-
-            if ($contentType->hasForm()) {
-                $container = new ContentTypeFormContainer($this);
-                $container->contentType = $parameter->getContentType();
-                $container->redirectSite = clone(ContentSite::$site);
-                $container->redirectSite->addParameter(new ApplicationParameter());
-                $container->redirectSite->addParameter(new ContentTypeParameter());
-            } else {
-                $p = new Paragraph($this);
-                $p->content = 'No Form';
-            }
-
-        }
-
-        return parent::getContent();
-
-    }
-
-}
+<?phpnamespace Nemundo\Content\Page;use Nemundo\Admin\Com\Button\AdminSubmitButton;use Nemundo\Admin\Com\Form\AdminSearchForm;use Nemundo\App\Application\Parameter\ApplicationParameter;use Nemundo\Content\Com\Container\ContentTypeFormContainer;use Nemundo\Content\Com\ListBox\ContentTypeListBox;use Nemundo\Content\Parameter\ContentTypeParameter;use Nemundo\Content\Site\ContentSite;use Nemundo\Content\Template\ContentTemplate;use Nemundo\Core\Debug\Debug;use Nemundo\Html\Paragraph\Paragraph;class ContentNewPage extends ContentTemplate{    public function getContent()    {        //(new Debug())->write($_POST);        /*$form = new AdminSearchForm($this);        $listBox=new ContentTypeListBox($form);        $listBox->searchMode=true;        $listBox->submitOnChange=true;*/        //new AdminSubmitButton($form);        $parameter = new ContentTypeParameter();        if ($parameter->hasValue()) {            $content = $parameter->getContentType();  // $contentType->getContentType();            if ($content->hasForm()) {                /*$container = new ContentTypeFormContainer($this);                $container->contentType = $content;*/                $form = $content->getDefaultForm($this);                $form->redirectSite = clone(ContentSite::$site);                $form->redirectSite->addParameter(new ContentTypeParameter());                /*$container->redirectSite = clone(ContentSite::$site);                $container->redirectSite->addParameter(new ApplicationParameter());                $container->redirectSite->addParameter(new ContentTypeParameter());*/            } else {                $p = new Paragraph($this);                $p->content = 'No Form';            }        }        return parent::getContent();    }}

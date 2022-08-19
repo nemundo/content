@@ -237,8 +237,8 @@
             "class_name": "ContentAction",
             "table_name": "content_action",
             "namespace": "Nemundo\\Content\\Data\\ContentAction",
-            "row_class_name": "",
-            "primary_index": "auto_increment",
+            "row_class_name": "Nemundo\\Content\\Row\\ActionCustomRow",
+            "primary_index": "text_id",
             "is_deleted": false,
             "type": [
                 {
@@ -247,19 +247,45 @@
                     "field_name": "content_type",
                     "variable_name": "contentType",
                     "allow_null": false,
-                    "is_deleted": false,
+                    "is_deleted": true,
                     "external_model_id": "69c1a9f4-3412-4446-92a4-2e81a75bed3f"
+                },
+                {
+                    "type": "text",
+                    "label": "Action",
+                    "field_name": "action",
+                    "variable_name": "action",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                },
+                {
+                    "type": "text",
+                    "label": "Php Class",
+                    "field_name": "php_class",
+                    "variable_name": "phpClass",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Menu Active",
+                    "field_name": "menu_active",
+                    "variable_name": "menuActive",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Setup Status",
+                    "field_name": "setup_status",
+                    "variable_name": "setupStatus",
+                    "allow_null": false,
+                    "is_deleted": false
                 }
             ],
-            "index": [
-                {
-                    "index_name": "content_type",
-                    "index_type": "unique_index",
-                    "field_name": [
-                        "content_type"
-                    ]
-                }
-            ]
+            "index": []
         },
         {
             "template": "default",
@@ -567,7 +593,16 @@
                     "is_deleted": false
                 }
             ],
-            "index": []
+            "index": [
+                {
+                    "index_name": "content_type_default_view",
+                    "index_type": "index",
+                    "field_name": [
+                        "content_type",
+                        "default_view"
+                    ]
+                }
+            ]
         },
         {
             "template": "default",
@@ -578,7 +613,7 @@
             "namespace": "Nemundo\\Content\\Data\\IndexType",
             "row_class_name": "",
             "primary_index": "text_id",
-            "is_deleted": false,
+            "is_deleted": true,
             "type": [
                 {
                     "type": "text",

@@ -1,9 +1,1 @@
-<?php
-
-namespace Nemundo\Content\Index\Relation\Reader;
-
-
-class RelationContentTypeReader
-{
-
-}
+<?phpnamespace Nemundo\Content\Index\Relation\Reader;class RelationContentTypeReader{}

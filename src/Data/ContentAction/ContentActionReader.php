@@ -11,7 +11,7 @@ parent::__construct();
 $this->model = new ContentActionModel();
 }
 /**
-* @return ContentActionRow[]
+* @return \Nemundo\Content\Row\ActionCustomRow[]
 */
 public function getData() {
 $list = [];
@@ -22,7 +22,7 @@ $list[] = $row;
 return $list;
 }
 /**
-* @return ContentActionRow
+* @return \Nemundo\Content\Row\ActionCustomRow
 */
 public function getRow() {
 $dataRow = parent::getRow();
@@ -30,13 +30,13 @@ $row = $this->getModelRow($dataRow);
 return $row;
 }
 /**
-* @return ContentActionRow
+* @return \Nemundo\Content\Row\ActionCustomRow
 */
 public function getRowById($id) {
 return parent::getRowById($id);
 }
 private function getModelRow($dataRow) {
-$row = new ContentActionRow($dataRow, $this->model);
+$row = new \Nemundo\Content\Row\ActionCustomRow($dataRow, $this->model);
 $row->model = $this->model;
 return $row;
 }

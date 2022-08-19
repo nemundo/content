@@ -7,7 +7,7 @@ class ContentTypeCollectionContentTypeModel extends \Nemundo\Model\Definition\Mo
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $collectionId;
 
@@ -17,7 +17,7 @@ public $collectionId;
 public $collection;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $contentTypeId;
 
@@ -41,14 +41,14 @@ $this->id->aliasFieldName = "content_content_type_collection_content_type_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->collectionId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->collectionId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->collectionId->tableName = "content_content_type_collection_content_type";
 $this->collectionId->fieldName = "collection";
 $this->collectionId->aliasFieldName = "content_content_type_collection_content_type_collection";
 $this->collectionId->label = "Collection";
 $this->collectionId->allowNullValue = false;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->contentTypeId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->contentTypeId->tableName = "content_content_type_collection_content_type";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_content_type_collection_content_type_content_type";

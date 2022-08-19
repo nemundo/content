@@ -7,7 +7,7 @@ class ContentViewModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $contentTypeId;
 
@@ -51,7 +51,7 @@ $this->id->aliasFieldName = "content_view_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->contentTypeId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->contentTypeId->tableName = "content_view";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_view_content_type";
@@ -91,6 +91,11 @@ $this->defaultView->fieldName = "default_view";
 $this->defaultView->aliasFieldName = "content_view_default_view";
 $this->defaultView->label = "Default View";
 $this->defaultView->allowNullValue = false;
+
+$index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
+$index->indexName = "content_type_default_view";
+$index->addType($this->contentTypeId);
+$index->addType($this->defaultView);
 
 }
 public function loadContentType() {

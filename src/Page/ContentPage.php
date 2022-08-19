@@ -1,77 +1,1 @@
-<?php
-
-
-namespace Nemundo\Content\Page;
-
-
-use Nemundo\Admin\Com\Widget\AdminWidget;
-use Nemundo\Admin\Parameter\PageParameter;
-use Nemundo\App\Application\Com\ListBox\ApplicationListBox;
-use Nemundo\Com\FormBuilder\SearchForm;
-use Nemundo\Com\Template\AbstractTemplateDocument;
-use Nemundo\Content\Com\ListBox\ContentTypeListBox;
-use Nemundo\Content\Com\ListBox\ViewContentTypeListBox;
-use Nemundo\Content\Com\Widget\ContentWidget;
-use Nemundo\Content\Index\Tree\Com\Container\ContentChildContainer;
-use Nemundo\Content\Index\Tree\Com\Container\TreeIndexContainer;
-use Nemundo\Content\Parameter\ContentParameter;
-use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\Content\Site\ContentSite;
-use Nemundo\Content\Template\ContentTemplate;
-use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
-use Nemundo\Package\Bootstrap\Layout\Grid\BootstrapRow;
-
-
-class ContentPage extends ContentTemplate
-{
-
-    public function getContent()
-    {
-
-        $contentTypeParameter = new ContentTypeParameter();
-        if ($contentTypeParameter->hasValue()) {
-
-            $contentType = $contentTypeParameter->getContentType();
-
-            $layout = new BootstrapTwoColumnLayout($this);
-
-
-            if ($contentType->hasList()) {
-
-                $contentTypeListBox = $contentType->getListing($layout->col1);
-
-                $contentTypeListBox->redirectSite = clone(ContentSite::$site);
-                $contentTypeListBox->redirectSite->addParameter(new ContentTypeParameter());
-                $contentTypeListBox->redirectSite->addParameter(new PageParameter());
-
-            }
-
-
-            $contentParameter = new ContentParameter();
-            if ($contentParameter->hasValue()) {
-
-                $content = $contentParameter->getContent(false);
-                if ($content->hasView()) {
-
-                    $widget = new ContentWidget($layout->col2);
-                    $widget->contentType = $content;
-                    $widget->loadAction = true;
-                    $widget->redirectSite = ContentSite::$site;
-
-                    /*$container = new ContentChildContainer($layout->col2);
-                    $container->contentType=$content;*/
-
-                }
-
-            }
-
-        }
-
-
-
-
-        return parent::getContent();
-
-    }
-
-}
+<?phpnamespace Nemundo\Content\Page;use Nemundo\Admin\Com\Breadcrumb\AdminBreadcrumb;use Nemundo\Admin\Com\Button\AdminSiteButton;use Nemundo\Admin\Com\Form\AdminSearchForm;use Nemundo\Admin\Com\Layout\AdminFlexboxLayout;use Nemundo\Admin\Com\Layout\Grid\AdminTwoColumnGridLayout;use Nemundo\Admin\Com\Pagination\AdminPagination;use Nemundo\Admin\Com\Table\AdminTable;use Nemundo\Admin\Com\Table\Row\AdminTableRow;use Nemundo\Com\TableBuilder\TableHeader;use Nemundo\Com\Template\AbstractTemplateDocument;use Nemundo\Content\Com\Card\ContentCard;use Nemundo\Content\Com\ListBox\ContentTypeListBox;use Nemundo\Content\Parameter\ContentParameter;use Nemundo\Content\Parameter\ContentTypeParameter;use Nemundo\Content\Reader\ContentDataReader;use Nemundo\Content\Site\SearchContentAdminSite;use Nemundo\Content\Site\ContentDeleteSite;use Nemundo\Content\Site\ContentEditSite;use Nemundo\Content\Site\ContentNewSite;use Nemundo\Content\Site\ContentSite;use Nemundo\Content\Site\ContentViewSite;use Nemundo\Content\Template\ContentTemplate;use Nemundo\Html\Block\Div;class ContentPage extends AbstractTemplateDocument{    public function getContent()    {        $container = new AdminTwoColumnGridLayout($this);        $left = new AdminFlexboxLayout($container);  // new Div($container);        $right = new Div($container);        $breadcrumb=new AdminBreadcrumb($left);        $breadcrumb->addSite(ContentSite::$site);        $form = new AdminSearchForm($left);        $listbox = new ContentTypeListBox($form);        $listbox->searchMode = true;        $listbox->submitOnChange = true;        $contentReader = new ContentDataReader();        if ($listbox->hasValue()) {            $contentReader->setContentTypeId($listbox->getValue());            $contentType = $listbox->getContentType();            if ($contentType->hasForm()) {                $btn = new AdminSiteButton($left);                $btn->site = clone(ContentNewSite::$site);                $btn->site->addParameter(new ContentTypeParameter($listbox->getValue()));            }            if ($contentType->hasAdmin()) {                $btn = new AdminSiteButton($left);                $btn->site = clone(SearchContentAdminSite::$site);                $btn->site->addParameter(new ContentTypeParameter($listbox->getValue()));            }            if ($contentType->hasList()) {                $contentType->getListing($this);            }        }        $table = new AdminTable($left);        $header = new TableHeader($table);        $header->addText('Subject');        $header->addText('Content Type');        $header->addEmpty();        $header->addEmpty();        $header->addEmpty();        foreach ($contentReader->getData() as $contentRow) {            $tableRow = new AdminTableRow($table);            $site = clone(ContentViewSite::$site);            $site->title= $contentRow->subject;            $site->addParameter(new ContentParameter($contentRow->id));            $tableRow->addSite($site);            //$tableRow->addText($contentRow->subject);            $tableRow->addText($contentRow->contentType->contentType);            $tableRow->addIconSite($site);            $site = clone(ContentEditSite::$site);            $site->addParameter(new ContentParameter($contentRow->id));            $tableRow->addIconSite($site);            $site = clone(ContentDeleteSite::$site);            $site->addParameter(new ContentParameter($contentRow->id));            $tableRow->addIconSite($site);            /*            $site=clone(ContentSite::$site);            $site->title='Show';            $site->addParameter(new ContentTypeParameter());            $site->addParameter(new ContentParameter($contentRow->id));            $tableRow->addSite($site);*/        }        $pagination = new AdminPagination($left);        $pagination->paginationReader = $contentReader;        $contentParameter = new ContentParameter();        if ($contentParameter->hasValue()) {            $card = new ContentCard($right);            $card->contentId = $contentParameter->getValue();            /*  $card=new AdminCard($right);              $content= (new ContentBuilder())->getContent($contentParameter->getValue());              $card->cardTitle=$content->getSubject();              $content->getDefaultView($card);*/        }        //$table=new ContentTable($this);        /*        $contentTypeParameter = new ContentTypeParameter();        if ($contentTypeParameter->hasValue()) {            $contentType = $contentTypeParameter->getContentType();            $layout = new BootstrapTwoColumnLayout($this);            if ($contentType->hasList()) {                $contentTypeListBox = $contentType->getListing($layout->col1);                $contentTypeListBox->redirectSite = clone(ContentSite::$site);                $contentTypeListBox->redirectSite->addParameter(new ContentTypeParameter());                $contentTypeListBox->redirectSite->addParameter(new PageParameter());            }            $contentParameter = new ContentParameter();            if ($contentParameter->hasValue()) {                $content = $contentParameter->getContent(false);                if ($content->hasView()) {                    $widget = new ContentWidget($layout->col2);                    $widget->contentType = $content;                    $widget->showAction = false;                    $widget->loadAction = false;                    $widget->redirectSite = ContentSite::$site;                    $jsonSite = clone(ContentViewJsonSite::$site);                    $jsonSite->addParameter(new ContentParameter());                    $txt = new CopyTextBox($layout->col2);                    $txt->value = $jsonSite->getUrlWithDomain();                }            }        }*/        return parent::getContent();    }}

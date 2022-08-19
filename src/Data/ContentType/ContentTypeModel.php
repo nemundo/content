@@ -22,7 +22,7 @@ public $contentType;
 public $setupStatus;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $applicationId;
 
@@ -72,7 +72,7 @@ $this->setupStatus->aliasFieldName = "content_content_type_setup_status";
 $this->setupStatus->label = "Setup Status";
 $this->setupStatus->allowNullValue = false;
 
-$this->applicationId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->applicationId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->applicationId->tableName = "content_content_type";
 $this->applicationId->fieldName = "application";
 $this->applicationId->aliasFieldName = "content_content_type_application";

@@ -7,7 +7,7 @@ class ApplicationContentTypeModel extends \Nemundo\Model\Definition\Model\Abstra
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $applicationId;
 
@@ -17,7 +17,7 @@ public $applicationId;
 public $application;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
 */
 public $contentTypeId;
 
@@ -46,14 +46,14 @@ $this->id->aliasFieldName = "content_application_content_type_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->applicationId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->applicationId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->applicationId->tableName = "content_application_content_type";
 $this->applicationId->fieldName = "application";
 $this->applicationId->aliasFieldName = "content_application_content_type_application";
 $this->applicationId->label = "Application";
 $this->applicationId->allowNullValue = true;
 
-$this->contentTypeId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
+$this->contentTypeId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
 $this->contentTypeId->tableName = "content_application_content_type";
 $this->contentTypeId->fieldName = "content_type";
 $this->contentTypeId->aliasFieldName = "content_application_content_type_content_type";
