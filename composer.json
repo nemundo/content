@@ -1,1 +1,20 @@
-{  "name": "nemundo/content",  "description": "Content",  "license": "MIT",  "authors": [    {      "name": "nemundo",      "email": "urs.lang@gmail.com"    }  ],  "require": {    "nemundo/framework": "*"  },  "autoload": {    "psr-4": {      "Nemundo\\Content\\": "src/",      "Nemundo\\ContentTest\\": "test/"    }  }}
+{
+  "name": "nemundo/content",
+  "description": "Content",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "nemundo",
+      "email": "urs.lang@gmail.com"
+    }
+  ],
+  "require": {
+    "nemundo/framework": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nemundo\\Content\\": "src/",
+      "Nemundo\\ContentTest\\": "test/"
+    }
+  }
+}
