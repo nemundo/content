@@ -34,15 +34,7 @@ abstract class AbstractContentBuilder extends AbstractBase
     abstract protected function loadBuilder();
 
 
-
-    // onCreate
-    // onUpdate
-
-
-    // buildContent
-    //abstract public function buildContent();
-
-    // buildContentFromRequest
+    // worbrauchts das
     public function saveContentFromRequest()
     {
 
@@ -57,7 +49,7 @@ abstract class AbstractContentBuilder extends AbstractBase
 
     protected function onUpdate()
     {
-
+        $this->onCreate();
     }
 
 
@@ -67,10 +59,6 @@ abstract class AbstractContentBuilder extends AbstractBase
     }
 
 
-
-    // createContent
-    // saveContent
-    // buildItem
     public function buildContent()
     {
 
@@ -120,11 +108,11 @@ abstract class AbstractContentBuilder extends AbstractBase
 
 
     // saveContentIndex
-    protected function saveIndex(AbstractContentItem $item)
+    /*protected function saveIndex(AbstractContentItem $item)
     {
 
         (new IndexBuilder())->buildIndex($item);
 
-    }
+    }*/
 
 }

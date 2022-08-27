@@ -3,14 +3,14 @@
 namespace Nemundo\Content\Reader;
 
 use Nemundo\Content\Data\Content\ContentPaginationReader;
-use Nemundo\Db\Sql\Order\SortOrder;
 
 class ContentDataReader extends ContentPaginationReader
 {
 
-    public function setContentTypeId($contentTypeId) {
+    public function setContentTypeId($contentTypeId)
+    {
 
-        $this->filter->andEqual($this->model->contentTypeId,$contentTypeId);
+        $this->filter->andEqual($this->model->contentTypeId, $contentTypeId);
 
     }
 
