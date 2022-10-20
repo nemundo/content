@@ -31,6 +31,11 @@ public $contentId;
 */
 public $content;
 
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $message;
+
 protected function loadModel() {
 $this->tableName = "content_log";
 $this->aliasTableName = "content_log";
@@ -67,6 +72,14 @@ $this->contentId->fieldName = "content";
 $this->contentId->aliasFieldName = "content_log_content";
 $this->contentId->label = "Content";
 $this->contentId->allowNullValue = false;
+
+$this->message = new \Nemundo\Model\Type\Text\LargeTextType($this);
+$this->message->tableName = "content_log";
+$this->message->externalTableName = "content_log";
+$this->message->fieldName = "message";
+$this->message->aliasFieldName = "content_log_message";
+$this->message->label = "Message";
+$this->message->allowNullValue = false;
 
 $index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
 $index->indexName = "content";

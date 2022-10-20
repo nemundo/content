@@ -31,6 +31,11 @@ public $contentId;
 */
 public $content;
 
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $message;
+
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = LogModel::class;
@@ -65,6 +70,14 @@ $this->contentId->tableName = $this->parentFieldName . "_" . $this->externalTabl
 $this->contentId->aliasFieldName = $this->contentId->tableName ."_".$this->contentId->fieldName;
 $this->contentId->label = "Content";
 $this->addType($this->contentId);
+
+$this->message = new \Nemundo\Model\Type\Text\LargeTextType();
+$this->message->fieldName = "message";
+$this->message->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->message->externalTableName = $this->externalTableName;
+$this->message->aliasFieldName = $this->message->tableName . "_" . $this->message->fieldName;
+$this->message->label = "Message";
+$this->addType($this->message);
 
 }
 public function loadUser() {

@@ -7,8 +7,8 @@ class LogReader extends \Nemundo\Model\Reader\ModelDataReader {
 public $model;
 
 public function __construct() {
-parent::__construct();
 $this->model = new LogModel();
+parent::__construct();
 }
 /**
 * @return LogRow[]

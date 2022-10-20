@@ -41,6 +41,11 @@ public $contentId;
 */
 public $content;
 
+/**
+* @var string
+*/
+public $message;
+
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
 $this->row = $row;
@@ -54,6 +59,7 @@ $this->contentId = intval($this->getModelValue($model->contentId));
 if ($model->content !== null) {
 $this->loadNemundoContentDataContentContentcontentRow($model->content);
 }
+$this->message = $this->getModelValue($model->message);
 }
 private function loadNemundoUserDataUserUseruserRow($model) {
 $this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
