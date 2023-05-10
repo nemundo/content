@@ -1,1 +1,1 @@
-<?phprequire __DIR__ . "/config.php";(new \Nemundo\App\ModelDesigner\ModelDesignerConfig())->addProject(new \Nemundo\Content\ContentProject());
+<?phprequire __DIR__ . "/config.php";(new \Nemundo\App\ModelDesigner\ModelDesignerConfig())->addProject(new \Nemundo\Content\ContentProject());(new \Nemundo\App\ModelDesigner\ModelDesignerConfig())->addProject(new \Nemundo\ContentTest\ContentTestProject());

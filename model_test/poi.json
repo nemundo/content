@@ -1,0 +1,39 @@
+{
+    "app": "Poi",
+    "name": "poi",
+    "namespace": "Nemundo\\ContentTest\\App\\Poi",
+    "is_deleted": false,
+    "model": [
+        {
+            "template": "default",
+            "model_id": "1dbf6fb3-c5e2-4d3e-9420-ea80e368eb3e",
+            "label": "Poi",
+            "class_name": "Poi",
+            "table_name": "poi_poi",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\Poi",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Poi",
+                    "field_name": "poi",
+                    "variable_name": "poi",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                },
+                {
+                    "type": "geo_coordinate",
+                    "label": "Geo Coordinate",
+                    "field_name": "geo_coordinate",
+                    "variable_name": "geoCoordinate",
+                    "allow_null": false,
+                    "is_deleted": false
+                }
+            ],
+            "index": []
+        }
+    ]
+}
