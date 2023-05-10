@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Index\Geo\Parameter;use Nemundo\Web\Parameter\AbstractUrlParameter;class DistanceParameter extends AbstractUrlParameter{    protected function loadParameter()    {        $this->parameterName = 'distance';    }}
