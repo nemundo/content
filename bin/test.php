@@ -8,7 +8,6 @@ require "config.php";
 
 /*(new \Nemundo\ContentTest\Install\TestInstall())->install();
 
-
 $loop = new \Nemundo\Core\Structure\ForLoop();
 $loop->minNumber=1;
 $loop->maxNumber=10;

@@ -1,0 +1,1 @@
+<?phpnamespace Nemundo\Content\Index\Geo\Parameter;use Nemundo\Web\Parameter\AbstractUrlParameter;class GeoCoordinateParameter extends AbstractUrlParameter{    protected function loadParameter()    {        $this->parameterName = 'geo_input';  // 'geo-coordinate';    }}
