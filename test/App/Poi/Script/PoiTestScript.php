@@ -45,5 +45,19 @@ class PoiTestScript extends AbstractConsoleScript
         }
 
 
+        //46.96272417142313,8.366549825115726
+
+        $data = new \Nemundo\ContentTest\App\Poi\Data\Poi\Poi();
+        $data->poi = 'Stans';
+        $data->geoCoordinate->latitude = 46.96272417142313;
+        $data->geoCoordinate->longitude = 8.366549825115726;
+        $id = $data->save();
+
+        $item = new \Nemundo\ContentTest\Content\Poi\PoiItem($id);
+        (new \Nemundo\Content\Builder\IndexBuilder())->buildIndex($item);
+
+
+
+
     }
 }
