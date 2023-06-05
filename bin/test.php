@@ -2,7 +2,28 @@
 
 require "config.php";
 
-(new \Nemundo\ContentTest\App\Poi\Script\PoiTestScript())->run();
+
+/*(new \Nemundo\Content\Index\Log\Application\LogApplication())->installApp();
+(new \Nemundo\Content\Index\Workflow\Application\WorkflowApplication())->installApp();*/
+
+//(new \Nemundo\ContentTest\Install\TestWorkflowInstall())->install();
+
+
+
+
+
+
+
+/*$builder = new \Nemundo\ContentTest\Content\Poi\PoiBuilder();
+$builder->poi = 'Poi Test 1';
+$builder->buildContent();*/
+
+
+
+
+
+
+//(new \Nemundo\ContentTest\App\Poi\Script\PoiTestScript())->run();
 
 
 

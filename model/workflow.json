@@ -1,0 +1,176 @@
+{
+    "app": "Workflow",
+    "name": "workflow",
+    "namespace": "Nemundo\\Content\\Index\\Workflow",
+    "is_deleted": false,
+    "model": [
+        {
+            "template": "default",
+            "model_id": "1c0ce7cf-4e79-4ec9-90c9-52a3826a4b88",
+            "label": "Process",
+            "class_name": "Process",
+            "table_name": "workflow_process",
+            "namespace": "Nemundo\\Content\\Index\\Workflow\\Data\\Process",
+            "row_class_name": "",
+            "primary_index": "unique_id",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Process",
+                    "field_name": "process",
+                    "variable_name": "process",
+                    "allow_null": false,
+                    "is_deleted": true,
+                    "length": "255"
+                },
+                {
+                    "type": "external",
+                    "label": "Content Type",
+                    "field_name": "content_type",
+                    "variable_name": "contentType",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "69c1a9f4-3412-4446-92a4-2e81a75bed3f"
+                }
+            ],
+            "index": [
+                {
+                    "index_name": "content_type",
+                    "index_type": "unique_index",
+                    "field_name": [
+                        "content_type"
+                    ]
+                }
+            ]
+        },
+        {
+            "template": "default",
+            "model_id": "72888cc9-9c2f-4716-9a0c-e7a8407d09c5",
+            "label": "Status",
+            "class_name": "Status",
+            "table_name": "workflow_status",
+            "namespace": "Nemundo\\Content\\Index\\Workflow\\Data\\Status",
+            "row_class_name": "",
+            "primary_index": "text_id",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Status",
+                    "field_name": "status",
+                    "variable_name": "status",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
+            "model_id": "3c358205-94b2-453d-b8ea-c396c74ee2cb",
+            "label": "Workflow",
+            "class_name": "Workflow",
+            "table_name": "workflow_workflow",
+            "namespace": "Nemundo\\Content\\Index\\Workflow\\Data\\Workflow",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "external",
+                    "label": "Process",
+                    "field_name": "process",
+                    "variable_name": "process",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "1c0ce7cf-4e79-4ec9-90c9-52a3826a4b88"
+                },
+                {
+                    "type": "external",
+                    "label": "Content",
+                    "field_name": "content",
+                    "variable_name": "content",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
+                },
+                {
+                    "type": "created_date_time",
+                    "label": "Date Time Created",
+                    "field_name": "date_time_created",
+                    "variable_name": "dateTimeCreated",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "external",
+                    "label": "Status",
+                    "field_name": "status",
+                    "variable_name": "status",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "69c1a9f4-3412-4446-92a4-2e81a75bed3f"
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
+            "model_id": "be079013-95e2-428a-89d7-033141a9bb29",
+            "label": "Workflow Log",
+            "class_name": "WorkflowLog",
+            "table_name": "workflow_workflow_log",
+            "namespace": "Nemundo\\Content\\Index\\Workflow\\Data\\WorkflowLog",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "external",
+                    "label": "Workflow",
+                    "field_name": "workflow",
+                    "variable_name": "workflow",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "3c358205-94b2-453d-b8ea-c396c74ee2cb"
+                },
+                {
+                    "type": "external",
+                    "label": "Content",
+                    "field_name": "content",
+                    "variable_name": "content",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
+                },
+                {
+                    "type": "created_date_time",
+                    "label": "Date Time",
+                    "field_name": "date_time",
+                    "variable_name": "dateTime",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "created_user",
+                    "label": "User",
+                    "field_name": "user",
+                    "variable_name": "user",
+                    "allow_null": false,
+                    "is_deleted": false
+                }
+            ],
+            "index": [
+                {
+                    "index_name": "workflow",
+                    "index_type": "index",
+                    "field_name": [
+                        "workflow"
+                    ]
+                }
+            ]
+        }
+    ]
+}

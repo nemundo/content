@@ -6,6 +6,28 @@
     "model": [
         {
             "template": "default",
+            "model_id": "758eff66-236d-4b20-9aa1-cceabc3a6b6c",
+            "label": "Approval",
+            "class_name": "Approval",
+            "table_name": "poi_approval",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\Approval",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "large_text",
+                    "label": "Kommentar",
+                    "field_name": "kommentar",
+                    "variable_name": "kommentar",
+                    "allow_null": false,
+                    "is_deleted": false
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
             "model_id": "1dbf6fb3-c5e2-4d3e-9420-ea80e368eb3e",
             "label": "Poi",
             "class_name": "Poi",
@@ -33,6 +55,59 @@
                     "is_deleted": false
                 }
             ],
+            "index": []
+        },
+        {
+            "template": "default",
+            "model_id": "f55085e8-d85b-45eb-928d-bfead59f9fba",
+            "label": "Poi Log",
+            "class_name": "PoiLog",
+            "table_name": "poi_poi_log",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\PoiLog",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "external",
+                    "label": "Content Log",
+                    "field_name": "content_log",
+                    "variable_name": "contentLog",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "ed560669-0e3c-4e26-98eb-b22a65e21786"
+                },
+                {
+                    "type": "text",
+                    "label": "Poi old",
+                    "field_name": "poi_old",
+                    "variable_name": "poiOld",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                },
+                {
+                    "type": "text",
+                    "label": "Poi new",
+                    "field_name": "poi_new",
+                    "variable_name": "poiNew",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
+            "model_id": "da571979-73d5-4125-81ee-27c42fad1ce5",
+            "label": "Erfassung",
+            "class_name": "Erfassung",
+            "table_name": "poi_erfassung",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\Erfassung",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
             "index": []
         }
     ]

@@ -17,5 +17,11 @@ $reset->reset();
 (new \Nemundo\App\ModelDesigner\Application\ModelDesignerApplication())->installApp();
 (new \Nemundo\Content\Application\ContentApplication())->installApp();
 (new \Nemundo\Content\Index\Geo\Application\GeoIndexApplication())->installApp();
+(new \Nemundo\Content\Index\Log\Application\LogApplication())->installApp();
+(new \Nemundo\Content\Index\Workflow\Application\WorkflowApplication())->installApp();
+
+(new \Nemundo\ContentTest\App\Poi\Application\PoiApplication())->installApp();
+(new \Nemundo\ContentTest\App\Gastro\Application\GastroApplication())->installApp();
+
 
 $reset->remove();

@@ -1,1 +1,1 @@
-<?phprequire_once 'config.php';(new \Nemundo\Project\Script\ProjectCleanScript())->run();require 'init.php';require 'setup.php';
+<?phprequire_once 'config.php';(new \Nemundo\Project\Script\ProjectCleanScript())->run();//require 'init.php';(new \Nemundo\Db\Provider\MySql\Database\MySqlDatabase())->emptyDatabase();require 'setup.php';
