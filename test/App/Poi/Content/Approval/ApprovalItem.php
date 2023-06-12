@@ -27,9 +27,9 @@ class ApprovalItem extends AbstractContentItem
     }
 
 
-    public function getSubject()
+    /*public function getSubject()
     {
         return 'Kommentar';  // $this->getDataRow()->poi;
-    }
+    }*/
 
 }

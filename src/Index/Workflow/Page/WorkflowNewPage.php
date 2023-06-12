@@ -2,13 +2,15 @@
 
 namespace Nemundo\Content\Index\Workflow\Page;
 
+use Nemundo\Admin\Com\Form\AdminSearchForm;
 use Nemundo\Admin\Com\Layout\AdminFlexboxLayout;
 use Nemundo\Com\Template\AbstractTemplateDocument;
+use Nemundo\Content\Com\Input\ContentTypeHiddenInput;
+use Nemundo\Content\Index\Workflow\Com\ListBox\ProcessListBox;
+use Nemundo\Content\Index\Workflow\Com\Tab\WorkflowTab;
 use Nemundo\Content\Index\Workflow\Site\WorkflowSite;
-use Nemundo\Content\Index\Workflow\Type\AbstractWorkflow;
+use Nemundo\Content\Index\Workflow\Type\Process\AbstractProcess;
 use Nemundo\Content\Parameter\ContentTypeParameter;
-use Nemundo\ContentTest\Workflow\Process\TestProcess;
-use Nemundo\ContentTest\Workflow\Workflow\TestWorkflow;
 
 class WorkflowNewPage extends AbstractTemplateDocument
 {
@@ -16,13 +18,30 @@ class WorkflowNewPage extends AbstractTemplateDocument
     {
 
         $layout = new AdminFlexboxLayout($this);
+        new WorkflowTab($layout);
 
-        /** @var AbstractWorkflow $contentType */
-        $contentType = (new ContentTypeParameter())->getContentType();
 
-        //$form = (new TestWorkflow())->getDefaultForm($this);
-        $form = $contentType->getStartStatusType()->getDefaultForm($layout);  // getDefaultForm($this);
-        $form->redirectSite = WorkflowSite::$site;
+        $search = new AdminSearchForm($layout);
+
+        $process = new ProcessListBox($search);
+        $process->searchMode = true;
+        $process->submitOnChange = true;
+
+
+        if ($process->hasValue()) {
+
+
+            /** @var AbstractProcess $contentType */
+            $contentType = (new ContentTypeParameter())->getContentType();
+
+            //$form = (new TestWorkflow())->getDefaultForm($this);
+            $form = $contentType->getStartStatusType()->getDefaultForm($layout);  // getDefaultForm($this);
+            $form->redirectSite = WorkflowSite::$site;
+
+            $hidden = new ContentTypeHiddenInput($form);
+
+
+        }
 
         return parent::getContent();
     }

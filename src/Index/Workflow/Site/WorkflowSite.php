@@ -21,6 +21,13 @@ class WorkflowSite extends AbstractSite
         new WorkflowNewSite($this);
         new WorkflowItemSite($this);
 
+        new WorkflowLogSite($this);
+
+        new MyWorkflowSite($this);
+        new NotificationSite($this);
+        new WorkflowUsergroupSite($this);
+
+
         WorkflowSite::$site= $this;
 
     }

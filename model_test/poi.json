@@ -28,6 +28,18 @@
         },
         {
             "template": "default",
+            "model_id": "da571979-73d5-4125-81ee-27c42fad1ce5",
+            "label": "Erfassung",
+            "class_name": "Erfassung",
+            "table_name": "poi_erfassung",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\Erfassung",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": true,
+            "index": []
+        },
+        {
+            "template": "default",
             "model_id": "1dbf6fb3-c5e2-4d3e-9420-ea80e368eb3e",
             "label": "Poi",
             "class_name": "Poi",
@@ -53,6 +65,29 @@
                     "variable_name": "geoCoordinate",
                     "allow_null": false,
                     "is_deleted": false
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
+            "model_id": "dd07b889-6a3b-4b2a-a979-81d29955acd0",
+            "label": "Poi Erfassung",
+            "class_name": "PoiErfassung",
+            "table_name": "poi_poi_erfassung",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\PoiErfassung",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Poi",
+                    "field_name": "poi",
+                    "variable_name": "poi",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
                 }
             ],
             "index": []
@@ -100,11 +135,11 @@
         },
         {
             "template": "default",
-            "model_id": "da571979-73d5-4125-81ee-27c42fad1ce5",
-            "label": "Erfassung",
-            "class_name": "Erfassung",
-            "table_name": "poi_erfassung",
-            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\Erfassung",
+            "model_id": "c81bb719-f209-4d2f-8e6a-33abedc8576c",
+            "label": "Poi Edit",
+            "class_name": "PoiEdit",
+            "table_name": "poi_poi_edit",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\PoiEdit",
             "row_class_name": "",
             "primary_index": "auto_increment",
             "is_deleted": false,

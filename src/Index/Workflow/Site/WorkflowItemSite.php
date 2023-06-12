@@ -25,6 +25,7 @@ class WorkflowItemSite extends AbstractSite
 
     public function loadContent()
     {
+        WorkflowSite::$site->showMenuAsActive = true;
         (new WorkflowItemPage())->render();
     }
 }

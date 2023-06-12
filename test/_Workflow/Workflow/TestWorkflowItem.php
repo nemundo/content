@@ -12,7 +12,7 @@ class TestWorkflowItem extends AbstractContentItem
 
     protected function loadItem()
     {
-        $this->contentType = new TestWorkflow();
+        $this->contentType = new TestProcess();
     }
 
     protected function onDataRow()

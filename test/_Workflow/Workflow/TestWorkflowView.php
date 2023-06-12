@@ -10,7 +10,7 @@ class TestWorkflowView extends AbstractContentView
 
     protected function loadView()
     {
-        $this->contentType = new TestWorkflow();
+        $this->contentType = new TestProcess();
         // TODO: Implement loadView() method.
     }
 

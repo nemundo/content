@@ -2,5 +2,53 @@
     "app": "Gastro",
     "name": "gastro",
     "namespace": "Nemundo\\ContentTest\\App\\Gastro",
-    "is_deleted": false
+    "is_deleted": false,
+    "model": [
+        {
+            "template": "default",
+            "model_id": "7136bdaf-0f1e-4f94-8c0a-527ab55cf576",
+            "label": "Gastro",
+            "class_name": "Gastro",
+            "table_name": "gastro_gastro",
+            "namespace": "Nemundo\\ContentTest\\App\\Gastro\\Data\\Gastro",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Gastro",
+                    "field_name": "gastro",
+                    "variable_name": "gastro",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": []
+        },
+        {
+            "template": "default",
+            "model_id": "69f0e649-2121-443f-8eb5-434f8a576543",
+            "label": "Gastro Erfassung",
+            "class_name": "GastroErfassung",
+            "table_name": "gastro_gastro_erfassung",
+            "namespace": "Nemundo\\ContentTest\\App\\Gastro\\Data\\GastroErfassung",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Gastro",
+                    "field_name": "gastro",
+                    "variable_name": "gastro",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": []
+        }
+    ]
 }

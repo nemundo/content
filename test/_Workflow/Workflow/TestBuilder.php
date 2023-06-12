@@ -2,21 +2,17 @@
 
 namespace Nemundo\ContentTest\Workflow\Workflow;
 
-use Nemundo\Content\Index\Log\Action\LogIndexContentAction;
-use Nemundo\Content\Index\Workflow\Type\AbstractWorkflowBuilder;
-use Nemundo\Content\Type\AbstractContentBuilder;
+use Nemundo\Content\Index\Workflow\Type\Process\AbstractProcessBuilder;
 use Nemundo\ContentTest\App\Poi\Data\Poi\Poi;
-use Nemundo\ContentTest\App\Poi\Data\Poi\PoiUpdate;
-use Nemundo\ContentTest\App\Poi\Data\PoiLog\PoiLog;
 
-class TestBuilder extends AbstractWorkflowBuilder  // AbstractContentBuilder
+class TestBuilder extends AbstractProcessBuilder  // AbstractContentBuilder
 {
 
     public $poi;
 
     protected function loadBuilder()
     {
-        $this->contentType = new TestWorkflow();
+        $this->contentType = new TestProcess();
     }
 
 

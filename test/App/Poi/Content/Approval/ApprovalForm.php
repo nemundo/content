@@ -4,9 +4,10 @@ namespace Nemundo\ContentTest\App\Poi\Content\Approval;
 
 use Nemundo\Admin\Com\ListBox\AdminLargeTextBox;
 use Nemundo\Content\Form\AbstractContentForm;
+use Nemundo\Content\Index\Workflow\Type\Status\AbstractWorkflowStatusForm;
 
 
-class ApprovalForm extends AbstractContentForm
+class ApprovalForm extends AbstractWorkflowStatusForm
 {
 
     /**
@@ -39,6 +40,7 @@ class ApprovalForm extends AbstractContentForm
     {
 
         $builder = new ApprovalBuilder($this->dataId);
+        $builder->workflowId=$this->workflowId;
         $builder->kommentar = $this->comment->getValue();
         $builder->addActionList($this->getActionList());
         $builder->buildContent();

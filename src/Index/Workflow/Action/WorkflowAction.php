@@ -11,7 +11,7 @@ class WorkflowAction extends AbstractContentAction
 
     protected function loadAction()
     {
-        // TODO: Implement loadAction() method.
+
     }
 
 
@@ -20,7 +20,9 @@ class WorkflowAction extends AbstractContentAction
 
         $data = new Workflow();
         $data->contentId = $item->getContentId();
-        $data->save();
+        $data->hasUsergroupAssignment = false;
+        $data->hasUserAssignment = false;
+        return $data->save();
 
 
     }

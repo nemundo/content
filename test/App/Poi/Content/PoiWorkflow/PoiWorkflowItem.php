@@ -2,15 +2,16 @@
 
 namespace Nemundo\ContentTest\App\Poi\Content\PoiWorkflow;
 
+use Nemundo\Content\Index\Workflow\Type\Process\AbstractProcessItem;
 use Nemundo\Content\Type\AbstractContentItem;
 use Nemundo\ContentTest\App\Poi\Data\Poi\PoiReader;
 use Nemundo\ContentTest\App\Poi\Data\Poi\PoiRow;
 
-class PoiWorkflowItem extends AbstractContentItem
+class PoiWorkflowItem extends AbstractProcessItem
 {
     protected function loadItem()
     {
-        $this->contentType = new PoiWorkflowType();
+        $this->contentType = new PoiProcess();
     }
 
 

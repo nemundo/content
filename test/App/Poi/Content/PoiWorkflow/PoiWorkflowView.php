@@ -17,10 +17,16 @@ class PoiWorkflowView extends AbstractContentView
     public function getContent()
     {
 
-        $poiRow = (new PoiWorkflowItem($this->dataId))->getDataRow();
+
+
+       /* $poiRow = (new PoiWorkflowItem($this->dataId))->getDataRow();
 
         $p = new Paragraph($this);
-        $p->content = $poiRow->poi;
+        $p->content = 'Workflow View';
+
+
+        $p = new Paragraph($this);
+        $p->content = $poiRow->poi;*/
 
 
 

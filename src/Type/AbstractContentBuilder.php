@@ -73,9 +73,7 @@ abstract class AbstractContentBuilder extends AbstractBase
             (new IndexBuilder())->buildIndex($item);
         }
 
-
         $item = $this->contentType->getItem($this->getDataId());
-
         foreach ($this->actionList as $action) {
             $action->onAction($item);
         }

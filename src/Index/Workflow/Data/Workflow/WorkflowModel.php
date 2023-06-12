@@ -7,16 +7,6 @@ class WorkflowModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
-*/
-public $processId;
-
-/**
-* @var \Nemundo\Content\Index\Workflow\Data\Process\ProcessExternalType
-*/
-public $process;
-
-/**
 * @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
 */
 public $contentId;
@@ -41,6 +31,36 @@ public $statusId;
 */
 public $status;
 
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $hasUsergroupAssignment;
+
+/**
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
+*/
+public $usergroupAssignmentId;
+
+/**
+* @var \Nemundo\User\Data\Usergroup\UsergroupExternalType
+*/
+public $usergroupAssignment;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $hasUserAssignment;
+
+/**
+* @var \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType
+*/
+public $userAssignmentId;
+
+/**
+* @var \Nemundo\User\Data\User\UserExternalType
+*/
+public $userAssignment;
+
 protected function loadModel() {
 $this->tableName = "workflow_workflow";
 $this->aliasTableName = "workflow_workflow";
@@ -55,13 +75,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "workflow_workflow_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-
-$this->processId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
-$this->processId->tableName = "workflow_workflow";
-$this->processId->fieldName = "process";
-$this->processId->aliasFieldName = "workflow_workflow_process";
-$this->processId->label = "Process";
-$this->processId->allowNullValue = false;
 
 $this->contentId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
 $this->contentId->tableName = "workflow_workflow";
@@ -85,16 +98,36 @@ $this->statusId->aliasFieldName = "workflow_workflow_status";
 $this->statusId->label = "Status";
 $this->statusId->allowNullValue = false;
 
-}
-public function loadProcess() {
-if ($this->process == null) {
-$this->process = new \Nemundo\Content\Index\Workflow\Data\Process\ProcessExternalType($this, "workflow_workflow_process");
-$this->process->tableName = "workflow_workflow";
-$this->process->fieldName = "process";
-$this->process->aliasFieldName = "workflow_workflow_process";
-$this->process->label = "Process";
-}
-return $this;
+$this->hasUsergroupAssignment = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->hasUsergroupAssignment->tableName = "workflow_workflow";
+$this->hasUsergroupAssignment->externalTableName = "workflow_workflow";
+$this->hasUsergroupAssignment->fieldName = "has_usergroup_assignment";
+$this->hasUsergroupAssignment->aliasFieldName = "workflow_workflow_has_usergroup_assignment";
+$this->hasUsergroupAssignment->label = "Has Usergroup Assignment";
+$this->hasUsergroupAssignment->allowNullValue = false;
+
+$this->usergroupAssignmentId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
+$this->usergroupAssignmentId->tableName = "workflow_workflow";
+$this->usergroupAssignmentId->fieldName = "usergroup_assignment";
+$this->usergroupAssignmentId->aliasFieldName = "workflow_workflow_usergroup_assignment";
+$this->usergroupAssignmentId->label = "Usergroup Assignment";
+$this->usergroupAssignmentId->allowNullValue = false;
+
+$this->hasUserAssignment = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->hasUserAssignment->tableName = "workflow_workflow";
+$this->hasUserAssignment->externalTableName = "workflow_workflow";
+$this->hasUserAssignment->fieldName = "has_user_assignment";
+$this->hasUserAssignment->aliasFieldName = "workflow_workflow_has_user_assignment";
+$this->hasUserAssignment->label = "Has User Assignment";
+$this->hasUserAssignment->allowNullValue = false;
+
+$this->userAssignmentId = new \Nemundo\Model\Type\External\Id\UniqueIdExternalIdType($this);
+$this->userAssignmentId->tableName = "workflow_workflow";
+$this->userAssignmentId->fieldName = "user_assignment";
+$this->userAssignmentId->aliasFieldName = "workflow_workflow_user_assignment";
+$this->userAssignmentId->label = "User Assignment";
+$this->userAssignmentId->allowNullValue = false;
+
 }
 public function loadContent() {
 if ($this->content == null) {
@@ -113,6 +146,26 @@ $this->status->tableName = "workflow_workflow";
 $this->status->fieldName = "status";
 $this->status->aliasFieldName = "workflow_workflow_status";
 $this->status->label = "Status";
+}
+return $this;
+}
+public function loadUsergroupAssignment() {
+if ($this->usergroupAssignment == null) {
+$this->usergroupAssignment = new \Nemundo\User\Data\Usergroup\UsergroupExternalType($this, "workflow_workflow_usergroup_assignment");
+$this->usergroupAssignment->tableName = "workflow_workflow";
+$this->usergroupAssignment->fieldName = "usergroup_assignment";
+$this->usergroupAssignment->aliasFieldName = "workflow_workflow_usergroup_assignment";
+$this->usergroupAssignment->label = "Usergroup Assignment";
+}
+return $this;
+}
+public function loadUserAssignment() {
+if ($this->userAssignment == null) {
+$this->userAssignment = new \Nemundo\User\Data\User\UserExternalType($this, "workflow_workflow_user_assignment");
+$this->userAssignment->tableName = "workflow_workflow";
+$this->userAssignment->fieldName = "user_assignment";
+$this->userAssignment->aliasFieldName = "workflow_workflow_user_assignment";
+$this->userAssignment->label = "User Assignment";
 }
 return $this;
 }

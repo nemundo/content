@@ -12,34 +12,21 @@ abstract class AbstractWorkflowStatusType extends AbstractContentType
      */
     public $changeStatus = false;
 
-
-    public $nextWorkflowStatusClass =[];
-
+    public $nextWorkflowStatusClass = [];
 
 
-
-
-
-    public function getNextWorkflowStatus() {
-
+    public function getNextWorkflowStatusList()
+    {
 
         /** @var AbstractContentType[] $list */
-        $list= [];
+        $list = [];
 
         foreach ($this->nextWorkflowStatusClass as $statusClass) {
-
-            $status = new $statusClass();
-
+            $list[] = new $statusClass();
         }
 
         return $list;
 
-
-
     }
-
-
-
-
 
 }

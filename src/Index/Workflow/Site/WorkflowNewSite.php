@@ -17,6 +17,7 @@ class WorkflowNewSite extends AbstractSite
     {
         $this->title = 'WorkflowNew';
         $this->url = 'WorkflowNew';
+        //$this->menuActive=false;
 
         WorkflowNewSite::$site = $this;
 

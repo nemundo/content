@@ -7,6 +7,8 @@ use Nemundo\Content\Index\Workflow\Data\Workflow\Workflow;
 use Nemundo\Content\Index\Workflow\Data\WorkflowLog\WorkflowLog;
 use Nemundo\Content\Type\AbstractContentItem;
 
+
+// StatusAction
 class WorkflowLogAction extends AbstractContentAction
 {
 
