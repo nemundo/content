@@ -7,7 +7,7 @@ $loop->minNumber = 1;
 $loop->maxNumber = 200;
 foreach ($loop->getData() as $number) {
 
-    $builder = new \Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilder();
+    $builder = new \Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilderWorkflow();
     $builder->poi = 'Poi Test ' . $number;
     $builder->buildContent();
 

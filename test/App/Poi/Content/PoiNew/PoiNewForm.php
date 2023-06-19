@@ -27,7 +27,7 @@ class PoiNewForm extends AbstractContentForm
     protected function onSave()
     {
 
-        $builder = new PoiNewBuilder();
+        $builder = new PoiNewBuilderWorkflow();
         $builder->poi = $this->poi->getValue();
         $builder->buildContent();
 

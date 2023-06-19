@@ -103,7 +103,7 @@ class WorkflowItemPage extends AbstractTemplateDocument
         $header = new AdminTableHeader($table);
         $header->addText($logReader->model->content->label);
         $header->addText($logReader->model->dateTime->label);
-
+        $header->addText($logReader->model->user->label);
 
         foreach ($logReader->getData() as $logRow) {
 
@@ -111,7 +111,7 @@ class WorkflowItemPage extends AbstractTemplateDocument
             $row = new AdminTableRow($table);
             $row->addText($logRow->content->subject);
             $row->addText($logRow->dateTime->getShortDateTimeLeadingZeroFormat());
-
+            $row->addText($logRow->user->login);
 
             $card = new AdminCard($div);
             $card->cardTitle = $logRow->content->subject;

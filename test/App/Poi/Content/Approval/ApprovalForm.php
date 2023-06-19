@@ -39,7 +39,7 @@ class ApprovalForm extends AbstractWorkflowStatusForm
     protected function onSave()
     {
 
-        $builder = new ApprovalBuilder($this->dataId);
+        $builder = new ApprovalBuilderWorkflow($this->dataId);
         $builder->workflowId=$this->workflowId;
         $builder->kommentar = $this->comment->getValue();
         $builder->addActionList($this->getActionList());

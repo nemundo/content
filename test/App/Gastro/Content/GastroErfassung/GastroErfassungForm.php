@@ -25,7 +25,7 @@ class GastroErfassungForm extends AbstractContentForm
     protected function onSave()
     {
 
-        $builder = new GastroErfassungBuilder();
+        $builder = new GastroErfassungBuilderWorkflow();
         $builder->gastro= $this->gastro->getValue();
         $builder->buildContent();
 

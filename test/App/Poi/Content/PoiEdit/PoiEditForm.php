@@ -5,7 +5,7 @@ namespace Nemundo\ContentTest\App\Poi\Content\PoiEdit;
 use Nemundo\Admin\Com\ListBox\AdminTextBox;
 use Nemundo\Content\Form\AbstractContentForm;
 use Nemundo\Content\Index\Workflow\Type\Status\AbstractWorkflowStatusForm;
-use Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilder;
+use Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilderWorkflow;
 
 class PoiEditForm extends AbstractWorkflowStatusForm  // AbstractContentForm
 {
@@ -40,7 +40,7 @@ class PoiEditForm extends AbstractWorkflowStatusForm  // AbstractContentForm
     protected function onSave()
     {
 
-        $builder = new PoiEditBuilder();
+        $builder = new PoiEditBuilderWorkflow();
         $builder->workflowId= $this->workflowId;
         $builder->poi = $this->poi->getValue();
         $builder->buildContent();

@@ -2,11 +2,11 @@
 
 namespace Nemundo\ContentTest\App\Poi\Content\Approval;
 
-use Nemundo\Content\Index\Workflow\Type\Status\AbstractStatusBuilder;
+use Nemundo\Content\Index\Workflow\Type\Status\AbstractWorkflowStatusBuilder;
 use Nemundo\Content\Type\AbstractContentBuilder;
 use Nemundo\ContentTest\App\Poi\Data\Approval\Approval;
 
-class ApprovalBuilder extends AbstractStatusBuilder
+class ApprovalBuilderWorkflow extends AbstractWorkflowStatusBuilder
 {
 
     public $kommentar;

@@ -3,14 +3,14 @@
 namespace Nemundo\ContentTest\App\Poi\Content\PoiNew;
 
 use Nemundo\Content\Builder\IndexBuilder;
-use Nemundo\Content\Index\Workflow\Type\Status\AbstractStatusBuilder;
+use Nemundo\Content\Index\Workflow\Type\Status\AbstractWorkflowStatusBuilder;
 use Nemundo\ContentTest\App\Poi\Content\PoiWorkflow\PoiWorkflowBuilder;
 use Nemundo\ContentTest\App\Poi\Content\PoiWorkflow\PoiWorkflowItem;
 use Nemundo\ContentTest\App\Poi\Data\Poi\PoiUpdate;
 use Nemundo\ContentTest\App\Poi\Data\PoiErfassung\PoiErfassung;
 use Nemundo\ContentTest\App\Poi\Usergroup\PoiFreigabeUsergroup;
 
-class PoiNewBuilder extends AbstractStatusBuilder
+class PoiNewBuilderWorkflow extends AbstractWorkflowStatusBuilder
 {
 
     public $poi;
