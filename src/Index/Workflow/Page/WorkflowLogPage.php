@@ -31,6 +31,7 @@ class WorkflowLogPage extends AbstractTemplateDocument
 
 
         $workflowLogReader = new WorkflowLogPaginationReader();
+        $workflowLogReader->model->loadUser();
         $workflowLogReader->model->loadContent();
         $workflowLogReader->model->content->loadContentType();
         $workflowLogReader->model->loadWorkflow();
@@ -43,6 +44,7 @@ class WorkflowLogPage extends AbstractTemplateDocument
 
         $header = new AdminTableHeader($table);
         $header->addText($workflowLogReader->model->dateTime->label);
+        $header->addText($workflowLogReader->model->user->label);
         $header->addText($workflowLogReader->model->id->label);
         $header->addText($workflowLogReader->model->content->label);
         $header->addText($workflowLogReader->model->content->label);
@@ -52,6 +54,7 @@ class WorkflowLogPage extends AbstractTemplateDocument
 
             $row = new AdminTableRow($table);
             $row->addText($workflowLogRow->dateTime->getShortDateTimeLeadingZeroFormat());
+            $row->addText($workflowLogRow->user->displayName);
             $row->addText($workflowLogRow->workflowId);
             $row->addText($workflowLogRow->content->contentType->contentType);
             $row->addText($workflowLogRow->workflow->content->contentType->contentType);

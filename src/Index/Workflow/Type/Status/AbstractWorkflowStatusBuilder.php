@@ -3,6 +3,7 @@
 namespace Nemundo\Content\Index\Workflow\Type\Status;
 
 use Nemundo\Content\Index\Workflow\Action\WorkflowLogAction;
+use Nemundo\Content\Index\Workflow\Data\Workflow\WorkflowReader;
 use Nemundo\Content\Index\Workflow\Data\Workflow\WorkflowUpdate;
 use Nemundo\Content\Type\AbstractContentBuilder;
 use Nemundo\User\Usergroup\AbstractUsergroup;
@@ -54,6 +55,19 @@ abstract class AbstractWorkflowStatusBuilder extends AbstractContentBuilder
         $update->statusId = $this->contentType->typeId;
         $update->updateById($this->workflowId);
 
+
+    }
+
+
+    public function getDataIdFromWorkflowId()
+    {
+
+        $workflowReader = new WorkflowReader();
+        $workflowReader->model->loadContent();
+        $workflowRow = $workflowReader->getRowById($this->workflowId);
+        $dataId = $workflowRow->content->dataId;
+
+        return $dataId;
 
     }
 

@@ -12,7 +12,7 @@ use Nemundo\ContentTest\Workflow\Workflow\TestProcess;
 class PoiWorkflowBuilder extends AbstractProcessBuilder
 {
 
-    //public $poi;
+    public $poi;
 
     protected function loadBuilder()
     {
@@ -24,7 +24,8 @@ class PoiWorkflowBuilder extends AbstractProcessBuilder
     {
 
         $data = new Poi();
-        $data->poi ='[empty]';  // $this->poi;
+        //$data->poi ='[empty]';  // $this->poi;
+        $data->poi = $this->poi;
         $this->dataId = $data->save();
 
         //$this->saveWorkflow();

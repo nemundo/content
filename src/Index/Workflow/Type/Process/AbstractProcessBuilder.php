@@ -2,14 +2,26 @@
 
 namespace Nemundo\Content\Index\Workflow\Type\Process;
 
+use Nemundo\Content\Builder\ContentBuilder;
+use Nemundo\Content\Builder\IndexBuilder;
 use Nemundo\Content\Index\Workflow\Action\WorkflowAction;
+use Nemundo\Content\Index\Workflow\Action\WorkflowLogAction;
 use Nemundo\Content\Index\Workflow\Data\Workflow\Workflow;
 use Nemundo\Content\Index\Workflow\Data\Workflow\WorkflowReader;
+use Nemundo\Content\Index\Workflow\Data\Workflow\WorkflowUpdate;
+use Nemundo\Content\Index\Workflow\Data\WorkflowLog\WorkflowLog;
+use Nemundo\Content\Index\Workflow\Type\Status\AbstractWorkflowStatusItem;
+use Nemundo\Content\Index\Workflow\Type\Status\AbstractWorkflowStatusType;
 use Nemundo\Content\Type\AbstractContentBuilder;
+use Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilderWorkflow;
 
 abstract class AbstractProcessBuilder extends AbstractContentBuilder
 {
 
+    /**
+     * @var AbstractProcess
+     */
+    public $contentType;
 
     public $workflowId;
 
@@ -20,6 +32,43 @@ abstract class AbstractProcessBuilder extends AbstractContentBuilder
 
         $item = $this->contentType->getItem($this->getDataId());
         $this->workflowId = (new WorkflowAction())->onAction($item);
+
+        /** @var AbstractWorkflowStatusItem $item */
+        //$item = $this->contentType->getStartStatusType()->getItem(0);  // getItem()
+
+        //$item->workflowId = $this->workflowId;
+
+        /*$action = new WorkflowLogAction();
+        $action->workflowId = $this->workflowId;
+        $action->onAction($item);*/
+
+
+        //$this->contentType->getStartStatusType()->getB
+
+
+        /*$builder = new PoiNewBuilderWorkflow();
+        $builder->buildContent();*/
+
+        $startStatusType = $this->contentType->getStartStatusType();
+
+        $startStatusItem = $startStatusType->getItem(0);  // getB $this->contentType->getItem($this->dataId);
+        (new IndexBuilder())->buildIndex($startStatusItem);
+
+        $data = new WorkflowLog();
+        $data->workflowId = $this->workflowId;
+        $data->contentId =$startStatusItem->getContentId();  // 0;  // $item->getContentId();
+        $data->save();
+
+
+        //if ($item->contentType->changeStus) {
+            $update = new WorkflowUpdate();
+            $update->statusId = $startStatusType->typeId;  //  $this->contentType->getStartStatusType()->typeId;  // $item->contentType->typeId;  // $this-> contentType->typeId;
+            $update->updateById($this->workflowId);
+
+
+
+        /*$statusBuilder = $this->contentType->getStartStatusType()->getBuilder();
+        $statusBuilder->w*/
 
         return $id;
 
@@ -38,6 +87,22 @@ abstract class AbstractProcessBuilder extends AbstractContentBuilder
 
 
     }
+
+
+
+    public function changeStatus(AbstractWorkflowStatusType $status) {
+
+        //$workflowId = $builder->getWorkflowId();
+
+        $builder = $status->getItem();  //B new \Nemundo\Newsletter\Content\Subscribe\SubscribeBuilder();
+        $status->workflowId = $this->getWorkflowId();
+        $status->buildContent();
+
+
+
+    }
+
+
 
 
     //protected function saveWorkflow() {

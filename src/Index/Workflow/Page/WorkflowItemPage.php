@@ -96,6 +96,7 @@ class WorkflowItemPage extends AbstractTemplateDocument
         $div = new Div($layout);
 
         $logReader = new WorkflowLogReader();
+        $logReader->model->loadUser();
         $logReader->model->loadContent();
         $logReader->model->content->loadContentType();
         $logReader->filter->andEqual($logReader->model->workflowId,$workflowId);

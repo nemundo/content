@@ -4,10 +4,11 @@ require "config.php";
 
 $loop = new \Nemundo\Core\Structure\ForLoop();
 $loop->minNumber = 1;
-$loop->maxNumber = 200;
+$loop->maxNumber = 5;  // 200;
 foreach ($loop->getData() as $number) {
 
-    $builder = new \Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilderWorkflow();
+    //$builder = new \Nemundo\ContentTest\App\Poi\Content\PoiNew\PoiNewBuilderWorkflow();
+    $builder = new \Nemundo\ContentTest\App\Poi\Content\PoiWorkflow\PoiWorkflowBuilder();  // new \Nemundo\ContentTest\Content\Poi\PoiProcessBuilder();
     $builder->poi = 'Poi Test ' . $number;
     $builder->buildContent();
 
