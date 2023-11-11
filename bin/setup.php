@@ -7,6 +7,7 @@ use Nemundo\User\Script\AdminUserScript;
 
 require "config.php";
 
+(new \Nemundo\Db\Provider\MySql\Database\MySqlDatabase())->createDatabase();
 
 $reset = new ProjectReset();
 $reset->reset();

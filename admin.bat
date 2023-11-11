@@ -1,3 +1,3 @@
-start http://localhost:33524/
+start http://localhost:33352/
 cd admin_web
-php -S localhost:33524
+php -S localhost:33352
