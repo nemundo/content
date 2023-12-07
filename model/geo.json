@@ -115,9 +115,9 @@
             "type": [
                 {
                     "type": "geo_coordinate",
-                    "label": "Coordinate",
-                    "field_name": "coordinate",
-                    "variable_name": "coordinate",
+                    "label": "Geo Coordinate",
+                    "field_name": "geo_coordinate",
+                    "variable_name": "geoCoordinate",
                     "allow_null": false,
                     "is_deleted": false
                 },

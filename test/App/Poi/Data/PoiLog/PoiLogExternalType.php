@@ -7,16 +7,6 @@ class PoiLogExternalType extends \Nemundo\Model\Type\External\ExternalType {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\Id\IdType
-*/
-public $contentLogId;
-
-/**
-* @var \Nemundo\Content\Index\Log\Data\Log\LogExternalType
-*/
-public $contentLog;
-
-/**
 * @var \Nemundo\Model\Type\Text\TextType
 */
 public $poiOld;
@@ -25,6 +15,26 @@ public $poiOld;
 * @var \Nemundo\Model\Type\Text\TextType
 */
 public $poiNew;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $poiHasChanged;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $descriptionHasChanged;
+
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $descriptionOld;
+
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $descriptionNew;
 
 protected function loadExternalType() {
 parent::loadExternalType();
@@ -38,13 +48,6 @@ $this->id->externalTableName = $this->externalTableName;
 $this->id->aliasFieldName = $this->id->tableName . "_" . $this->id->fieldName;
 $this->id->label = "Id";
 $this->addType($this->id);
-
-$this->contentLogId = new \Nemundo\Model\Type\Id\IdType();
-$this->contentLogId->fieldName = "content_log";
-$this->contentLogId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->contentLogId->aliasFieldName = $this->contentLogId->tableName ."_".$this->contentLogId->fieldName;
-$this->contentLogId->label = "Content Log";
-$this->addType($this->contentLogId);
 
 $this->poiOld = new \Nemundo\Model\Type\Text\TextType();
 $this->poiOld->fieldName = "poi_old";
@@ -62,16 +65,37 @@ $this->poiNew->aliasFieldName = $this->poiNew->tableName . "_" . $this->poiNew->
 $this->poiNew->label = "Poi new";
 $this->addType($this->poiNew);
 
-}
-public function loadContentLog() {
-if ($this->contentLog == null) {
-$this->contentLog = new \Nemundo\Content\Index\Log\Data\Log\LogExternalType(null, $this->parentFieldName . "_content_log");
-$this->contentLog->fieldName = "content_log";
-$this->contentLog->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->contentLog->aliasFieldName = $this->contentLog->tableName ."_".$this->contentLog->fieldName;
-$this->contentLog->label = "Content Log";
-$this->addType($this->contentLog);
-}
-return $this;
+$this->poiHasChanged = new \Nemundo\Model\Type\Number\YesNoType();
+$this->poiHasChanged->fieldName = "poi_has_changed";
+$this->poiHasChanged->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->poiHasChanged->externalTableName = $this->externalTableName;
+$this->poiHasChanged->aliasFieldName = $this->poiHasChanged->tableName . "_" . $this->poiHasChanged->fieldName;
+$this->poiHasChanged->label = "Poi has Changed";
+$this->addType($this->poiHasChanged);
+
+$this->descriptionHasChanged = new \Nemundo\Model\Type\Number\YesNoType();
+$this->descriptionHasChanged->fieldName = "description_has_changed";
+$this->descriptionHasChanged->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->descriptionHasChanged->externalTableName = $this->externalTableName;
+$this->descriptionHasChanged->aliasFieldName = $this->descriptionHasChanged->tableName . "_" . $this->descriptionHasChanged->fieldName;
+$this->descriptionHasChanged->label = "Description has Changed";
+$this->addType($this->descriptionHasChanged);
+
+$this->descriptionOld = new \Nemundo\Model\Type\Text\LargeTextType();
+$this->descriptionOld->fieldName = "description_old";
+$this->descriptionOld->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->descriptionOld->externalTableName = $this->externalTableName;
+$this->descriptionOld->aliasFieldName = $this->descriptionOld->tableName . "_" . $this->descriptionOld->fieldName;
+$this->descriptionOld->label = "Description Old";
+$this->addType($this->descriptionOld);
+
+$this->descriptionNew = new \Nemundo\Model\Type\Text\LargeTextType();
+$this->descriptionNew->fieldName = "description_new";
+$this->descriptionNew->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->descriptionNew->externalTableName = $this->externalTableName;
+$this->descriptionNew->aliasFieldName = $this->descriptionNew->tableName . "_" . $this->descriptionNew->fieldName;
+$this->descriptionNew->label = "Description New";
+$this->addType($this->descriptionNew);
+
 }
 }

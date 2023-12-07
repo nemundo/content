@@ -42,9 +42,34 @@ public $contentId;
 public $content;
 
 /**
-* @var string
+* @var bool
 */
-public $message;
+public $create;
+
+/**
+* @var int
+*/
+public $logDataId;
+
+/**
+* @var bool
+*/
+public $statusChange;
+
+/**
+* @var int
+*/
+public $statusId;
+
+/**
+* @var \Nemundo\Content\Index\Log\Data\Status\StatusRow
+*/
+public $status;
+
+/**
+* @var bool
+*/
+public $hasLogData;
 
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
@@ -59,12 +84,22 @@ $this->contentId = intval($this->getModelValue($model->contentId));
 if ($model->content !== null) {
 $this->loadNemundoContentDataContentContentcontentRow($model->content);
 }
-$this->message = $this->getModelValue($model->message);
+$this->create = boolval($this->getModelValue($model->create));
+$this->logDataId = intval($this->getModelValue($model->logDataId));
+$this->statusChange = boolval($this->getModelValue($model->statusChange));
+$this->statusId = intval($this->getModelValue($model->statusId));
+if ($model->status !== null) {
+$this->loadNemundoContentIndexLogDataStatusStatusstatusRow($model->status);
+}
+$this->hasLogData = boolval($this->getModelValue($model->hasLogData));
 }
 private function loadNemundoUserDataUserUseruserRow($model) {
 $this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
 }
 private function loadNemundoContentDataContentContentcontentRow($model) {
 $this->content = new \Nemundo\Content\Row\ContentCustomRow($this->row, $model);
+}
+private function loadNemundoContentIndexLogDataStatusStatusstatusRow($model) {
+$this->status = new \Nemundo\Content\Index\Log\Data\Status\StatusRow($this->row, $model);
 }
 }

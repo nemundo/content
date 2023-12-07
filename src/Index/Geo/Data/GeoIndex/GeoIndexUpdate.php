@@ -10,7 +10,7 @@ public $model;
 /**
 * @var \Nemundo\Core\Type\Geo\GeoCoordinate
 */
-public $coordinate;
+public $geoCoordinate;
 
 /**
 * @var string
@@ -35,11 +35,13 @@ public $imageUrl;
 public function __construct() {
 parent::__construct();
 $this->model = new GeoIndexModel();
-$this->coordinate = new \Nemundo\Core\Type\Geo\GeoCoordinate();
+$this->geoCoordinate = new \Nemundo\Core\Type\Geo\GeoCoordinate();
 }
 public function update() {
-$property = new \Nemundo\Model\Data\Property\Geo\GeoCoordinateDataProperty($this->model->coordinate, $this->typeValueList);
-$property->setValue($this->coordinate);
+if ($this-> geoCoordinate->hasValue()) {
+$property = new \Nemundo\Model\Data\Property\Geo\GeoCoordinateDataProperty($this->model->geoCoordinate, $this->typeValueList);
+$property->setValue($this->geoCoordinate);
+}
 $this->typeValueList->setModelValue($this->model->place, $this->place);
 $this->typeValueList->setModelValue($this->model->contentId, $this->contentId);
 $this->typeValueList->setModelValue($this->model->description, $this->description);

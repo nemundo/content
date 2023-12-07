@@ -7,16 +7,6 @@ class PoiLogModel extends \Nemundo\Model\Definition\Model\AbstractModel {
 public $id;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
-*/
-public $contentLogId;
-
-/**
-* @var \Nemundo\Content\Index\Log\Data\Log\LogExternalType
-*/
-public $contentLog;
-
-/**
 * @var \Nemundo\Model\Type\Text\TextType
 */
 public $poiOld;
@@ -25,6 +15,26 @@ public $poiOld;
 * @var \Nemundo\Model\Type\Text\TextType
 */
 public $poiNew;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $poiHasChanged;
+
+/**
+* @var \Nemundo\Model\Type\Number\YesNoType
+*/
+public $descriptionHasChanged;
+
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $descriptionOld;
+
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $descriptionNew;
 
 protected function loadModel() {
 $this->tableName = "poi_poi_log";
@@ -40,13 +50,6 @@ $this->id->fieldName = "id";
 $this->id->aliasFieldName = "poi_poi_log_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
-
-$this->contentLogId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
-$this->contentLogId->tableName = "poi_poi_log";
-$this->contentLogId->fieldName = "content_log";
-$this->contentLogId->aliasFieldName = "poi_poi_log_content_log";
-$this->contentLogId->label = "Content Log";
-$this->contentLogId->allowNullValue = false;
 
 $this->poiOld = new \Nemundo\Model\Type\Text\TextType($this);
 $this->poiOld->tableName = "poi_poi_log";
@@ -66,15 +69,37 @@ $this->poiNew->label = "Poi new";
 $this->poiNew->allowNullValue = false;
 $this->poiNew->length = 255;
 
-}
-public function loadContentLog() {
-if ($this->contentLog == null) {
-$this->contentLog = new \Nemundo\Content\Index\Log\Data\Log\LogExternalType($this, "poi_poi_log_content_log");
-$this->contentLog->tableName = "poi_poi_log";
-$this->contentLog->fieldName = "content_log";
-$this->contentLog->aliasFieldName = "poi_poi_log_content_log";
-$this->contentLog->label = "Content Log";
-}
-return $this;
+$this->poiHasChanged = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->poiHasChanged->tableName = "poi_poi_log";
+$this->poiHasChanged->externalTableName = "poi_poi_log";
+$this->poiHasChanged->fieldName = "poi_has_changed";
+$this->poiHasChanged->aliasFieldName = "poi_poi_log_poi_has_changed";
+$this->poiHasChanged->label = "Poi has Changed";
+$this->poiHasChanged->allowNullValue = false;
+
+$this->descriptionHasChanged = new \Nemundo\Model\Type\Number\YesNoType($this);
+$this->descriptionHasChanged->tableName = "poi_poi_log";
+$this->descriptionHasChanged->externalTableName = "poi_poi_log";
+$this->descriptionHasChanged->fieldName = "description_has_changed";
+$this->descriptionHasChanged->aliasFieldName = "poi_poi_log_description_has_changed";
+$this->descriptionHasChanged->label = "Description has Changed";
+$this->descriptionHasChanged->allowNullValue = false;
+
+$this->descriptionOld = new \Nemundo\Model\Type\Text\LargeTextType($this);
+$this->descriptionOld->tableName = "poi_poi_log";
+$this->descriptionOld->externalTableName = "poi_poi_log";
+$this->descriptionOld->fieldName = "description_old";
+$this->descriptionOld->aliasFieldName = "poi_poi_log_description_old";
+$this->descriptionOld->label = "Description Old";
+$this->descriptionOld->allowNullValue = false;
+
+$this->descriptionNew = new \Nemundo\Model\Type\Text\LargeTextType($this);
+$this->descriptionNew->tableName = "poi_poi_log";
+$this->descriptionNew->externalTableName = "poi_poi_log";
+$this->descriptionNew->fieldName = "description_new";
+$this->descriptionNew->aliasFieldName = "poi_poi_log_description_new";
+$this->descriptionNew->label = "Description New";
+$this->descriptionNew->allowNullValue = false;
+
 }
 }

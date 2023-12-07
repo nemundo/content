@@ -9,7 +9,7 @@ public $id;
 /**
 * @var \Nemundo\Model\Type\Geo\GeoCoordinateType
 */
-public $coordinate;
+public $geoCoordinate;
 
 /**
 * @var \Nemundo\Model\Type\Text\TextType
@@ -51,13 +51,13 @@ $this->id->aliasFieldName = "content_geo_index_id";
 $this->id->label = "Id";
 $this->id->allowNullValue = false;
 
-$this->coordinate = new \Nemundo\Model\Type\Geo\GeoCoordinateType($this);
-$this->coordinate->tableName = "content_geo_index";
-$this->coordinate->externalTableName = "content_geo_index";
-$this->coordinate->fieldName = "coordinate";
-$this->coordinate->aliasFieldName = "content_geo_index_coordinate";
-$this->coordinate->label = "Coordinate";
-$this->coordinate->allowNullValue = false;
+$this->geoCoordinate = new \Nemundo\Model\Type\Geo\GeoCoordinateType($this);
+$this->geoCoordinate->tableName = "content_geo_index";
+$this->geoCoordinate->externalTableName = "content_geo_index";
+$this->geoCoordinate->fieldName = "geo_coordinate";
+$this->geoCoordinate->aliasFieldName = "content_geo_index_geo_coordinate";
+$this->geoCoordinate->label = "Geo Coordinate";
+$this->geoCoordinate->allowNullValue = false;
 
 $this->place = new \Nemundo\Model\Type\Text\TextType($this);
 $this->place->tableName = "content_geo_index";

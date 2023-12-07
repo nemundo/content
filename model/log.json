@@ -64,6 +64,47 @@
                     "field_name": "message",
                     "variable_name": "message",
                     "allow_null": false,
+                    "is_deleted": true
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Create",
+                    "field_name": "create",
+                    "variable_name": "create",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "number",
+                    "label": "Log Data Id",
+                    "field_name": "log_data_id",
+                    "variable_name": "logDataId",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Status Change",
+                    "field_name": "status_change",
+                    "variable_name": "statusChange",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "external",
+                    "label": "Status",
+                    "field_name": "status",
+                    "variable_name": "status",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "f3115063-fd76-4b36-a39d-fbe508229dce"
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Has Log Data",
+                    "field_name": "has_log_data",
+                    "variable_name": "hasLogData",
+                    "allow_null": false,
                     "is_deleted": false
                 }
             ],
@@ -76,6 +117,29 @@
                     ]
                 }
             ]
+        },
+        {
+            "template": "default",
+            "model_id": "f3115063-fd76-4b36-a39d-fbe508229dce",
+            "label": "Status",
+            "class_name": "Status",
+            "table_name": "log_status",
+            "namespace": "Nemundo\\Content\\Index\\Log\\Data\\Status",
+            "row_class_name": "",
+            "primary_index": "number_id",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "text",
+                    "label": "Status",
+                    "field_name": "status",
+                    "variable_name": "status",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "length": "255"
+                }
+            ],
+            "index": []
         }
     ]
 }

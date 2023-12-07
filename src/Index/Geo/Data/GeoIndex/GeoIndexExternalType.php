@@ -9,7 +9,7 @@ public $id;
 /**
 * @var \Nemundo\Model\Type\Geo\GeoCoordinateType
 */
-public $coordinate;
+public $geoCoordinate;
 
 /**
 * @var \Nemundo\Model\Type\Text\TextType
@@ -49,14 +49,14 @@ $this->id->aliasFieldName = $this->id->tableName . "_" . $this->id->fieldName;
 $this->id->label = "Id";
 $this->addType($this->id);
 
-$this->coordinate = new \Nemundo\Model\Type\Geo\GeoCoordinateType();
-$this->coordinate->fieldName = "coordinate";
-$this->coordinate->tableName = $this->parentFieldName . "_" . $this->externalTableName;
-$this->coordinate->externalTableName = $this->externalTableName;
-$this->coordinate->aliasFieldName = $this->coordinate->tableName . "_" . $this->coordinate->fieldName;
-$this->coordinate->label = "Coordinate";
-$this->coordinate->createObject();
-$this->addType($this->coordinate);
+$this->geoCoordinate = new \Nemundo\Model\Type\Geo\GeoCoordinateType();
+$this->geoCoordinate->fieldName = "geo_coordinate";
+$this->geoCoordinate->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->geoCoordinate->externalTableName = $this->externalTableName;
+$this->geoCoordinate->aliasFieldName = $this->geoCoordinate->tableName . "_" . $this->geoCoordinate->fieldName;
+$this->geoCoordinate->label = "Geo Coordinate";
+$this->geoCoordinate->createObject();
+$this->addType($this->geoCoordinate);
 
 $this->place = new \Nemundo\Model\Type\Text\TextType();
 $this->place->fieldName = "place";

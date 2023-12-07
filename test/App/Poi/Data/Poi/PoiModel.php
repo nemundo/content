@@ -16,6 +16,21 @@ public $poi;
 */
 public $geoCoordinate;
 
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $description;
+
+/**
+* @var \Nemundo\Model\Type\External\Id\NumberExternalIdType
+*/
+public $statusId;
+
+/**
+* @var \Nemundo\Content\Index\Log\Data\Status\StatusExternalType
+*/
+public $status;
+
 protected function loadModel() {
 $this->tableName = "poi_poi";
 $this->aliasTableName = "poi_poi";
@@ -48,5 +63,34 @@ $this->geoCoordinate->aliasFieldName = "poi_poi_geo_coordinate";
 $this->geoCoordinate->label = "Geo Coordinate";
 $this->geoCoordinate->allowNullValue = false;
 
+$this->description = new \Nemundo\Model\Type\Text\LargeTextType($this);
+$this->description->tableName = "poi_poi";
+$this->description->externalTableName = "poi_poi";
+$this->description->fieldName = "description";
+$this->description->aliasFieldName = "poi_poi_description";
+$this->description->label = "Description";
+$this->description->allowNullValue = false;
+
+$this->statusId = new \Nemundo\Model\Type\External\Id\NumberExternalIdType($this);
+$this->statusId->tableName = "poi_poi";
+$this->statusId->fieldName = "status";
+$this->statusId->aliasFieldName = "poi_poi_status";
+$this->statusId->label = "Status";
+$this->statusId->allowNullValue = false;
+
+$index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
+$index->indexName = "status";
+$index->addType($this->statusId);
+
+}
+public function loadStatus() {
+if ($this->status == null) {
+$this->status = new \Nemundo\Content\Index\Log\Data\Status\StatusExternalType($this, "poi_poi_status");
+$this->status->tableName = "poi_poi";
+$this->status->fieldName = "status";
+$this->status->aliasFieldName = "poi_poi_status";
+$this->status->label = "Status";
+}
+return $this;
 }
 }

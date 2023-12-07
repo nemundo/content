@@ -13,9 +13,29 @@ public $model;
 public $contentId;
 
 /**
+* @var bool
+*/
+public $create;
+
+/**
+* @var int
+*/
+public $logDataId;
+
+/**
+* @var bool
+*/
+public $statusChange;
+
+/**
 * @var string
 */
-public $message;
+public $statusId;
+
+/**
+* @var bool
+*/
+public $hasLogData;
 
 public function __construct() {
 parent::__construct();
@@ -23,7 +43,11 @@ $this->model = new LogModel();
 }
 public function update() {
 $this->typeValueList->setModelValue($this->model->contentId, $this->contentId);
-$this->typeValueList->setModelValue($this->model->message, $this->message);
+$this->typeValueList->setModelValue($this->model->create, $this->create);
+$this->typeValueList->setModelValue($this->model->logDataId, $this->logDataId);
+$this->typeValueList->setModelValue($this->model->statusChange, $this->statusChange);
+$this->typeValueList->setModelValue($this->model->statusId, $this->statusId);
+$this->typeValueList->setModelValue($this->model->hasLogData, $this->hasLogData);
 parent::update();
 }
 }

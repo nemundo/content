@@ -7,8 +7,8 @@ class GeoContentTypeReader extends \Nemundo\Model\Reader\ModelDataReader {
 public $model;
 
 public function __construct() {
-parent::__construct();
 $this->model = new GeoContentTypeModel();
+parent::__construct();
 }
 /**
 * @return GeoContentTypeRow[]

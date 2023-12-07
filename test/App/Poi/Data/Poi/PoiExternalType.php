@@ -16,6 +16,21 @@ public $poi;
 */
 public $geoCoordinate;
 
+/**
+* @var \Nemundo\Model\Type\Text\LargeTextType
+*/
+public $description;
+
+/**
+* @var \Nemundo\Model\Type\Id\IdType
+*/
+public $statusId;
+
+/**
+* @var \Nemundo\Content\Index\Log\Data\Status\StatusExternalType
+*/
+public $status;
+
 protected function loadExternalType() {
 parent::loadExternalType();
 $this->externalModelClassName = PoiModel::class;
@@ -46,5 +61,31 @@ $this->geoCoordinate->label = "Geo Coordinate";
 $this->geoCoordinate->createObject();
 $this->addType($this->geoCoordinate);
 
+$this->description = new \Nemundo\Model\Type\Text\LargeTextType();
+$this->description->fieldName = "description";
+$this->description->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->description->externalTableName = $this->externalTableName;
+$this->description->aliasFieldName = $this->description->tableName . "_" . $this->description->fieldName;
+$this->description->label = "Description";
+$this->addType($this->description);
+
+$this->statusId = new \Nemundo\Model\Type\Id\IdType();
+$this->statusId->fieldName = "status";
+$this->statusId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->statusId->aliasFieldName = $this->statusId->tableName ."_".$this->statusId->fieldName;
+$this->statusId->label = "Status";
+$this->addType($this->statusId);
+
+}
+public function loadStatus() {
+if ($this->status == null) {
+$this->status = new \Nemundo\Content\Index\Log\Data\Status\StatusExternalType(null, $this->parentFieldName . "_status");
+$this->status->fieldName = "status";
+$this->status->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->status->aliasFieldName = $this->status->tableName ."_".$this->status->fieldName;
+$this->status->label = "Status";
+$this->addType($this->status);
+}
+return $this;
 }
 }

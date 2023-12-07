@@ -65,8 +65,45 @@
                     "variable_name": "geoCoordinate",
                     "allow_null": false,
                     "is_deleted": false
+                },
+                {
+                    "type": "large_text",
+                    "label": "Description",
+                    "field_name": "description",
+                    "variable_name": "description",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "external",
+                    "label": "Status",
+                    "field_name": "status",
+                    "variable_name": "status",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "f3115063-fd76-4b36-a39d-fbe508229dce"
                 }
             ],
+            "index": [
+                {
+                    "index_name": "status",
+                    "index_type": "index",
+                    "field_name": [
+                        "status"
+                    ]
+                }
+            ]
+        },
+        {
+            "template": "default",
+            "model_id": "c81bb719-f209-4d2f-8e6a-33abedc8576c",
+            "label": "Poi Edit",
+            "class_name": "PoiEdit",
+            "table_name": "poi_poi_edit",
+            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\PoiEdit",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
             "index": []
         },
         {
@@ -109,7 +146,7 @@
                     "field_name": "content_log",
                     "variable_name": "contentLog",
                     "allow_null": false,
-                    "is_deleted": false,
+                    "is_deleted": true,
                     "external_model_id": "ed560669-0e3c-4e26-98eb-b22a65e21786"
                 },
                 {
@@ -129,20 +166,40 @@
                     "allow_null": false,
                     "is_deleted": false,
                     "length": "255"
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Poi has Changed",
+                    "field_name": "poi_has_changed",
+                    "variable_name": "poiHasChanged",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "yes_no",
+                    "label": "Description has Changed",
+                    "field_name": "description_has_changed",
+                    "variable_name": "descriptionHasChanged",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "large_text",
+                    "label": "Description Old",
+                    "field_name": "description_old",
+                    "variable_name": "descriptionOld",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "large_text",
+                    "label": "Description New",
+                    "field_name": "description_new",
+                    "variable_name": "descriptionNew",
+                    "allow_null": false,
+                    "is_deleted": false
                 }
             ],
-            "index": []
-        },
-        {
-            "template": "default",
-            "model_id": "c81bb719-f209-4d2f-8e6a-33abedc8576c",
-            "label": "Poi Edit",
-            "class_name": "PoiEdit",
-            "table_name": "poi_poi_edit",
-            "namespace": "Nemundo\\ContentTest\\App\\Poi\\Data\\PoiEdit",
-            "row_class_name": "",
-            "primary_index": "auto_increment",
-            "is_deleted": false,
             "index": []
         }
     ]

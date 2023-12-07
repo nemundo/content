@@ -2,6 +2,27 @@
 
 require "config.php";
 
+(new \Nemundo\Content\Application\ContentApplication())->reinstallApp();
+(new \Nemundo\Content\Index\Log\Application\ContentLogApplication())->reinstallApp();
+(new \Nemundo\ContentTest\App\Poi\Application\PoiApplication())->reinstallApp();
+
+
+$loop = new \Nemundo\Core\Structure\ForLoop();
+$loop->minNumber = 1;
+$loop->maxNumber = 200;
+foreach ($loop->getData() as $number) {
+
+    $builder = new \Nemundo\ContentTest\App\Poi\Content\TestPoi\TestPoiBuilder();
+    $builder->poi = 'Poi Test ' . $number;
+    $builder->buildContent();
+
+}
+
+
+
+
+
+/*
 $loop = new \Nemundo\Core\Structure\ForLoop();
 $loop->minNumber = 1;
 $loop->maxNumber = 5;  // 200;
@@ -20,7 +41,7 @@ foreach ($loop->getData() as $number) {
     $item = new \Nemundo\ContentTest\Content\Poi\PoiItem($id);
     (new \Nemundo\Content\Builder\IndexBuilder())->buildIndex($item);*/
 
-}
+//}
 
 
 
