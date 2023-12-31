@@ -5,6 +5,7 @@ namespace Nemundo\ContentTest\App\Poi\Script;
 use Nemundo\App\Script\Type\AbstractConsoleScript;
 use Nemundo\Content\Application\ContentApplication;
 use Nemundo\Content\Index\Geo\Application\GeoIndexApplication;
+use Nemundo\ContentTest\App\Poi\Content\Poi\PoiItem;
 use Nemundo\ContentTest\App\Poi\Data\PoiModelCollection;
 use Nemundo\Core\Random\RandomNumber;
 use Nemundo\Model\Setup\ModelCollectionSetup;
@@ -19,13 +20,13 @@ class PoiTestScript extends AbstractConsoleScript
     public function run()
     {
 
-        (new ModelCollectionSetup())
+        /*(new ModelCollectionSetup())
             ->removeCollection(new PoiModelCollection());
 
         (new ContentApplication())->installApp();
         (new GeoIndexApplication())->installApp();
 
-        (new \Nemundo\ContentTest\Install\TestInstall())->install();
+        (new \Nemundo\ContentTest\Install\TestInstall())->install();*/
 
 
         $loop = new \Nemundo\Core\Structure\ForLoop();
@@ -39,7 +40,7 @@ class PoiTestScript extends AbstractConsoleScript
             $data->geoCoordinate->longitude = (new RandomNumber())->getNumber();
             $id = $data->save();
 
-            $item = new \Nemundo\ContentTest\Content\Poi\PoiItem($id);
+            $item = new PoiItem($id);  // new \Nemundo\ContentTest\Content\Poi\PoiItem($id);
             (new \Nemundo\Content\Builder\IndexBuilder())->buildIndex($item);
 
         }
@@ -47,14 +48,14 @@ class PoiTestScript extends AbstractConsoleScript
 
         //46.96272417142313,8.366549825115726
 
-        $data = new \Nemundo\ContentTest\App\Poi\Data\Poi\Poi();
+        /*$data = new \Nemundo\ContentTest\App\Poi\Data\Poi\Poi();
         $data->poi = 'Stans';
         $data->geoCoordinate->latitude = 46.96272417142313;
         $data->geoCoordinate->longitude = 8.366549825115726;
         $id = $data->save();
 
         $item = new \Nemundo\ContentTest\Content\Poi\PoiItem($id);
-        (new \Nemundo\Content\Builder\IndexBuilder())->buildIndex($item);
+        (new \Nemundo\Content\Builder\IndexBuilder())->buildIndex($item);*/
 
 
 

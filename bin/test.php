@@ -2,6 +2,15 @@
 
 require "config.php";
 
+
+
+(new \Nemundo\Content\Setup\ContentTypeRemove())
+    ->removeContent(new \Nemundo\ContentTest\App\Poi\Content\Poi\PoiType());
+
+
+
+/*
+
 (new \Nemundo\Content\Application\ContentApplication())->reinstallApp();
 (new \Nemundo\Content\Index\Log\Application\ContentLogApplication())->reinstallApp();
 
