@@ -35,10 +35,10 @@ abstract class AbstractContentBuilder extends AbstractBase
 
 
     // worbrauchts das
-    public function saveContentFromRequest()
+    /*public function saveContentFromRequest()
     {
 
-    }
+    }*/
 
 
     protected function onCreate()

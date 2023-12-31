@@ -2,7 +2,9 @@
 
 namespace Nemundo\Content\Index\Log\Type;
 
+use Nemundo\Admin\ActionSite\ActiveActionSite;
 use Nemundo\Admin\ActionSite\IconActionSite;
+use Nemundo\Admin\ActionSite\InactiveActionSite;
 use Nemundo\Admin\Com\Table\AdminTable;
 use Nemundo\Admin\Com\Table\AdminTableHeader;
 use Nemundo\Admin\Com\Table\Row\AdminTableRow;
@@ -14,6 +16,7 @@ use Nemundo\Content\Index\Log\Status\ActiveStatus;
 use Nemundo\Content\Index\Log\Status\DeleteStatus;
 use Nemundo\Content\Parameter\DataIdParameter;
 use Nemundo\Content\View\AbstractContentAdmin;
+use Nemundo\Core\Http\Url\UrlReferer;
 use Nemundo\Core\Language\LanguageCode;
 
 
@@ -105,6 +108,34 @@ class AbstractLogContentAdmin extends AbstractContentAdmin
             }*/
 
         };
+
+
+
+        $this->active = new ActiveActionSite($this);
+        $this->active->onAction = function () {
+
+            $dataId = (new DataIdParameter())->getValue();
+            $this->onActive($dataId);
+            $this->saveActive($dataId);
+
+            (new UrlReferer())->redirect();
+
+        };
+
+
+        $this->inactive = new InactiveActionSite($this);
+        $this->inactive->onAction = function () {
+
+            $dataId = (new DataIdParameter())->getValue();
+            $this->onInactive($dataId);
+            $this->saveInactive($dataId);
+
+            (new UrlReferer())->redirect();
+
+        };
+
+
+
 
 
     }

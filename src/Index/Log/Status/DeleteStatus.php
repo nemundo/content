@@ -2,6 +2,9 @@
 
 namespace Nemundo\Content\Index\Log\Status;
 
+
+
+// InactiveStatus
 class DeleteStatus extends AbstractStatus
 {
 

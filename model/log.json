@@ -6,6 +6,79 @@
     "model": [
         {
             "template": "default",
+            "model_id": "d0c02b28-3069-423a-ad66-ca3404919be2",
+            "label": "Content Log",
+            "class_name": "ContentLog",
+            "table_name": "log_content_log",
+            "namespace": "Nemundo\\Content\\Index\\Log\\Data\\ContentLog",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": false,
+            "type": [
+                {
+                    "type": "external",
+                    "label": "Status",
+                    "field_name": "status",
+                    "variable_name": "status",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "f3115063-fd76-4b36-a39d-fbe508229dce"
+                },
+                {
+                    "type": "user",
+                    "label": "User Created",
+                    "field_name": "user_created",
+                    "variable_name": "userCreated",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "date_time",
+                    "label": "Date Time Created",
+                    "field_name": "date_time_created",
+                    "variable_name": "dateTimeCreated",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "external",
+                    "label": "User Last Change",
+                    "field_name": "user_last_change",
+                    "variable_name": "userLastChange",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "23f00db8-b303-40e4-ab45-32054a954434"
+                },
+                {
+                    "type": "date_time",
+                    "label": "Date Time Last Change",
+                    "field_name": "date_time_last_change",
+                    "variable_name": "dateTimeLastChange",
+                    "allow_null": false,
+                    "is_deleted": false
+                },
+                {
+                    "type": "external",
+                    "label": "Content",
+                    "field_name": "content",
+                    "variable_name": "content",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "2b8a3194-c10f-4a5c-a439-84581d448f35"
+                }
+            ],
+            "index": [
+                {
+                    "index_name": "content",
+                    "index_type": "unique_index",
+                    "field_name": [
+                        "content"
+                    ]
+                }
+            ]
+        },
+        {
+            "template": "default",
             "model_id": "ed560669-0e3c-4e26-98eb-b22a65e21786",
             "label": "Log",
             "class_name": "Log",

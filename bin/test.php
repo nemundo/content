@@ -4,7 +4,10 @@ require "config.php";
 
 (new \Nemundo\Content\Application\ContentApplication())->reinstallApp();
 (new \Nemundo\Content\Index\Log\Application\ContentLogApplication())->reinstallApp();
+
+(new \Nemundo\Content\Index\Workflow\Application\WorkflowApplication())->reinstallApp();
 (new \Nemundo\ContentTest\App\Poi\Application\PoiApplication())->reinstallApp();
+
 
 
 $loop = new \Nemundo\Core\Structure\ForLoop();
@@ -14,6 +17,7 @@ foreach ($loop->getData() as $number) {
 
     $builder = new \Nemundo\ContentTest\App\Poi\Content\TestPoi\TestPoiBuilder();
     $builder->poi = 'Poi Test ' . $number;
+    $builder->description = 'Desctiption'. $number;
     $builder->buildContent();
 
 }
