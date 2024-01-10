@@ -44,7 +44,7 @@ class GeoIndexView extends AbstractActionView
 
 
             $row = new AdminTableRow($table);
-            $row->addText($geoRow->coordinate->getText());
+            $row->addText($geoRow->geoCoordinate->getText());
 
             $site = clone(GeoContentKmlSite::$site);
             $site->addParameter(new GeoIndexParameter($geoRow->id));

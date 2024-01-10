@@ -30,13 +30,9 @@ class ActionPage extends AbstractTemplateDocument
             (new AdminTableRow($table))
                 ->addText($actionRow->action);
 
-
         }
 
-
-
-
-
         return parent::getContent();
+
     }
 }
