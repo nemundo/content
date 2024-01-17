@@ -3,11 +3,12 @@
 namespace Nemundo\Content\Index\Geo\Service;
 
 use Nemundo\App\WebService\Service\AbstractServiceRequest;
+use Nemundo\App\WebService\Service\AbstractWebService;
 use Nemundo\Content\Index\Geo\Data\GeoIndex\GeoIndex;
 use Nemundo\Core\Http\Request\HttpRequest;
 use Nemundo\Core\Type\Geo\GeoCoordinate;
 
-class GeoPostService extends AbstractServiceRequest
+class GeoPostService extends AbstractWebService
 {
 
     protected function loadService()
