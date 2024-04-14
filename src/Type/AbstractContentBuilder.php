@@ -44,7 +44,7 @@ abstract class AbstractContentBuilder extends AbstractBase
     }
 
 
-    protected function onFinished()
+    protected function onFinished($newItem)
     {
 
     }
@@ -59,7 +59,9 @@ abstract class AbstractContentBuilder extends AbstractBase
     public function buildContent()
     {
 
+        $newItem = false;
         if ($this->dataId === null) {
+            $newItem = true;
             $this->onCreate();
         } else {
             $this->onUpdate();
@@ -75,7 +77,7 @@ abstract class AbstractContentBuilder extends AbstractBase
             $action->onAction($item);
         }
 
-        $this->onFinished();
+        $this->onFinished($newItem);
 
         return $this->getDataId();
 
