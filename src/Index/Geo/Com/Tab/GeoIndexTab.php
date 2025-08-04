@@ -2,10 +2,10 @@
 
 namespace Nemundo\Content\Index\Geo\Com\Tab;
 
-use Nemundo\Admin\Com\Tabs\AdminSiteTabs;
+use Nemundo\Admin\Com\Tab\AdminTab;
 use Nemundo\Content\Index\Geo\Site\GeoIndexSite;
 
-class GeoTab extends AdminSiteTabs
+class GeoIndexTab extends AdminTab
 {
 
     public function getContent()
